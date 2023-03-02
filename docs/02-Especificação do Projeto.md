@@ -1,44 +1,51 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+A definição do problema e dos pontos mais relevantes relacionados ao projeto foi realizada por meio de discussões entre os membros da equipe. Os pontos mais relevantes observados durante as discussões foram então consolidados na por meio da elaboração de personas e histórias de usuário, que são mostradas nas seções a seguir.
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+|Felipe Alves      | Informações:                       |                                        |
+|--------------------|------------------------------------|----------------------------------------|
+| ![persona1](https://user-images.githubusercontent.com/74699119/221389199-7ae5f544-762e-48c9-9006-b83cc4220472.jpg) | **Idade:** 32 <br> **Ocupação:** Professor particular de inglês |**Aplicativos:**<br>● Whatsapp <br>● Instagram<br>● Facebook  |
+|**Motivações:**<br>● Obter mais engajamento de seus <br>alunos com as listas de exercício de inglês.<br>●  Obter mais alunos para suas<br> aulas particulares. |**Frustrações:**<br>● Baixa aderência de seus alunos aos exercícios de reforço que ele disponibiliza. <br>● Não possuir tantos alunos quanto gostaria. |**Hobbies:**<br>● Vídeo games<br>● Música <br>● Séries |
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+|Camila Soares      | Informações:                       |                                        |
+|--------------------|------------------------------------|----------------------------------------|
+| ![persona2](https://user-images.githubusercontent.com/74699119/221389970-6826a8ff-f9e2-45e6-a06e-0711bf243ed2.jpg) | **Idade:** 20 <br> **Ocupação:** Vestibulanda |**Aplicativos:**<br>● Tiktok <br>● Instagram<br>● Whatsapp  |
+|**Motivações:**<br>● Ser aprovada no vestibular de<br> medicina da UFMG.<br>●  Ter uma carreira bem<br> sucedida como médica cardiologista. |**Frustrações:**<br>● Dificuldade em manter o ritmo nos estudos. <br>● Dificuldade em avaliar seu progresso em sua preparação para o vestibular. |**Hobbies:**<br>● Viajar<br>● Séries <br>● Animais de estimação |
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+|Márcia Rodrigues      | Informações:                       |                                        |
+|--------------------|------------------------------------|----------------------------------------|
+| ![persona3](https://user-images.githubusercontent.com/74699119/221930875-86967040-8a36-48fc-8caa-c39374aa456d.jpg) | **Idade:** 46 <br> **Ocupação:** Diretora de escola particular |**Aplicativos:**<br>● LinkedIn <br>● Gmail<br>● Twitter  |
+|**Motivações:**<br>● Integrar novas tecnologias de ensino em sua escola.<br>●  Obter melhor desempenho dos alunos de sua escola. |**Frustrações:**<br>● Sentir que sua escola está defasada na adoção de novas tecnologias na sala de aula. <br>● Reclamações dos professores em relação a adesão dos alunos as tarefas de casa. |**Hobbies:**<br>● Leitura<br>● Praticar exercício físico <br>● Natureza |
+
+|Roberto Castro      | Informações:                       |                                        |
+|--------------------|------------------------------------|----------------------------------------|
+| ![persona4](https://user-images.githubusercontent.com/74699119/221960106-8047565a-ed5f-4990-94c7-40afc2fdf403.jpg) | **Idade:** 25 <br> **Ocupação:** Vendedor em loja de roupas e estudante em curso de administração EAD |**Aplicativos:**<br>● Facebook <br>● Twitter<br>● Gmail  |
+|**Motivações:**<br>● Concluir seu curso de administração.<br>●  Obter uma promoção para gerente de<br> vendas em seu emprego. |**Frustrações:**<br>● Dificuldade para acompanhar as tarefas do curso. <br>● Dificuldade em conciliar o tempo entre os estudos e o trabalho. |**Hobbies:**<br>● Cozinhar<br>● Viajar <br>● Séries |
+
+|Sabrina Almeida      | Informações:                       |                                        |
+|--------------------|------------------------------------|----------------------------------------|
+| ![persona5](https://user-images.githubusercontent.com/74699119/221961074-ef4a10dc-e931-4c2a-b989-c376d0c71e49.jpg) | **Idade:** 27 <br> **Ocupação:** Arquiteta, estudante de curso de francês |**Aplicativos:**<br>● Instagram <br>● Twitter<br>● TikTok  |
+|**Motivações:**<br>● Se tornar fluente em francês.<br>● Conseguir um emprego na frança<br> e se mudar para o país. |**Frustrações:**<br>● Dificuldade em acompanhar as tarefas do seu curso de francês. <br>● Não ter obtido uma boa pontuação no último exame de proficiência<br> em francês que realizou. |**Hobbies:**<br>● Viajar<br>● Tirar fotos <br>● Postar em redes sociais |
+
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+A partir da análise das personas elaboradas, foram levantadas as histórias de usuários mostradas abaixo:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|Felipe Alves        | Ter acesso a uma plataforma aonde possa cadastrar e enviar listas de tarefas para meus alunos. |Facilitar o processo de passar listas de tarefas para seus alunos. |
+|Felipe Alves        | Poder acompanhar as métricas de adesão e desempenho dos alunos nas atividades. | Poder avaliar se os alunos estão aderindo as listas de exercício e se estão tendo dificuldade com algum tema específico delas. |
+|Camila Soares        | Ter acesso a uma plataforma onde posso fazer listas de exercício das matérias que estou estudando em qualquer lugar. | Aumentar sua aderência e frequência de realização das atividades de reforço para melhorar seu aprendizado. |
+|Camila Soares        | Ter acesso a uma plataforma aonde posso acompanhar meu progresso no aprendizado das matérias com professores particulares ou de cursinho. | Organizar melhor sua rotina de estudos e poder avaliar melhor os pontos que precisa estudar mais. |
+|Márcia Rodrigues        | Ter acesso a uma plataforma que permita que os professores da minha escola passem tarefas para os alunos por meio de aplicativo. | Modernizar o processo de ensino na minha escola. |
+|Márcia Rodrigues        | Ter acesso a uma plataforma que recolha e disponibilize métricas em relação a adesão e desempenho dos alunos nas tarefas de casa. | Permitir um melhor acompanhamento dos professores no processo de aprendizado dos alunos. |
+|Roberto Castro        | Ter acesso a todas as minhas atividades do curso organizadas em um único aplicativo. | Poder planejar melhor o meu tempo para realização das tarefas do meu curso. |
+|Sabrina Almeida | Ter acesso a uma plataforma aonde eu possa praticar questões para os exames que vou realizar. | Praticar para melhorar meu desempenho nos próximos exames. |
+|Sabrina Almeida | Ter acesso a uma plataforma onde meu professor possa avaliar as métricas do meu desempenho nas tarefas para determinar quais são os pontos em que preciso melhorar. | Ter um melhor direcionamento do meu processo de aprendizado nas minhas aulas particulares. |
 
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Modelagem do Processo de Negócio 
 
