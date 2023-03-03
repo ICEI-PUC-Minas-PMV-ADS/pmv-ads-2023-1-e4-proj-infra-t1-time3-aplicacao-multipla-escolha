@@ -34,8 +34,7 @@ O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estat�
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O foco deste projeto são professores e alunos, onde os professores obtenham uma qualidade maior no ensino e com mais engajamento dos alunos. Sendo assim, estabeleceu-se como público alvo homens e professores de todas as idades, que estudam, trabalham ou que simplesmente tem o objetivo de complementar e enriquecer o ensino.
 
 Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
 
