@@ -25,21 +25,10 @@ Apresente também alguns (pelo menos 2) objetivos específicos dependendo de ond
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+O desenvolvimento de uma plataforma que facilite a gestão e a distribuição de atividades pelos professores pode trazer vários benefícios tanto para os docentes quanto para os alunos, como eficiencia e práticidade para os professores organizarem e disponibilizarem seus conteúdos e, ao mesmo tempo, poderem acompanhar o desempenho dos alunos de forma mais centralizada e precisa. Já os alunos terão acesso aos conteúdos de forma mais fácil e organizada, além de poderem acompanhar seu desempenho e receber feedbacks mais eficazes.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Assim, a plataforma pode ser uma solução para um problema real e pode ajudar a melhorar a qualidade do ensino e a satisfação dos alunos e professores.
 
 ## Público-Alvo
 
 O foco deste projeto são professores e alunos, onde os professores obtenham uma qualidade maior no ensino e com mais engajamento dos alunos. Sendo assim, estabeleceu-se como público alvo homens e professores de todas as idades, que estudam, trabalham ou que simplesmente tem o objetivo de complementar e enriquecer o ensino.
-
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
