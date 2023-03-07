@@ -36,7 +36,7 @@ Backend:
 - **Banco de dados:** SQL Server (gerenciamento de sessão do usuário e gravação e relações entre as entidades aluno, professor, turma, atividade e resultados) e MongoDB (guardar atividades e atividades preenchidas por alunos como documentos em formato BSON (Binary Javascript Object Notation));
 
 Frontend:
-- **Linguagens:** Javascript e Typescript;
+- **Linguagens:** Javascript;
 - **Frameworks:** React Native (Framework utilizado para criar o frontend mobile para Android e IoS) e React (Framework utilizado para criar o frontend web);
 
 ## Hospedagem
