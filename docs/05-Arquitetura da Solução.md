@@ -20,11 +20,9 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ## Esquema Relacional
 
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
- 
-As referências abaixo irão auxiliá-lo na geração do artefato “Esquema Relacional”.
-
-> - [Criando um modelo relacional - Documentação da IBM](https://www.ibm.com/docs/pt-br/cognos-analytics/10.2.2?topic=designer-creating-relational-model)
+![EsquemaRelacional_eixo4](https://user-images.githubusercontent.com/74699119/223539560-2035f628-2383-47eb-b364-1825e72a937f.png)
+<p align="center"><b>Figura</b> - Esquema relacional da aplicação</p>
+<br>
 
 ## Modelo Físico
 
