@@ -86,30 +86,27 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir que o usuário se cadastre como professor ou aluno. | ALTA | 
+|RF-002| Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele. | ALTA |
+|RF-003| Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono. | ALTA |
+|RF-004| Permitir que o usuário do tipo "aluno" solicite participar de turmas existentes. | ALTA |
+|RF-005| Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa. | ALTA |
+|RF-006| Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. | ALTA |
+|RF-007| Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou. | MÉDIA |
+|RF-008| Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas. | ALTA |
+|RF-009| O sistema deve enviar avisos para os alunos quando uma nova atividade for cadastrada. | BAIXA |
+|RF-009| O sistema deve enviar avisos para os alunos quando uma atividade ainda não realizada estiver perto do prazo de entrega. | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|RNF-001| O módulo de backend do sistema deverá ser desenvolvido na linguagem C# | ALTA |
+|RNF-002| Os módulo de frontend do sistema deverão ser desenvolvidos na linguagem Javascript | ALTA |
+|RNF-003| O módulo de frontend mobile do sistema devera rodar tanto em Android quanto em IoS | ALTA |
+|RNF-004| O sistema deve proteger os dados sensíveis do usuário por meio de criptografia | ALTA |
+|RNF-005| A interface do sistema deve ser intuitiva, permitindo que o usuário utilize suas funcionalidades sem a necessidade de materiais de ajuda | MÉDIA |
+|RNF-006| O sistema deve processar requisições do usuário em no máximo 3s |  BAIXA | 
 
 ## Restrições
 
@@ -118,13 +115,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|02| O projeto deverá possuir um módulo distinto para frontend mobile e o frontend web, e não apenas um único módulo frontend responsivo que pode ser acessado como web ou mobile |
+|03| O backend do projeto deverá ser desenvolvido como uma API REST capaz de receber requisições e retornar respostas tanto para o frontend mobile quanto para o frontend web |
 
 ## Diagrama de Casos de Uso
 
