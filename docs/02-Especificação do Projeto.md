@@ -103,7 +103,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |-------|-------------------------|----|
 |RNF-001| O módulo de backend do sistema deverá ser desenvolvido na linguagem C# | ALTA |
 |RNF-002| Os módulo de frontend do sistema deverão ser desenvolvidos na linguagem Javascript | ALTA |
-|RNF-003| O módulo de frontend mobile do sistema devera rodar tanto em Android quanto em IoS | ALTA |
+|RNF-003| O módulo de frontend mobile do sistema devera rodar tanto em Android quanto em IoS | MÉDIA |
 |RNF-004| O sistema deve proteger os dados sensíveis do usuário por meio de criptografia | ALTA |
 |RNF-005| A interface do sistema deve ser intuitiva, permitindo que o usuário utilize suas funcionalidades sem a necessidade de materiais de ajuda | MÉDIA |
 |RNF-006| O sistema deve processar requisições do usuário em no máximo 3s |  BAIXA | 
