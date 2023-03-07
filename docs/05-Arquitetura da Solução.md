@@ -14,11 +14,9 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ## Modelo ER
 
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Modelo ER”.
-
-> - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
+![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/223539492-b955eeac-d590-4fa0-b9b0-bdcdba0467ee.png)
+<p align="center"><b>Figura</b> - Modelo entidade/relacionamento da aplicação</p>
+<br>
 
 ## Esquema Relacional
 
