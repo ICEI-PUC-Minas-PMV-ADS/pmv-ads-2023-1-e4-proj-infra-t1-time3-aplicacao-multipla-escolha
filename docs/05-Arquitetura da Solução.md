@@ -1,10 +1,10 @@
 # Arquitetura da Solução
 
-<span style="color:red">Pré-requisitos: <a href="3-Projeto de Interface.md"> Projeto de Interface</a></span>
+Esta seção apresenta a definição de como a aplicação será estruturada em termos de seus componentes, tecnologias utilizadas e hospedagem.
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
-
-![Arquitetura da Solução](img/02-mob-arch.png)
+![ArquiteturaDaSolucao_eixo4](https://user-images.githubusercontent.com/74699119/223552807-78949806-2600-4425-b30d-30d376ea773c.png)
+<p align="center"><b>Figura</b> - Arquitetura da solução</p>
+<br>
 
 ## Diagrama de Classes
 
@@ -30,9 +30,14 @@ Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do ba
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+Backend:
+- **Linguagens:** C#;
+- **Frameworks:** AspNetCore Web API (Framework/Template utilizado para criar a API), Entity Framework (ORM utilizado para mediar a gravação e recuperação de dados dos bancos de dados pela API);
+- **Banco de dados:** SQL Server (gerenciamento de sessão do usuário e gravação e relações entre as entidades aluno, professor, turma, atividade e resultados) e MongoDB (guardar atividades e atividades preenchidas por alunos como documentos em formato BSON (Binary Javascript Object Notation));
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+Frontend:
+- **Linguagens:** Javascript e Typescript;
+- **Frameworks:** React Native (Framework utilizado para criar o frontend mobile para Android e IoS) e React (Framework utilizado para criar o frontend web);
 
 ## Hospedagem
 
