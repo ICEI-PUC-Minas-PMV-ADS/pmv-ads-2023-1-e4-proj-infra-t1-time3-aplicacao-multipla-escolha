@@ -1,7 +1,7 @@
 
 # Metodologia
 
-Encontra-se descrita nesta seção a metodologia de trabalho adotada pelo grupo no desenvolvimento da solução. As seções presentes abaixo descrevem os ambientes de trabalhos utilizados pela equipe, além da estrutura utilizada para gestão do código fonte e a definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
+A metodologia define as ferramentas utilizadas pela equipe. As seções presentes abaixo descrevem os ambientes de trabalhos utilizados pela equipe, além da estrutura utilizada para gestão do código fonte e a definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
 
 ## Relação de Ambientes de Trabalho
 
@@ -18,7 +18,7 @@ Ambiente|Plataforma|Link de Acesso
 
 ## Controle de Versão
 
-A ferramenta de controle de versão adotada no projeto foi o
+Para a gestão do código fonte será utilizado o modelo de processo baseado no
 [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
 foi utilizado para hospedagem do repositório.
 
@@ -59,9 +59,11 @@ Divisão de papéis entre os membros do grupo.
 
 ### Processo
 
-Para dividir nossos processos vamos utilizar a metodologia Scrum. Nossas sprints tem uma semana sendo a divisão das tarefas feitas na Terça-feira e baseada na entrega semanal ao cliente que deve ser feita geralmente na Terca-feira às 19:00hs.
+O grupo decidiu por utilizar a metodologia Ágil, sendo escolhido o Scrum como base para definição do processo de desenvolvimento do projeto. Nossas sprints tem uma semana sendo a divisão das tarefas feitas na Terça-feira e baseada na entrega semanal ao cliente que deve ser feita geralmente na Terca-feira às 19:30hs.
 
-Ao início de cada Sprint (possuindo geralmente duração de 1 semana), o grupo se reúne para definir quais tarefas serão realizadas, selecionando-as do Backlog do produto presente no quadro Kanban Trello (mostrado na figura abaixo). Após definir quais membros serão responsáveis por quais tarefas naquela Sprint, os itens selecionados são associados aos membros da equipe responsáveis por eles e movidos para a aba "To Do" do Kanban, correspondente à backlog da Sprint.
+Com relação a organização e distribuição das tarefas do projeto, a equipe utiliza a plataforma Trello, onde é possível criar Listas, Cartões, Etiquetas, Botões personalizados com ações automáticas, entre diversas outras funcionalidades que impactam positivamente na eficiência do grupo.
+
+No início de cada Sprint, o grupo se reúne para definir quais tarefas serão realizadas, selecionando-as do Backlog do produto presente no quadro Kanban Trello (mostrado na figura abaixo). Após definir quais membros serão responsáveis por quais tarefas naquela Sprint, os itens selecionados são associados aos membros da equipe responsáveis por eles e movidos para a aba "To Do" do Kanban, correspondente à backlog da Sprint.
 
 As tarefas, que são criadas como issues, devem estar devidamente descritas com todas as informações necessárias e com as etiquetas corretas.
 
@@ -107,8 +109,8 @@ As ferramentas empregadas no projeto são:
 |------|-----------------------------------------|----|
 | Ferramenta de comunicação | Microsoft Teams| [teams.microsoft.com]()|
 | Repositório | Github | [Projeto ](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/blob/main/README.md) |
-| Editor de código Backend | Visual Studio 2022 Community Edition | [Visual Studio 2022 ](Visual Studio 2022 Community Edition)|
-| Editor de código Frontend | Visual Studio Code | [Visual Studio Code ](Visual Studio Code)|
+| Editor de código Backend | Visual Studio 2022 Community Edition | [Visual Studio ](https://visualstudio.microsoft.com/)|
+| Editor de código Frontend | Visual Studio Code | [Visual Studio Code ](https://code.visualstudio.com/)|
 | Ferramenta de criação de Diagramas | Figma | [figma.com]()|
 | Ferramenta de criação Modelagem Processo de Negócios | LucidChart | [lucidchart.com]()|
 | Ferramenta de criação Interface e Wireframes | Figma, Lucidchart | [figma.com](), [lucid.app](), [lucid.app]() |
