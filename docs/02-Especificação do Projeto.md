@@ -51,11 +51,15 @@ A partir da análise das personas elaboradas, foram levantadas as histórias de 
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional. 
+O processo normalmente realizado por professores de passar listas de atividades para seus alunos e corrigi-las, seja para fins de reforço ou para fins de avaliação, geralmente passa por uma sequencia similar a ilustrada na figura abaixo, aonde o professor elabora a lista de atividades, a encaminha para o aluno (seja por e-mail ou presencialmente, entregando listas impressas em papel na sala de aula) e estabelece um prazo para a entrega. O aluno então responde as questões da lista e a retorna para o professor (por e-mail ou pessoalmente), que por sua vez realiza a correção das questões uma a uma e atribui uma nota para o aluno baseado em suas respostas, lançando-a em algum sistema online ou repassando a correção físicamente para o aluno para que este possa saber sobre sua nota e seu desempenho na atividade.  
+
+![BPMN 2 0 - Eixo 4 Processo Atual](https://user-images.githubusercontent.com/74699119/225039697-dbed938b-c308-4f9d-9aa0-4b31d6156747.png)
+<p align="center"><b>Figura</b> - Análise da situação atual</p>
+<br>
 
 ### Descrição Geral da Proposta
 
-Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
+Nossa proposta consiste no desenvolvimento de uma aplicação distribuída (possuindo uma versão web e uma versão mobile) aonde o professor possa se cadastrar e criar uma turma na qual cadastrará as atividades que deseja passar para os alunos. Os alunos então poderão se cadastrar no aplicativo e solicitar participação nessas turmas, tendo então acesso a todas as atividades cadastradas pelo professor. As atividades cadastradas terão associadas a elas um prazo de entrega, nota máxima, nota de cada questão e um gabarito (que não ficará visível para o aluno), sendo limitadas somente a atividades de múltipla escolha para evitar que o escopo do projeto se torne inviável. Ao selecionar uma atividade, os alunos poderão selecionar a resposta que desejam marcar para cada questão e por fim submeter a atividade, que será corrigida na hora utilizando o gabarito, além disso, a atividade com as respostas selecionadas pelo aluno também ficaria salva para poder ser vista posteriorimente. Por fim, o sistema também coletaria métricas relativas ao desempenho de cada aluno nas atividades da turma, disponibilizando-as para o aluno e também para o professorda turma. As figuras abaixo ilustram os processos da solução.
 
 ### Processo 1 – NOME DO PROCESSO
 
