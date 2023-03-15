@@ -61,12 +61,12 @@ O processo normalmente realizado por professores de passar listas de atividades 
 
 Nossa proposta consiste no desenvolvimento de uma aplicação distribuída (possuindo uma versão web e uma versão mobile) aonde o professor possa se cadastrar e criar uma turma na qual cadastrará as atividades que deseja passar para os alunos. Os alunos então poderão se cadastrar no aplicativo e solicitar participação nessas turmas, tendo então acesso a todas as atividades cadastradas pelo professor. As atividades cadastradas terão associadas a elas um prazo de entrega, nota máxima, nota de cada questão e um gabarito (que não ficará visível para o aluno), sendo limitadas somente a atividades de múltipla escolha para evitar que o escopo do projeto se torne inviável. Ao selecionar uma atividade, os alunos poderão selecionar a resposta que desejam marcar para cada questão e por fim submeter a atividade, que será corrigida na hora utilizando o gabarito, além disso, a atividade com as respostas selecionadas pelo aluno também ficaria salva para poder ser vista posteriorimente. Por fim, o sistema também coletaria métricas relativas ao desempenho de cada aluno nas atividades da turma, disponibilizando-as para o aluno e também para o professorda turma. As figuras abaixo ilustram os processos da solução.
 
-### Processo 1 – Cadastro de usuário
+### Processo 1 – Cadastro de conta pelo usuário
 
-O primeiro processo apresentado consiste no cadastro de usuários na aplicação. O usuário poderá se cadastrar tanto com uma conta do tipo "professor", que poderá criar novas turmas e cadastrar atividades nelas, como com uma conta tipo "aluno", que poderá participar de turmas criadas por usuários do tipo "professor" e ter acesso a todas as atividades nelas postadas para realizar.
+O primeiro processo apresentado consiste no cadastro de contas pelos usuários na aplicação. O usuário poderá se cadastrar tanto com uma conta do tipo "professor", que poderá criar novas turmas e cadastrar atividades nelas, como com uma conta tipo "aluno", que poderá participar de turmas criadas por usuários do tipo "professor" e ter acesso a todas as atividades nelas postadas para realizar.
 
 ![BPMN 2 0 - Eixo 4 Nosso Processo - Cadastro](https://user-images.githubusercontent.com/74699119/225402629-8201eaca-247a-4cfd-b62e-16d73dde5fc3.png)
-<p align="center"><b>Figura</b> - Processo 1: Cadastro de conta de usuário.</p>
+<p align="center"><b>Figura</b> - Processo 1: Cadastro de conta pelo usuário.</p>
 <br>
 
 ### Processo 2 – NOME DO PROCESSO
