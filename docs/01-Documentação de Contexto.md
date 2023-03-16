@@ -1,27 +1,21 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+O cenário do ensino a distância (EAD) pós-Covid apresentou um crescimento significativo, devido ao aumento da demanda por educação online durante este período. O ensino remoto passou a ser uma realidade para milhões de estudantes, professores e instituições em todo o mundo. O acesso à tecnologia e à internet se tornou mais amplo e as barreiras geográficas foram reduzidas, o que permitiu que mais pessoas tivessem acesso à educação. Além disso, a pandemia acelerou a adoção de novas tecnologias e métodos de ensino, como a gamificação e a personalização do aprendizado. Porém, nem todos os professores se adaptaram as novas tecnologias e ao novo formato de ensino encarando desafios durante este processo de adaptação, mas tanto professores quanto alunos precisam se ajustar às condições do ambiente em que estão inseridos. Esse processo de adaptação envolve mudanças comportamentais, emocionais, cognitivas e fisiológicas que permitem que os indivíduos prosperem e tenham qualidade de vida no meio em que vivem.
+
+Vale ressaltar que uso de ferramentas digitais e tecnológicas para complementar e enriquecer o ensino também foram adotadas na modalidade presencial. Essa abordagem tem se tornado cada vez mais comum nas instituições de ensino em todo o mundo, especialmente após a pandemia. Além disso, uma pesquisa realizada pelo Google em parceria com a consultoria McKinsey & Company (McKinskey and company, 2021) apontou que 70% dos professores entrevistados no Brasil tiveram que se adaptar ao ensino online durante a pandemia, e 66% deles tiveram que se adaptar ao ensino híbrido, que combina atividades presenciais e remotas. Essa adaptação pode ter levado muitos professores a experimentar novas formas de trabalho, incluindo a atuação como profissionais autônomos. Por fim, um estudo realizado pelo Instituto de Pesquisa Econômica Aplicada (IPEA, 2021) mostrou que o número de trabalhadores autônomos no Brasil aumentou significativamente durante a pandemia, passando de 23,8 milhões em 2019 para 24,4 milhões em 2020. Embora essa pesquisa não se restrinja especificamente aos professores, é possível que esse aumento também tenha sido impulsionado pelo crescente número de profissionais que optaram por trabalhar de forma autônoma na área da educação.
+
+Com o intuito de facilitar este processo de adaptação e trazer maior comodidade a docentes e dicentes do corpo estudantil e docentes que atuam como autônomos ministrando aulas particulares, teve-se a ideia de implementar uma aplicação mobile e web que forneça um ambiente escalável para que os profissionais possam submeter atividades, materiais de apoio e testes tanto por um dispositivo movél quanto em uma conexão web. Está aplicação trará comodidade aos usuários que irão submeter esses materiais tanto quanto para os usuários que irão consumi-los.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
-
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Diante do exposto, percebe-se que há dois problemas a serem sanados: a escassez de uma ferramenta 100% digital que facilite a administração do professor na disponibilização de conteúdos, atividades e provas permitindo que o mesmo consiga acompanhar o desempenho do aluno de forma centralizada através de um único aplicativo. Não ter acesso a todos esses recursos oferecidos pelo professor de forma pratica e fácil é uma dor que precisa ser resolvida para facilitar e melhorar vida acadêmica dos alunos.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+Temos como objetivo geral do projeto desenvolver uma aplicação disponível em formato web e mobile que consiga auxiliar professores no processo de ministrar listas de exercícios para seus alunos de forma online, coletando métricas sobre a aderência e desempenho dos alunos em relação a essas atividades. Desta forma, os professores conseguiriam realizar um monitoramento melhor do processo de aprendizagem dos alunos e os alunos poderiam ter mais organização e comodidade para poder realizar as tarefas a qualquer hora por meio de dispositivos móveis ou via desktop quando estiverem em casa.
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+° Disponibilizar aos professores ferramentas para submeterem atividades e conteúdos novos e melhorias para os alunos;
+
+° Permitir aos professores visualizarem notas e o desempenho dos alunos;
 
 ## Justificativa
 
