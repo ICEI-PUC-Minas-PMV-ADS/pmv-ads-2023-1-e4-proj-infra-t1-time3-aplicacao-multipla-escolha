@@ -161,6 +161,8 @@ O gráfico de Gantt é uma ferramenta visual para gerenciar o cronograma de ativ
 
 ![Gráfico de Gantt](img/02-gantt-multipla-escolha.png)
 
+A imagem expandida pode ser [visualizada aqui](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/main/docs/img/02-gantt-multipla-escolha.png).
+
 ## Gerenciamento de Equipe
 
 O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
