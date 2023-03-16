@@ -41,14 +41,9 @@ Frontend:
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+O frontend mobile da aplicação será convertido em uma APK disponibilizada neste mesmo repositório, que poderá ser instalada diretamente em aplicativos móveis.
 
-> **Links Úteis**:
->
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+Os demais componentes da solução serão hospedados na plataforma Microsoft Azure. A plataforma foi escolhida em razão da parceria que a PUC Minas possui com a Microsoft Azure, permitindo acesso gratuito a muitos de seus serviços dentro de uma determinado valor e de sua versatilidade para a hospedagem das diferentes partes da solução (banco de dados, API em ASPNET.CORE e frontend web).
 
 ## Qualidade de Software
 
