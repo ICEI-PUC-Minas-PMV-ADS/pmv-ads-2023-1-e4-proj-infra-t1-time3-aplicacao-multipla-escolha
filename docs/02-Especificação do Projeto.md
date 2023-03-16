@@ -189,6 +189,6 @@ O gerenciamento adequado de tarefas contribuirá para que o projeto alcance alto
 | Recursos Humanos | Os desenvolvedores serão os integrantes do projeto | R$0,00 |
 | Hardware | Os desenvolvedores vão utilizar infraestrutura própria | R$0,00 |
 | Software | Serão utilizados opções gratuitas durante o desenvolvimento | R$0,00 |
-| Serviço de Hospedagem |  Serão utilizados opções gratuitas de hospedagem na nuvem e o aplicativo mobile não será registrado na Play Store ou App Store | R$0,00 |
+| Serviço de Hospedagem | Será utilizada uma conta para estudantes do Microsoft Azure e o aplicativo mobile não será registrado na Play Store ou App Store | R$0,00 |
 | Serviço de Internet | Os desenvolvedores vão utilizar recursos própios para acesso a Internet | R$0,00 |
 | **Total** |  | **R$0,00** |
