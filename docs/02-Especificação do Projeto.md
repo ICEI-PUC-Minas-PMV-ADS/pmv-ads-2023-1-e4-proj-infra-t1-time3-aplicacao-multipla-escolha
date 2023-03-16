@@ -161,7 +161,7 @@ O gráfico de Gantt é uma ferramenta visual para gerenciar o cronograma de ativ
 
 ![Gráfico de Gantt](img/02-gantt-multipla-escolha.png)
 
-A imagem expandida pode ser [visualizada aqui](https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/main/docs/img/02-gantt-multipla-escolha.png).
+A imagem expandida pode ser [visualizada aqui](img/02-gantt-multipla-escolha.png?raw=true).
 
 ## Gerenciamento de Equipe
 
@@ -171,6 +171,11 @@ O gerenciamento adequado de tarefas contribuirá para que o projeto alcance alto
 
 ## Gestão de Orçamento
 
-O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo.
-
-![Orçamento](img/02-orcamento.png)
+| Recurso Necessário | Descrição | Valor (R$) |
+|---|---|---|
+| Recursos Humanos | Os desenvolvedores serão os integrantes do projeto | R$0,00 |
+| Hardware | Os desenvolvedores vão utilizar infraestrutura própria | R$0,00 |
+| Software | Serão utilizados opções gratuitas durante o desenvolvimento | R$0,00 |
+| Serviço de Hospedagem |  Serão utilizados opções gratuitas de hospedagem na nuvem e o aplicativo mobile não será registrado na Play Store ou App Store | R$0,00 |
+| Serviço de Internet | Os desenvolvedores vão utilizar recursos própios para acesso a Internet | R$0,00 |
+| **Total** |  | **R$0,00** |
