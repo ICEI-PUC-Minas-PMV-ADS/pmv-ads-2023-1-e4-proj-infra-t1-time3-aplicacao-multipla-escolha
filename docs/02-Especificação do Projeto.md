@@ -113,7 +113,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-001| Permitir que o usuário se cadastre como professor ou aluno. | ALTA | 
 |RF-002| Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele. | ALTA |
 |RF-003| Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono. | ALTA |
-|RF-004| Permitir que o usuário do tipo "aluno" solicite participar de turmas existentes. | ALTA |
+|RF-004| Permitir que o usuário do tipo "aluno" se matricule em turmas existentes. | ALTA |
 |RF-005| Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa. | ALTA |
 |RF-006| Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. | ALTA |
 |RF-007| Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou. | MÉDIA |
