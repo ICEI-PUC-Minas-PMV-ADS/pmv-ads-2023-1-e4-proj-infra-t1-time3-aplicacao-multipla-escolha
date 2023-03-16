@@ -90,7 +90,7 @@ O terceiro processo apresentado consiste na realização das atividades cadastra
 O quarto processo apresentado consiste na visualização de métricas relativas ao desempenho de um aluno em uma turma pelo próprio aluno ou pelo professor da turma. O usuário deverá selecionar a turma para a qual deseja visualizar as métricas do aluno e, caso seja um usuário do tipo "professor" selecionar qual o aluno da turma cujas métricas deseja visualizar. Por fim o sistema retorna as métricas do aluno em questão.
 
 ![BPMN 2 0 - Eixo 4 Nosso Processo - Visualizar métricas](https://user-images.githubusercontent.com/74699119/225575425-a97bad14-f069-4c13-bf06-498f978b5473.png)
-<p align="center"><b>Figura</b> - **Processo 4: Realização de atividade por usuário do tipo "aluno"**.</p>
+<p align="center"><b>Figura</b> - Processo 4: Realização de atividade por usuário do tipo "aluno".</p>
 <br>
 
 ## Indicadores de Desempenho
