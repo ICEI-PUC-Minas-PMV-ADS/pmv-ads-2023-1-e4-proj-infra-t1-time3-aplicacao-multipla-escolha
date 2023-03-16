@@ -69,11 +69,29 @@ O primeiro processo apresentado consiste no cadastro de contas pelos usuários n
 <p align="center"><b>Figura</b> - Processo 1: Cadastro de conta pelo usuário.</p>
 <br>
 
-### Processo 2 – NOME DO PROCESSO
+### Processo 2 – Cadastro de atividade por usuário do tipo "professor"
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
+O segundo processo apresentado consiste no cadastro de atividades pelo professor. Para cadastrar uma atividade, o usuário do tipo "professor" deve primeiro selecionar a turma a qual a atividade pertence (ou criar uma nova turma caso esta ainda não exista) e então preencher os dados da atividade (nome, prazo para entrega, elaborar as questões, gabarito) e submete-la para que o sistema a salve no banco de dados.
 
-![Processo 2](img/02-bpmn-proc2.png)
+![BPMN 2 0 - Eixo 4 Nosso Processo - Criar atividade](https://user-images.githubusercontent.com/74699119/225572228-18c7e7fa-bbee-4246-b4d8-5b1c4b6bd8eb.png)
+<p align="center"><b>Figura</b> - Processo 2: Cadastro de atividade por usuário do tipo "professor".</p>
+<br>
+
+### Processo 3 – Realização de atividade por usuário do tipo "aluno"
+
+O terceiro processo apresentado consiste na realização das atividades cadastradas pelo professor pelo aluno. Para fazer isso, o usuário logado como "aluno" deverá selecionar a turma da atividade em questão e ir até a lista de atividades disponíveis e seleciona a atividade que deseja realizar. Caso a atividade esteja dentro do prazo, o aluno poderá então preencher e submete-la, recebendo a nota logo em seguida após a correção automática pelo sistema.
+
+![BPMN 2 0 - Eixo 4 Nosso Processo - Fazer atividade (1)](https://user-images.githubusercontent.com/74699119/225574602-b2fed52e-9096-4048-bad1-fb06763032bf.png)
+<p align="center"><b>Figura</b> - Processo 3: Realização de atividade por usuário do tipo "aluno".</p>
+<br>
+
+### Processo 4 – Visualização de métricas de aluno em uma turma por usuário do tipo "aluno" ou "professor"
+
+O quarto processo apresentado consiste na visualização de métricas relativas ao desempenho de um aluno em uma turma pelo próprio aluno ou pelo professor da turma. O usuário deverá selecionar a turma para a qual deseja visualizar as métricas do aluno e, caso seja um usuário do tipo "professor" selecionar qual o aluno da turma cujas métricas deseja visualizar. Por fim o sistema retorna as métricas do aluno em questão.
+
+![BPMN 2 0 - Eixo 4 Nosso Processo - Visualizar métricas](https://user-images.githubusercontent.com/74699119/225575425-a97bad14-f069-4c13-bf06-498f978b5473.png)
+<p align="center"><b>Figura</b> - Processo 4: Realização de atividade por usuário do tipo "aluno".</p>
+<br>
 
 ## Indicadores de Desempenho
 
@@ -95,7 +113,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-001| Permitir que o usuário se cadastre como professor ou aluno. | ALTA | 
 |RF-002| Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele. | ALTA |
 |RF-003| Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono. | ALTA |
-|RF-004| Permitir que o usuário do tipo "aluno" solicite participar de turmas existentes. | ALTA |
+|RF-004| Permitir que o usuário do tipo "aluno" se matricule em turmas existentes. | ALTA |
 |RF-005| Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa. | ALTA |
 |RF-006| Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. | ALTA |
 |RF-007| Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou. | MÉDIA |
@@ -126,16 +144,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
+O diagrama abaixo ilustra as principais ligações entre atores e casos de uso em relação aos Requisitos Funcionais da solução.
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
-
-> **Links Úteis**:
-> - [Criando Casos de Uso](https://www.ibm.com/docs/pt-br/elm/6.0?topic=requirements-creating-use-cases)
-> - [Como Criar Diagrama de Caso de Uso: Tutorial Passo a Passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+![Diagrama de casos de uso](https://user-images.githubusercontent.com/74699119/225588647-e49b53fc-9d94-4685-9a9f-78d6e409321b.png)
+<p align="center"><b>Figura</b> - Diagrama de casos de uso da solução.</p>
+<br>
 
 # Matriz de Rastreabilidade
 
