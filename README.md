@@ -6,8 +6,7 @@
 
 `QUARTO SEMESTRE`
 
-<TODO>
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Com o intuito de facilitar o processo de adaptação de alunos e professores, pós covid-19 em que o cenário educacional sofreu diversas mudanças e trazer maior comodidade ao dia-a-dia do mundo acadêmico, teve-se a ideia de implementar uma aplicação mobile e web que forneça um ambiente escalável para que os profissionais possam submeter atividades, materiais de apoio e testes tanto por um dispositivo movél quanto em uma conexão web. Está aplicação trará comodidade aos usuários que irão submeter esses materiais tanto quanto para os usuários que irão consumi-los.
 
 ## Integrantes
 
