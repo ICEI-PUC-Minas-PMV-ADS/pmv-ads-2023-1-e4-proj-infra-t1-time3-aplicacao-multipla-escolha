@@ -180,7 +180,9 @@ A imagem expandida pode ser [visualizada aqui](img/02-gantt-multipla-escolha.png
 
 O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
 
-![Simple Project Timeline](img/02-project-timeline.png)
+![Gerenciamento de equipe 1](img/gestao-equipe2.jpeg)
+
+![Gerenciamento de equipe 2](img/gestao-equipe.jpeg)
 
 ## Gestão de Orçamento
 
