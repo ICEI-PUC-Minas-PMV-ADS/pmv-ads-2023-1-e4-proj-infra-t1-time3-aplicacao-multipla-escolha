@@ -146,7 +146,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 O diagrama abaixo ilustra as principais ligações entre atores e casos de uso em relação aos Requisitos Funcionais da solução.
 
-![Diagrama de casos de uso](https://user-images.githubusercontent.com/74699119/225588647-e49b53fc-9d94-4685-9a9f-78d6e409321b.png)
+![Diagrama de casos de uso](https://user-images.githubusercontent.com/74699119/226138999-a9dcd7e1-a0e3-4174-862a-1bcd78ffeaf4.png)
 <p align="center"><b>Figura</b> - Diagrama de casos de uso da solução.</p>
 <br>
 
