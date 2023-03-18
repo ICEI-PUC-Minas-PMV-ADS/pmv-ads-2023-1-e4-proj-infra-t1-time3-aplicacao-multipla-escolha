@@ -26,7 +26,7 @@ Esta seção apresenta a definição de como a aplicação será estruturada em 
 
 ## Modelo Físico
 
-O modelo físico da aplicação se encontra na pasta [src\bd](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/src/bd) deste repositório sob o nome "banco.sql" contendo os scripts de criação das tabelas do banco de dados.
+O modelo físico da aplicação se encontra na pasta [src\bd](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/src/bd) deste repositório sob o nome "banco.sql", que contém os scripts de criação das tabelas do banco de dados.
 
 ## Tecnologias Utilizadas
 
