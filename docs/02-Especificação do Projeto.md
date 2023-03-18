@@ -119,7 +119,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-007| Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou. | MÉDIA |
 |RF-008| Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas. | ALTA |
 |RF-009| O sistema deve enviar avisos para os alunos quando uma nova atividade for cadastrada. | BAIXA |
-|RF-009| O sistema deve enviar avisos para os alunos quando uma atividade ainda não realizada estiver perto do prazo de entrega. | BAIXA |
+|RF-010| O sistema deve enviar avisos para os alunos quando uma atividade ainda não realizada estiver perto do prazo de entrega. | BAIXA |
 
 ### Requisitos não Funcionais
 
