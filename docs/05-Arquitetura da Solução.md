@@ -8,25 +8,25 @@ Esta seção apresenta a definição de como a aplicação será estruturada em 
 
 ## Diagrama de Classes
 
-![DiagramaDeClasses_eixo4](https://user-images.githubusercontent.com/74699119/223539115-16cf8e10-cbd2-4979-9e36-e1114eaead34.png)
+![DiagramaDeClasses_eixo4](https://user-images.githubusercontent.com/74699119/226141536-cdff9fc8-5647-47af-b5d8-8dc376a5be05.png)
 <p align="center"><b>Figura</b> - Diagrama de classes da aplicação</p>
 <br>
 
 ## Modelo ER
 
-![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/226140201-ff0915d6-3b13-4a3d-b487-a5ae72acf27d.png)
+![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/226141541-134850af-32a7-4ec5-b09e-1578caed2317.png)
 <p align="center"><b>Figura</b> - Modelo entidade/relacionamento da aplicação</p>
 <br>
 
 ## Esquema Relacional
 
-![EsquemaRelacional_eixo4](https://user-images.githubusercontent.com/74699119/226140198-2e5d42f2-f851-4665-9f47-41a39c58c118.png)
+![EsquemaRelacional_eixo4](https://user-images.githubusercontent.com/74699119/226141537-14f84238-ff5b-4e27-be49-a2097a5bfc84.png)
 <p align="center"><b>Figura</b> - Esquema relacional da aplicação</p>
 <br>
 
 ## Modelo Físico
 
-Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
+O modelo físico da aplicação se encontra na pasta [src\bd](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/src/bd) deste repositório sob o nome "banco.sql" contendo os scripts de criação das tabelas do banco de dados.
 
 ## Tecnologias Utilizadas
 
