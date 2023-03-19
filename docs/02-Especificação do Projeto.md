@@ -95,12 +95,13 @@ O quarto processo apresentado consiste na visualização de métricas relativas 
 
 ## Indicadores de Desempenho
 
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores. 
-
-Usar o seguinte modelo: 
-
-![Indicadores de Desempenho](img/02-indic-desemp.png)
-Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori. 
+|#|Indicador|Objetivos|Descrição|Cálculo|Fonte dos dados|Perspectiva|
+|--|------|--------|--------|---------|--------|-----------|
+|1|Número de novos usuários|Acompanhar a taxa de crescimento da base de usuários da aplicação|Avaliar o crescimento do número de usuários|Número de novas contas de usuário cadastradas na plataforma em um dado período de tempo.|Banco de dados da aplicação|Crescimento da adoção do aplicativo por usuários|
+|2|Taxa de reclamações dos usuários|Verificar a satisfação dos usuários com a plataforma|Avaliar possível insatisfação dos usuários com a aplicação.|Número de reclamações recebidas em relação ao número total de usuários.|Reclamações registradas pelos meios de contato disponibilizados na aplicação.|Avaliar se os usuários estão insatisfeitos com algum aspecto da aplicação|
+|3|Taxa de permanência dos usuários|Verificar se os usuários que se cadastraram continuam ativos na aplicação|Avaliar se os usuários que se cadastram na aplicação seguem usando-a ou param de usar.|Número de contas de usuário que não apresentaram nenhuma atividade por um período maior do que 6 meses em relação ao número total de usuários.|Informações extraídas dos logs do banco de dados da aplicação.|Avaliar se a aplicação está mantendo os usuários engajados em seu uso ou se os usuários deixam de usa-la com o tempo.|
+|4|Nota da avaliação da interface mobile da aplicação.|Verificar a satisfação dos usuários em relação a interface mobile da aplicação|Observação do feedback dos usuários da aplicação móvel por meio das notas atribuídas a interface mobile da aplicação.|Nota média das avaliações submetidas pelos usuários nas lojas de aplicativos onde baixaram a aplicação.|Dados fornecidos pela PlayStore e AppleStore.|Avaliar se a interface mobile da aplicação está sendo considerada satisfatória pelos usuários.|
+|5|Número de novos acessos a interface web da aplicação.|Verificar a popularidade da aplicação por meio do número de novos acessos a interface web da mesma.|Observação do número de acessos por novos usuários.|Número de novos usuários distintos que acessaram a aplicação em um dado período de tempo.|Dados obtidos através do Google Analytics.|Avaliar se a interface web da aplicação está recebendo atenção de novos usuários ou se mais divulgação é necessária.|
 
 ## Requisitos
 
@@ -155,12 +156,6 @@ O diagrama abaixo ilustra as principais ligações entre atores e casos de uso e
 A matriz de rastreabilidade é uma ferramenta usada para facilitar a visualização dos relacionamento entre requisitos e outros artefatos ou objetos, permitindo a rastreabilidade entre os requisitos e os objetivos de negócio. 
 
 ![Exemplo de matriz de rastreabilidade](img/02-matriz-rastreabilidade.png)
-
-> **Links Úteis**:
-> - [Artigo Engenharia de Software 13 - Rastreabilidade](https://www.devmedia.com.br/artigo-engenharia-de-software-13-rastreabilidade/12822/)
-> - [Verificação da rastreabilidade de requisitos usando a integração do IBM Rational RequisitePro e do IBM ClearQuest Test Manager](https://developer.ibm.com/br/tutorials/requirementstraceabilityverificationusingrrpandcctm/)
-> - [IBM Engineering Lifecycle Optimization – Publishing](https://www.ibm.com/br-pt/products/engineering-lifecycle-optimization/publishing/)
-
 
 # Gerenciamento de Projeto
 
