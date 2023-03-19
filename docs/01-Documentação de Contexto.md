@@ -25,4 +25,4 @@ Assim, a plataforma pode ser uma solução para um problema real e pode ajudar a
 
 ## Público-Alvo
 
-O foco deste projeto são professores e alunos, onde os professores obtenham uma qualidade maior no ensino e com mais engajamento dos alunos. Sendo assim, estabeleceu-se como público alvo alunos e professores de todas as idades, que estudam, trabalham ou que simplesmente tem o objetivo de complementar e enriquecer o ensino.
+O foco deste projeto são professores e alunos, onde os professores obtenham uma qualidade maior no ensino e com mais engajamento dos alunos. Sendo assim, estabeleceu-se como público alvo alunos e professores de todas as idades, que estudam, lecionam ou que simplesmente tem o objetivo de complementar e enriquecer o ensino.
