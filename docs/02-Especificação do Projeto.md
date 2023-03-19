@@ -133,6 +133,10 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-005| A interface do sistema deve ser intuitiva, permitindo que o usuário utilize suas funcionalidades sem a necessidade de materiais de ajuda | MÉDIA |
 |RNF-006| O sistema deve processar requisições do usuário em no máximo 3s |  BAIXA | 
 
+Para determinar a priorização dos requisitos, utilizou-se a técnica da Escala de Tres Níveis, que reduz a prioridade de cada requisito um dos tres níveis: Alto, Médio ou Baixo a partir dos critério de importância e urgência, sendo requisitos urgentes e importantes definidos como prioridade alta, requisitos não tão urgentes e não tão importantes definidos como prioridade baixa e requisitos urgentes mas não tão importantes ou importantes mas não tão urgentes sendo definidos como prioridade média. A figura abaixo demonstra a aplicação dessa técnica para os requisitos do projeto:
+
+![priorizacaoRequisitos](https://user-images.githubusercontent.com/74699119/226179197-4269c869-a57f-4c13-8f0a-1fe212f4ee40.png)
+
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
