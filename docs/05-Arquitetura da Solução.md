@@ -14,13 +14,13 @@ Esta seção apresenta a definição de como a aplicação será estruturada em 
 
 ## Modelo ER
 
-![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/226200687-79b3368f-e5df-458e-a5d5-2ee39511f868.png)
+![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/226201867-846d6804-ce0e-487a-b477-0e7c6e0a9808.png)
 <p align="center"><b>Figura</b> - Modelo entidade/relacionamento da aplicação</p>
 <br>
 
 ## Esquema Relacional
 
-![EsquemaRelacional_eixo4](https://user-images.githubusercontent.com/74699119/226141537-14f84238-ff5b-4e27-be49-a2097a5bfc84.png)
+![EsquemaRelacional_eixo4](https://user-images.githubusercontent.com/74699119/226201888-43e21a5d-e5e7-4268-a6a6-0ed849ec3f7b.png)
 <p align="center"><b>Figura</b> - Esquema relacional da aplicação</p>
 <br>
 
