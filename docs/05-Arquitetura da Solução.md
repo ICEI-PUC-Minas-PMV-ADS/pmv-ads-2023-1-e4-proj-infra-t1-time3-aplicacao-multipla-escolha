@@ -14,7 +14,7 @@ Esta seção apresenta a definição de como a aplicação será estruturada em 
 
 ## Modelo ER
 
-![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/226201867-846d6804-ce0e-487a-b477-0e7c6e0a9808.png)
+![ModeloER_eixo4](https://user-images.githubusercontent.com/74699119/226202624-3314d547-d2c7-4910-89c2-b9fe0c15c14d.png)
 <p align="center"><b>Figura</b> - Modelo entidade/relacionamento da aplicação</p>
 <br>
 
