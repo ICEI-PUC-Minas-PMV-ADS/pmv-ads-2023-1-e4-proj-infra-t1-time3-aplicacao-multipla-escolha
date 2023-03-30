@@ -13,7 +13,7 @@ Ambiente|Plataforma|Link de Acesso
 |Documentos do Projeto|GitHub (docs/)|[Projeto ](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/docs)|
 |Criação de Diagramas| Figma, Lucidchart | [figma.com](), [lucid.app](), [lucid.app]() |
 |Projeto de Interface e Wireframes| Figma | [Figma]()|
-|Gerenciamento do Projeto| Trello |[Trello](https://trello.com/b/UIqoSX9s/projeto-aplica%C3%A7%C3%A3o-de-lista-de-tarefas-de-multipla-escolha)|
+|Gerenciamento do Projeto| Kanban do GitHub |[Kanban do GitHub](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/259/views/1)|
 
 
 ## Controle de Versão
@@ -61,7 +61,7 @@ Divisão de papéis entre os membros do grupo.
 
 O grupo decidiu por utilizar a metodologia Ágil, sendo escolhido o Scrum como base para definição do processo de desenvolvimento do projeto. Nossas sprints tem uma semana sendo a divisão das tarefas feitas na Terça-feira e baseada na entrega semanal ao cliente que deve ser feita geralmente na Terca-feira às 19:30hs.
 
-Com relação a organização e distribuição das tarefas do projeto, a equipe utiliza a plataforma Trello, onde é possível criar Listas, Cartões, Etiquetas, Botões personalizados com ações automáticas, entre diversas outras funcionalidades que impactam positivamente na eficiência do grupo.
+Com relação a organização e distribuição das tarefas do projeto, a equipe utiliza Projects do GitHub com um Kanban, onde é possível criar Listas, Cartões, Etiquetas, Botões personalizados com ações automáticas, entre diversas outras funcionalidades que impactam positivamente na eficiência do grupo.
 
 No início de cada Sprint, o grupo se reúne para definir quais tarefas serão realizadas, selecionando-as do Backlog do produto presente no quadro Kanban Trello (mostrado na figura abaixo). Após definir quais membros serão responsáveis por quais tarefas naquela Sprint, os itens selecionados são associados aos membros da equipe responsáveis por eles e movidos para a aba "To Do" do Kanban, correspondente à backlog da Sprint.
 
@@ -91,7 +91,7 @@ Caso seja encontrado algum problema, o revisor deve retornar com a tarefa para a
 #### Finalização
 Quando pronto, o revisor tem a função de fechar a issue, mergear o branch criado com o branch estável e mover a tarefa para aba Done.
 
-![Processo 1](img/trello.jpg)
+![Processo 1](img/Kanban.jpeg)
 
 
 ### Ferramentas
@@ -114,7 +114,7 @@ As ferramentas empregadas no projeto são:
 | Ferramenta de criação de Diagramas | Figma | [figma.com]()|
 | Ferramenta de criação Modelagem Processo de Negócios | LucidChart | [lucidchart.com]()|
 | Ferramenta de criação Interface e Wireframes | Figma, Lucidchart | [figma.com](), [lucid.app](), [lucid.app]() |
-| Ferramenta de gerenciamento do Projeto | Trello |[Trello](https://trello.com/b/UIqoSX9s/projeto-aplica%C3%A7%C3%A3o-de-lista-de-tarefas-de-multipla-escolha)|
+| Ferramenta de gerenciamento do Projeto | Kanban do GitHub |[Kanban do GitHub](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/259/views/1)|
 
 <br>
 
