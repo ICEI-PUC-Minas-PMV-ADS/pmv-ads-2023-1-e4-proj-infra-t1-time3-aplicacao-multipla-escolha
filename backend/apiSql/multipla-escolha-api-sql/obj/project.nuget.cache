@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "yLcAmtJVobC3zTH+IEcbr1yEhtXxmy6W0szzOAxiNwH0y0DoH6lTOb1bSX3gUumJS4tbRydgzlwRNONhwEIB0Q==",
+  "success": true,
+  "projectFilePath": "D:\\PUC ADS\\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\\backend\\apiSql\\multipla-escolha-api-sql\\multipla-escolha-api-sql.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\slmen\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\slmen\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\slmen\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\slmen\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\slmen\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\slmen\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
