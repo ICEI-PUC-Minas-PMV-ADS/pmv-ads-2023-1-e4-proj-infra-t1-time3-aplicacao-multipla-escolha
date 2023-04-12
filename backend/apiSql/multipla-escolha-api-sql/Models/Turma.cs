@@ -17,5 +17,7 @@ namespace multipla_escolha_api_sql.Models
         public DateTime DataDeCriacao { get; set; }
         [Required]
         public bool Ativo { get; set; }
+        public Usuario Professor { get; set; }
+        public ICollection<TurmaAluno> AlunosTurma { get; set; }
     }
 }

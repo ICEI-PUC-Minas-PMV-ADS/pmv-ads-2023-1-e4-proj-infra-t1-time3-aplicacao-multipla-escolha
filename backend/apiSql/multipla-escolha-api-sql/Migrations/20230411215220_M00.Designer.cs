@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using multipla_escolha_api_sql.Models;
 
@@ -11,9 +12,11 @@ using multipla_escolha_api_sql.Models;
 namespace multipla_escolha_api_sql.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230411215220_M00")]
+    partial class M00
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace multipla_escolha_api_sql.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProfessorId")
+                    b.Property<int>("ProfessorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -112,7 +115,9 @@ namespace multipla_escolha_api_sql.Migrations
                 {
                     b.HasOne("multipla_escolha_api_sql.Models.Usuario", "Professor")
                         .WithMany("TurmasProfessor")
-                        .HasForeignKey("ProfessorId");
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Professor");
                 });

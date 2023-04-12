@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "nxKfV3gON4nlsWFZZVGiuX27Is+UZtB3KaRGInMDZ2hraW1qwj23S4dldAelxMKz93dP3/Q+C9tZETsRVbaDEQ==",
+  "dgSpecHash": "pJQr63uza/PnZXdXw5A6BroqLSeXYmcg74UWHjpaW2etFULYtWd53xrvXdq47m3z2LZAsH0gQNMedYW+LYZQxQ==",
   "success": true,
   "projectFilePath": "D:\\PUC ADS\\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\\backend\\apiSql\\multipla-escolha-api-sql\\multipla-escolha-api-sql.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\slmen\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\slmen\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\slmen\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\slmen\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\slmen\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\slmen\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

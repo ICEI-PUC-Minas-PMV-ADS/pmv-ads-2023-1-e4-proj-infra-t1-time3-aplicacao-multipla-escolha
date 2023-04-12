@@ -2,16 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using multipla_escolha_api_sql.Models;
+using multipla_escolha_api_sql.Models.DTO;
 
 namespace multipla_escolha_api_sql.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TurmasController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public TurmasController(AppDbContext context)
+        public UsuariosController(AppDbContext context)
         {
             _context = context;
         }
@@ -19,31 +20,26 @@ namespace multipla_escolha_api_sql.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var model = await _context.Turmas.ToListAsync();
+            var model = await _context.Usuarios.Include(u => u.TurmasProfessor).ToListAsync();
             return Ok(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Turma model)
+        public async Task<IActionResult> Create(UsuarioDto model)
         {
-            var professor = _context.Usuarios.FirstOrDefault(u => u.Id == 1);
+            model.Id = 0;
+            Usuario usuario = new(model);
 
-            if (professor == null)
-            {
-                return BadRequest();
-            }
-            
-            model.Professor = professor;
-           
-            _context.Turmas.Add(model);
+            _context.Usuarios.Add(usuario);
+
             await _context.SaveChangesAsync();
 
-            return Ok(model);
+            return Ok(usuario);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var model = await _context.Turmas.FirstOrDefaultAsync(t => t.Id == id);
+            var model = await _context.Usuarios.FirstOrDefaultAsync(t => t.Id == id);
 
             if (model == null) NotFound();
 
