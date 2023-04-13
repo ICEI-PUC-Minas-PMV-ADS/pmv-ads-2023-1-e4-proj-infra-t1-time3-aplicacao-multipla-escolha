@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using multipla_escolha_api_sql.Models;
+using multipla_escolha_api_sql.Models.DTO;
+using System.Security.Claims;
 
 namespace multipla_escolha_api_sql.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TurmasController : ControllerBase
@@ -24,15 +28,21 @@ namespace multipla_escolha_api_sql.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Turma model)
-        {
-            var professor = _context.Usuarios.FirstOrDefault(u => u.Id == 1);
+        public async Task<IActionResult> Create(TurmaDto dto)
+        {              
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            dto.Id = 0;
+
+            Turma model = new(dto);
+
+            var professor = _context.Usuarios.FirstOrDefault(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
 
             if (professor == null)
             {
                 return BadRequest();
             }
-            
+
             model.Professor = professor;
            
             _context.Turmas.Add(model);

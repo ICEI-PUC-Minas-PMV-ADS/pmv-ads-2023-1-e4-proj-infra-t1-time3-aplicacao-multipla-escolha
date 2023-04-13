@@ -81,3 +81,4 @@ D:\PUC ADS\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\back
 D:\PUC ADS\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\backend\apiSql\multipla-escolha-api-sql\obj\Debug\net6.0\multipla-escolha-api-sql.genruntimeconfig.cache
 D:\PUC ADS\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\backend\apiSql\multipla-escolha-api-sql\obj\Debug\net6.0\ref\multipla-escolha-api-sql.dll
 D:\PUC ADS\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\backend\apiSql\multipla-escolha-api-sql\bin\Debug\net6.0\BCrypt.Net-Next.dll
+D:\PUC ADS\pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha\backend\apiSql\multipla-escolha-api-sql\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

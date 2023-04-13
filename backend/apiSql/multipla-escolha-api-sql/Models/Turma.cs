@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using multipla_escolha_api_sql.Models.DTO;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace multipla_escolha_api_sql.Models
@@ -19,5 +20,25 @@ namespace multipla_escolha_api_sql.Models
         public bool Ativo { get; set; }
         public Usuario Professor { get; set; }
         public ICollection<TurmaAluno> AlunosTurma { get; set; }
+
+        public Turma()
+        {
+
+        }
+        public Turma(TurmaDto dto) {
+            Id = 0;
+            if (dto.Id != null)
+            {
+                Id = (int)dto.Id;
+            }
+            Nome = dto.Nome;
+            Descricao = dto.Descricao;
+            DataDeCriacao = DateTime.UtcNow;
+            Ativo = true;
+            if (dto.Ativo != null)
+            {
+                Ativo = (bool) dto.Ativo;
+            }
+        }
     }
 }

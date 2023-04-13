@@ -1,6 +1,8 @@
-﻿using multipla_escolha_api_sql.Models.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using multipla_escolha_api_sql.Models.DTO;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
 using System.Text.Json.Serialization;
 
 namespace multipla_escolha_api_sql.Models
@@ -32,14 +34,14 @@ namespace multipla_escolha_api_sql.Models
 
         public Usuario()
         {
-                        
+
         }
         public Usuario(UsuarioDto dto)
         {
             Id = 0;
             if (dto.Id != null)
             {
-                Id = (int) dto.Id;
+                Id = (int)dto.Id;
             }
             NomeDeUsuario = dto.NomeDeUsuario;
             Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha);
@@ -48,6 +50,20 @@ namespace multipla_escolha_api_sql.Models
             Email = dto.Email;
             Telefone = dto.Telefone;
             Perfil = dto.Perfil;
+        }
+
+        public static Dictionary<string, string> getUserClaims(ClaimsPrincipal claimsPrincipal)
+        {
+            Dictionary<string, string> userClaims = new();
+
+            if (claimsPrincipal != null)
+            {
+                foreach (Claim claim in claimsPrincipal.Claims)
+                {
+                    userClaims[claim.Type] = claim.Value.ToString();
+                }
+            }
+            return userClaims;
         }
     }
 
