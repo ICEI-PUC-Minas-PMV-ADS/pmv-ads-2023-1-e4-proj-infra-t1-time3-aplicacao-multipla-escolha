@@ -28,8 +28,9 @@ namespace multipla_escolha_api_sql.Models
         [Required]
         public Perfil Perfil { get; set; }
 
+        [JsonIgnore]
         public ICollection<Turma> TurmasProfessor { get; set; }
-
+        [JsonIgnore]
         public ICollection<TurmaAluno> TurmasAluno { get; set; }
 
         public Usuario()

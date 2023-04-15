@@ -31,7 +31,7 @@ namespace multipla_escolha_api_sql.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var model = await _context.Usuarios.Include(u => u.TurmasProfessor).ToListAsync();
+            var model = await _context.Usuarios.ToListAsync();
             return Ok(model);
         }
 
@@ -90,13 +90,46 @@ namespace multipla_escolha_api_sql.Controllers
 
                 var cookieOptions = new CookieOptions
                 {
-                    HttpOnly = true,
+                    HttpOnly = false,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
                     Expires = DateTime.UtcNow.AddHours(8),
                 };
 
                 Response.Cookies.Append("jwtToken", jwt, cookieOptions);
 
                 return Ok(new {jwtToken = jwt});
+            }
+            catch
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwtToken");
+
+            return NoContent();
+        }
+
+        [HttpDelete("deleteAccount")]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            
+            try
+            {
+                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
+
+                _context.Usuarios.Remove(user);
+
+                await _context.SaveChangesAsync();
+
+                Response.Cookies.Delete("jwtToken");
+
+                return NoContent();
             }
             catch
             {

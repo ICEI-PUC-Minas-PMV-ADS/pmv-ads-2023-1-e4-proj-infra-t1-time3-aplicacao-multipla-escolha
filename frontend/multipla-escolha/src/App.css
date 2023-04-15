@@ -1,0 +1,32 @@
+.main {
+  background-color: #fdfdfd;
+}
+
+.navbar {
+  height: 64px;
+  background-color: #3867d6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar text {
+  font-size: 20px;
+  color: white;
+}
+
+.login-box {
+  height: 400px;
+  width: 360px;
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin: auto;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}

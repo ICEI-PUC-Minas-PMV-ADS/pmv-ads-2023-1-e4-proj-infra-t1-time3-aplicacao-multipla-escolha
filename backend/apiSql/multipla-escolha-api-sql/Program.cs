@@ -15,6 +15,7 @@ builder.Services.AddControllers()
 // Permite acesso as configurações JWT pelas classes da aplicação.
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("Jwt"));
 
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
@@ -43,6 +44,9 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Adiciona o CORS
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,17 +56,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
 app.Use(async (context, next) =>
 {
     if (context.Request.Cookies["jwtToken"] != null)
     {
+        Console.WriteLine("Not null");
         var token = context.Request.Cookies["jwtToken"];
         context.Request.Headers.Add("Authorization", "bearer " + token);
     }
+
     await next();
 });
 
-app.UseHttpsRedirection();
+app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.UseAuthentication();
 

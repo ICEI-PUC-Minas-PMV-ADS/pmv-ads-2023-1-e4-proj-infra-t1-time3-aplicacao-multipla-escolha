@@ -1,6 +1,7 @@
 ﻿using multipla_escolha_api_sql.Models.DTO;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace multipla_escolha_api_sql.Models
 
@@ -19,6 +20,7 @@ namespace multipla_escolha_api_sql.Models
         [Required]
         public bool Ativo { get; set; }
         public Usuario Professor { get; set; }
+        [JsonIgnore]
         public ICollection<TurmaAluno> AlunosTurma { get; set; }
 
         public Turma()

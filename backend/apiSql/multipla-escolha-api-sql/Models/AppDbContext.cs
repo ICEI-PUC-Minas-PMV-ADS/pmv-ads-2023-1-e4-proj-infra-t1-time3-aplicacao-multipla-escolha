@@ -15,23 +15,26 @@ namespace multipla_escolha_api_sql.Models
             builder.Entity<Usuario>()
                 .HasIndex(u => u.Email).IsUnique();
 
+            builder.Entity<Turma>()
+                .HasOne(t => t.Professor).WithMany(p => p.TurmasProfessor)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<TurmaAluno>()
                 .HasKey(ta => new { ta.TurmaId, ta.AlunoId });
             
             builder.Entity<TurmaAluno>()
                 .HasOne(ta => ta.Turma).WithMany(t => t.AlunosTurma)
                 .HasForeignKey(ta => ta.TurmaId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             
             builder.Entity<TurmaAluno>()
                 .HasOne(ta => ta.Aluno).WithMany(a => a.TurmasAluno)
                 .HasForeignKey(ta => ta.AlunoId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Turma> Turmas { get; set; }
-
         public DbSet<TurmaAluno> TurmasAlunos { get; set; }
     }
 }

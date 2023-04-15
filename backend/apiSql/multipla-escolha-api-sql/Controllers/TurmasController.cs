@@ -23,7 +23,7 @@ namespace multipla_escolha_api_sql.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var model = await _context.Turmas.ToListAsync();
+            var model = await _context.Turmas.Include(t => t.Professor).ToListAsync();
             return Ok(model);
         }
 
@@ -53,7 +53,7 @@ namespace multipla_escolha_api_sql.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var model = await _context.Turmas.FirstOrDefaultAsync(t => t.Id == id);
+            var model = await _context.Turmas.Include(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
 
             if (model == null) NotFound();
 
