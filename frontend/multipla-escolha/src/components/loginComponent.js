@@ -1,10 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
-import { baseUrl } from "../util/Constants";
+import { UserContext } from "../context/userContext";
 
 function LoginComponent() {
+
+    const userContext = useContext(UserContext);
+
+    const baseUrl = 'https://localhost:7284/';
 
     const [username, setUsername] = useState("");
 
@@ -15,34 +18,56 @@ function LoginComponent() {
     const linkRef = useRef();
 
     function login() {
-        if (username.trim().length > 0 && password.trim().length > 0) {
+        if (username.trim().length < 1) {
+            document.getElementById("username").focus();
+            return setErrorMessage("Inserir nome de usuário!");
+        }
 
-            axios.post(baseUrl + 'api/Usuarios/authenticate',
-                {
-                    "nomeDeUsuario": username,
-                    "senha": password
+        if (password.trim().length < 1) {
+            document.getElementById("senha").focus();
+            return setErrorMessage("Inserir senha!");
+        }
+
+        axios.post(baseUrl + 'api/Usuarios/authenticate',
+            {
+                "nomeDeUsuario": username,
+                "senha": password
+            },
+            {
+                headers: {
+                    "Content-Type": "application/JSON"
                 },
-                {
-                    headers: {
-                        "Content-Type": "application/JSON"
-                    },
-                    withCredentials: true
+                withCredentials: true
+            }
+        )
+            .then(function (response) {
+                if (response.status == 200) {
+                    userContext.setUserSignedIn(true);
+                    linkRef.current.click();
                 }
-            )
-                .then(function (response) {
-                    if (response.status == 200) {
-                        linkRef.current.click();
-                    }
-                })
-                .catch(function (error) {
-                    if (error.request.status == 401) {
-                        setErrorMessage("Usuário ou senha incorretos!");
-                    };
-                })
-        }
-        else {
-            setErrorMessage("Inserir nome de usuário e senha!");
-        }
+            })
+            .catch(function (error) {
+                if (error.request.status == 401) {
+                    setErrorMessage("Usuário ou senha incorretos!");
+                };
+            })
+
+    }
+
+    if (userContext.userSignedIn == null) {
+        return (
+            <div className="m-auto mt-4">
+                
+            </div>
+        )
+    }
+    
+    if (userContext.userSignedIn) {
+        return (
+            <div className="m-auto mt-4">
+                <h1>Usuário já esta logado</h1>
+            </div>
+        )
     }
 
     return (
@@ -56,7 +81,7 @@ function LoginComponent() {
                 <input className="mb-2" id="username" value={username} onChange={e => { setUsername(e.target.value); setErrorMessage("") }}></input>
                 <label for="username">Senha</label>
                 <input id="senha" type="password" value={password} onChange={e => { setPassword(e.target.value); setErrorMessage("") }}></input>
-                <div style={{ width: 260, height: 16, textAlign: 'center', marginTop: 6, color: 'red' }}>
+                <div style={{ width: 260, height: 32, textAlign: 'center', marginTop: 6, color: 'red' }}>
                     <text>{errorMessage}</text>
                 </div>
             </div>

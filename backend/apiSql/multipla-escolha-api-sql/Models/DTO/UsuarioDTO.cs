@@ -9,6 +9,7 @@ namespace multipla_escolha_api_sql.Models.DTO
         public string NomeDeUsuario { get; set; }
         [Required]
         public string Senha { get; set; }
+        public string SenhaAntiga { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]

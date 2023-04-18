@@ -70,9 +70,9 @@ namespace multipla_escolha_api_sql.Models
 
     public enum Perfil
     {
-        [Display(Name = "Professor")]
-        Professor,
         [Display(Name = "Aluno")]
-        Aluno
+        Aluno,
+        [Display(Name = "Professor")]
+        Professor
     }
 }

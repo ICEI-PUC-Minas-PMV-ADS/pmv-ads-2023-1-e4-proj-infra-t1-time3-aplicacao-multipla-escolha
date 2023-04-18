@@ -35,26 +35,40 @@ namespace multipla_escolha_api_sql.Controllers
             return Ok(model);
         }
 
+        [HttpGet("current")]
+        public async Task<IActionResult> GetCurrent()
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            try
+            {
+                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
+
+            return Ok(user);
+            }
+            catch { }
+            return Unauthorized();
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(UsuarioDto dto)
         {
-            Usuario sameUsernameOrEmailUser = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == dto.NomeDeUsuario || u.Email == dto.Email);
+            try
+            {
 
-            string errorMessage = "";
+            Usuario sameUsernameOrEmailUser = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == dto.NomeDeUsuario || u.Email == dto.Email);
 
             if (sameUsernameOrEmailUser != null)
             {
                 if (sameUsernameOrEmailUser.NomeDeUsuario == dto.NomeDeUsuario)
                 {
-                    errorMessage += "Nome de usuário já utilizado por outra conta!\n";
+                    return BadRequest("Nome de usuário já cadastrado!");
                 }
 
                 if (sameUsernameOrEmailUser.Email== dto.Email)
                 {
-                    errorMessage += "Email já utilizado por outra conta!\n";
-                }
-                return BadRequest(errorMessage);
+                    return BadRequest("Email já cadastrado!");
+                }               
             }
 
             dto.Id = 0;
@@ -65,7 +79,53 @@ namespace multipla_escolha_api_sql.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(usuario);
+            }
+            catch { }
+            return BadRequest("Erro no cadastro!");
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UsuarioDto dto)
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            try
+            {
+                var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
+
+                if (user == null || dto.SenhaAntiga == null || !BCrypt.Net.BCrypt.Verify(dto.SenhaAntiga, user.Senha)) return Unauthorized("Senha incorreta!");
+
+                if (dto.Email != user.Email)
+                {
+                    Usuario sameEmailUser = _context.Usuarios.FirstOrDefault(u => u.Email == dto.Email);
+                    if (sameEmailUser != null)
+                    {
+                        return BadRequest("Email já cadastrado!");
+                    }
+                }
+
+                user.Nome = dto.Nome;
+
+                user.Sobrenome = dto.Sobrenome;
+
+                user.Email = dto.Email;
+
+                user.Telefone = dto.Telefone;
+
+                user.Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha);
+
+                _context.Usuarios.Update(user);
+
+                await _context.SaveChangesAsync();
+
+                return Ok(user);
+            }
+            catch
+            {
+                return Unauthorized("Erro de autorização!");
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -74,6 +134,16 @@ namespace multipla_escolha_api_sql.Controllers
             if (model == null) return NotFound();
 
             return Ok(model);
+        }
+
+        [HttpGet("info")]
+        public IActionResult GetInfo()
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            UsuarioInfoDto userInfoDto = new(userClaims);
+
+            return Ok(userInfoDto);
         }
 
         [AllowAnonymous]
@@ -109,7 +179,15 @@ namespace multipla_escolha_api_sql.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("jwtToken");
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = false,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddHours(8),
+            };
+
+            Response.Cookies.Delete("jwtToken", cookieOptions);
 
             return NoContent();
         }
@@ -127,7 +205,15 @@ namespace multipla_escolha_api_sql.Controllers
 
                 await _context.SaveChangesAsync();
 
-                Response.Cookies.Delete("jwtToken");
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = false,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddHours(8),
+                };
+
+                Response.Cookies.Delete("jwtToken", cookieOptions);
 
                 return NoContent();
             }
