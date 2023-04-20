@@ -152,7 +152,7 @@ function AccountOptionsComponent() {
     }
 
     function confirmarApagar() {
-        axios.delete(baseUrl + 'api/Usuarios/deleteAccount',
+        axios.delete(baseUrl + 'api/Usuarios/delete-account',
         {
             headers: {
                 "Content-Type": "application/JSON"
@@ -171,7 +171,7 @@ function AccountOptionsComponent() {
         })
     }
 
-    if (!setLoaded) {
+    if (!loaded) {
         return <div></div>
     }
 

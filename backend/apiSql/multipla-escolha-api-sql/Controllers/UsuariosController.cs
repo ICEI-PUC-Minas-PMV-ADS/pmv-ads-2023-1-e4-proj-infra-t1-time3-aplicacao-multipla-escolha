@@ -192,7 +192,7 @@ namespace multipla_escolha_api_sql.Controllers
             return NoContent();
         }
 
-        [HttpDelete("deleteAccount")]
+        [HttpDelete("delete-account")]
         public async Task<IActionResult> DeleteAccount()
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);

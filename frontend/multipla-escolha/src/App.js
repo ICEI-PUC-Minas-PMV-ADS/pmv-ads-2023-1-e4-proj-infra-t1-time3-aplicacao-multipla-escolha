@@ -7,6 +7,9 @@ import Home from './pages/home';
 import Login from './pages/login';
 import Cadastro from './pages/cadastro';
 import AccountOptions from './pages/accountOptions';
+import CriarTurma from './pages/criarTurma';
+import EditarTurma from './pages/editarTurma';
+import MinhasTurmas from './pages/minhasTurmas';
 
 import { Route, Routes, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 
@@ -26,7 +29,10 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/cadastro" element={<Cadastro />}></Route>
-            <Route path="/accountOptions" element={<AccountOptions />}></Route>
+            <Route path="/account-options" element={<AccountOptions />}></Route>
+            <Route path="/criar-turma" element={<CriarTurma />}></Route>
+            <Route path="/editar-turma/:id" element={<EditarTurma />}></Route>
+            <Route path="/minhas-turmas" element={<MinhasTurmas />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
