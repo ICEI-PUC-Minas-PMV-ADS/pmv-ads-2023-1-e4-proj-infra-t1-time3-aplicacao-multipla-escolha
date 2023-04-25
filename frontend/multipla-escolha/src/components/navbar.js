@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import { UserContext } from "../context/userContext";
@@ -10,6 +10,8 @@ import { baseUrl } from "../util/Constants";
 function Navbar() {
 
     const userContext = useContext(UserContext);
+
+    const loginRef = useRef();
 
     useEffect(() => {
         axios.get('https://localhost:7284/api/Usuarios/Info',
@@ -45,6 +47,7 @@ function Navbar() {
             .then(function (response) {
                 userContext.setUserData(null);
                 userContext.setUserSignedIn(false);
+                loginRef.current.click();
             })
             .catch(function (error) {
 
@@ -61,13 +64,14 @@ function Navbar() {
             {
                 userContext.userData == null ?
                     <div className="mx-4">
-                        <Link to="/login" className="text-decoration-none">
+                        <Link ref={loginRef} to="/login" className="text-decoration-none">
                             <p>Login</p>
                         </Link>
                     </div>
                     :
                     <div className="mx-4">
-                        <p>Olá, {userContext.userData.nomeCompleto} | <Link to="/accountOptions" className="text-decoration-none" style={{ color: 'white' }}>Opções da conta</Link> | <span className="logoff-button" onClick={() => logoff()}>Logoff</span></p>
+                        <Link ref={loginRef} to="/login" />
+                        <p>Olá, {userContext.userData.nomeCompleto} | <Link to="/account-options" className="text-decoration-none" style={{ color: 'white' }}>Opções da conta</Link> | <span className="logoff-button" onClick={() => logoff()}>Logoff</span></p>
                     </div>
             }
         </div>

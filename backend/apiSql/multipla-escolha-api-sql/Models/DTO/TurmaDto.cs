@@ -9,6 +9,7 @@ namespace multipla_escolha_api_sql.Models.DTO
         public string Nome { get; set; }
         [Required]
         public string Descricao { get; set; }
-        public bool? Ativo { get; set; }
+        [Required]
+        public bool Ativo { get; set; }
     }
 }
