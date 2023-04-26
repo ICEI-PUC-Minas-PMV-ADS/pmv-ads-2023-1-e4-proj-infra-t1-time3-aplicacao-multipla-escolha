@@ -21,9 +21,6 @@ function EditarAtividade() {
         <div>
             <Navbar />
             <div className='d-flex flex-column container'>
-                <div className="m-auto mt-4">
-                    <h1>Editar atividade</h1>
-                </div>
                 <div>
                     <EditarAtividadeFormComponent idAtividade={params.id}/>
                 </div> 

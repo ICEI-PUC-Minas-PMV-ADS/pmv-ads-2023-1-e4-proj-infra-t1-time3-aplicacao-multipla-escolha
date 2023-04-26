@@ -5,23 +5,13 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 
 import MinhasTurmasProfessorComponent from '../components/minhasTurmasProfessorComponent';
-import Unauthorized from '../components/unauthorized';
 
 function MinhasTurmas() {  
     
-    const userContext = useContext(UserContext);
-
-    if (userContext.userData == null || userContext.userData.perfil != "Professor") {
-        return (<Unauthorized/>)
-    } 
-
     return (
         <div>
             <Navbar />
             <div className='d-flex flex-column container'>
-                <div className="m-auto mt-4">
-                    <h1>Minhas turmas</h1>
-                </div>
                 <div>
                     <MinhasTurmasProfessorComponent/>
                 </div> 

@@ -1,10 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { baseUrl } from "../util/Constants";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ALFABETO } from "../util/Constants";
+import Unauthorized from "./unauthorized";
+
+import { UserContext } from "../context/userContext";
 
 function CriarAtividadeFormComponent({ idTurma }) {
+
+    const userContext = useContext(UserContext);
 
     const linkRef = useRef();
 
@@ -281,90 +286,98 @@ function CriarAtividadeFormComponent({ idTurma }) {
         setErrorMessage("");
     }
 
+    if (userContext.userSignedIn === false) {
+        return <Unauthorized />
+    }
+
     return (
-        <div className="container-fluid d-flex flex-column">
-            <Link ref={linkRef} to={"/turmas/" + idTurma} />
-            <div className="d-flex m-auto">
-                <div className="d-flex flex-column m-4">
-                    <div className="h2">Informações gerais</div>
-                    <label htmlFor="nome">Nome da atividade</label>
-                    <input className="mb-2" style={{ maxWidth: 400 }} id="nome" value={nome} onChange={(e) => { setNome(e.target.value); setErrorMessage("") }}></input>
-                    <label htmlFor="descricao">Descrição</label>
-                    <textarea style={{ height: 150, width: '50vw' }} className="mb-2" id="descricao" value={descricao} onChange={(e) => { setDescricao(e.target.value); setErrorMessage("") }}></textarea>
-                    <label htmlFor="prazo">Prazo de entrega</label>
-                    <div>
-                        <input ref={dataDeEntregaRef} style={{ width: 400 }} type="datetime-local" className="mb-2" id="prazo" value={dataDeEntrega} onChange={(e) => { setDataDeEntrega(e.target.value); setErrorMessage("") }}></input>
-                        <button className="btn btn-primary p-1 mx-2" onClick={() => { setDataDeEntrega(""); dataDeEntregaRef.current.value = null }}>Sem prazo</button>
+        <div>
+            <div className="d-flex my-4">
+                <h1 className="m-auto">Criar atividade</h1>
+            </div>
+            <div className="container-fluid d-flex flex-column">
+                <Link ref={linkRef} to={"/turmas/" + idTurma} />
+                <div className="d-flex m-auto">
+                    <div className="d-flex flex-column m-4">
+                        <div className="h2">Informações gerais</div>
+                        <label htmlFor="nome">Nome da atividade</label>
+                        <input className="mb-2" style={{ maxWidth: 400 }} id="nome" value={nome} onChange={(e) => { setNome(e.target.value); setErrorMessage("") }}></input>
+                        <label htmlFor="descricao">Descrição</label>
+                        <textarea style={{ height: 150, width: '50vw' }} className="mb-2" id="descricao" value={descricao} onChange={(e) => { setDescricao(e.target.value); setErrorMessage("") }}></textarea>
+                        <label htmlFor="prazo">Prazo de entrega</label>
+                        <div>
+                            <input ref={dataDeEntregaRef} style={{ width: 400 }} type="datetime-local" className="mb-2" id="prazo" value={dataDeEntrega} onChange={(e) => { setDataDeEntrega(e.target.value); setErrorMessage("") }}></input>
+                            <button className="btn btn-primary p-1 mx-2" onClick={() => { setDataDeEntrega(""); dataDeEntregaRef.current.value = null }}>Sem prazo</button>
+                        </div>
+                        <div className="h2 mt-4">Visualização</div>
+                        {
+                            questoes.length == 0 ? <div className="no-content-warning mt-4">Nenhuma questão cadastrada.</div> : <div className="my-2" style={{ fontSize: 20 }}><b>Valor total: </b>{valorAtividade.toFixed(2).replace(".", ",")}</div>
+                        }
+                        {
+                            questoes.map((questao, index) =>
+                                <div key={"questao" + (index + 1)} className="questao-container">
+                                    <div className="d-flex justify-content-between w-100">
+                                        <div className="h5">{"Questão " + (index + 1)}</div>
+                                        <div className="h5">{"Valor " + questao.valor.replace(".", ",")}</div>
+                                    </div>
+                                    <div className="my-4 p-2">
+                                        {questao.enunciado}
+                                    </div>
+                                    {
+                                        questao.alternativas.map((alternativa, indexAlternativa) =>
+                                            <div style={indexAlternativa == questao.resposta ? { color: 'green', fontWeight: 'bold' } : null} key={"questao" + (index + 1) + "alternativa " + (indexAlternativa + 1)} className="alternativa-container d-flex align-items-center">
+                                                <div style={{ width: 20 }}>{ALFABETO[indexAlternativa]})</div>
+                                                <div>{alternativa}</div>
+                                            </div>
+                                        )
+                                    }
+                                    <div className="my-2 d-flex flex-row-reverse" style={{ fontSize: 18, color: 'green', fontWeight: 'bold' }}>
+                                        Resposta: {ALFABETO[questao.resposta]}
+                                    </div>
+                                    <div className="d-flex flex-row-reverse mt-4">
+                                        <button className="btn btn-danger" onClick={() => apagarQuestao(index)}>Apagar</button>
+                                        <button className="btn btn-secondary mx-2" onClick={() => editarQuestao(index)}>Editar</button>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        <div className="d-flex">
+                            <button className="btn btn-primary m-auto mt-3" onClick={() => { setShowModal(true); setErrorMessage("") }}>Adicionar questão</button>
+                        </div>
+                        {errorMessage.length > 0 ? <div className="error-message-warning mt-4">{errorMessage}</div> : null}
                     </div>
-                    <div className="h2 mt-4">Visualização</div>
-                    {
-                        questoes.length == 0 ? <div className="no-content-warning mt-4">Nenhuma questão cadastrada.</div> : <div className="my-2" style={{ fontSize: 20 }}><b>Valor total: </b>{valorAtividade.toFixed(2).replace(".", ",")}</div>
-                    }
-                    {
-                        questoes.map((questao, index) =>
-                            <div key={"questao" + (index + 1)} className="questao-container">
-                                <div className="d-flex justify-content-between w-100">
-                                    <div className="h5">{"Questão " + (index + 1)}</div>
-                                    <div className="h5">{"Valor " + questao.valor.replace(".", ",")}</div>
-                                </div>
-                                <div className="my-4 p-2">
-                                    {questao.enunciado}
-                                </div>
-                                {
-                                    questao.alternativas.map((alternativa, indexAlternativa) =>
-                                        <div style={indexAlternativa == questao.resposta ? { color: 'green', fontWeight: 'bold' } : null} key={"questao" + (index + 1) + "alternativa " + (indexAlternativa + 1)} className="alternativa-container d-flex align-items-center">
-                                            <div style={{ width: 20 }}>{ALFABETO[indexAlternativa]})</div>
-                                            <div>{alternativa}</div>
-                                        </div>
-                                    )
-                                }
-                                <div className="my-2 d-flex flex-row-reverse" style={{ fontSize: 18, color: 'green', fontWeight: 'bold' }}>
-                                    Resposta: {ALFABETO[questao.resposta]}
-                                </div>
-                                <div className="d-flex flex-row-reverse mt-4">
-                                    <button className="btn btn-danger" onClick={() => apagarQuestao(index)}>Apagar</button>
-                                    <button className="btn btn-secondary mx-2" onClick={() => editarQuestao(index)}>Editar</button>
-                                </div>
-                            </div>
-                        )
-                    }
-                    <div className="d-flex">
-                        <button className="btn btn-primary m-auto mt-3" onClick={() => {setShowModal(true); setErrorMessage("")}}>Adicionar questão</button>
-                    </div>
-                    {errorMessage.length > 0? <div className="error-message-warning mt-4">{errorMessage}</div> : null}
                 </div>
-            </div>
-            <div className="w-100 d-flex flex-row-reverse m-4">
-                <button className="btn btn-secondary" onClick={() => linkRef.current.click()}>Cancelar</button>
-                <button className="btn btn-primary mx-2" onClick={() => cadastrarAtividade()}>Cadastrar atividade</button>
-            </div>
-            {
-                showModal ?
-                    <div className="modal-background">
-                        <div className="d-flex flex-column m-auto modal-layout" style={numeroAlternativas > 4? {overflowY: 'scroll'} : null}>
-                            <div className="d-flex flex-row-reverse">
-                                <button onClick={() => fecharModal()}>X</button>
-                            </div>
-                            <div className="d-flex flex-column p-3">
-                                <div className="h2">{editIndexQuestao == null ? "Adicionar questão" : "Editar questão"}</div>
-                                <label htmlFor="valor-questao">Valor</label>
-                                <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="valor-questao" value={valorQuestao} onChange={(e) => { setValorQuestao(e.target.value); setErrorMessage("") }}></input>
-                                <label htmlFor="enunciado">Enunciado</label>
-                                <textarea style={{ height: 150, width: 500 }} className="mb-2" id="enunciado" value={enunciado} onChange={(e) => { setEnunciado(e.target.value); setErrorMessage("") }}></textarea>
-                                <label htmlFor="numero-alternativas">Número de alternativas</label>
-                                <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="numero-alternativas" value={numeroAlternativas} onChange={(e) => { updateNumeroAlternativas(e.target.value); setErrorMessage("") }}></input>
-                                {renderQuestoes()}
+                <div className="w-100 d-flex flex-row-reverse m-4">
+                    <button className="btn btn-secondary" onClick={() => linkRef.current.click()}>Cancelar</button>
+                    <button className="btn btn-primary mx-2" onClick={() => cadastrarAtividade()}>Cadastrar atividade</button>
+                </div>
+                {
+                    showModal ?
+                        <div className="modal-background">
+                            <div className="d-flex flex-column m-auto modal-layout" style={numeroAlternativas > 4 ? { overflowY: 'scroll' } : null}>
                                 <div className="d-flex flex-row-reverse">
-                                    <button className="btn btn-secondary mx-1" onClick={() => fecharModal()}>Cancelar</button>
-                                    <button className="btn btn-primary mx-1" onClick={() => adicionarQuestao()}>{editIndexQuestao == null ? "Adicionar questão" : "Editar questão"}</button>
+                                    <button onClick={() => fecharModal()}>X</button>
+                                </div>
+                                <div className="d-flex flex-column p-3">
+                                    <div className="h2">{editIndexQuestao == null ? "Adicionar questão" : "Editar questão"}</div>
+                                    <label htmlFor="valor-questao">Valor</label>
+                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="valor-questao" value={valorQuestao} onChange={(e) => { setValorQuestao(e.target.value); setErrorMessage("") }}></input>
+                                    <label htmlFor="enunciado">Enunciado</label>
+                                    <textarea style={{ height: 150, width: 500 }} className="mb-2" id="enunciado" value={enunciado} onChange={(e) => { setEnunciado(e.target.value); setErrorMessage("") }}></textarea>
+                                    <label htmlFor="numero-alternativas">Número de alternativas</label>
+                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="numero-alternativas" value={numeroAlternativas} onChange={(e) => { updateNumeroAlternativas(e.target.value); setErrorMessage("") }}></input>
+                                    {renderQuestoes()}
+                                    <div className="d-flex flex-row-reverse">
+                                        <button className="btn btn-secondary mx-1" onClick={() => fecharModal()}>Cancelar</button>
+                                        <button className="btn btn-primary mx-1" onClick={() => adicionarQuestao()}>{editIndexQuestao == null ? "Adicionar questão" : "Editar questão"}</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    :
-                    null
-            }
-
+                        :
+                        null
+                }
+            </div>
         </div>
     );
 }

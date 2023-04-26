@@ -21,9 +21,6 @@ function CriarAtividade() {
         <div>
             <Navbar />
             <div className='d-flex flex-column container'>
-                <div className="m-auto mt-4">
-                    <h1>Criar atividade</h1>
-                </div>
                 <div>
                     <CriarAtividadeFormComponent idTurma={params.id}/>
                 </div> 

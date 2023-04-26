@@ -108,15 +108,35 @@ namespace multipla_escolha_api.Controllers
             return Ok(model);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            var model = await _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
+
+            if (model == null) return NotFound();
+
+            if (!model.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
+            {
+                return Forbid();
+            }
+
+            await _atividadeMongoDbService.DeleteAsync(model.UuidNoMongoDb);
+
+            _context.Atividades.Remove(model);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var model = await _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
 
             if (model == null) return NotFound();
-
-            Console.WriteLine("Teste");
-            Console.WriteLine(model.UuidNoMongoDb);
 
             AtividadeMongoDb atividadeMongoDb = await _atividadeMongoDbService.GetAsync(model.UuidNoMongoDb);
 

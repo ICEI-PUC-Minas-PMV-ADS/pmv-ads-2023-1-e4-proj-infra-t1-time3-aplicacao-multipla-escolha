@@ -26,6 +26,8 @@ namespace multipla_escolha_api.Services
 
         public async Task UpdateAsync(AtividadeMongoDb atividade) =>
         await _atividadeMongoDbCollection.ReplaceOneAsync((x => x.Id == atividade.Id), atividade);
+        public async Task DeleteAsync(string id) =>
+await _atividadeMongoDbCollection.DeleteOneAsync(x => x.Id == id);
 
     }
 }

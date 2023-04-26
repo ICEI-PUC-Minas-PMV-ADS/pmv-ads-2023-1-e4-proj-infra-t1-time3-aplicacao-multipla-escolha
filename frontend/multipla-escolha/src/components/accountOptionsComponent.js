@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 
+import Loading from "./loading";
+import Unauthorized from "./unauthorized";
+
 import { baseUrl } from "../util/Constants";
 
 function AccountOptionsComponent() {
@@ -141,8 +144,12 @@ function AccountOptionsComponent() {
             })
     }
 
+    if (userContext.userSignedIn === false) {
+        return <div className="d-flex w-100"><div className="m-auto"><Unauthorized/></div></div>
+    }
+
     if (userContext.userSignedIn !== true) {
-        return (<div></div>)
+        return <div className="d-flex w-100"><div className="m-auto"><Loading/></div></div>
     }
 
     function apagarConta() {
