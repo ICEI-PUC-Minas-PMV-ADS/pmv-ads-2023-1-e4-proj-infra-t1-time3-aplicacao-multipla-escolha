@@ -32,3 +32,56 @@
 .logoff-button {
   cursor: pointer;
 }
+
+.no-content-warning {
+  width: 100%;
+  background-color:antiquewhite;
+  text-align: center;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.error-message-warning {
+  width: 100%;
+  background-color: rgba(255,0,0,0.17);
+  color: red;
+  text-align: center;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.modal-background {
+  display: flex;
+  position: fixed; 
+  height: 100%; 
+  width: 100%; 
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+
+.modal-layout {
+  background-color: #fdfdfd;
+  border: 1px solid gray;
+  padding: 4px;
+  border-radius: 5px;
+  height: 100%;
+  max-height: 750px;
+}
+
+.questao-container {
+  background-color: #fdfdfd;
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid gray;
+  padding: 12px;
+  border-radius: 5px; 
+  margin-bottom: 12px;
+}
+
+.alternativa-container {
+  width: 100%;
+  border-top: 1px solid lightgray;
+  padding: 4px;
+  margin-top: 6px;
+}

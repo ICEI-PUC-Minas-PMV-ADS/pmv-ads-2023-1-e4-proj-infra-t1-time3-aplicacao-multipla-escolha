@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
 
-import EditarTurmaFormComponent from '../components/editarTurmaFormComponent';
+import VisualizarTurmaComponent from '../components/visualizarTurmaComponent';
 
-
-function EditarTurma() {  
+function VisualizarTurma() {  
 
     const params = useParams();
 
@@ -15,14 +14,11 @@ function EditarTurma() {
         <div>
             <Navbar />
             <div className='d-flex flex-column container'>
-                <div className="m-auto mt-4">
-                    <h1>Editar turma</h1>
-                </div>
                 <div>
-                    <EditarTurmaFormComponent idTurma={params.id}/>
+                    <VisualizarTurmaComponent idTurma={params.id}/>
                 </div> 
             </div>
         </div>
     );
 }
-export default EditarTurma;
+export default VisualizarTurma;

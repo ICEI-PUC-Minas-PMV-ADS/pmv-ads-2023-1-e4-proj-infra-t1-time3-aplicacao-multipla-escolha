@@ -11,9 +11,7 @@ function Home() {
                     <h1>Homepage</h1>
                 </div>
                 <div className=''>
-                    <h2 className='mb-4'>Opções do professor</h2>
-                    <Link className='btn btn-primary mb-2' to="/criar-turma">Criar turma</Link>
-                    <br></br>
+                    <h2 className='mb-4'>Opções</h2>
                     <Link className='btn btn-primary mb-2' to="/minhas-turmas">Minhas turmas</Link>
                 </div> 
             </div>
