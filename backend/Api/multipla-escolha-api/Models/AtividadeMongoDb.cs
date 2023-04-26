@@ -7,7 +7,7 @@ namespace multipla_escolha_api.Models.MongoDb
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.String)]
         public string Id { get; set; }
-        [BsonElement("Nome")]
-        public string Nome { get; set; }
+        [BsonElement("Questões")]
+        public QuestaoMongoDb[] Questoes { get; set; }
     }
 }

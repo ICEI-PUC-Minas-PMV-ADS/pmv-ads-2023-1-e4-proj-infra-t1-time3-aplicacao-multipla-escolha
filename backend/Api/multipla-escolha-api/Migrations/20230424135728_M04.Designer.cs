@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using multipla_escolha_api.Models;
 
@@ -11,9 +12,11 @@ using multipla_escolha_api.Models;
 namespace multipla_escolha_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230424135728_M04")]
+    partial class M04
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +36,7 @@ namespace multipla_escolha_api.Migrations
                     b.Property<DateTime>("DataDeCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataPrazoDeEntrega")
+                    b.Property<DateTime>("DataPrazoDeEntrega")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
@@ -44,7 +47,7 @@ namespace multipla_escolha_api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TentativasPermitidas")
+                    b.Property<int>("TentativasPermitidas")
                         .HasColumnType("int");
 
                     b.Property<int>("TurmaId")
@@ -53,9 +56,6 @@ namespace multipla_escolha_api.Migrations
                     b.Property<string>("UuidNoMongoDb")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Valor")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

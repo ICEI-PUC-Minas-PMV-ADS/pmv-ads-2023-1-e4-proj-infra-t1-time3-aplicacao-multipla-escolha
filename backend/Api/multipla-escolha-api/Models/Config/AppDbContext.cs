@@ -35,6 +35,7 @@ namespace multipla_escolha_api.Models
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Turma> Turmas { get; set; }
+        public DbSet<Atividade> Atividades { get; set; }
         public DbSet<TurmaAluno> TurmasAlunos { get; set; }
     }
 }

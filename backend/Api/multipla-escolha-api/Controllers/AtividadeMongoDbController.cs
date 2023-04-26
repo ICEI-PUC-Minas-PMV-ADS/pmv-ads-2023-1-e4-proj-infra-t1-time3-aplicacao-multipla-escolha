@@ -26,9 +26,14 @@ namespace multipla_escolha_api.Controllers
         public async Task<List<AtividadeMongoDb>> GetAll()
             => await _atividadeMongoDbService.GetAllAsync();
 
+        [HttpGet("{id}")]
+        public async Task<AtividadeMongoDb> Get(string id)
+    => await _atividadeMongoDbService.GetAsync(id);
+
         [HttpPost]
         public async Task<AtividadeMongoDb> Create(AtividadeMongoDb atividade)
         {
+            atividade.Id = System.Guid.NewGuid().ToString();
             await _atividadeMongoDbService.CreateAsync(atividade);
             return atividade;
         }

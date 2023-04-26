@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { UserContext } from '../context/userContext';
 
-import MinhasTurmasComponent from '../components/minhasTurmasComponent';
+import MinhasTurmasProfessorComponent from '../components/minhasTurmasProfessorComponent';
 import Unauthorized from '../components/unauthorized';
 
 function MinhasTurmas() {  
@@ -23,7 +23,7 @@ function MinhasTurmas() {
                     <h1>Minhas turmas</h1>
                 </div>
                 <div>
-                    <MinhasTurmasComponent/>
+                    <MinhasTurmasProfessorComponent/>
                 </div> 
             </div>
         </div>

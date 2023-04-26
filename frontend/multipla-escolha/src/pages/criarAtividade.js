@@ -4,12 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 
 import { UserContext } from '../context/userContext';
 
-import CriarTurmaFormComponent from '../components/criarTurmaFormComponent';
+import CriarAtividadeFormComponent from '../components/criarAtividadeFormComponent';
 import Unauthorized from '../components/unauthorized';
 
-function CriarTurma() {  
+function CriarAtividade() {  
     
     const userContext = useContext(UserContext);
+
+    const params = useParams();
 
     if (userContext.userData == null || userContext.userData.perfil != "Professor") {
         return (<Unauthorized/>)
@@ -20,13 +22,13 @@ function CriarTurma() {
             <Navbar />
             <div className='d-flex flex-column container'>
                 <div className="m-auto mt-4">
-                    <h1>Criar turma</h1>
+                    <h1>Criar atividade</h1>
                 </div>
                 <div>
-                    <CriarTurmaFormComponent />
+                    <CriarAtividadeFormComponent idTurma={params.id}/>
                 </div> 
             </div>
         </div>
     );
 }
-export default CriarTurma;
+export default CriarAtividade;

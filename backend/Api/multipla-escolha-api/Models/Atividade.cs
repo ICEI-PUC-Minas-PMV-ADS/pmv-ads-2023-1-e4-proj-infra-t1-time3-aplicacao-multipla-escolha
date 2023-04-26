@@ -6,29 +6,31 @@ using System.Text.Json.Serialization;
 namespace multipla_escolha_api.Models
 
 {
-    [Table("Turmas")]
-    public class Turma
+    [Table("Atividades")]
+    public class Atividade
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]
+        public int Valor { get; set; }
+        [Required]
         public string Descricao { get; set; }
         [Required]
         public DateTime DataDeCriacao { get; set; }
+        public DateTime? DataPrazoDeEntrega { get; set; }
+        public int? TentativasPermitidas { get; set; }
         [Required]
-        public bool Ativo { get; set; }
-        public Usuario Professor { get; set; }
-        [JsonIgnore]
-        public ICollection<TurmaAluno> AlunosTurma { get; set; }
-        public ICollection<Atividade> Atividades { get; set; }
-
-        public Turma()
+        public string UuidNoMongoDb { get; set; }
+        [Required]
+        public Turma Turma { get; set; }
+        public Atividade()
         {
 
         }
-        public Turma(TurmaDto dto) {
+        public Atividade(AtividadeDto dto)
+        {
             Id = 0;
             if (dto.Id != null)
             {
@@ -36,12 +38,15 @@ namespace multipla_escolha_api.Models
             }
             Nome = dto.Nome;
             Descricao = dto.Descricao;
-            DataDeCriacao = DateTime.UtcNow;
-            Ativo = true;
-            if (dto.Ativo != null)
+            Valor = 0;
+            if (dto.Valor != null)
             {
-                Ativo = (bool) dto.Ativo;
+                Valor = (int) dto.Valor;
             }
+            DataDeCriacao = DateTime.UtcNow;
+            DataPrazoDeEntrega = null;
+            DataPrazoDeEntrega = dto.DataPrazoDeEntrega;
+            TentativasPermitidas = dto.TentativasPermitidas;
         }
     }
 }
