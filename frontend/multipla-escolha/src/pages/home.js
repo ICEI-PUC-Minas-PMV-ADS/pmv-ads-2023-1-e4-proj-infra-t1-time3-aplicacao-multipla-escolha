@@ -12,7 +12,7 @@ function Home() {
                 </div>
                 <div className=''>
                     <h2 className='mb-4'>Opções do professor</h2>
-                    <Link className='btn btn-primary mb-2' to="/turmas/minhas-turmas">Minhas turmas</Link>
+                    <Link className='btn btn-primary mb-2' to="/minhas-turmas">Minhas turmas</Link>
                 </div> 
             </div>
         </div>

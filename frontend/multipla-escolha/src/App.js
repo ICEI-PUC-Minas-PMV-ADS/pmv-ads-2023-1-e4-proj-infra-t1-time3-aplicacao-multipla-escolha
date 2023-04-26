@@ -12,6 +12,8 @@ import EditarTurma from './pages/editarTurma';
 import MinhasTurmas from './pages/minhasTurmas';
 import VisualizarTurma from './pages/visualizarTurma';
 import CriarAtividade from './pages/criarAtividade';
+import VisualizarAtividade from './pages/visualizarAtividade';
+import EditarAtividade from './pages/editarAtividade';
 
 import { Route, Routes, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 
@@ -32,11 +34,13 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/cadastro" element={<Cadastro />}></Route>
             <Route path="/account-options" element={<AccountOptions />}></Route>
-            <Route path="/turmas/criar" element={<CriarTurma />}></Route>
-            <Route path="/turmas/editar/:id" element={<EditarTurma />}></Route>
-            <Route path="/turmas/minhas-turmas" element={<MinhasTurmas />}></Route>
+            <Route path="/criar-turma" element={<CriarTurma />}></Route>
+            <Route path="/editar-turma/:id" element={<EditarTurma />}></Route>
+            <Route path="/minhas-turmas" element={<MinhasTurmas />}></Route>
             <Route path="/turmas/:id" element={<VisualizarTurma />}></Route>
-            <Route path="/turmas/:id/atividades/criar" element={<CriarAtividade />}></Route>
+            <Route path="/turmas/:id/criar-atividade" element={<CriarAtividade />}></Route>
+            <Route path="/atividades/:id" element={<VisualizarAtividade />}></Route>
+            <Route path="/atividades/editar/:id" element={<EditarAtividade />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

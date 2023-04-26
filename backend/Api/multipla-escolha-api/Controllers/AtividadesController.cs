@@ -67,6 +67,43 @@ namespace multipla_escolha_api.Controllers
 
             _context.Atividades.Add(model);
             await _context.SaveChangesAsync();
+                
+            return Ok(model);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Edit(AtividadeDto dto)
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            if (!userClaims[ClaimTypes.Role].Equals("Professor"))
+            {
+                return Forbid();
+            }
+
+            if (dto.Id == null)
+            {
+                return BadRequest();
+            }
+
+            Atividade model = await _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(a => a.Id == dto.Id);
+
+            model.Nome = dto.Nome;
+            model.Descricao = dto.Descricao;
+            model.Valor = dto.Valor != null? (float) dto.Valor : 0F;
+            model.DataPrazoDeEntrega = dto.DataPrazoDeEntrega;
+
+            if (!model.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
+            {
+                return Forbid();
+            }
+
+            dto.AtividadeMongoDb.Id = model.UuidNoMongoDb;
+
+            await _atividadeMongoDbService.UpdateAsync(dto.AtividadeMongoDb);
+           
+            _context.Atividades.Update(model);
+            await _context.SaveChangesAsync();
 
             return Ok(model);
         }

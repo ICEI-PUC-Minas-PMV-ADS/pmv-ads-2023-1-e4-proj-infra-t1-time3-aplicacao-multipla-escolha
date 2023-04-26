@@ -75,7 +75,7 @@ function MinhasTurmasProfessorComponent() {
                                     <td>{turma.ativo ? "Sim" : "Não"}</td>
                                     <td>
                                         <Link to={"/turmas/" + turma.id} className="btn btn-primary">Abrir</Link>
-                                        <Link to={"/turmas/editar/" + turma.id} className="btn btn-secondary mx-2">Editar</Link>
+                                        <Link to={"/editar-turma/" + turma.id} className="btn btn-secondary mx-2">Editar</Link>
                                         <button className="btn btn-danger" onClick={() => apagarTurma(turma.id)}>Apagar</button>
                                     </td>
                                 </tr>
@@ -87,7 +87,7 @@ function MinhasTurmasProfessorComponent() {
                         turmas.length == 0 ? <div className="no-content-warning">Nenhuma turma cadastrada.</div> : null
                 }
                 <div className="d-flex flex-row-reverse">
-                    <Link className='btn btn-primary mb-2' to="/turmas/criar">Nova turma</Link>
+                    <Link className='btn btn-primary mb-2' to="/criar-turma">Nova turma</Link>
                 </div>
             </div>
         </div>

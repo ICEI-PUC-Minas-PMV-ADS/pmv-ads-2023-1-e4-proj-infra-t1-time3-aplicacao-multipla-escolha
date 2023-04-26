@@ -2,11 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { baseUrl } from "../util/Constants";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loading from "./loading";
+
 import { ALFABETO } from "../util/Constants";
 
-function CriarAtividadeFormComponent({ idTurma }) {
+function EditarAtividadeFormComponent({ idAtividade }) {
 
     const linkRef = useRef();
+
+    const [atividade, setAtividade] = useState(null);
 
     const dataDeEntregaRef = useRef();
 
@@ -36,7 +40,29 @@ function CriarAtividadeFormComponent({ idTurma }) {
 
     const [editIndexQuestao, setEditIndexQuestao] = useState(null);
 
-    const [skipScroll, setSkipScroll] = useState(false);
+    const [skipScroll, setSkipScroll] = useState(true);
+
+    useEffect(() => {
+        axios.get(baseUrl + 'api/Atividades/' + idAtividade,
+            {
+                headers: {
+                    "Content-Type": "application/JSON"
+                },
+                withCredentials: true
+            }
+        )
+            .then(function (response) {
+                setAtividade(response.data)
+                setNome(response.data.nome)
+                setDescricao(response.data.descricao)
+                setValorAtividade(response.data.valor)
+                setDataDeEntrega(response.data.dataPrazoDeEntrega)
+                setQuestoes(response.data.atividadeMongoDb.questoes)
+            })
+            .catch(function (error) {
+
+            })
+    }, []);
 
     useEffect(() => {
         if (!skipScroll) {
@@ -58,7 +84,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
         }
     }, [editIndexQuestao]);
 
-    function cadastrarAtividade() {
+    function editarAtividade() {
         if (nome.trim().length < 1) {
             document.getElementById("nome").focus();
             return setErrorMessage("Preencher nome da atividade!");
@@ -73,13 +99,13 @@ function CriarAtividadeFormComponent({ idTurma }) {
             return setErrorMessage("Adicionar ao menos uma questão!");
         }
 
-        axios.post(baseUrl + 'api/Atividades',
+        axios.put(baseUrl + 'api/Atividades',
             {
+                "id": idAtividade,
                 "nome": nome,
                 "descricao": descricao,
-                "turmaId": idTurma,
                 "atividadeMongoDb": { "questoes": questoes },
-                "dataPrazoDeEntrega": dataDeEntrega.length > 0 ? dataDeEntrega : null,
+                "dataPrazoDeEntrega": (dataDeEntrega == null || dataDeEntrega.length > 0) ? dataDeEntrega : null,
                 "valor": valorAtividade
             },
             {
@@ -91,7 +117,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
         )
             .then(function (response) {
                 if (response.status == 200) {
-                    window.alert("Atividade cadastrada com sucesso!")
+                    window.alert("Atividade atualizada com sucesso!")
                     linkRef.current.click();
                 }
             })
@@ -109,7 +135,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
         let newAlternativas = [];
 
         for (let i = 0; i < numeroAlternativas; i++) {
-            if (alternativas[i].trim().length < 1) return window.alert("Preencher alternativa " + ALFABETO[i] + "!")
+            if (alternativas[i] == null || alternativas[i].trim().length < 1) return window.alert("Preencher alternativa " + ALFABETO[i] + "!")
             newAlternativas.push(alternativas[i])
         }
 
@@ -222,6 +248,8 @@ function CriarAtividadeFormComponent({ idTurma }) {
     }
 
     function updateAlternativas(index, newValue) {
+        
+        console.log(alternativas);
         let newAlternativas = [];
         for (let i = 0; i < numeroAlternativas; i++) {
             if (i == index) {
@@ -236,6 +264,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
                 }
             }
         }
+        console.log(newAlternativas);
         setAlternativas(newAlternativas);
     }
 
@@ -281,9 +310,11 @@ function CriarAtividadeFormComponent({ idTurma }) {
         setErrorMessage("");
     }
 
+    if (atividade == null) return <Loading/>
+
     return (
         <div className="container-fluid d-flex flex-column">
-            <Link ref={linkRef} to={"/turmas/" + idTurma} />
+            <Link ref={linkRef} to={"/turmas/" + atividade.turma.id} />
             <div className="d-flex m-auto">
                 <div className="d-flex flex-column m-4">
                     <div className="h2">Informações gerais</div>
@@ -305,7 +336,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
                             <div key={"questao" + (index + 1)} className="questao-container">
                                 <div className="d-flex justify-content-between w-100">
                                     <div className="h5">{"Questão " + (index + 1)}</div>
-                                    <div className="h5">{"Valor " + questao.valor.replace(".", ",")}</div>
+                                    <div className="h5">{"Valor " + parseFloat(questao.valor).toFixed(2).replace(".", ",")}</div>
                                 </div>
                                 <div className="my-4 p-2">
                                     {questao.enunciado}
@@ -336,7 +367,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
             </div>
             <div className="w-100 d-flex flex-row-reverse m-4">
                 <button className="btn btn-secondary" onClick={() => linkRef.current.click()}>Cancelar</button>
-                <button className="btn btn-primary mx-2" onClick={() => cadastrarAtividade()}>Cadastrar atividade</button>
+                <button className="btn btn-primary mx-2" onClick={() => editarAtividade()}>Editar atividade</button>
             </div>
             {
                 showModal ?
@@ -369,4 +400,4 @@ function CriarAtividadeFormComponent({ idTurma }) {
     );
 }
 
-export default CriarAtividadeFormComponent
+export default EditarAtividadeFormComponent

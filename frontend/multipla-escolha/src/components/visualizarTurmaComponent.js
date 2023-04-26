@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 
+import { formatarData } from "../util/Functions";
+
 function VisualizarTurmaComponent({ idTurma }) {
 
     const userContext = useContext(UserContext);
@@ -34,21 +36,6 @@ function VisualizarTurmaComponent({ idTurma }) {
         return <div></div>
     }
 
-    function formatarData(data, showHours = false) {
-
-        if (data == null) return "Sem prazo";
-
-        let separateData = data.split("-");
-
-        let newData = separateData[2].substr(0, 2) + "/" + separateData[1] + "/" + separateData[0].substr(2,4);
-
-        if (showHours) {
-            newData += " - " + separateData[2].substr(3,5);
-        }
-
-        return newData;
-    }
-
     if (turma == null) return null;
 
     let donoDaTurma = false;
@@ -72,10 +59,10 @@ function VisualizarTurmaComponent({ idTurma }) {
                             <tr>
                                 <th>Nome</th>
                                 <th>Descrição</th>
-                                <th>Criada em</th>
-                                <th>Prazo de entrega</th>
-                                <th>Valor</th>
-                                <th></th>
+                                <th style={{width: 120}}>Criada em</th>
+                                <th style={{width: 160}}>Prazo de entrega</th>
+                                <th style={{width: 120}}>Valor</th>
+                                <th style={{width: 220}}></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,9 +73,13 @@ function VisualizarTurmaComponent({ idTurma }) {
                                         <td>{atividade.descricao}</td>
                                         <td>{formatarData(atividade.dataDeCriacao)}</td>
                                         <td>{formatarData(atividade.dataPrazoDeEntrega, true)}</td>
-                                        <td>{atividade.valor != 0 ? atividade.valor : "Não avaliativa"}</td>
+                                        <td>{atividade.valor != 0 ? atividade.valor.toString().replace(".", ",") : "Não avaliativa"}</td>
                                         <td>
-                                            <Link to={"/turmas/" + turma.id} className="btn btn-primary">Abrir</Link>
+                                            <div className="d-flex flex-row">
+                                            <Link to={"/atividades/" + atividade.id} className="btn btn-primary">Abrir</Link>
+                                            <Link to={"/atividades/editar/" + atividade.id} className="btn btn-secondary mx-2">Editar</Link>
+                                            <button className="btn btn-danger">Apagar</button>
+                                            </div>
                                         </td>
                                     </tr>
                                 )
@@ -99,7 +90,7 @@ function VisualizarTurmaComponent({ idTurma }) {
                         turma.atividades.length == 0 ? <div className="no-content-warning">Nenhuma atividade cadastrada.</div> : null
                     }
                     <div className="d-flex flex-row-reverse mb-4">
-                        <Link className='btn btn-primary my-2' to={"/turmas/" + turma.id + "/atividades/criar"}>Nova atividade</Link>
+                        <Link className='btn btn-primary my-2' to={"/turmas/" + turma.id + "/criar-atividade"}>Nova atividade</Link>
                     </div>
                 </div>
             </div>

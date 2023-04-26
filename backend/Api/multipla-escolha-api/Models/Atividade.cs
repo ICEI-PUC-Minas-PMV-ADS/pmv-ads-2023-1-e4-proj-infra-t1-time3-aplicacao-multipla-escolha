@@ -14,7 +14,7 @@ namespace multipla_escolha_api.Models
         [Required]
         public string Nome { get; set; }
         [Required]
-        public int Valor { get; set; }
+        public float Valor { get; set; }
         [Required]
         public string Descricao { get; set; }
         [Required]
@@ -38,10 +38,10 @@ namespace multipla_escolha_api.Models
             }
             Nome = dto.Nome;
             Descricao = dto.Descricao;
-            Valor = 0;
+            Valor = 0F;
             if (dto.Valor != null)
             {
-                Valor = (int) dto.Valor;
+                Valor = (float) dto.Valor;
             }
             DataDeCriacao = DateTime.UtcNow;
             DataPrazoDeEntrega = null;

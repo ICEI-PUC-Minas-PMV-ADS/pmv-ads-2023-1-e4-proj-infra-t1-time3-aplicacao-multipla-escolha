@@ -80,7 +80,7 @@ function EditarTurmaFormComponent({idTurma}) {
 
     return (
         <div className="container-fluid d-flex">
-            <Link ref={linkRef} to="/turmas/minhas-turmas" />
+            <Link ref={linkRef} to="/minhas-turmas" />
             <div className="d-flex flex-column m-auto mt-4">
                 <label for="nome">Nome da turma</label>
                 <input className="mb-2" id="nome" value={nome} onChange={(e) => { setNome(e.target.value); setErrorMessage("") }}></input>

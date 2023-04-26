@@ -10,7 +10,7 @@ namespace multipla_escolha_api.Models.DTO
         public string Nome { get; set; }
         [Required]
         public string Descricao { get; set; }
-        public int? Valor { get; set; }
+        public float? Valor { get; set; }
         public DateTime? DataPrazoDeEntrega { get; set; }
         public int? TentativasPermitidas { get; set; }
         public int? TurmaId { get; set; }
