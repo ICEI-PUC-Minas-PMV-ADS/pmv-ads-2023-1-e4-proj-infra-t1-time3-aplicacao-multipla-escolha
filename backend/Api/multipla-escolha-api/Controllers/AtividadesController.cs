@@ -150,12 +150,29 @@ namespace multipla_escolha_api.Controllers
             if (!model.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
             {
                 for (int i = 0; i < atividadeMongoDb.Questoes.Count(); i++)
-            {
-                atividadeMongoDb.Questoes[i].Resposta = null;
+                {
+                    atividadeMongoDb.Questoes[i].Resposta = null;
+                }
             }
+            
+            dto.AtividadeMongoDb = atividadeMongoDb;
+
+            bool podeSerRealizada = true;
+
+            if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
+            {
+                podeSerRealizada = false;
+            }                
+            else if (model.DataPrazoDeEntrega != null && model.DataPrazoDeEntrega <= DateTime.UtcNow)
+            {
+                podeSerRealizada = false;
+            }
+            else if (model.TentativasPermitidas != null && Atividade.getNumeroDeTentativasAluno(id, userClaims[ClaimTypes.NameIdentifier], _context) > model.TentativasPermitidas)
+            {
+                podeSerRealizada = false;
             }
 
-            dto.AtividadeMongoDb = atividadeMongoDb;
+            dto.podeSerRealizada = podeSerRealizada;
 
             return Ok(dto);
         }

@@ -32,14 +32,16 @@ namespace multipla_escolha_api.Controllers
             return Ok(model);
         }
 
-        private int getNumeroDeTentativas(int idAtividade, string idAluno)
-        {
-            return (_context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == idAtividade && r.Aluno.Id.ToString().Equals(idAluno)).Count() + 1);
-        }
-
         [HttpPost]
         public async Task<IActionResult> Corrigir(RespostasDto respostasDto)
         {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
+            {
+                return Forbid();
+            }
+
             var atividade = await _context.Atividades.FirstOrDefaultAsync(a => a.Id == respostasDto.idAtividade);
 
             if (atividade == null)
@@ -47,10 +49,13 @@ namespace multipla_escolha_api.Controllers
                 return NotFound();
             }
 
-            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            int numeroDeTentativas = Atividade.getNumeroDeTentativasAluno(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier], _context);
 
-            int numeroDeTentativas = getNumeroDeTentativas(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier]);
-            
+            if (atividade.DataPrazoDeEntrega != null && atividade.DataPrazoDeEntrega <= DateTime.UtcNow)
+            {
+                return BadRequest("Atividade fora do prazo!");
+            }
+
             if (atividade.TentativasPermitidas != null && numeroDeTentativas > atividade.TentativasPermitidas)
             {
                 return BadRequest("Número de tentativas extrapolado!");
@@ -67,11 +72,16 @@ namespace multipla_escolha_api.Controllers
 
             for (int i = 0; i < atividadeMongoDb.Questoes.Count(); i++)
             {
-                atividadeMongoDb.Questoes[i].RespostaAluno = respostasDto.Respostas[i];
                 if (atividadeMongoDb.Questoes[i].Resposta == respostasDto.Respostas[i])
                 {
                     notaAluno += atividadeMongoDb.Questoes[i].Valor;
+                    atividadeMongoDb.Questoes[i].AlunoAcertouResposta = true;
                 }
+                else
+                {
+                    atividadeMongoDb.Questoes[i].AlunoAcertouResposta = false;
+                }
+                atividadeMongoDb.Questoes[i].Resposta = respostasDto.Respostas[i];
             }
 
             atividadeMongoDb.Id = System.Guid.NewGuid().ToString();
@@ -115,23 +125,19 @@ namespace multipla_escolha_api.Controllers
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
 
-            var model = await _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
+            var model = await _context.Resultados.Include(r => r.Aluno).Include(r => r.Atividade).ThenInclude(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
 
             if (model == null) return NotFound();
+
+            if (!(model.Aluno.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]) || model.Atividade.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))) {
+                return Forbid();
+            }
 
             AtividadeMongoDb atividadeMongoDb = await _atividadeMongoDbService.GetAsync(model.UuidNoMongoDb);
 
             if (atividadeMongoDb == null) return NotFound();
 
-            AtividadeDto dto = new AtividadeDto(model);
-
-            if (!model.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
-            {
-                for (int i = 0; i < atividadeMongoDb.Questoes.Count(); i++)
-            {
-                atividadeMongoDb.Questoes[i].Resposta = null;
-            }
-            }
+            ResultadoDto dto = new ResultadoDto(model);
 
             dto.AtividadeMongoDb = atividadeMongoDb;
 

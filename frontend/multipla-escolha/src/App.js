@@ -14,6 +14,7 @@ import CriarAtividade from './pages/criarAtividade';
 import VisualizarAtividade from './pages/visualizarAtividade';
 import EditarAtividade from './pages/editarAtividade';
 import FazerAtividade from './pages/fazerAtividade';
+import VisualizarResultado from './pages/visualizarResultado';
 
 import { Route, Routes, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/atividades/:id" element={<VisualizarAtividade />}></Route>
             <Route path="/fazer-atividade/:id" element={<FazerAtividade />}></Route>
             <Route path="/atividades/editar/:id" element={<EditarAtividade />}></Route>
+            <Route path="/resultados/:id" element={<VisualizarResultado />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

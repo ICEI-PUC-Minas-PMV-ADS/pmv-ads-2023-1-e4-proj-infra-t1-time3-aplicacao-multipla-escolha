@@ -32,11 +32,11 @@ function VisualizarTurmaComponent({ idTurma }) {
                 setTurma(response.data)
             })
             .catch(function (error) {
-
+                setTurma(false)
             })
     }, [turmaLoaded]);
 
-    if (userContext.userSignedIn === false) {
+    if (userContext.userSignedIn === false || turma == false) {
         return <Unauthorized />
     }
 

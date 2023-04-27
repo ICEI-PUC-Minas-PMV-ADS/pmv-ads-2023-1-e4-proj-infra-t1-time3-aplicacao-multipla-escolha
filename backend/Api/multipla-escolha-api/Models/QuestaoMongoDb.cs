@@ -18,7 +18,7 @@ namespace multipla_escolha_api.Models.MongoDb
         [BsonElement("Resposta")]
         public int? Resposta { get; set; }
         [BsonElement("RespostaAluno")]
-        public int? RespostaAluno { get; set; }
+        public bool? AlunoAcertouResposta { get; set; }
 
     }
 }

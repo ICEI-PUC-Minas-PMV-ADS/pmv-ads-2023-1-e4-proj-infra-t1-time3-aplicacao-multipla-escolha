@@ -1,4 +1,5 @@
-﻿using multipla_escolha_api.Models.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using multipla_escolha_api.Models.DTO;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -50,6 +51,10 @@ namespace multipla_escolha_api.Models
             DataPrazoDeEntrega = null;
             DataPrazoDeEntrega = dto.DataPrazoDeEntrega;
             TentativasPermitidas = dto.TentativasPermitidas;
+        }
+        public static int getNumeroDeTentativasAluno(int idAtividade, string idAluno, AppDbContext context)
+        {
+            return (context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == idAtividade && r.Aluno.Id.ToString().Equals(idAluno)).Count() + 1);
         }
     }
 }

@@ -16,6 +16,14 @@ function FazerAtividadeComponent({ idAtividade }) {
 
     const linkRef = useRef();
 
+    const [redirectRoute, setRedirectRoute] = useState(null);
+
+    useEffect(() => {
+        if(redirectRoute != null) {
+            linkRef.current.click();
+        }
+    }, [redirectRoute]);
+
     const [atividade, setAtividade] = useState(null);
 
     const [questoes, setQuestoes] = useState([]);
@@ -38,11 +46,11 @@ function FazerAtividadeComponent({ idAtividade }) {
                 setQuestoes(response.data.atividadeMongoDb.questoes)
             })
             .catch(function (error) {
-
+                setAtividade(false);
             })
     }, []);
 
-    if (userContext.userSignedIn === false) {
+    if (userContext.userSignedIn === false || atividade == false) {
         return <Unauthorized />
     }
 
@@ -70,9 +78,9 @@ function FazerAtividadeComponent({ idAtividade }) {
             }
         )
             .then(function (response) {
-                console.log(response.data)
                 if (response.status == 200) {
                     window.alert("Respostas submetidas com sucesso!")
+                    setRedirectRoute("/resultados/" + response.data.id)
                 }
             })
             .catch(function (error) {
@@ -123,7 +131,7 @@ function FazerAtividadeComponent({ idAtividade }) {
                 <h1 className="m-auto">Fazer atividade</h1>
             </div>
             <div className="container-fluid d-flex flex-column">
-                <Link ref={linkRef} to={"/turmas/" + atividade.turma.id} />
+                <Link ref={linkRef} to={redirectRoute} />
                 <div className="d-flex m-auto" style={{ width: '80%' }}>
                     <div className="d-flex flex-column m-4 w-100">
                         <div className="d-flex justify-content-between align-items-center my-4">
@@ -163,7 +171,7 @@ function FazerAtividadeComponent({ idAtividade }) {
                             )
                         }
                         <div className="d-flex flex-row-reverse my-2">
-                            <button className="btn btn-secondary" onClick={() => linkRef.current.click()}>Voltar</button>
+                            <button className="btn btn-secondary" onClick={() => setRedirectRoute("/atividades/" + idAtividade)}>Voltar</button>
                             <button className="btn btn-primary mx-2" style={submissaoLiberada ? null : {opacity: 0.5, backgroundColor: 'gray', borderColor: 'gray'}} onClick={() => {submissaoLiberada? submeterAtividade() : window.alert("Preencha todas as questões!")}}>Submeter</button>
                         </div>
                     </div>

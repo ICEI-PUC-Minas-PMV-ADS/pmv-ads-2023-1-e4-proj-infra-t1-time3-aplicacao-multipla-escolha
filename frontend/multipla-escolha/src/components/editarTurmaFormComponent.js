@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { baseUrl } from "../util/Constants";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import Loading from "./loading";
+import Unauthorized from "./unauthorized";
+import { UserContext } from "../context/userContext";
+
 function EditarTurmaFormComponent({idTurma}) {
+
+    const userContext = useContext(UserContext);
 
     const linkRef = useRef();
 
@@ -15,7 +21,7 @@ function EditarTurmaFormComponent({idTurma}) {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const [turmaLoaded, setTurmaLoaded] = useState(false);
+    const [turmaLoaded, setTurmaLoaded] = useState(null);
 
     useEffect(() => {
         axios.get(baseUrl + 'api/Turmas/' + idTurma,
@@ -74,9 +80,19 @@ function EditarTurmaFormComponent({idTurma}) {
             })
     }
 
-    if (turmaLoaded != true) {
-        return <div></div>
+    if (userContext.userSignedIn === false || turmaLoaded == false) {
+        return <Unauthorized />
     }
+
+    if (turmaLoaded == null) return
+    (
+        <div>
+            <div className="d-flex my-4">
+                <h1 className="m-auto">Editar turma</h1>
+            </div>
+            <Loading />
+        </div>
+    )
 
     return (
         <div className="container-fluid d-flex">

@@ -75,7 +75,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                 setQuestoes(response.data.atividadeMongoDb.questoes)
             })
             .catch(function (error) {
-
+                setAtividade(false);
             })
     }, []);
 
@@ -265,7 +265,6 @@ function EditarAtividadeFormComponent({ idAtividade }) {
 
     function updateAlternativas(index, newValue) {
 
-        console.log(alternativas);
         let newAlternativas = [];
         for (let i = 0; i < numeroAlternativas; i++) {
             if (i == index) {
@@ -280,7 +279,6 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                 }
             }
         }
-        console.log(newAlternativas);
         setAlternativas(newAlternativas);
     }
 
@@ -326,7 +324,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
         setErrorMessage("");
     }
 
-    if (userContext.userSignedIn === false) {
+    if (userContext.userSignedIn === false || atividade == false) {
         return <Unauthorized />
     }
 
@@ -338,7 +336,6 @@ function EditarAtividadeFormComponent({ idAtividade }) {
             <Loading />
         </div>
     )
-    console.log(userContext.userData.id)
 
     if (userContext.userData.id != atividade.turma.professor.id) {
         return <Unauthorized />
