@@ -21,6 +21,10 @@ function CriarAtividadeFormComponent({ idTurma }) {
 
     const [dataDeEntrega, setDataDeEntrega] = useState("");
 
+    const [tentativasIlimitadas, setTentativasIlimitadas] = useState(false);
+
+    const [tentativasPermitidas, setTentativasPermitidas] = useState(1);
+
     const [valorAtividade, setValorAtividade] = useState(0);
 
     const [errorMessage, setErrorMessage] = useState("");
@@ -83,6 +87,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
                 "nome": nome,
                 "descricao": descricao,
                 "turmaId": idTurma,
+                "tentativasPermitidas": tentativasPermitidas > 0 && !tentativasIlimitadas ? tentativasPermitidas : null,
                 "atividadeMongoDb": { "questoes": questoes },
                 "dataPrazoDeEntrega": dataDeEntrega.length > 0 ? dataDeEntrega : null,
                 "valor": valorAtividade
@@ -119,7 +124,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
         }
 
         const model = {
-            "valor": parseFloat(valorQuestao).toFixed(2),
+            "valor": Math.abs(parseFloat(valorQuestao).toFixed(2)),
             "enunciado": enunciado,
             "imagem": "",
             "alternativas": newAlternativas,
@@ -309,6 +314,22 @@ function CriarAtividadeFormComponent({ idTurma }) {
                             <input ref={dataDeEntregaRef} style={{ width: 400 }} type="datetime-local" className="mb-2" id="prazo" value={dataDeEntrega} onChange={(e) => { setDataDeEntrega(e.target.value); setErrorMessage("") }}></input>
                             <button className="btn btn-primary p-1 mx-2" onClick={() => { setDataDeEntrega(""); dataDeEntregaRef.current.value = null }}>Sem prazo</button>
                         </div>
+                        <label>Tentativas ilimitadas?</label>
+                        <div>
+                            <input checked={tentativasIlimitadas} onClick={() => setTentativasIlimitadas(true)} className="m-2" type="radio" style={{ maxWidth: 60 }} id="tentativas-ilimitadas-sim" value={tentativasPermitidas} min={1} onChange={(e) => { setTentativasPermitidas(e.target.value); setErrorMessage("") }}></input>
+                            <label htmlFor="tentativas-ilimitadas-sim">Sim</label>
+                            <input checked={!tentativasIlimitadas} onClick={() => setTentativasIlimitadas(false)} className="m-2" type="radio" style={{ maxWidth: 60 }} id="tentativas-ilimitadas-nao" value={tentativasPermitidas} min={1} onChange={(e) => { setTentativasPermitidas(e.target.value); setErrorMessage("") }}></input>
+                            <label htmlFor="tentativas-ilimitadas-nao">Não</label>
+                        </div>
+                        {
+                            tentativasIlimitadas ?
+                                null
+                                :
+                                <>
+                                    <label htmlFor="tentativas-permitidas">Tentativas permitidas</label>
+                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="tentativas-permitidas" value={tentativasPermitidas} min={1} onChange={(e) => { setTentativasPermitidas(e.target.value); setErrorMessage("") }}></input>
+                                </>
+                        }
                         <div className="h2 mt-4">Visualização</div>
                         {
                             questoes.length == 0 ? <div className="no-content-warning mt-4">Nenhuma questão cadastrada.</div> : <div className="my-2" style={{ fontSize: 20 }}><b>Valor total: </b>{valorAtividade.toFixed(2).replace(".", ",")}</div>
@@ -318,7 +339,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
                                 <div key={"questao" + (index + 1)} className="questao-container">
                                     <div className="d-flex justify-content-between w-100">
                                         <div className="h5">{"Questão " + (index + 1)}</div>
-                                        <div className="h5">{"Valor " + questao.valor.replace(".", ",")}</div>
+                                        <div className="h5">{"Valor " + parseFloat(questao.valor).toFixed(2).replace(".", ",")}</div>
                                     </div>
                                     <div className="my-4 p-2">
                                         {questao.enunciado}
@@ -361,7 +382,7 @@ function CriarAtividadeFormComponent({ idTurma }) {
                                 <div className="d-flex flex-column p-3">
                                     <div className="h2">{editIndexQuestao == null ? "Adicionar questão" : "Editar questão"}</div>
                                     <label htmlFor="valor-questao">Valor</label>
-                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="valor-questao" value={valorQuestao} onChange={(e) => { setValorQuestao(e.target.value); setErrorMessage("") }}></input>
+                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="valor-questao" value={valorQuestao} min={0} onChange={(e) => { setValorQuestao(e.target.value); setErrorMessage("") }}></input>
                                     <label htmlFor="enunciado">Enunciado</label>
                                     <textarea style={{ height: 150, width: 500 }} className="mb-2" id="enunciado" value={enunciado} onChange={(e) => { setEnunciado(e.target.value); setErrorMessage("") }}></textarea>
                                     <label htmlFor="numero-alternativas">Número de alternativas</label>

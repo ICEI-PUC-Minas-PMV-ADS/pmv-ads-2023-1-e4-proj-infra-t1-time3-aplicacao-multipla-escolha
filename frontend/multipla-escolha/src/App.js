@@ -1,6 +1,5 @@
 import './App.css';
 import { useState } from 'react';
-import Navbar from './components/navbar.js';
 import axios from 'axios'
 
 import Home from './pages/home';
@@ -14,6 +13,7 @@ import VisualizarTurma from './pages/visualizarTurma';
 import CriarAtividade from './pages/criarAtividade';
 import VisualizarAtividade from './pages/visualizarAtividade';
 import EditarAtividade from './pages/editarAtividade';
+import FazerAtividade from './pages/fazerAtividade';
 
 import { Route, Routes, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 
@@ -40,6 +40,7 @@ function App() {
             <Route path="/turmas/:id" element={<VisualizarTurma />}></Route>
             <Route path="/turmas/:id/criar-atividade" element={<CriarAtividade />}></Route>
             <Route path="/atividades/:id" element={<VisualizarAtividade />}></Route>
+            <Route path="/fazer-atividade/:id" element={<FazerAtividade />}></Route>
             <Route path="/atividades/editar/:id" element={<EditarAtividade />}></Route>
           </Routes>
         </div>

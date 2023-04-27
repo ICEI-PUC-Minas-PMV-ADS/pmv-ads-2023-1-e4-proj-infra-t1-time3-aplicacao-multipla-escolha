@@ -13,13 +13,13 @@ namespace multipla_escolha_api.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class AtividadesController : ControllerBase
+    public class ResultadosController : ControllerBase
     {
         private readonly AppDbContext _context;
 
         private readonly AtividadeMongoDbService _atividadeMongoDbService;
 
-        public AtividadesController(AppDbContext context, AtividadeMongoDbService atividadeMongoDbService)
+        public ResultadosController(AppDbContext context, AtividadeMongoDbService atividadeMongoDbService)
         {
             _context = context;
             _atividadeMongoDbService = atividadeMongoDbService;
@@ -28,85 +28,63 @@ namespace multipla_escolha_api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var model = await _context.Atividades.Include(a => a.Turma).ToListAsync();
+            var model = await _context.Resultados.ToListAsync();
             return Ok(model);
+        }
+
+        private int getNumeroDeTentativas(int idAtividade, string idAluno)
+        {
+            return (_context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == idAtividade && r.Aluno.Id.ToString().Equals(idAluno)).Count() + 1);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AtividadeDto dto)
+        public async Task<IActionResult> Corrigir(RespostasDto respostasDto)
         {
+            var atividade = await _context.Atividades.FirstOrDefaultAsync(a => a.Id == respostasDto.idAtividade);
+
+            if (atividade == null)
+            {
+                return NotFound();
+            }
+
             var userClaims = Usuario.getUserClaims(HttpContext.User);
 
-            if (!userClaims[ClaimTypes.Role].Equals("Professor")) {
-                return Forbid();
-            }
-
-            dto.Id = 0;
-
-            dto.AtividadeMongoDb.Id = System.Guid.NewGuid().ToString();
-
-            Atividade model = new(dto);
-
-            var turma = _context.Turmas.Include(t => t.Professor).FirstOrDefault(t => t.Id == dto.TurmaId);
-
-            if (turma == null)
+            int numeroDeTentativas = getNumeroDeTentativas(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier]);
+            
+            if (atividade.TentativasPermitidas != null && numeroDeTentativas > atividade.TentativasPermitidas)
             {
-                return BadRequest();
+                return BadRequest("Número de tentativas extrapolado!");
             }
 
-            if (!turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
+            Usuario aluno = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
+
+
+            AtividadeMongoDb atividadeMongoDb = await _atividadeMongoDbService.GetAsync(atividade.UuidNoMongoDb);
+
+            if (atividadeMongoDb == null) return NotFound();
+
+            float notaAluno = 0F;
+
+            for (int i = 0; i < atividadeMongoDb.Questoes.Count(); i++)
             {
-                return Forbid();
+                atividadeMongoDb.Questoes[i].RespostaAluno = respostasDto.Respostas[i];
+                if (atividadeMongoDb.Questoes[i].Resposta == respostasDto.Respostas[i])
+                {
+                    notaAluno += atividadeMongoDb.Questoes[i].Valor;
+                }
             }
 
-            model.Turma = turma;            
+            atividadeMongoDb.Id = System.Guid.NewGuid().ToString();
 
-            await _atividadeMongoDbService.CreateAsync(dto.AtividadeMongoDb);
+            await _atividadeMongoDbService.CreateAsync(atividadeMongoDb);
 
-            model.UuidNoMongoDb = dto.AtividadeMongoDb.Id;
+            Resultado resultado = new Resultado(atividade, aluno, notaAluno, atividadeMongoDb.Id, numeroDeTentativas);
 
-            _context.Atividades.Add(model);
-            await _context.SaveChangesAsync();
-                
-            return Ok(model);
-        }
+            _context.Resultados.Add(resultado);
 
-        [HttpPut]
-        public async Task<IActionResult> Edit(AtividadeDto dto)
-        {
-            var userClaims = Usuario.getUserClaims(HttpContext.User);
-
-            if (!userClaims[ClaimTypes.Role].Equals("Professor"))
-            {
-                return Forbid();
-            }
-
-            if (dto.Id == null)
-            {
-                return BadRequest();
-            }
-
-            Atividade model = await _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(a => a.Id == dto.Id);
-
-            model.Nome = dto.Nome;
-            model.Descricao = dto.Descricao;
-            model.Valor = dto.Valor != null? (float) dto.Valor : 0F;
-            model.TentativasPermitidas = dto.TentativasPermitidas;
-            model.DataPrazoDeEntrega = dto.DataPrazoDeEntrega;
-
-            if (!model.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
-            {
-                return Forbid();
-            }
-
-            dto.AtividadeMongoDb.Id = model.UuidNoMongoDb;
-
-            await _atividadeMongoDbService.UpdateAsync(dto.AtividadeMongoDb);
-           
-            _context.Atividades.Update(model);
             await _context.SaveChangesAsync();
 
-            return Ok(model);
+            return Ok(resultado);
         }
 
         [HttpDelete("{id}")]

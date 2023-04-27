@@ -67,7 +67,7 @@ function MinhasTurmasProfessorComponent() {
             <div className="d-flex my-4">
                 <h1 className="m-auto">Minhas turmas</h1>
             </div>
-            <Loading />;
+            <Loading />
         </div>
         )
     }
@@ -110,7 +110,8 @@ function MinhasTurmasProfessorComponent() {
                         turmas.length == 0 ? <div className="no-content-warning">Nenhuma turma cadastrada.</div> : null
                     }
                     <div className="d-flex flex-row-reverse">
-                        <Link className='btn btn-primary mb-2' to="/criar-turma">Nova turma</Link>
+                        <Link className='btn btn-secondary my-2' to={"/"}>Voltar</Link>
+                        <Link className='btn btn-primary m-2' to="/criar-turma">Nova turma</Link>
                     </div>
                 </div>
             </div>

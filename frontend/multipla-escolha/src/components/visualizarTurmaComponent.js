@@ -29,7 +29,6 @@ function VisualizarTurmaComponent({ idTurma }) {
             }
         )
             .then(function (response) {
-                console.log(response.data)
                 setTurma(response.data)
             })
             .catch(function (error) {
@@ -97,7 +96,7 @@ function VisualizarTurmaComponent({ idTurma }) {
                                     <th style={{ width: 120 }}>Criada em</th>
                                     <th style={{ width: 160 }}>Prazo de entrega</th>
                                     <th style={{ width: 120 }}>Valor</th>
-                                    <th style={{ width: 220 }}></th>
+                                    <th style={userContext.userData.id == turma.professor.id ? { width: 220 } : { width: 90 }}></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,8 +111,15 @@ function VisualizarTurmaComponent({ idTurma }) {
                                             <td>
                                                 <div className="d-flex flex-row">
                                                     <Link to={"/atividades/" + atividade.id} className="btn btn-primary">Abrir</Link>
-                                                    <Link to={"/atividades/editar/" + atividade.id} className="btn btn-secondary mx-2">Editar</Link>
-                                                    <button className="btn btn-danger" onClick={() => apagarAtividade(atividade.id)}>Apagar</button>
+                                                    {
+                                                        userContext.userData.id == turma.professor.id ?
+                                                            <>
+                                                                <Link to={"/atividades/editar/" + atividade.id} className="btn btn-secondary mx-2">Editar</Link>
+                                                                <button className="btn btn-danger" onClick={() => apagarAtividade(atividade.id)}>Apagar</button>
+                                                            </>
+                                                            :
+                                                            null
+                                                    }
                                                 </div>
                                             </td>
                                         </tr>
@@ -125,7 +131,14 @@ function VisualizarTurmaComponent({ idTurma }) {
                             turma.atividades.length == 0 ? <div className="no-content-warning">Nenhuma atividade cadastrada.</div> : null
                         }
                         <div className="d-flex flex-row-reverse mb-4">
-                            <Link className='btn btn-primary my-2' to={"/turmas/" + turma.id + "/criar-atividade"}>Nova atividade</Link>
+                            <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>
+                            {
+                                userContext.userData.id == turma.professor.id ?
+
+                                    <Link className='btn btn-primary m-2' to={"/turmas/" + turma.id + "/criar-atividade"}>Nova atividade</Link>
+                                    :
+                                    null
+                            }
                         </div>
                     </div>
                 </div>

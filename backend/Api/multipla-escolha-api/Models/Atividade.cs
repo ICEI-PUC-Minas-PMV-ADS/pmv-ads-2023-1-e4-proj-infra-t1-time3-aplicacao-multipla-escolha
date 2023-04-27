@@ -25,6 +25,8 @@ namespace multipla_escolha_api.Models
         public string UuidNoMongoDb { get; set; }
         [Required]
         public Turma Turma { get; set; }
+        [JsonIgnore]
+        public ICollection<Resultado> Resultados { get; set; }
         public Atividade()
         {
 
@@ -39,6 +41,7 @@ namespace multipla_escolha_api.Models
             Nome = dto.Nome;
             Descricao = dto.Descricao;
             Valor = 0F;
+            TentativasPermitidas = dto.TentativasPermitidas;
             if (dto.Valor != null)
             {
                 Valor = (float) dto.Valor;

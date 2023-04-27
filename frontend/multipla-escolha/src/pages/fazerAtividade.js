@@ -2,15 +2,10 @@ import React, {useState, useEffect, useContext} from 'react';
 import Navbar from '../components/navbar';
 import { Link, useParams } from 'react-router-dom';
 
-import { UserContext } from '../context/userContext';
+import FazerAtividadeComponent from '../components/fazerAtividadeComponent';
 
-import CriarAtividadeFormComponent from '../components/criarAtividadeFormComponent';
-import Unauthorized from '../components/unauthorized';
-
-function CriarAtividade() {  
+function FazerAtividade() {  
     
-    const userContext = useContext(UserContext);
-
     const params = useParams();
 
     return (
@@ -18,10 +13,10 @@ function CriarAtividade() {
             <Navbar />
             <div className='d-flex flex-column container'>
                 <div>
-                    <CriarAtividadeFormComponent idTurma={params.id}/>
+                    <FazerAtividadeComponent idAtividade={params.id}/>
                 </div> 
             </div>
         </div>
     );
 }
-export default CriarAtividade;
+export default FazerAtividade;
