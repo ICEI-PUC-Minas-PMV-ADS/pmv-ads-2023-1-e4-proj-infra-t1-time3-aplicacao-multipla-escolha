@@ -8,10 +8,10 @@ namespace multipla_escolha_api.Services
     {
         private readonly IMongoCollection<AtividadeMongoDb> _atividadeMongoDbCollection;
 
-        public AtividadeMongoDbService(IOptions<AtividadeMongoDbDatabaseSettings> options)
+        public AtividadeMongoDbService(IOptions<MongoDbDatabaseConfig> options)
         {
-            var mongoClient = new MongoClient("mongodb://localhost:27017");
-            var mongoDatabase = mongoClient.GetDatabase("multipla-escolha");
+            var mongoClient = new MongoClient(options.Value.ConnectionString);
+            var mongoDatabase = mongoClient.GetDatabase(options.Value.DatabaseName);
 
             _atividadeMongoDbCollection = mongoDatabase.GetCollection<AtividadeMongoDb>
                 ("Atividades");
