@@ -36,14 +36,14 @@ As branches deverão utilizar os prefixos sitados acima e a seguinte convenção
 Quanto à gerência de issues, o projeto adota a seguinte convenção para
 etiquetas:
 
-- `documentation`: melhorias ou acréscimos à documentação
-- `testing`: teste de implementações
+- `documentação`: melhorias ou acréscimos à documentação
+- `teste`: teste de implementações
 - `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
+- `design`: relativo a uma mudança no design da aplicação
+- `melhoria`: uma funcionalidade precisa ser melhorada
+- `desenvolvimento`: uma nova funcionalidade precisa ser introduzida
 
 Utilizaremos a criação de `Pull Requests` para mantermos historico do nosso processo de desenvolvimento. Trazendo assim, confiabilidade ao subir nossas features para a branch `main` que será nosso ambiente de `produção`. Esta convenção trará mais segurança ao nosso ambiente de produção, uma vez que as pull requests terão que ser aprovadas por pelo menos um integrante do grupo.
-
 
 ## Gerenciamento de Projeto
 
@@ -61,42 +61,44 @@ Divisão de papéis entre os membros do grupo.
 
 O grupo decidiu por utilizar a metodologia Ágil, sendo escolhido o Scrum como base para definição do processo de desenvolvimento do projeto. Nossas sprints tem uma semana sendo a divisão das tarefas feitas na Terça-feira e baseada na entrega semanal ao cliente que deve ser feita geralmente na Terca-feira às 19:30hs.
 
-Com relação a organização e distribuição das tarefas do projeto, a equipe utiliza Projects do GitHub com um Kanban, onde é possível criar Listas, Cartões, Etiquetas, Botões personalizados com ações automáticas, entre diversas outras funcionalidades que impactam positivamente na eficiência do grupo.
+Com relação a organização e distribuição das tarefas do projeto, a equipe utiliza Projects do GitHub com um Kanban (mostrado na figura abaixo), onde é possível criar Listas, Cartões, Etiquetas, Botões personalizados com ações automáticas, entre diversas outras funcionalidades que impactam positivamente na eficiência do grupo.
 
-No início de cada Sprint, o grupo se reúne para definir quais tarefas serão realizadas, selecionando-as do Backlog do produto presente no quadro Kanban Trello (mostrado na figura abaixo). Após definir quais membros serão responsáveis por quais tarefas naquela Sprint, os itens selecionados são associados aos membros da equipe responsáveis por eles e movidos para a aba "To Do" do Kanban, correspondente à backlog da Sprint.
+![printKanban](https://user-images.githubusercontent.com/74699119/235312934-4cce5b89-37af-4efe-bc32-d25182a360ab.png)
+<p align="center"><b>Figura</b> - Quadro Kanban utilizado no gerenciamento do projeto.</p>
+<br>
+
+No início de cada Sprint, o grupo se reúne para definir quais tarefas serão realizadas, selecionando-as do Backlog presente no quadro Kanban. Após definir quais membros serão responsáveis por quais tarefas naquela Sprint, os itens selecionados são associados aos membros da equipe responsáveis por eles e movidos para a aba "Backlog da Sprint" do Kanban.
 
 As tarefas, que são criadas como issues, devem estar devidamente descritas com todas as informações necessárias e com as etiquetas corretas.
 
 Dentre as etiquetas temos:
 
-- `documentation`: melhorias ou acréscimos à documentação
-- `testing`: teste de implementações
+- `documentação`: melhorias ou acréscimos à documentação
+- `teste`: teste de implementações
 - `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
+- `design`: relativo a uma mudança no design da aplicação
+- `melhoria`: uma funcionalidade precisa ser melhorada
+- `desenvolvimento`: uma nova funcionalidade precisa ser introduzida
  
  #### Desenvolvimento
 
-Ao iniciar uma tarefa, cada colaborador deve selecionar a tarefa em questão na aba "To Do" e movê-la para a aba "Doing".
+Ao iniciar uma tarefa, cada colaborador deve selecionar a tarefa em questão na aba "Backlog da Sprint" e movê-la para a aba "Em andamento".
 
 O desenvolvedor deve verificar se ele tem todas as informações e ferramentas necessárias para realizar a tarefa, assim como deve verificar se não há nenhuma coisa que impeça sua realização.
 
 Caso a tarefa seja de código, o desenvolvedor deve criar um branch para a tarefa e, quando finalizada e devidamente testada, solicitar que um colega revise.
 
 #### Revisão
-Quando a tarefa estiver completa, ela deve ser movida para a aba de review. Caso a tarefa precise ser testada então o responsável deve move-la para a aba testing, neste caso quem estiver responsável por revisar e testar deve, realizar testes, conferir se o código esta dentro do padrão e verificar se a tarefa foi de fato resolvida.
+Quando a tarefa estiver completa, ela deve ser movida para a aba de review. Caso a tarefa precise ser testada então o responsável deve move-la para a aba "em teste/review", neste caso quem estiver responsável por revisar e testar deve, realizar testes, conferir se o código esta dentro do padrão e verificar se a tarefa foi de fato resolvida.
 
-Caso seja encontrado algum problema, o revisor deve retornar com a tarefa para a aba Doing, comunicar ao desenvolvedor e solicitar a correção.
+Caso seja encontrado algum problema, o revisor deve retornar com a tarefa para a aba "Em andamento", comunicar ao desenvolvedor e solicitar a correção.
 
 #### Finalização
-Quando pronto, o revisor tem a função de fechar a issue, mergear o branch criado com o branch estável e mover a tarefa para aba Done.
-
-![Processo 1](img/Kanban.jpeg)
-
+Quando pronto, o revisor tem a função de fechar a issue, mergear o branch criado com o branch estável e mover a tarefa para aba "Concluído".
 
 ### Ferramentas
 
-As ferramentas empregadas no projeto são:
+Os tipos de ferramenta empregados no projeto são:
 
 - Ferramenta de Comunicação.
 - Repositório.
@@ -104,6 +106,8 @@ As ferramentas empregadas no projeto são:
 - Ferramenta de criação de Diagramas.
 - Ferramenta de criação Interface e Wireframes.
 - Ferramenta de gerenciamento do Projeto e Tarefas.
+
+A tabela abaixo detalha as ferramentas escolhidas para cada função.
 
 |Função    | Plataforma  | Link de Acesso |
 |------|-----------------------------------------|----|
