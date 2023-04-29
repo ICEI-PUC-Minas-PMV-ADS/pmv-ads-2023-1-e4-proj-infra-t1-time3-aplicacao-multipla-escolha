@@ -2,7 +2,7 @@
 
 Esta seção apresenta a definição de como a aplicação será estruturada em termos de seus componentes, tecnologias utilizadas e hospedagem.
 
-![Arquitetura-da-solucao](https://user-images.githubusercontent.com/74699119/235313780-5417bf68-f320-4a1e-8365-eecdded93a85.png)
+![Arquitetura-da-solucao](https://user-images.githubusercontent.com/74699119/235313843-0d0b6b4b-45f6-4321-9dce-3443db42cba2.png)
 <p align="center"><b>Figura</b> - Arquitetura da solução</p>
 <br>
 
