@@ -6,15 +6,9 @@ export function switchBoolean(boolean) {
 
 export function formatarData(data, showHours = false) {
 
-    if (data == null) return "Sem prazo";
+    let dateInUtc = new Date(data).toString().substring(0,25) + "UTC";
 
-    let separateData = data.split("-");
+    let formatedDate = new Date(dateInUtc).toLocaleString().replace(",", " -");
 
-    let newData = separateData[2].substr(0, 2) + "/" + separateData[1] + "/" + separateData[0].substr(2,4);
-
-    if (showHours) {
-        newData += " - " + separateData[2].substr(3,5);
-    }
-
-    return newData;
+    return formatedDate;
 }

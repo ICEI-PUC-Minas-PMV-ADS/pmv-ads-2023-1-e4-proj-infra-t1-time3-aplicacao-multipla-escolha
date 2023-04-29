@@ -157,6 +157,8 @@ namespace multipla_escolha_api.Controllers
             
             dto.AtividadeMongoDb = atividadeMongoDb;
 
+            dto.TentativasAnteriores = await _context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == id && r.Aluno.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier])).OrderByDescending(t => t.DataDaTentativa).ToListAsync();
+
             bool podeSerRealizada = true;
 
             if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
@@ -167,12 +169,12 @@ namespace multipla_escolha_api.Controllers
             {
                 podeSerRealizada = false;
             }
-            else if (model.TentativasPermitidas != null && Atividade.getNumeroDeTentativasAluno(id, userClaims[ClaimTypes.NameIdentifier], _context) > model.TentativasPermitidas)
+            else if (model.TentativasPermitidas != null && dto.TentativasAnteriores.Count >= model.TentativasPermitidas)
             {
                 podeSerRealizada = false;
             }
 
-            dto.podeSerRealizada = podeSerRealizada;
+            dto.podeSerRealizada = podeSerRealizada;            
 
             return Ok(dto);
         }
