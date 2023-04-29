@@ -31,11 +31,20 @@ namespace multipla_escolha_api.Models
                 .HasOne(ta => ta.Aluno).WithMany(a => a.TurmasAluno)
                 .HasForeignKey(ta => ta.AlunoId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Atividade>()
+           .HasMany(a => a.Resultados).WithOne(r => r.Atividade)
+           .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Usuario>()
+            .HasMany(u => u.Resultados).WithOne(r => r.Aluno)
+            .OnDelete(DeleteBehavior.NoAction);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Turma> Turmas { get; set; }
         public DbSet<Atividade> Atividades { get; set; }
+        public DbSet<Resultado> Resultados { get; set; }
         public DbSet<TurmaAluno> TurmasAlunos { get; set; }
     }
 }

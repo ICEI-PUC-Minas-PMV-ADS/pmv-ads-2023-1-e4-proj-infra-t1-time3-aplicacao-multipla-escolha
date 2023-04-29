@@ -32,7 +32,8 @@ namespace multipla_escolha_api.Models
         public ICollection<Turma> TurmasProfessor { get; set; }
         [JsonIgnore]
         public ICollection<TurmaAluno> TurmasAluno { get; set; }
-
+        [JsonIgnore]
+        public ICollection<Resultado> Resultados { get; set; }
         public Usuario()
         {
 

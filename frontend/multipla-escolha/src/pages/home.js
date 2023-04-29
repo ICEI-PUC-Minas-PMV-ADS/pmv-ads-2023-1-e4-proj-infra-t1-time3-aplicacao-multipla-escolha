@@ -10,9 +10,10 @@ function Home() {
                 <div className="m-auto mt-4">
                     <h1>Homepage</h1>
                 </div>
-                <div className=''>
+                <div className='d-flex flex-column'>
                     <h2 className='mb-4'>Opções</h2>
-                    <Link className='btn btn-primary mb-2' to="/minhas-turmas">Minhas turmas</Link>
+                    <Link className='btn btn-primary mb-2 col-md-2' to="/turmas">Buscar turma</Link>
+                    <Link className='btn btn-primary mb-2 col-md-2' to="/minhas-turmas">Minhas turmas</Link>
                 </div> 
             </div>
         </div>

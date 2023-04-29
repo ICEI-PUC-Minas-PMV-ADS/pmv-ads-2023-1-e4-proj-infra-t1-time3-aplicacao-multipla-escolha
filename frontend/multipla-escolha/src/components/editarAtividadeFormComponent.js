@@ -35,6 +35,10 @@ function EditarAtividadeFormComponent({ idAtividade }) {
 
     const [enunciado, setEnunciado] = useState("");
 
+    const [tentativasIlimitadas, setTentativasIlimitadas] = useState(false);
+
+    const [tentativasPermitidas, setTentativasPermitidas] = useState(1);
+
     const [numeroAlternativas, setNumeroAlternativas] = useState(4);
 
     const [alternativas, setAlternativas] = useState([]);
@@ -62,10 +66,16 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                 setDescricao(response.data.descricao)
                 setValorAtividade(response.data.valor)
                 setDataDeEntrega(response.data.dataPrazoDeEntrega)
+                if (response.data.tentativasPermitidas == null) {
+                    setTentativasIlimitadas(true)
+                }
+                else {
+                    setTentativasPermitidas(response.data.tentativasPermitidas)
+                }
                 setQuestoes(response.data.atividadeMongoDb.questoes)
             })
             .catch(function (error) {
-
+                setAtividade(false);
             })
     }, []);
 
@@ -109,6 +119,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                 "id": idAtividade,
                 "nome": nome,
                 "descricao": descricao,
+                "tentativasPermitidas": tentativasPermitidas > 0 && !tentativasIlimitadas ? tentativasPermitidas : null,
                 "atividadeMongoDb": { "questoes": questoes },
                 "dataPrazoDeEntrega": (dataDeEntrega == null || dataDeEntrega.length > 0) ? dataDeEntrega : null,
                 "valor": valorAtividade
@@ -145,7 +156,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
         }
 
         const model = {
-            "valor": parseFloat(valorQuestao).toFixed(2),
+            "valor": Math.abs(parseFloat(valorQuestao)).toFixed(2),
             "enunciado": enunciado,
             "imagem": "",
             "alternativas": newAlternativas,
@@ -254,7 +265,6 @@ function EditarAtividadeFormComponent({ idAtividade }) {
 
     function updateAlternativas(index, newValue) {
 
-        console.log(alternativas);
         let newAlternativas = [];
         for (let i = 0; i < numeroAlternativas; i++) {
             if (i == index) {
@@ -269,7 +279,6 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                 }
             }
         }
-        console.log(newAlternativas);
         setAlternativas(newAlternativas);
     }
 
@@ -315,7 +324,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
         setErrorMessage("");
     }
 
-    if (userContext.userSignedIn === false) {
+    if (userContext.userSignedIn === false || atividade == false) {
         return <Unauthorized />
     }
 
@@ -327,6 +336,10 @@ function EditarAtividadeFormComponent({ idAtividade }) {
             <Loading />
         </div>
     )
+
+    if (userContext.userData.id != atividade.turma.professor.id) {
+        return <Unauthorized />
+    }
 
     return (
         <div>
@@ -347,6 +360,23 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                             <input ref={dataDeEntregaRef} style={{ width: 400 }} type="datetime-local" className="mb-2" id="prazo" value={dataDeEntrega} onChange={(e) => { setDataDeEntrega(e.target.value); setErrorMessage("") }}></input>
                             <button className="btn btn-primary p-1 mx-2" onClick={() => { setDataDeEntrega(""); dataDeEntregaRef.current.value = null }}>Sem prazo</button>
                         </div>
+                        <label>Tentativas ilimitadas?</label>
+                        <div>
+                            <input checked={tentativasIlimitadas} onClick={() => setTentativasIlimitadas(true)} className="m-2" type="radio" style={{ maxWidth: 60 }} id="tentativas-ilimitadas-sim" value={tentativasPermitidas} min={1} onChange={(e) => { setTentativasPermitidas(e.target.value); setErrorMessage("") }}></input>
+                            <label htmlFor="tentativas-ilimitadas-sim">Sim</label>
+                            <input checked={!tentativasIlimitadas} onClick={() => setTentativasIlimitadas(false)} className="m-2" type="radio" style={{ maxWidth: 60 }} id="tentativas-ilimitadas-nao" value={tentativasPermitidas} min={1} onChange={(e) => { setTentativasPermitidas(e.target.value); setErrorMessage("") }}></input>
+                            <label htmlFor="tentativas-ilimitadas-nao">Não</label>
+                        </div>
+                        {
+                            tentativasIlimitadas ?
+                                null
+                                :
+                                <>
+                                    <label htmlFor="tentativas-permitidas">Tentativas permitidas</label>
+                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="tentativas-permitidas" value={tentativasPermitidas} min={1} onChange={(e) => { setTentativasPermitidas(e.target.value); setErrorMessage("") }}></input>
+                                    <div className="h2 mt-4">Visualização</div>
+                                </>
+                        }
                         <div className="h2 mt-4">Visualização</div>
                         {
                             questoes.length == 0 ? <div className="no-content-warning mt-4">Nenhuma questão cadastrada.</div> : <div className="my-2" style={{ fontSize: 20 }}><b>Valor total: </b>{valorAtividade.toFixed(2).replace(".", ",")}</div>
@@ -387,7 +417,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                 </div>
                 <div className="w-100 d-flex flex-row-reverse m-4">
                     <button className="btn btn-secondary" onClick={() => linkRef.current.click()}>Cancelar</button>
-                    <button className="btn btn-primary mx-2" onClick={() => editarAtividade()}>Editar atividade</button>
+                    <button className="btn btn-primary mx-2" onClick={() => editarAtividade()}>Atualizar atividade</button>
                 </div>
                 {
                     showModal ?
@@ -399,7 +429,7 @@ function EditarAtividadeFormComponent({ idAtividade }) {
                                 <div className="d-flex flex-column p-3">
                                     <div className="h2">{editIndexQuestao == null ? "Adicionar questão" : "Editar questão"}</div>
                                     <label htmlFor="valor-questao">Valor</label>
-                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="valor-questao" value={valorQuestao} onChange={(e) => { setValorQuestao(e.target.value); setErrorMessage("") }}></input>
+                                    <input className="mb-2" type="number" style={{ maxWidth: 60 }} id="valor-questao" value={valorQuestao} min={0} onChange={(e) => { setValorQuestao(e.target.value); setErrorMessage("") }}></input>
                                     <label htmlFor="enunciado">Enunciado</label>
                                     <textarea style={{ height: 150, width: 500 }} className="mb-2" id="enunciado" value={enunciado} onChange={(e) => { setEnunciado(e.target.value); setErrorMessage("") }}></textarea>
                                     <label htmlFor="numero-alternativas">Número de alternativas</label>

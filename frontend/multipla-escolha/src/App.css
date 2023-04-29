@@ -85,3 +85,9 @@
   padding: 4px;
   margin-top: 6px;
 }
+
+.page-link {
+  min-width: 40px;
+  text-align: center;
+  cursor: pointer;
+}

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using multipla_escolha_api.Models;
 using multipla_escolha_api.Models.Config;
+using multipla_escolha_api.Models.MongoDb;
 using multipla_escolha_api.Services;
 using System.Text;
 
@@ -16,6 +17,8 @@ builder.Services.AddControllers()
 // Permite acesso as configurações JWT pelas classes da aplicação.
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("Jwt"));
 
+// Permite acesso as configurações MongoDb pelas classes da aplicação.
+builder.Services.Configure<MongoDbDatabaseConfig>(builder.Configuration.GetSection("MongoDbDatabaseConfig"));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))

@@ -17,6 +17,9 @@ namespace multipla_escolha_api.Models.DTO
         public Turma Turma { get; set; }
         [Required]
         public AtividadeMongoDb AtividadeMongoDb { get; set; }
+        public bool? podeSerRealizada { get; set; }
+
+        public List<Resultado> TentativasAnteriores { get; set; }
 
         public AtividadeDto()
         {

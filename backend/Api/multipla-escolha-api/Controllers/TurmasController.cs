@@ -21,10 +21,22 @@ namespace multipla_escolha_api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery(Name = "searchStringTurma")] string searchStringTurma = "", [FromQuery(Name = "searchStringProfessor")] string searchStringProfessor = "", [FromQuery(Name = "pageSize")] int pageSize = 50, [FromQuery(Name = "pageNumber")] int pageNumber = 0)
         {
-            var model = await _context.Turmas.Include(t => t.Professor).ToListAsync();
-            return Ok(model);
+            var model = _context.Turmas.Include(t => t.Professor).Where(t => t.Ativo == true).OrderBy(t => t.Nome);
+
+            if (searchStringTurma != null && searchStringTurma.Length > 0)
+            {
+                model = (IOrderedQueryable<Turma>)model.Where(x => x.Nome.Contains(searchStringTurma));
+            }
+            if (searchStringProfessor != null && searchStringProfessor.Length > 0)
+            {
+                model = (IOrderedQueryable<Turma>)model.Where(x => x.Professor.Nome.Contains(searchStringProfessor) || x.Professor.Email.Contains(searchStringProfessor));
+            }
+
+            var page = await Page.getPageAsync(model, pageSize, pageNumber);
+
+            return Ok(page);
         }
 
         [HttpGet("user-turmas")]

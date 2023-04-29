@@ -13,10 +13,6 @@ function EditarAtividade() {
 
     const params = useParams();
 
-    if (userContext.userData == null || userContext.userData.perfil != "Professor") {
-        return (<Unauthorized/>)
-    } 
-
     return (
         <div>
             <Navbar />

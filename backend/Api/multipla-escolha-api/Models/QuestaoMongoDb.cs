@@ -15,8 +15,10 @@ namespace multipla_escolha_api.Models.MongoDb
         [BsonRequired]
         [BsonElement("Alternativas")]
         public string[] Alternativas { get; set; }
-        [BsonRequired]
         [BsonElement("Resposta")]
-        public int Resposta { get; set; }
+        public int? Resposta { get; set; }
+        [BsonElement("RespostaAluno")]
+        public bool? AlunoAcertouResposta { get; set; }
+
     }
 }

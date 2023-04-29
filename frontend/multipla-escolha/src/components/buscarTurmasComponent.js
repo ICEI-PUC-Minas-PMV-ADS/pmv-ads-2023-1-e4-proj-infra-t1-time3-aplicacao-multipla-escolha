@@ -8,8 +8,9 @@ import { UserContext } from "../context/userContext";
 
 import Loading from "./loading";
 import Unauthorized from "./unauthorized";
+import PaginationTabsComponent from "./paginationTabsComponent";
 
-function MinhasTurmasProfessorComponent() {
+function BuscarTurmasComponent() {
 
     const userContext = useContext(UserContext);
 
@@ -19,9 +20,21 @@ function MinhasTurmasProfessorComponent() {
 
     const [turmasLoaded, setTurmasLoaded] = useState(true);
 
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const [lastPage, setLastPage] = useState(0);
+
+    const [searchStringTurma, setSearchStringTurma] = useState("");
+    const [searchStringProfessor, setSearchStringProfessor] = useState("");
+
     useEffect(() => {
-        axios.get(baseUrl + 'api/Turmas/user-turmas',
+        axios.get(baseUrl + 'api/Turmas',
             {
+                params: {
+                    "pageNumber": currentPage,
+                    "searchStringTurma": searchStringTurma.trim(),
+                    "searchStringProfessor": searchStringProfessor.trim()
+                },
                 headers: {
                     "Content-Type": "application/JSON"
                 },
@@ -29,64 +42,54 @@ function MinhasTurmasProfessorComponent() {
             }
         )
             .then(function (response) {
-                setTurmas(response.data);
+                setLastPage(response.data.totalPages)
+                if (currentPage >= response.data.totalPages) {
+                    setCurrentPage(0);
+                }
+                setTurmas(response.data.items);
             })
             .catch(function (error) {
 
             })
-    }, [turmasLoaded]);
-
-    function apagarTurma(turmaId) {
-        if (window.confirm("Tem certeza que deseja apagar essa turma?")) {
-            axios.delete(baseUrl + 'api/Turmas/' + turmaId,
-                {
-                    headers: {
-                        "Content-Type": "application/JSON"
-                    },
-                    withCredentials: true
-                }
-            )
-                .then(function (response) {
-                    window.alert("Turma apagada com sucesso!")
-                    setTurmasLoaded(switchBoolean(turmasLoaded));
-                })
-                .catch(function (error) {
-                    window.alert("Não foi possível apagar a turma!")
-                })
-        }
-    }
+    }, [currentPage, searchStringTurma, searchStringProfessor]);
 
     if (userContext.userSignedIn === false) {
         return <Unauthorized />
     }
 
     if (turmas == null) {
-        return(
+        return (
 
             <div>
-            <div className="d-flex my-4">
-                <h1 className="m-auto">Minhas turmas</h1>
+                <div className="d-flex my-4">
+                    <h1 className="m-auto">Buscar turma</h1>
+                </div>
+                <Loading />
             </div>
-            <Loading />
-        </div>
         )
     }
 
     return (
         <div>
             <div className="d-flex my-4">
-                <h1 className="m-auto">Minhas turmas</h1>
+                <h1 className="m-auto">Buscar turma</h1>
             </div>
             <div className="container-fluid d-flex">
                 <Link ref={linkRef} to="/" />
                 <div className="d-flex flex-column m-auto mt-4 w-100">
+                    <div className="d-flex flex-column">
+                    <label htmlFor="search-turma">Buscar por nome da turma:</label>
+                    <input id="search-turma" className="col-md-4" value={searchStringTurma} onChange={(e) => setSearchStringTurma(e.target.value)}></input>
+                    <label htmlFor="search-professor" className="mt-2">Buscar por nome/email do professor:</label>
+                    <input id="search-professor" className="col-md-4 mb-2" value={searchStringProfessor} onChange={(e) => setSearchStringProfessor(e.target.value)}></input>
+                    </div>
                     <table className="table table-sm table-color table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Nome</th>
                                 <th>Descrição</th>
-                                <th>Ativa</th>
-                                <th style={{ width: 240 }}></th>
+                                <th>Professor</th>
+                                <th style={{ width: 90 }}></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,11 +98,9 @@ function MinhasTurmasProfessorComponent() {
                                     <tr key={"turma" + turma.id}>
                                         <td>{turma.nome}</td>
                                         <td>{turma.descricao}</td>
-                                        <td>{turma.ativo ? "Sim" : "Não"}</td>
+                                        <td>{turma.professor.nome + " (" + turma.professor.email + ")"}</td>
                                         <td>
                                             <Link to={"/turmas/" + turma.id} className="btn btn-primary">Abrir</Link>
-                                            <Link to={"/editar-turma/" + turma.id} className="btn btn-secondary mx-2">Editar</Link>
-                                            <button className="btn btn-danger" onClick={() => apagarTurma(turma.id)}>Apagar</button>
                                         </td>
                                     </tr>
                                 )
@@ -109,9 +110,9 @@ function MinhasTurmasProfessorComponent() {
                     {
                         turmas.length == 0 ? <div className="no-content-warning">Nenhuma turma cadastrada.</div> : null
                     }
+                    <PaginationTabsComponent currentPage={currentPage} setCurrentPage={setCurrentPage} lastPage={lastPage}/>
                     <div className="d-flex flex-row-reverse">
                         <Link className='btn btn-secondary my-2' to={"/"}>Voltar</Link>
-                        <Link className='btn btn-primary m-2' to="/criar-turma">Nova turma</Link>
                     </div>
                 </div>
             </div>
@@ -119,4 +120,4 @@ function MinhasTurmasProfessorComponent() {
     );
 }
 
-export default MinhasTurmasProfessorComponent
+export default BuscarTurmasComponent

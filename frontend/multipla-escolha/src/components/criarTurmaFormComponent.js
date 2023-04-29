@@ -80,7 +80,10 @@ function CriarTurmaFormComponent() {
                             {errorMessage}
                         </div>
                     </div>
+                    <div className="m-auto">
                     <button className="btn btn-primary" onClick={() => cadastrarTurma()}>Cadastrar turma</button>
+                    <button className="btn btn-secondary mx-2" onClick={() => linkRef.current.click()}>Cancelar</button>
+                </div>
                 </div>
             </div>
         </div>
