@@ -161,3 +161,82 @@ Os dados preenchidos para a atualização são enviados para o endpoint de atual
 3. Visualizar tela de atualizar dados cadastrais;
 5. Preencher as informações solicitadas relativas aos dados que deseja atualizar e clicar em "atualizar dados", ou clicar em "apagar conta" caso deseje apagar sua conta;
 6. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a homepage;
+
+## Cadastro e edição de turmas por professor (RF-02)
+A funcionalidade de cadastro de turmas permite que um usuário do tipo "Professor" cadastre uma nova turma em seu nome, fornecendo o nome e descrição da turma, além de poder decidir se a turma está ativa ou não (turmas não ativas não aparecem para os alunos na busca de turmas). As turmas cadastradas poderão então ser visualizadas na tela de "Minhas turmas" do professor, aonde poderão ser editadas ou apagadas clicando nos botões correspondentes.
+
+### Tela de cadastro de turma
+![criarturma](https://user-images.githubusercontent.com/74699119/235355741-45378d97-a4c3-4434-b529-b8a15f852f41.png)
+
+### Tela de "minhas turmas"
+![criarturma2](https://user-images.githubusercontent.com/74699119/235355742-2a70f9e8-41c0-4e96-a95c-d7f5f28c1852.png)
+
+### Tela de editar turma
+![criarturma3](https://user-images.githubusercontent.com/74699119/235355855-248d1793-1cd6-4dc5-8572-5858fd13fc08.png)
+
+### Requisitos atendidos
+- RF-02
+
+### Estrutura de Dados
+
+Os dados preenchidos para a criação da turma são enviados para o endpoint de criar nova turma no seguinte formato JSON e recebidos pelo endpoint através do DTO TurmaDto 
+
+```
+{
+  ativo: true
+  descricao: "Nova turma"
+  nome: "Nova turma"
+}
+```
+Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atualmente logado é recuperada no seguinte formato JSON através do Model Turma:
+
+```
+[
+  {
+    "id": 13006,
+    "nome": "Nova turma",
+    "descricao": "Nova turma",
+    "dataDeCriacao": "2023-04-30T13:28:26.5433026",
+    "ativo": true,
+    "professor": {
+      "id": 13003,
+      "nomeDeUsuario": "Novo Professor",
+      "nome": "Novo",
+      "sobrenome": "Professor",
+      "email": "novoProfessor@email.com",
+      "telefone": "(99)99999999",
+      "perfil": 1
+    },
+    "atividades": null
+  }
+]
+```
+
+### Artefatos da funcionalidade
+
+#### Models
+- Turma.cs
+#### Services
+- TurmasServices.cs
+#### DTO
+- TurmaDto.cs
+#### Controllers
+- TurmaController.cs
+
+### Frontend
+- MinhasTurmas.js
+- MinhasTurmasProfessorComponent.js
+- criarTurma.js
+- criarTurmaFormComponent.js
+- editarTurma.js
+- editarTurmaFormComponent.js
+
+### Instruções de acesso
+1. Realizar login;
+2. Clicar na opção "Minhas turmas" presente na homepage;
+3. Visualizar tela de "Minhas turmas";
+5. Clicar em "Nova turma";
+6. Visualiar tela de cadastro de turma;
+7. Preencher as informaçõs solicitadas e clicar em "Cadastrar turma";
+8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "Minhas turmas";
+9. Caso deseje editar ou apagar uma das turmas criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de turmas onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar dados";
