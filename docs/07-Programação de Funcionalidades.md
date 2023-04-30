@@ -330,8 +330,11 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 
 #### Models
 - Atividade.cs
+- AtividadeMongoDb.cs
+- QuestaoMongoDb.cs
 #### Services
 - AtividadesServices.cs
+- AtividadeMongoDbService.cs
 #### DTO
 - AtividadeDto.cs
 - TurmaDto.cs
