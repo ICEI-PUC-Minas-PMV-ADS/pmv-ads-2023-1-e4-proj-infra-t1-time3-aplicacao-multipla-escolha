@@ -67,5 +67,36 @@ namespace multipla_escolha_api.Controllers
             var response = await _turmasService.GetTurmaById(id);
             return StatusCode(response.StatusCode, response.Content);
         }
+         
+        [HttpGet("{idTurma}/usuarios")]
+
+        public async Task<IActionResult> RealizarMatricula(int idTurma)
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+
+            if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
+            {
+                return Forbid();
+            }
+
+            var aluno = _context.Usuarios.FirstOrDefault(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
+
+            if (aluno == null)
+            {
+                return BadRequest();
+            }
+
+            TurmaAluno turmaAluno = new TurmaAluno();
+
+            turmaAluno.Turma = _context.Turmas.FirstOrDefault(t => t.Id == idTurma);
+
+            turmaAluno.Aluno = _context.Usuarios.FirstOrDefault(u => u.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
+
+            _context.TurmasAlunos.Add(turmaAluno);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(turmaAluno);
+        }
     }
 }
