@@ -25,10 +25,29 @@ A funcionalidade de cadastro de usuário permite que um novo usuário se registr
 ### Requisitos atendidos
 - RF-01
 
+### Estrutura de Dados
+
+Os dados preenchidos para o cadastro são enviados para a API na seguinte estrutura de dados, sendo recebidas pelo endpoint através do DTO "UsuarioDto":
+```
+{
+  email: "novousuario@email.com"
+  nome: "Novo"
+  nomeDeUsuario: "Novo Usuario"
+  perfil: 0
+  senha: "senha"
+  sobrenome: "Usuario"
+  telefone: "(99)99999997"
+}
+```
+
 ### Artefatos da funcionalidade
 
 #### Models
 - Usuario.cs
+### Services
+- UsuariosServices.cs
+### DTO
+- UsuarioDTO.cs
 #### Controllers
 - UsuariosController.cs
 
