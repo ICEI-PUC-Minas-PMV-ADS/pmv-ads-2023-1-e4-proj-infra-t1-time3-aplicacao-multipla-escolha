@@ -27,7 +27,7 @@ A funcionalidade de cadastro de usuário permite que um novo usuário se registr
 
 ### Estrutura de Dados
 
-Os dados preenchidos para o cadastro são enviados para a API na seguinte estrutura de dados, sendo recebidas pelo endpoint através do DTO "UsuarioDto":
+Os dados preenchidos para o cadastro são enviados para a API na seguinte estrutura de dados JSON, sendo recebidas pelo endpoint através do DTO "UsuarioDto":
 ```
 {
   email: "novousuario@email.com"
@@ -75,16 +75,34 @@ A funcionalidade de login de usuário permite que um usuário registrado realize
 ### Requisitos atendidos
 - RF-01
 
+
+### Estrutura de Dados
+
+Os dados preenchidos para o login são enviados para o endpoint de autenticação da API na seguinte estrutura da dados JSON, sendo recebidos pelo endpoint através do DTO "AuthenticateDto":
+
+```
+{
+  nomeDeUsuario: "Novo Usuario"
+  senha: "senha"
+}
+```
+
+
 ### Artefatos da funcionalidade
 
 #### Models
 - Usuario.cs
+#### Services
+- UsuariosServices.cs
+#### DTO
+- AuthenticateDto.cs
 #### Controllers
 - UsuariosController.cs
 
 ### Frontend
 - login.js
 - loginComponent.js
+- navbar.js
 
 ### Instruções de acesso
 1. Visualizar homepage;
