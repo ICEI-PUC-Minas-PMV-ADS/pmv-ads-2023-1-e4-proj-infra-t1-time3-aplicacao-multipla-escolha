@@ -15,3 +15,31 @@ Frontend:
 - Abrir o navegador na URL http://localhost:3000 para acessar a homepage;
 
 Uma vez que o projeto esteja rodando localmente, basta seguir as instruções abaixo para utilizar cada funcionalidade através do frontend em React. As funcionalidades também podem ser testadas a partir da interface do Swagger, fornecendo os parâmetros solicitados para cada endpoint. É importante ressaltar que a maioria dos endpoints da API requer autenticação para retornar resposta, sendo necessário fazer o login de usuário através do endereço http://localhost:3000/login para o frontend em React ou pelo endpoint /api/Usuarios/authenticate pelo Swagger.
+
+## Cadastro de usuário(RF-01)
+A funcionalidade de cadastro de usuário permite que um novo usuário se registre como "Aluno" ou "Professor", obtendo uma conta que pode utilizar para acessar as demais funcionalidades do sistema.
+
+### Tela de Cadastro
+![cadastro](https://user-images.githubusercontent.com/74699119/235332970-ec5a7931-c7ad-4721-93a5-5357bfe3cdcb.png)
+
+### Requisitos atendidos
+- RF-01
+
+### Artefatos da funcionalidade
+
+#### Models
+- Usuario.cs
+#### Controllers
+- UsuariosController.cs
+
+### Frontend
+- cadastro.js
+- RegisterComponent.js
+
+### Instruções de acesso
+1. Visualizar homepage;
+2. Clicar na opção "Login" presente no cabeçalho;
+3. Visualizar tela de login;
+4. Clicar em "Cadastre-se";
+5. Preenhcer as informações solicitadas e clicar em "Fazer cadastro";
+6. Caso as informações fornecidas sejam válidas, a conta de usuário será criada e o usuário será redirecionado para a tela de login;
