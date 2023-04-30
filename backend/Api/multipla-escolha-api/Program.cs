@@ -28,6 +28,8 @@ builder.Services.AddSingleton<AtividadeMongoDbService>();
 
 builder.Services.AddScoped<UsuariosService, UsuariosService>();
 
+builder.Services.AddScoped<ResultadosService, ResultadosService>();
+
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
