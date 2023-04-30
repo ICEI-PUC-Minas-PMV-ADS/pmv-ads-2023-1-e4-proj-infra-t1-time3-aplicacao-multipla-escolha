@@ -52,7 +52,7 @@ namespace multipla_escolha_api.Models
             DataPrazoDeEntrega = dto.DataPrazoDeEntrega;
             TentativasPermitidas = dto.TentativasPermitidas;
         }
-        public static int getNumeroDeTentativasAluno(int idAtividade, string idAluno, AppDbContext context)
+        public static int GetNumeroDeTentativasAluno(int idAtividade, string idAluno, AppDbContext context)
         {
             return (context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == idAtividade && r.Aluno.Id.ToString().Equals(idAluno)).Count() + 1);
         }

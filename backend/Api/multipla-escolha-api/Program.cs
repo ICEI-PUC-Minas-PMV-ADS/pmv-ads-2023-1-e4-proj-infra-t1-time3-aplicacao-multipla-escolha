@@ -28,6 +28,10 @@ builder.Services.AddSingleton<AtividadeMongoDbService>();
 
 builder.Services.AddScoped<UsuariosService, UsuariosService>();
 
+builder.Services.AddScoped<TurmasService, TurmasService>();
+
+builder.Services.AddScoped<AtividadesService, AtividadesService>();
+
 builder.Services.AddScoped<ResultadosService, ResultadosService>();
 
 builder.Services.AddAuthentication(options =>

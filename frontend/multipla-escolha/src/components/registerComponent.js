@@ -99,7 +99,8 @@ function RegisterComponent() {
             }
         )
             .then(function (response) {
-                if (response.status == 200) {
+                console.log(response)
+                if (response.status == 201) {
                     window.alert("Usuário cadastrado com sucesso!")
                     linkRef.current.click();
                 }

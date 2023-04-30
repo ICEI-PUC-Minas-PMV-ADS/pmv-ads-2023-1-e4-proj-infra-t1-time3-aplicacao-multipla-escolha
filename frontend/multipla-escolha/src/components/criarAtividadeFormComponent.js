@@ -100,10 +100,8 @@ function CriarAtividadeFormComponent({ idTurma }) {
             }
         )
             .then(function (response) {
-                if (response.status == 200) {
-                    window.alert("Atividade cadastrada com sucesso!")
-                    linkRef.current.click();
-                }
+                window.alert("Atividade cadastrada com sucesso!")
+                linkRef.current.click();
             })
             .catch(function (error) {
                 setErrorMessage(error.request.response);

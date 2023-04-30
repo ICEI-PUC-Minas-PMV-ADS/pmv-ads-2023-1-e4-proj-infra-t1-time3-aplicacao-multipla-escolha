@@ -42,7 +42,7 @@ namespace multipla_escolha_api.Services;
                 return new ServiceResponse(null, 404);
             }
 
-            int numeroDeTentativas = Atividade.getNumeroDeTentativasAluno(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier], _context);
+            int numeroDeTentativas = Atividade.GetNumeroDeTentativasAluno(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier], _context);
 
             if (atividade.DataPrazoDeEntrega != null && atividade.DataPrazoDeEntrega <= DateTime.UtcNow)
             {
@@ -63,7 +63,7 @@ namespace multipla_escolha_api.Services;
 
             float notaAluno = 0F;
 
-            for (int i = 0; i < atividadeMongoDb.Questoes.Count(); i++)
+            for (int i = 0; i < atividadeMongoDb.Questoes.Length; i++)
             {
                 if (atividadeMongoDb.Questoes[i].Resposta == respostasDto.Respostas[i])
                 {
@@ -81,7 +81,7 @@ namespace multipla_escolha_api.Services;
 
             await _atividadeMongoDbService.CreateAsync(atividadeMongoDb);
 
-            Resultado resultado = new Resultado(atividade, aluno, notaAluno, atividadeMongoDb.Id, numeroDeTentativas);
+            Resultado resultado = new (atividade, aluno, notaAluno, atividadeMongoDb.Id, numeroDeTentativas);
 
             _context.Resultados.Add(resultado);
 
@@ -104,7 +104,7 @@ namespace multipla_escolha_api.Services;
 
             if (atividadeMongoDb == null) return new ServiceResponse(null, 404);
 
-            ResultadoDto dto = new ResultadoDto(model);
+            ResultadoDto dto = new (model);
 
             dto.AtividadeMongoDb = atividadeMongoDb;
 

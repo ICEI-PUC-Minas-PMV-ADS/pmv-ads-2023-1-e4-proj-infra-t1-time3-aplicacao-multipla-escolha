@@ -134,10 +134,8 @@ function AccountOptionsComponent() {
             }
         )
             .then(function (response) {
-                if (response.status == 200) {
-                    window.alert("Dados atualizados com sucesso!")
-                    linkRef.current.click();
-                }
+                window.alert("Dados atualizados com sucesso!")
+                linkRef.current.click();
             })
             .catch(function (error) {
                 setErrorMessage(error.request.response);
@@ -145,11 +143,11 @@ function AccountOptionsComponent() {
     }
 
     if (userContext.userSignedIn === false) {
-        return <div className="d-flex w-100"><div className="m-auto"><Unauthorized/></div></div>
+        return <div className="d-flex w-100"><div className="m-auto"><Unauthorized /></div></div>
     }
 
     if (userContext.userSignedIn !== true) {
-        return <div className="d-flex w-100"><div className="m-auto"><Loading/></div></div>
+        return <div className="d-flex w-100"><div className="m-auto"><Loading /></div></div>
     }
 
     function apagarConta() {
@@ -160,22 +158,20 @@ function AccountOptionsComponent() {
 
     function confirmarApagar() {
         axios.delete(baseUrl + 'api/Usuarios/delete-account',
-        {
-            headers: {
-                "Content-Type": "application/JSON"
-            },
-            withCredentials: true
-        }
+            {
+                headers: {
+                    "Content-Type": "application/JSON"
+                },
+                withCredentials: true
+            }
         )
-        .then(function (response) {
-            if (response.status == 204) {
+            .then(function (response) {
                 window.alert("Conta apagada!")
                 linkRef.current.click();
-            }
-        })
-        .catch(function (error) {
-            window.alert("Erro ao apagar conta!");
-        })
+            })
+            .catch(function (error) {
+                window.alert("Erro ao apagar conta!");
+            })
     }
 
     if (!loaded) {
