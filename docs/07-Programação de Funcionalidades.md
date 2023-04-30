@@ -306,7 +306,8 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
       "nomeDeUsuario":"Novo Professor",
       "nome":"Novo","sobrenome":"Professor",
       "email":"novoProfessor@email.com",
-      "telefone":"(99)99999999","perfil":1
+      "telefone":"(99)99999999",
+      "perfil":1
    },
    "atividades":
    [
