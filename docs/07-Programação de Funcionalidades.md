@@ -609,7 +609,7 @@ As respostas preenchidas ao realizar uma atividade são enviados no seguinte for
 }
 ```
 
-Na tela de visualizar resultado, o resultado atual é obtido na seguinte estrutura de dados JSON, assim como no endpoint para recuperar atividades, o campo "atividadeMongoDb", onde a atividade preenchida pelo aluno com sua nota e respostas é guardada também é recuperado do MongoDb:
+Na tela de visualizar resultado, o resultado atual é obtido na seguinte estrutura de dados JSON, assim como no endpoint para recuperar atividades, o campo "atividadeMongoDb", onde a atividade preenchida pelo aluno com sua nota e respostas é guardada também é recuperado do MongoDb através do Uuid guardado no campo "uuidNoMongoDb" do resultado em questão:
 ```
 {
   "id":8002,
