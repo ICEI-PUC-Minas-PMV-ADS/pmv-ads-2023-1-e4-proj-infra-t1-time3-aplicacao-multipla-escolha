@@ -232,7 +232,7 @@ Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atual
 - editarTurmaFormComponent.js
 
 ### Instruções de acesso
-1. Realizar login;
+1. Realizar login em uma conta do tipo "Professor";
 2. Clicar na opção "Minhas turmas" presente na homepage;
 3. Visualizar tela de "Minhas turmas";
 5. Clicar em "Nova turma";
@@ -240,3 +240,117 @@ Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atual
 7. Preencher as informaçõs solicitadas e clicar em "Cadastrar turma";
 8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "Minhas turmas";
 9. Caso deseje editar ou apagar uma das turmas criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de turmas onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar dados";
+
+## Cadastro e edição de atividades em turma por professor (RF-03)
+A funcionalidade de cadastro de atividades permite que um usuário do tipo "Professor" cadastre uma nova atividade em uma das suas turmas, deixando-a disponível para realização pelos alunos. Uma vez cadastrada, a atividade aparecerá na página de "detalhes" da turma em questão, que por sua vez é acessada ao clicar em "Abrir" em alguma turma presente na tela de "minhas turmas".
+
+### Tela de cadastro de atividade
+![criarAtividade1](https://user-images.githubusercontent.com/74699119/235369038-34870b55-2397-46e6-b77f-e8f9d81e6d22.png)
+
+### Modal de cadastro de questão
+![criarAtividade2](https://user-images.githubusercontent.com/74699119/235369040-81f05a18-47e4-4845-a404-fa480bb7a094.png)
+
+### Tela de cadastro de atividade (Preenchida)
+![criarAtividade3](https://user-images.githubusercontent.com/74699119/235369045-0f08f332-e86a-4c3f-a5f9-976eaf42553a.png)
+
+### Tela de detalhes da turma
+![criarAtividade4](https://user-images.githubusercontent.com/74699119/235369049-392dc035-d211-496d-9f35-aabeac5fc074.png)
+
+### Requisitos atendidos
+- RF-03
+
+### Estrutura de Dados
+
+Os dados preenchidos para a criação da atividade são enviados para o endpoint de criar nova atividade no seguinte formato JSON e recebidos pelo endpoint através do DTO AtividadeDto. Uma vez recebeido pela API, o campo "atividadeMongoDb" é persistido no banco de dados não relacional MongoDb, enquanto o restante das informações é persistido em um banco de dados relacional, com um campo "uuidNoMongoDb" guardando o Id da parte persistida no MongoDb para recuperação pelo endpoint de recuperar atividade por id. O mesmo processo é feito para o endpoint de editar atividade, mas enviando o Id da atividade que deseja editar.
+
+```
+{
+  atividadeMongoDb: {
+    questoes: [
+      {
+        alternativas: ["Alternativa A", "Alternativa B", "Alternativa C", "Alternativa D"]
+        enunciado: "Questão 1"
+        imagem: ""
+        resposta: 0
+        valor: 2
+      },
+      {
+        alternativas: ["Alternativa A", "Alternativa B", "Alternativa C", "Alternativa D"]
+        enunciado: "Questão 2"
+        imagem: ""
+        resposta: 1
+        valor: 2
+      }
+    ]
+  }
+  dataPrazoDeEntrega: "2023-04-30T23:59"
+  descricao: "Nova atividade"
+  nome: "Nova atividade"
+  tentativasPermitidas: "2"
+  turmaId: "13006"
+  valor: 4
+}
+```
+Na tela de "detalhes da turma", a lista de atividades é recuperada como parte do JSON da turma no campo "Atividades":
+
+```
+{
+  "id":13006,
+   "nome":"Nova turma",
+   "descricao":"Nova turma",
+   "dataDeCriacao":"2023-04-30T13:28:26.5433026",
+   "ativo":true,
+   "professor":
+   {
+      "id":13003,
+      "nomeDeUsuario":"Novo Professor",
+      "nome":"Novo","sobrenome":"Professor",
+      "email":"novoProfessor@email.com",
+      "telefone":"(99)99999999","perfil":1
+   },
+   "atividades":
+   [
+     {
+       "id":13014,
+       "nome":"Nova atividade",
+       "valor":4,
+       "descricao":"Nova atividade",
+       "dataDeCriacao":"2023-04-30T17:48:11.7339606",
+       "dataPrazoDeEntrega":"2023-04-30T23:59:00",
+       "tentativasPermitidas":2,
+       "uuidNoMongoDb":"142663ed-4cb2-4267-917c-3c5903009df2",
+       "turma":null
+     }
+   ]
+}
+```
+
+### Artefatos da funcionalidade
+
+#### Models
+- Atividade.cs
+#### Services
+- AtividadesServices.cs
+#### DTO
+- AtividadeDto.cs
+- TurmaDto.cs
+#### Controllers
+- TurmaController.cs
+
+### Frontend
+- visualizarAtividade.js
+- VisualizarAtividadeComponent.js
+- criarAtividade.js
+- CriarAtividadeFormComponent.js
+- editarAtividade.js
+- EditarAtividadeFormComponent.js
+
+### Instruções de acesso
+1. Realizar login com uma conta do tipo "professor";
+2. Clicar na opção "Minhas turmas" presente na homepage;
+3. Selecionar uma turma e clicar em "Abrir";
+5. Visualizar tela de detalhes da turma;
+6. Clicar em "Nova atividade";
+7. Preencher as informaçõs solicitadas, adicionar as questões uma a uma clicando em "Adicionar questão" e por fim clicar em "Cadastrar atividade";
+8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "detalhes da turma";
+9. Caso deseje editar ou apagar uma das atividades criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
