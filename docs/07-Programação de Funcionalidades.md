@@ -12,9 +12,10 @@ API:
 - Rodar o projeto em modo de desenvolvimento no Visual Studio, que deverá abrir uma janela do browser no endereço https://localhost:7284/swagger/index.html, exibindo a interface do Swagger para utilização dos endpoints da API;
 
 Frontend:
-- Após rodar a API conforme as instruções detalhadas acima, abrir o arquivo "multipla_escolha_api.sln" (Presente na pasta backend/Api/multipla-escolha-api) no Visual Studio;
-- Abrir o Visual Studio Code e rodar o projeto presente na pasta frontend/multipla-escolha com o comando npm start;
-- Abrir o navegador na URL http://localhost:3000 para acessar a homepage;
+- Abrir o Visual Studio Code na pasta frontend/multipla-escolha;
+- Instalar o react com o comando npm i react através do terminal;
+- Utilizar o comando npm start no terminal para iniciar a aplicação;
+- Após a aplicação iniciar, abrir o navegador na URL http://localhost:3000 para acessar a homepage;
 
 Uma vez que o projeto esteja rodando localmente, basta seguir as instruções abaixo para utilizar cada funcionalidade através do frontend em React. As funcionalidades também podem ser testadas a partir da interface do Swagger, fornecendo os parâmetros solicitados para cada endpoint. É importante ressaltar que a maioria dos endpoints da API requer autenticação para retornar resposta, sendo necessário fazer o login de usuário através do endereço http://localhost:3000/login para o frontend em React ou pelo endpoint /api/Usuarios/authenticate pelo Swagger.
 
