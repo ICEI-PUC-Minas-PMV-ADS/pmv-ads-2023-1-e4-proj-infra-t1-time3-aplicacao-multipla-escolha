@@ -7,7 +7,7 @@ import Loading from "./loading";
 import Unauthorized from "./unauthorized";
 import { UserContext } from "../context/userContext";
 
-function EditarTurmaFormComponent({idTurma}) {
+function EditarTurmaFormComponent({ idTurma }) {
 
     const userContext = useContext(UserContext);
 
@@ -70,10 +70,8 @@ function EditarTurmaFormComponent({idTurma}) {
             }
         )
             .then(function (response) {
-                if (response.status == 200) {
-                    window.alert("Turma atualizada com sucesso!")
-                    linkRef.current.click();
-                }
+                window.alert("Turma atualizada com sucesso!")
+                linkRef.current.click();
             })
             .catch(function (error) {
                 setErrorMessage(error.request.response);

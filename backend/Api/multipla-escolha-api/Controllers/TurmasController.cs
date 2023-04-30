@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using multipla_escolha_api.Models;
 using multipla_escolha_api.Models.DTO;
+using multipla_escolha_api.Services;
 using System.Security.Claims;
 
 namespace multipla_escolha_api.Controllers
@@ -13,134 +14,59 @@ namespace multipla_escolha_api.Controllers
     [ApiController]
     public class TurmasController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly TurmasService _turmasService;
 
-        public TurmasController(AppDbContext context)
+        public TurmasController(TurmasService turmasService)
         {
-            _context = context;
-        }
+            _turmasService = turmasService;
+
+         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery(Name = "searchStringTurma")] string searchStringTurma = "", [FromQuery(Name = "searchStringProfessor")] string searchStringProfessor = "", [FromQuery(Name = "pageSize")] int pageSize = 50, [FromQuery(Name = "pageNumber")] int pageNumber = 0)
         {
-            var model = _context.Turmas.Include(t => t.Professor).Where(t => t.Ativo == true).OrderBy(t => t.Nome);
-
-            if (searchStringTurma != null && searchStringTurma.Length > 0)
-            {
-                model = (IOrderedQueryable<Turma>)model.Where(x => x.Nome.Contains(searchStringTurma));
-            }
-            if (searchStringProfessor != null && searchStringProfessor.Length > 0)
-            {
-                model = (IOrderedQueryable<Turma>)model.Where(x => x.Professor.Nome.Contains(searchStringProfessor) || x.Professor.Email.Contains(searchStringProfessor));
-            }
-
-            var page = await Page.getPageAsync(model, pageSize, pageNumber);
-
-            return Ok(page);
+            var response = await _turmasService.GetAllTurmas(searchStringTurma, searchStringProfessor, pageSize, pageNumber);
+            return StatusCode(response.StatusCode, response.Content);
         }
 
         [HttpGet("user-turmas")]
         public async Task<IActionResult> GetAllProfessor()
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-            var model = await _context.Turmas.Include(t => t.Professor).Where(t => t.Professor.Id.ToString() == userClaims[ClaimTypes.NameIdentifier]).ToListAsync();
-            return Ok(model);
+            var response = await _turmasService.GetAllTurmasProfessor(userClaims);
+            return StatusCode(response.StatusCode, response.Content);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(TurmaDto dto)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-
-            if (!userClaims[ClaimTypes.Role].Equals("Professor")) {
-                return Forbid();
-            }
-
-            dto.Id = 0;
-
-            Turma model = new(dto);
-
-            var professor = _context.Usuarios.FirstOrDefault(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
-
-            if (professor == null)
-            {
-                return BadRequest();
-            }
-
-            model.Professor = professor;
-           
-            _context.Turmas.Add(model);
-            await _context.SaveChangesAsync();
-
-            return Ok(model);
+            var response = await _turmasService.CreateTurma(dto, userClaims);
+            return StatusCode(response.StatusCode, response.Content);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(TurmaDto dto)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-
-            if (!userClaims[ClaimTypes.Role].Equals("Professor"))
-            {
-                return Forbid();
-            }
-
-            Turma turma = _context.Turmas.Include(t => t.Professor).FirstOrDefault(t => t.Id == dto.Id);
-
-            if (turma == null)
-            {
-                return NotFound();
-            }
-
-            if (!turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
-            {
-                return Forbid();
-            }
-
-            turma.Nome = dto.Nome;
-            turma.Descricao = dto.Descricao;
-            turma.Ativo = dto.Ativo;
-
-            _context.Turmas.Update(turma);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(turma);
+            var response = await _turmasService.UpdateTurma(dto, userClaims);
+            return StatusCode(response.StatusCode, response.Content);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-
-            Turma turma = await _context.Turmas.Include(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
-
-            if (turma == null)
-            {
-                return NotFound();
-            }
-
-            if (!turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
-            {
-                return Forbid();
-            }
-
-            _context.Turmas.Remove(turma);
-
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            var response = await _turmasService.DeleteTurma(id, userClaims);
+            return StatusCode(response.StatusCode, response.Content);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var model = await _context.Turmas.Include(t => t.Professor).Include(t => t.Atividades).FirstOrDefaultAsync(t => t.Id == id);
-
-            if (model == null) NotFound();
-
-            return Ok(model);
-         }
+            var response = await _turmasService.GetTurmaById(id);
+            return StatusCode(response.StatusCode, response.Content);
+        }
          
         [HttpGet("{idTurma}/usuarios")]
 
@@ -171,7 +97,6 @@ namespace multipla_escolha_api.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(turmaAluno);
-
         }
     }
 }
