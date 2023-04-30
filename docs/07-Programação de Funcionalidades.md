@@ -109,4 +109,4 @@ Os dados preenchidos para o login são enviados para o endpoint de autenticaçã
 2. Clicar na opção "Login" presente no cabeçalho;
 3. Visualizar tela de login;
 5. Preenhcer usuário e senha e clicar em "Fazer login";
-6. Caso as informações fornecidas sejam válidas, a conta de usuário será criada e o usuário será redirecionado para a homepage, o cabeçalho deverá ter sido atualizado, mostrando o nome do usuário e as opções de "Opções da conta" e "Logout";
+6. Caso as informações fornecidas sejam válidas, a sessão será iniciada e o usuário será redirecionado para a homepage, o cabeçalho deverá ter sido atualizado, mostrando o nome do usuário e as opções de "Opções da conta" e "Logout";
