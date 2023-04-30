@@ -335,7 +335,7 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 - AtividadeMongoDb.cs
 - QuestaoMongoDb.cs
 #### Services
-- AtividadesServices.cs
+- AtividadesService.cs
 - AtividadeMongoDbService.cs
 #### DTO
 - AtividadeDto.cs
@@ -360,3 +360,245 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 7. Preencher as informaçõs solicitadas, adicionar as questões uma a uma clicando em "Adicionar questão" e por fim clicar em "Cadastrar atividade";
 8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "detalhes da turma";
 9. Caso deseje editar ou apagar uma das atividades criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
+
+## Visualização e realização de atividade por aluno (RF-06 e RF-07)
+A funcionalidade de visualização e realização de atividade por aluno permite a um usuário do tipo aluno realizar atividades cadastradas em alguma turma. No momento, qualquer usuário "aluno" pode realizar qualquer atividade, uma vez que as funcionalidade de matrícula em turma e visualização de turmas na qual o aluno está matriculado não estão completamente implementadas. Ao selecionar uma atividade e clicar em "abrir", o usuário poderá visualizar os resultados todas as tentativas anteriores para aquela atividade. O usuário poderá também clicar em "Fazer tarefa" para realizar uma nova tentativa caso não tenha extrapolado o limite de tentativas, obtendo sua nota e correção da atividade imediatamente após submete-la.  
+
+### Tela de visualizar atividade e tentativas anteriores
+![fazerAtividade1](https://user-images.githubusercontent.com/74699119/235369816-495eaabc-4929-466b-a220-43da7b8c82ad.png)
+
+### Tela de realizar atividade
+![fazerAtividade2](https://user-images.githubusercontent.com/74699119/235369819-944f607c-9d4b-4bd1-a8b2-7ed905b6ab9a.png)
+
+### Tela de resultado da atividade
+![fazerAtividade3](https://user-images.githubusercontent.com/74699119/235369820-cba6ca77-92ad-4a2d-9f54-96bb4d80260b.png)
+
+### Tela de visualizar atividade e tentativas anteriores (após realização da primeira tentativa)
+![fazerAtividade4](https://user-images.githubusercontent.com/74699119/235369821-c8e2760b-2d76-4120-9940-2deaf2f8fbd6.png)
+
+### Requisitos atendidos
+- RF-06
+- RF-07
+
+### Estrutura de Dados
+
+As respostas preenchidas ao realizar uma atividade são enviados no seguinte formato JSON, sendo recebidas no endpoint de correção através do DTO RespostasDto:
+```
+{
+  idAtividade: "13014",
+  respostas: [0, 1]
+}
+```
+
+Na tela de visualizar resultado, o resultado atual é obtido na seguinte estrutura de dados JSON:
+```
+{
+  "id":8002,
+  "atividade":
+  {
+    "id":13014,
+    "nome":"Nova atividade",  
+    "valor":4,
+    "descricao":"Nova atividade",
+    "dataDeCriacao":"2023-04-30T17:48:11.7339606",
+    "dataPrazoDeEntrega":"2023-04-30T23:59:00",
+    "tentativasPermitidas":2,
+    "uuidNoMongoDb":"142663ed-4cb2-4267-917c-3c5903009df2",
+    "turma":{
+      "id":13006,
+      "nome":"Nova turma",
+      "descricao":"Nova turma",
+      "dataDeCriacao":"2023-04-30T13:28:26.5433026",
+      "ativo":true,
+      "professor":{
+        "id":13003,
+        "nomeDeUsuario":"Novo Professor",
+        "nome":"Novo",
+        "sobrenome":"Professor",
+        "email":"novoProfessor@email.com",
+        "telefone":"(99)99999999",
+        "perfil":1
+      },
+      "atividades":[null]
+      }
+    },
+    "notaDoAluno":4,
+    "notaMaxima":4,
+    "numeroDaTentativa":2,
+    "dataDaTentativa":"2023-04-30T18:37:17.45743",
+    "atividadeMongoDb":{
+      "id":"169db94e-109b-4e91-8205-b41446d4ad30",
+      "questoes":[
+        {
+          "valor":2,
+          "enunciado":"Questão 1",
+          "imagem":"",
+          "alternativas": ["Alternativa A","Alternativa B","Alternativa C","Alternativa D"],
+          "resposta":0,"alunoAcertouResposta":true
+        },
+        {
+          "valor":2,
+          "enunciado":"Questão 2",
+          "imagem":"",
+          "alternativas":["Alternativa A","Alternativa B","Alternativa C","Alternativa D"],
+          "resposta":1,
+          "alunoAcertouResposta":true
+         }
+      ]
+   }
+}
+```
+
+Na tela de "visualizar atividade e tentativas anteriores", a atividade e a lista de tentativas anteriores são recuperados no seguinte formato JSON:
+
+```
+{
+  "id": 13014,
+  "nome": "Nova atividade",
+  "descricao": "Nova atividade",
+  "valor": 4,
+  "dataPrazoDeEntrega": "2023-04-30T23:59:00",
+  "tentativasPermitidas": 2,
+  "turmaId": 13006,
+  "turma": {
+    "id": 13006,
+    "nome": "Nova turma",
+    "descricao": "Nova turma",
+    "dataDeCriacao": "2023-04-30T13:28:26.5433026",
+    "ativo": true,
+    "professor": {
+      "id": 13003,
+      "nomeDeUsuario": "Novo Professor",
+      "nome": "Novo",
+      "sobrenome": "Professor",
+      "email": "novoProfessor@email.com",
+      "telefone": "(99)99999999",
+      "perfil": 1
+    },
+  "atividades": []
+  },
+"atividadeMongoDb": {
+  "id": "142663ed-4cb2-4267-917c-3c5903009df2",
+  "questoes": [
+    {
+      "valor": 2,
+      "enunciado": "Questão 1",
+      "imagem": "",
+      "alternativas": [
+        "Alternativa A",
+        "Alternativa B",
+        "Alternativa C",
+        "Alternativa D"
+      ],
+      "resposta": null,
+      "alunoAcertouResposta": null
+    },
+    {
+      "valor": 2,
+      "enunciado": "Questão 2",
+      "imagem": "",
+      "alternativas": [
+        "Alternativa A",
+        "Alternativa B",
+        "Alternativa C",
+        "Alternativa D"
+      ],
+      "resposta": null,
+      "alunoAcertouResposta": null
+    }
+  ]
+ },
+ "podeSerRealizada": true,
+ "tentativasAnteriores": [
+    {
+      "id": 7002,
+      "notaDoAluno": 2,
+      "notaMaxima": 4,
+      "numeroDaTentativa": 1,
+      "dataDaTentativa": "2023-04-30T18:19:35.8301422",
+      "uuidNoMongoDb": "45f2e1fb-cffe-4433-8b1a-f66bb1f025a1",
+      "aluno": {
+        "id": 14003,
+        "nomeDeUsuario": "Novo Aluno",
+        "nome": "Novo",
+        "sobrenome": "Aluno",
+        "email": "novoaluno@email.com",
+        "telefone": "(99)99999997",
+        "perfil": 0
+      },
+      "atividade": {
+        "id": 13014,
+        "nome": "Nova atividade",
+        "valor": 4,
+        "descricao": "Nova atividade",
+        "dataDeCriacao": "2023-04-30T17:48:11.7339606",
+        "dataPrazoDeEntrega": "2023-04-30T23:59:00",
+        "tentativasPermitidas": 2,
+        "uuidNoMongoDb": "142663ed-4cb2-4267-917c-3c5903009df2",
+        "turma": {
+          "id": 13006,
+          "nome": "Nova turma",
+          "descricao": "Nova turma",
+          "dataDeCriacao": "2023-04-30T13:28:26.5433026",
+          "ativo": true,
+          "professor": {
+            "id": 13003,
+            "nomeDeUsuario": "Novo Professor",
+            "nome": "Novo",
+            "sobrenome": "Professor",
+            "email": "novoProfessor@email.com",
+            "telefone": "(99)99999999",
+            "perfil": 1
+          },
+          "atividades": []
+        }
+      }
+    }
+  ]
+}
+```
+
+### Artefatos da funcionalidade
+
+#### Models
+- Resultado.cs
+- Atividade.cs
+- AtividadeMongoDb.cs
+- QuestaoMongoDb.cs
+#### Services
+- ResultadosSevice.cs
+- AtividadesService.cs
+- AtividadeMongoDbService.cs
+#### DTO
+- RespostaDto.cs
+- ResultadoDto.cs
+- AtividadeDto.cs
+- TurmaDto.cs
+#### Controllers
+- TurmasController.cs
+- ResultadosController.cs
+
+### Frontend
+- visualizarAtividade.js
+- VisualizarAtividadeComponent.js
+- fazerAtividade.js
+- FazerAtividadeComponent.js
+- visualizarResultado.js
+- VisualizarRestadoComponent.js
+
+### Instruções de acesso
+1. Realizar login com uma conta do tipo "aluno";
+2. Clicar na opção "Buscar turma" presente na homepage;
+3. Selecionar uma turma e clicar em "Abrir";
+5. Visualizar tela de detalhes da turma;
+6. Selecionar uma atividade cujo limite de tentativas não esteja esgotado e clicar em "Abrir";
+7. Visualizar a tela de visualizar atividades e resultados anteriores;
+8. Clicar em "Fazer tarefa";
+9. Visualizar a tela de fazer tarefa;
+10. Preencher as respostas das questões e clicar em "Submeter";
+11. Caso todas as respsotas tenham sido preenchidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de visualizar resultado;
+12. Visualizar resultado;
+13. Clicar em "Voltar" para voltar para a tela de visualizar turma;
+14. Visualizar tela de visualizar atividade, agora com a tentativa anterior aparecendo nela;
+15. Clicar em "Visualizar" na tentativa anterior para visualiza-la novamente.
+16. Caso deseje editar ou apagar uma das atividades criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
