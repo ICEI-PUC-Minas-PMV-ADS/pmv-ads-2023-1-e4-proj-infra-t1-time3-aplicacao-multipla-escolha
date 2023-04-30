@@ -15,11 +15,12 @@ namespace multipla_escolha_api.Controllers
     public class TurmasController : ControllerBase
     {
         private readonly TurmasService _turmasService;
-
-        public TurmasController(TurmasService turmasService)
+        
+        private readonly AppDbContext _context;
+        public TurmasController(TurmasService turmasService, AppDbContext context)
         {
             _turmasService = turmasService;
-
+            _context = context;
          }
 
         [HttpGet]
