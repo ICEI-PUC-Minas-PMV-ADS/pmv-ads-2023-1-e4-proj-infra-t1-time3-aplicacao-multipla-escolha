@@ -37,7 +37,7 @@ Frontend:
 - Abrir o Visual Studio Code e rodar o projeto presente na pasta frontend/multipla-escolha com o comando npm start;
 - Abrir o navegador na URL http://localhost:3000 para acessar a homepage;
 
-Uma vez que o projeto esteja rodando localmente, basta seguir as instruções abaixo para utilizar cada funcionalidade através do frontend em React. As funcionalidades também podem ser testadas a partir da interface do Swagger, fornecendo os parâmetros solicitados para cada endpoint. É importante ressaltar que a maioria dos endpoints da API requer autenticação para retornar resposta, sendo necessário fazer o login de usuário através do endereço http://localhost:3000/login para o frontend em React ou pelo endpoint /api/Usuarios/authenticate pelo Swagger.
+Mais detalhes sobre a utilização da aplicação podem ser vistos na [Seção 7 - Progamação de funcionalidades](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/blob/main/docs/07-Programa%C3%A7%C3%A3o%20de%20Funcionalidades.md)
 
 # Documentação
 
