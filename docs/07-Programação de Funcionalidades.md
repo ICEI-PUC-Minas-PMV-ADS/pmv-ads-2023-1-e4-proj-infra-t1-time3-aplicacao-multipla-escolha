@@ -110,3 +110,54 @@ Os dados preenchidos para o login são enviados para o endpoint de autenticaçã
 3. Visualizar tela de login;
 5. Preenhcer usuário e senha e clicar em "Fazer login";
 6. Caso as informações fornecidas sejam válidas, a sessão será iniciada e o usuário será redirecionado para a homepage, o cabeçalho deverá ter sido atualizado, mostrando o nome do usuário e as opções de "Opções da conta" e "Logout";
+
+## Atualizar dados cadastrais (Opções da conta) (RF-01)
+A funcionalidade de atualizar dados cadastrais permite que o usuário atualize seus dados cadastrais, tal como e-mail, nome, sobrenome, telefone e senha. O usuário não pode modificar seu nome de usuário (identificador único utilizado para login) nem tipo de conta (aluno ou professor), o usuário poderá trocar seu e-mail, contanto que o novo e-mail informado não esteja em uso por nenhuma outra conta. Para realizar a atualização dos dados, o usuário deverá informar sua senha atual. O usuário poderá também optar por apagar sua conta.
+
+### Tela de atualizar dados cadastrais
+![opcoesdaconta1](https://user-images.githubusercontent.com/74699119/235354822-92d7cdcc-2128-4a05-b2bc-2777da730061.png)
+
+### Tela de atualizar dados cadastrais - Senha solicitada após tentar mudar dado
+![opcoesdaconta2](https://user-images.githubusercontent.com/74699119/235354842-eb877e3e-8a2e-4a9d-b3f9-78c4bfdad855.png)
+
+### Requisitos atendidos
+- RF-01
+
+### Estrutura de Dados
+
+Os dados preenchidos para a atualização são enviados para o endpoint de atualização de usuários da API na seguinte estrutura da dados JSON, sendo recebidos pelo endpoint através do DTO "UsuarioDto":
+
+```
+{
+  email: "novousuario@email.com"
+  nome: "Trocar nome"
+  nomeDeUsuario: "null"
+  perfil: 0
+  senha: "senha"
+  senhaAntiga: "senha"
+  sobrenome: "Usuario"
+  telefone: "(99)999999999"
+}
+```
+### Artefatos da funcionalidade
+
+#### Models
+- Usuario.cs
+#### Services
+- UsuariosServices.cs
+#### DTO
+- UsuarioDto.cs
+#### Controllers
+- UsuariosController.cs
+
+### Frontend
+- accountOptions.js
+- accountOptionsComponent.js
+- navbar.js
+
+### Instruções de acesso
+1. Realizar login;
+2. Clicar na opção "Opções da conta" presente no cabeçalho;
+3. Visualizar tela de atualizar dados cadastrais;
+5. Preencher as informações solicitadas relativas aos dados que deseja atualizar e clicar em "atualizar dados", ou clicar em "apagar conta" caso deseje apagar sua conta;
+6. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a homepage;
