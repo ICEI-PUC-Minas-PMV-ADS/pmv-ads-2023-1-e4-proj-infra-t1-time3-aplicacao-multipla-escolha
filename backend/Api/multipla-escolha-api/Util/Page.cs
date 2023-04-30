@@ -22,15 +22,15 @@ namespace multipla_escolha_api.Models.DTO
         {
 
         }
-        public static async Task<Page> getPageAsync(IQueryable<Object> query, int pageSize, int pageNumber)
+        public static async Task<Page> GetPageAsync(IQueryable<Object> query, int pageSize, int pageNumber)
         {
-            Page page = new Page();
+            Page page = new ();
             page.TotalItems = query.Count();
             page.TotalPages = 1 + ((page.TotalItems - 1) / pageSize);
             page.CurrentPage = pageNumber;
             page.Items = await query.Skip(pageNumber * pageSize).Take(pageSize).ToListAsync();
             page.PageSize = pageSize;
-            page.CurrentPageSize = page.Items.Count();
+            page.CurrentPageSize = page.Items.Count;
 
             return page;
         }

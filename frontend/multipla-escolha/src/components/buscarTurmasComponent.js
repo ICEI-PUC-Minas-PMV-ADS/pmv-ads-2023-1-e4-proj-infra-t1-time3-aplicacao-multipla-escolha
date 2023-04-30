@@ -42,6 +42,7 @@ function BuscarTurmasComponent() {
             }
         )
             .then(function (response) {
+                console.log(response.data);
                 setLastPage(response.data.totalPages)
                 if (currentPage >= response.data.totalPages) {
                     setCurrentPage(0);

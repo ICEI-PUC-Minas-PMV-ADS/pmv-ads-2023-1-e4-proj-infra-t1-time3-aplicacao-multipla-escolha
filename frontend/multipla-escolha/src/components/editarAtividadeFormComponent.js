@@ -132,10 +132,8 @@ function EditarAtividadeFormComponent({ idAtividade }) {
             }
         )
             .then(function (response) {
-                if (response.status == 200) {
-                    window.alert("Atividade atualizada com sucesso!")
-                    linkRef.current.click();
-                }
+                window.alert("Atividade atualizada com sucesso!")
+                linkRef.current.click();
             })
             .catch(function (error) {
                 setErrorMessage(error.request.response);

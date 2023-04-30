@@ -44,10 +44,8 @@ function CriarTurmaFormComponent() {
             }
         )
             .then(function (response) {
-                if (response.status == 200) {
-                    window.alert("Turma cadastrada com sucesso!")
-                    linkRef.current.click();
-                }
+                window.alert("Turma cadastrada com sucesso!")
+                linkRef.current.click();
             })
             .catch(function (error) {
                 setErrorMessage(error.request.response);
@@ -81,9 +79,9 @@ function CriarTurmaFormComponent() {
                         </div>
                     </div>
                     <div className="m-auto">
-                    <button className="btn btn-primary" onClick={() => cadastrarTurma()}>Cadastrar turma</button>
-                    <button className="btn btn-secondary mx-2" onClick={() => linkRef.current.click()}>Cancelar</button>
-                </div>
+                        <button className="btn btn-primary" onClick={() => cadastrarTurma()}>Cadastrar turma</button>
+                        <button className="btn btn-secondary mx-2" onClick={() => linkRef.current.click()}>Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>

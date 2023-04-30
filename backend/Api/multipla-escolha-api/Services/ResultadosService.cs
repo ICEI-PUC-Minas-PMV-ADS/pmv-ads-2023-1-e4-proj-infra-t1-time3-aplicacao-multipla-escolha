@@ -8,57 +8,50 @@ using multipla_escolha_api.Models.MongoDb;
 using multipla_escolha_api.Services;
 using System.Security.Claims;
 
-namespace multipla_escolha_api.Controllers
-{
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ResultadosController : ControllerBase
+namespace multipla_escolha_api.Services;
+
+    public class ResultadosService
     {
         private readonly AppDbContext _context;
 
         private readonly AtividadeMongoDbService _atividadeMongoDbService;
 
-        public ResultadosController(AppDbContext context, AtividadeMongoDbService atividadeMongoDbService)
+        public ResultadosService(AppDbContext context, AtividadeMongoDbService atividadeMongoDbService)
         {
             _context = context;
             _atividadeMongoDbService = atividadeMongoDbService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ServiceResponse> GetAllResults()
         {
             var model = await _context.Resultados.ToListAsync();
-            return Ok(model);
+            return new ServiceResponse(model, 200);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Corrigir(RespostasDto respostasDto)
+        public async Task<ServiceResponse> Corrigir(RespostasDto respostasDto, Dictionary<String, String> userClaims)
         {
-            var userClaims = Usuario.getUserClaims(HttpContext.User);
-
             if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
             {
-                return Forbid();
+                return new ServiceResponse(null, 403);
             }
 
             var atividade = await _context.Atividades.FirstOrDefaultAsync(a => a.Id == respostasDto.idAtividade);
 
             if (atividade == null)
             {
-                return NotFound();
+                return new ServiceResponse(null, 404);
             }
 
-            int numeroDeTentativas = Atividade.getNumeroDeTentativasAluno(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier], _context);
+            int numeroDeTentativas = Atividade.GetNumeroDeTentativasAluno(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier], _context);
 
             if (atividade.DataPrazoDeEntrega != null && atividade.DataPrazoDeEntrega <= DateTime.UtcNow)
             {
-                return BadRequest("Atividade fora do prazo!");
+                return new ServiceResponse("Atividade fora do prazo!", 400);
             }
 
             if (atividade.TentativasPermitidas != null && numeroDeTentativas > atividade.TentativasPermitidas)
             {
-                return BadRequest("Número de tentativas extrapolado!");
+                return new ServiceResponse("Número de tentativas extrapolado!", 400);
             }
 
             Usuario aluno = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
@@ -66,11 +59,11 @@ namespace multipla_escolha_api.Controllers
 
             AtividadeMongoDb atividadeMongoDb = await _atividadeMongoDbService.GetAsync(atividade.UuidNoMongoDb);
 
-            if (atividadeMongoDb == null) return NotFound();
+            if (atividadeMongoDb == null) return new ServiceResponse(null, 404);
 
             float notaAluno = 0F;
 
-            for (int i = 0; i < atividadeMongoDb.Questoes.Count(); i++)
+            for (int i = 0; i < atividadeMongoDb.Questoes.Length; i++)
             {
                 if (atividadeMongoDb.Questoes[i].Resposta == respostasDto.Respostas[i])
                 {
@@ -88,60 +81,34 @@ namespace multipla_escolha_api.Controllers
 
             await _atividadeMongoDbService.CreateAsync(atividadeMongoDb);
 
-            Resultado resultado = new Resultado(atividade, aluno, notaAluno, atividadeMongoDb.Id, numeroDeTentativas);
+            Resultado resultado = new (atividade, aluno, notaAluno, atividadeMongoDb.Id, numeroDeTentativas);
 
             _context.Resultados.Add(resultado);
 
             await _context.SaveChangesAsync();
 
-            return Ok(resultado);
+            return new ServiceResponse(resultado, 200);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteById(int id)
+        public async Task<ServiceResponse> GetResultById(int id, Dictionary<String, String> userClaims)
         {
-            var userClaims = Usuario.getUserClaims(HttpContext.User);
-
-            var model = await _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
-
-            if (model == null) return NotFound();
-
-            if (!model.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))
-            {
-                return Forbid();
-            }
-
-            await _atividadeMongoDbService.DeleteAsync(model.UuidNoMongoDb);
-
-            _context.Atividades.Remove(model);
-
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var userClaims = Usuario.getUserClaims(HttpContext.User);
-
             var model = await _context.Resultados.Include(r => r.Aluno).Include(r => r.Atividade).ThenInclude(a => a.Turma).ThenInclude(t => t.Professor).FirstOrDefaultAsync(t => t.Id == id);
 
-            if (model == null) return NotFound();
+            if (model == null) return new ServiceResponse(null, 404);
 
             if (!(model.Aluno.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]) || model.Atividade.Turma.Professor.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]))) {
-                return Forbid();
+                return new ServiceResponse(null, 403);
             }
 
             AtividadeMongoDb atividadeMongoDb = await _atividadeMongoDbService.GetAsync(model.UuidNoMongoDb);
 
-            if (atividadeMongoDb == null) return NotFound();
+            if (atividadeMongoDb == null) return new ServiceResponse(null, 404);
 
-            ResultadoDto dto = new ResultadoDto(model);
+            ResultadoDto dto = new (model);
 
             dto.AtividadeMongoDb = atividadeMongoDb;
 
-            return Ok(dto);
+            return new ServiceResponse(dto, 200);
         }
     }
-}
+
