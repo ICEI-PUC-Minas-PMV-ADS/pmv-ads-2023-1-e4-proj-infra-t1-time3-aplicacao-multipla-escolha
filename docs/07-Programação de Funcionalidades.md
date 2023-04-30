@@ -361,6 +361,224 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "detalhes da turma";
 9. Caso deseje editar ou apagar uma das atividades criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
 
+## Busca de turmas (RF-04)
+A funcionalidade de busca de turmas permite que o usuário busque uma turma entre todas as turmas cadastradas que estejam com o status "Ativa", o usuário poderá filtrar a busca pelo nome da turma ou pelo nome/email do professor, facilitando a localização da turma que deseja encontrar.
+
+### Tela de buscar turma
+![buscarTurma](https://user-images.githubusercontent.com/74699119/235371162-5e4ad50d-52af-4937-80b3-d12f37647110.png)
+
+### Requisitos atendidos
+- RF-04
+
+### Estrutura de Dados
+
+Os resultados exibidos na tela são recuperados de forma paginada da API na seguinte estrutura de dados:
+```
+{
+  "totalItems": 10,
+  "totalPages": 1,
+  "currentPage": 0,
+  "pageSize": 50,
+  "currentPageSize": 10,
+  "items": [
+    {
+      "id": 11006,
+      "nome": "A",
+      "descricao": "A",
+      "dataDeCriacao": "2023-04-27T18:58:24.718313",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 11007,
+      "nome": "B",
+      "descricao": "B",
+      "dataDeCriacao": "2023-04-27T18:58:29.2992459",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 11008,
+      "nome": "C",
+      "descricao": "C",
+      "dataDeCriacao": "2023-04-27T18:58:32.8690104",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 11009,
+      "nome": "D",
+      "descricao": "D",
+      "dataDeCriacao": "2023-04-27T18:58:35.4329811",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 11011,
+      "nome": "F",
+      "descricao": "F",
+      "dataDeCriacao": "2023-04-27T18:58:42.2913222",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 11012,
+      "nome": "G",
+      "descricao": "G",
+      "dataDeCriacao": "2023-04-27T18:58:45.0062003",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 13006,
+      "nome": "Nova turma",
+      "descricao": "Nova turma",
+      "dataDeCriacao": "2023-04-30T13:28:26.5433026",
+      "ativo": true,
+      "professor": {
+      "id": 13003,
+      "nomeDeUsuario": "Novo Professor",
+      "nome": "Novo",
+      "sobrenome": "Professor",
+      "email": "novoProfessor@email.com",
+      "telefone": "(99)99999999",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 12006,
+      "nome": "Nova turma teste",
+      "descricao": "Descricao nova turma",
+      "dataDeCriacao": "2023-04-27T22:47:47.1676699",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    },
+    {
+      "id": 3007,
+      "nome": "Turma",
+      "descricao": "string",
+      "dataDeCriacao": "2023-04-13T17:16:25.5987795",
+      "ativo": true,
+      "professor": {
+      "id": 2002,
+      "nomeDeUsuario": "string2",
+      "nome": "string",
+      "sobrenome": "string",
+      "email": "string2",
+      "telefone": "string",
+      "perfil": 0
+    },
+    "atividades": null
+    },
+    {
+      "id": 5006,
+      "nome": "Turma",
+      "descricao": "Desc",
+      "dataDeCriacao": "2023-04-19T15:41:45.8741023",
+      "ativo": true,
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+    },
+    "atividades": null
+    }
+  ]
+}
+```
+
+### Artefatos da funcionalidade
+
+#### Models
+- Turma.cs
+
+#### Services
+- TurmasSevice.cs
+
+#### DTO
+- RespostaDto.cs
+
+#### Controllers
+- TurmasController.cs
+
+### Frontend
+- buscarTurmas.js
+- BuscarTurmasComponent.js
+
+### Instruções de acesso
+1. Realizar login;
+2. Clicar na opção "Buscar turma" presente na homepage;
+3. Visualizar a tela de buscar turmas;
+4. Digitar os termos de busca nos campos "Buscar por nome da turma" ou "Buscar por nome/email do professor" para filtrar os resultados;
+
 ## Visualização e realização de atividade por aluno (RF-06 e RF-07)
 A funcionalidade de visualização e realização de atividade por aluno permite a um usuário do tipo aluno realizar atividades cadastradas em alguma turma. No momento, qualquer usuário "aluno" pode realizar qualquer atividade, uma vez que as funcionalidade de matrícula em turma e visualização de turmas na qual o aluno está matriculado não estão completamente implementadas. Ao selecionar uma atividade e clicar em "abrir", o usuário poderá visualizar os resultados todas as tentativas anteriores para aquela atividade. O usuário poderá também clicar em "Fazer tarefa" para realizar uma nova tentativa caso não tenha extrapolado o limite de tentativas, obtendo sua nota e correção da atividade imediatamente após submete-la.  
 
