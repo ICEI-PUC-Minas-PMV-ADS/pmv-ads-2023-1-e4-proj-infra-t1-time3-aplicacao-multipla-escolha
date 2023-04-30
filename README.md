@@ -33,9 +33,10 @@ API:
 - Rodar o projeto em modo de desenvolvimento no Visual Studio, que deverá abrir uma janela do browser no endereço https://localhost:7284/swagger/index.html, exibindo a interface do Swagger para utilização dos endpoints da API;
 
 Frontend:
-- Após rodar a API conforme as instruções detalhadas acima, abrir o arquivo "multipla_escolha_api.sln" (Presente na pasta backend/Api/multipla-escolha-api) no Visual Studio;
-- Abrir o Visual Studio Code e rodar o projeto presente na pasta frontend/multipla-escolha com o comando npm start;
-- Abrir o navegador na URL http://localhost:3000 para acessar a homepage;
+- Abrir o Visual Studio Code na pasta frontend/multipla-escolha;
+- Instalar o react com o comando npm i react através do terminal;
+- Utilizar o comando npm start no terminal para iniciar a aplicação;
+- Após a aplicação iniciar, abrir o navegador na URL http://localhost:3000 para acessar a homepage;
 
 Mais detalhes sobre a utilização da aplicação podem ser vistos na [Seção 7 - Progamação de funcionalidades](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/blob/main/docs/07-Programa%C3%A7%C3%A3o%20de%20Funcionalidades.md)
 
