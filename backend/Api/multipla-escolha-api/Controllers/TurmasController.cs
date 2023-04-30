@@ -37,6 +37,14 @@ namespace multipla_escolha_api.Controllers
             return StatusCode(response.StatusCode, response.Content);
         }
 
+        [HttpGet("user-turmas")]
+        public async Task<IActionResult> GetAllAluno()
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            var model = await _context.Turmas.Include(t => t.alunos).Where(t => t.alunos.contains(a => a.id.toString() == userClaims[ClaimTypes.NameIdentifier]).ToListAsync();
+            return Ok(model);
+        }
+        
         [HttpPost]
         public async Task<IActionResult> Create(TurmaDto dto)
         {
