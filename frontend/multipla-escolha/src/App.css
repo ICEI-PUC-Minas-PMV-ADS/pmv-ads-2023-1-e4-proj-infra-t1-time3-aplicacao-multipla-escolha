@@ -1,10 +1,10 @@
 .main {
-  background-color: #fdfdfd;
+  background-color: #e4e7e8
 }
 
 .navbar {
   height: 64px;
-  background-color: #3867d6;
+  background-color: #9391f8 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@
   justify-content: space-between;
 }
 
-.logoff-button {
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -90,4 +90,43 @@
   min-width: 40px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #6c63ff !important;
+  border-color: #5c52fe !important;
+}
+
+.btn-secondary {
+  background-color: #9391f8 !important;
+  border-color: #9290f7 !important;
+}
+
+.btn-danger {
+  background-color: #ff6363 !important;
+  border-color: #fe6262!important;
+}
+
+.dropdown-user {
+  background-color: #b8b7f2;
+  padding-top: 4px;
+  padding-left: 8px;
+  width: 120px;
+  height: 100px;
+  position: absolute;
+  right: 22px;
+  top: 52px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.dropdown-user ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.dropdown-user li {
+  width: 104px;
 }

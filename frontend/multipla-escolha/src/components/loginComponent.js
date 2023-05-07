@@ -72,7 +72,7 @@ function LoginComponent() {
 
     return (
         <div className="login-box">
-            <Link ref={linkRef} to="/" />
+            <Link ref={linkRef} to="/minhas-turmas" />
             <div className="my-2">
                 <h1>Login</h1>
             </div>
