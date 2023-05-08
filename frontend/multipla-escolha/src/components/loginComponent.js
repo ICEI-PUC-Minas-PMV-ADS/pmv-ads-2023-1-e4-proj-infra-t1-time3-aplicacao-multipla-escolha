@@ -74,7 +74,7 @@ function LoginComponent() {
         <div className="login-box">
             <Link ref={linkRef} to="/minhas-turmas" />
             <div className="my-2">
-                <h1>Login</h1>
+                <h1 className="text-dark-gray">LOGIN</h1>
             </div>
             <div className="d-flex flex-column mt-2">
                 <label for="username">Nome de usuário</label>
