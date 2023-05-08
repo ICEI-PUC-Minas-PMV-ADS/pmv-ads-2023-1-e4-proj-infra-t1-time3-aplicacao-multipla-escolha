@@ -87,7 +87,7 @@ namespace multipla_escolha_api.Controllers
                 return BadRequest();
             }
 
-            TurmaAluno turmaAluno = new TurmaAluno();
+            TurmaAluno turmaAluno = new();
 
             turmaAluno.Turma = _context.Turmas.FirstOrDefault(t => t.Id == idTurma);
 

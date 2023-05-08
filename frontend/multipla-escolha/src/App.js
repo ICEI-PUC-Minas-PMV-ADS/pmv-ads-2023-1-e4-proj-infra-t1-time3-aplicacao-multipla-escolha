@@ -30,7 +30,7 @@ function App() {
   return (
     <UserContext.Provider value={{userData: userData, setUserData: setUserData, userSignedIn: userSignedIn, setUserSignedIn: setUserSignedIn}}>
       <BrowserRouter>
-        <div className='main' style={{ height: '100vh' }}>          
+        <div className='main'>          
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/login" element={<Login />}></Route>
