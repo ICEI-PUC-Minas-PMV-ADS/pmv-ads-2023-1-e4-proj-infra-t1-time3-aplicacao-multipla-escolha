@@ -10,5 +10,14 @@ export function formatarData(data, showHours = false) {
 
     let formatedDate = new Date(dateInUtc).toLocaleString().replace(",", " -");
 
+    if (showHours == false) formatedDate = formatedDate.substring(0,10);
+
     return formatedDate;
+}
+
+export function encurtarTexto(descricao, maxLength) {
+    if (descricao.length > maxLength) {
+        descricao = descricao.substr(0, maxLength) + "...";
+    }
+    return descricao;
 }

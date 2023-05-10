@@ -78,9 +78,9 @@ function LoginComponent() {
             </div>
             <div className="d-flex flex-column mt-2">
                 <label for="username">Nome de usuário</label>
-                <input className="mb-2" id="username" value={username} onChange={e => { setUsername(e.target.value); setErrorMessage("") }}></input>
+                <input className="mb-2 input-text" id="username" value={username} onChange={e => { setUsername(e.target.value); setErrorMessage("") }}></input>
                 <label for="username">Senha</label>
-                <input id="senha" type="password" value={password} onChange={e => { setPassword(e.target.value); setErrorMessage("") }}></input>
+                <input className="input-text" id="senha" type="password" value={password} onChange={e => { setPassword(e.target.value); setErrorMessage("") }}></input>
                 <div style={{ width: 260, height: 32, textAlign: 'center', marginTop: 6, color: 'red' }}>
                     <text>{errorMessage}</text>
                 </div>
