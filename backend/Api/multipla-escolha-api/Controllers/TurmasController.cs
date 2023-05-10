@@ -31,10 +31,10 @@ namespace multipla_escolha_api.Controllers
         }
 
         [HttpGet("user-turmas")]
-        public async Task<IActionResult> GetAllProfessor()
+        public async Task<IActionResult> GetAllProfessor([FromQuery(Name = "ativas")] bool ativas = true, [FromQuery(Name = "pageSize")] int pageSize = 50, [FromQuery(Name = "pageNumber")] int pageNumber = 0)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-            var response = await _turmasService.GetAllTurmasProfessor(userClaims);
+            var response = await _turmasService.GetAllTurmasProfessor(userClaims, ativas, pageSize, pageNumber);
             return StatusCode(response.StatusCode, response.Content);
         }
 

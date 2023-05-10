@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import { UserContext } from "../context/userContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretUp, faL } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 
 import axios from "axios";
 
@@ -106,9 +106,9 @@ function Navbar() {
             }
             <div className="dropdown-user" id="dropdown-menu" style={menuDropDownIsOpen ? {} : { display: 'none' }}>
                 <ul>
-                    <li className="my-1"><Link to="/minhas-turmas" className="text-decoration-none" style={{ color: 'white'}} onClick={() => closeDropdownMenu()}>Turmas</Link></li>
-                    <li className="my-1"><Link to="/account-options" className="text-decoration-none" style={{ color: 'white' }} onClick={() => closeDropdownMenu()}>Perfil</Link></li>
-                    <li className="my-1"><span className="cursor-pointer" onClick={() => logoff()} style={{ color: 'white' }}>Sair</span></li>
+                    <li className="my-1"><Link to="/minhas-turmas" className="text-decoration-none" style={{ color: 'white'}} onClick={() => closeDropdownMenu()}><p>Turmas</p></Link></li>
+                    <li className="my-1"><Link to="/account-options" className="text-decoration-none" style={{ color: 'white' }} onClick={() => closeDropdownMenu()}><p>Perfil</p></Link></li>
+                    <li className="my-1"><span className="cursor-pointer" onClick={() => logoff()} style={{ color: 'white' }}><p>Sair</p></span></li>
                 </ul>
             </div>
         </div>

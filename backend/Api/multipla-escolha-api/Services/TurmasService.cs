@@ -35,10 +35,13 @@ namespace multipla_escolha_api.Services
             return new ServiceResponse(page, 200);
         }
 
-        public async Task<ServiceResponse> GetAllTurmasProfessor(Dictionary<String, String> userClaims)
+        public async Task<ServiceResponse> GetAllTurmasProfessor(Dictionary<String, String> userClaims, bool ativas, int pageSize, int pageNumber)
         {
-            var turmas = await _context.Turmas.Include(t => t.Professor).Where(t => t.Professor.Id.ToString() == userClaims[ClaimTypes.NameIdentifier]).ToListAsync();
-            return new ServiceResponse(turmas, 200);
+            var turmas = _context.Turmas.Include(t => t.Professor).Where(t => t.Professor.Id.ToString() == userClaims[ClaimTypes.NameIdentifier]).Where(t => t.Ativo == ativas).OrderByDescending(t => t.DataDeCriacao);
+            
+            var page = await Page.GetPageAsync(turmas, pageSize, pageNumber);
+
+            return new ServiceResponse(page, 200);
         }
 
         public async Task<ServiceResponse> CreateTurma(TurmaDto dto, Dictionary<String, String> userClaims)

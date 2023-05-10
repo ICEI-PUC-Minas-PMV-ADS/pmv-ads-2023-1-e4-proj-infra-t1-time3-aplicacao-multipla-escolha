@@ -7,7 +7,7 @@ import { UserContext } from "../context/userContext";
 import Unauthorized from "./unauthorized";
 import Loading from "./loading";
 
-import { formatarData, switchBoolean } from "../util/Functions";
+import { formatarData, switchBoolean, encurtarTexto } from "../util/Functions";
 
 function VisualizarTurmaComponent({ idTurma }) {
 
@@ -83,7 +83,7 @@ function VisualizarTurmaComponent({ idTurma }) {
                 <div className="w-100">
                     <div className="d-flex flex-column mt-4">
                         <p className="h4"><b>Nome:</b> {turma.nome}</p>
-                        <p className="h4"><b>Descrição:</b> {turma.descricao}</p>
+                        <p className="h4 break-word"><b>Descrição:</b> {turma.descricao}</p>
                         <p className="h4"><b>Ativa:</b> {turma.ativo ? "Sim" : "Não"}</p>
                     </div>
                     <div className="mt-4">

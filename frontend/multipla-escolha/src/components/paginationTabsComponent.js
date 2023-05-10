@@ -33,10 +33,10 @@ function PaginationTabsComponent({ currentPage, setCurrentPage, lastPage }) {
         let tabs = [];
 
         if (currentPage + 1 == 1) {
-            tabs.push(<li class="page-item"><div className="page-link bg-primary text-light" onClick={() => setCurrentPage(0)}>1</div></li>);
+            tabs.push(<li className="page-item"><div className="page-link bg-primary-new text-light" onClick={() => setCurrentPage(0)}>1</div></li>);
         }
         else {
-            tabs.push(<li class="page-item"><div className="page-link" onClick={() => setCurrentPage(0)}>1</div></li>);
+            tabs.push(<li className="page-item"><div className="page-link" onClick={() => setCurrentPage(0)}>1</div></li>);
         }
 
         if (lastPage != 1) {
@@ -47,7 +47,7 @@ function PaginationTabsComponent({ currentPage, setCurrentPage, lastPage }) {
             }
             else {
                 if (skip > 0) {
-                    tabs.push(<li class="page-item"><div className="page-link" >...</div></li>);
+                    tabs.push(<li className="page-item"><div className="page-link" >...</div></li>);
                     maxItems--;
                 }
 
@@ -60,29 +60,29 @@ function PaginationTabsComponent({ currentPage, setCurrentPage, lastPage }) {
 
             for (let i = 2 + skip; i < maxItems + skip; i++) {
                 if (i == currentPage + 1) {
-                    tabs.push(<li class="page-item"><div className="page-link bg-primary text-light" onClick={() => setCurrentPage(i - 1)}>{i}</div></li>)
+                    tabs.push(<li className="page-item"><div className="page-link bg-primary-new text-light" onClick={() => setCurrentPage(i - 1)}>{i}</div></li>)
                 } else {
-                    tabs.push(<li class="page-item"><div className="page-link" onClick={() => setCurrentPage(i - 1)}>{i}</div></li>);
+                    tabs.push(<li className="page-item"><div className="page-link" onClick={() => setCurrentPage(i - 1)}>{i}</div></li>);
                 }
             }
 
             if (!lastPageInView) {
-                tabs.push(<li class="page-item"><div className="page-link" >...</div></li>);
+                tabs.push(<li className="page-item"><div className="page-link" >...</div></li>);
             }
 
             if (currentPage + 1 == lastPage) {
-                tabs.push(<li class="page-item"><div className="page-link bg-primary text-light" onClick={() => setCurrentPage(lastPage - 1)}>{lastPage}</div></li>);
+                tabs.push(<li className="page-item"><div className="page-link bg-primary-new text-light" onClick={() => setCurrentPage(lastPage - 1)}>{lastPage}</div></li>);
             }
             else {
-                tabs.push(<li class="page-item"><div className="page-link" onClick={() => setCurrentPage(lastPage - 1)}>{lastPage}</div></li>);
+                tabs.push(<li className="page-item"><div className="page-link" onClick={() => setCurrentPage(lastPage - 1)}>{lastPage}</div></li>);
             }
         }
-        tabs.push(<li class="page-item"><div className="page-link" onClick={() => currentPage + 1 < lastPage ? setCurrentPage(currentPage + 1) : null}>Proxima</div></li>)
+        tabs.push(<li className="page-item"><div className="page-link" onClick={() => currentPage + 1 < lastPage ? setCurrentPage(currentPage + 1) : null}>Proxima</div></li>)
 
         return (
             <div className="d-flex flex-column my-2">
-                <ul class="pagination mx-auto my-0">
-                    <li class="page-item"><div className="page-link" onClick={() => currentPage > 0 ? setCurrentPage(currentPage - 1) : null}>Anterior</div></li>
+                <ul className="pagination mx-auto my-0">
+                    <li className="page-item"><div className="page-link" onClick={() => currentPage > 0 ? setCurrentPage(currentPage - 1) : null}>Anterior</div></li>
                     {tabs}
                 </ul>
                 <br />
