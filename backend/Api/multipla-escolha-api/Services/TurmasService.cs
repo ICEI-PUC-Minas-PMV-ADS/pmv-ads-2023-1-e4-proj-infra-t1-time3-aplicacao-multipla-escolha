@@ -35,13 +35,26 @@ namespace multipla_escolha_api.Services
             return new ServiceResponse(page, 200);
         }
 
-        public async Task<ServiceResponse> GetAllTurmasProfessor(Dictionary<String, String> userClaims, bool ativas, int pageSize, int pageNumber)
+        public async Task<ServiceResponse> GetAllTurmasUsuario(Dictionary<String, String> userClaims, bool ativas, int pageSize, int pageNumber)
         {
-            var turmas = _context.Turmas.Include(t => t.Professor).Where(t => t.Professor.Id.ToString() == userClaims[ClaimTypes.NameIdentifier]).Where(t => t.Ativo == ativas).OrderByDescending(t => t.DataDeCriacao);
-            
-            var page = await Page.GetPageAsync(turmas, pageSize, pageNumber);
+            if (userClaims[ClaimTypes.Role].Equals("Professor"))
+            {
+                var turmas = _context.Turmas.Include(t => t.Professor).Where(t => t.Professor.Id.ToString() == userClaims[ClaimTypes.NameIdentifier]).Where(t => t.Ativo == ativas).OrderByDescending(t => t.DataDeCriacao);
 
-            return new ServiceResponse(page, 200);
+                var page = await Page.GetPageAsync(turmas, pageSize, pageNumber);
+                
+                return new ServiceResponse(page, 200);
+            }
+
+            if (userClaims[ClaimTypes.Role].Equals("Aluno"))
+            {
+                var turmas = _context.Turmas.Include(t => t.AlunosTurma).Where(t => t.AlunosTurma.Any(at => at.AlunoId == 1)).OrderByDescending(t => t.DataDeCriacao);
+
+                var page = await Page.GetPageAsync(turmas, pageSize, pageNumber);
+
+                return new ServiceResponse(page, 200);
+            }
+            return new ServiceResponse(null, 400);
         }
 
         public async Task<ServiceResponse> CreateTurma(TurmaDto dto, Dictionary<String, String> userClaims)
@@ -127,6 +140,33 @@ namespace multipla_escolha_api.Services
             if (turma == null) return new ServiceResponse(null, 404);
 
             return new ServiceResponse(turma, 200);
+        }
+
+        public async Task<ServiceResponse> RealizarMatriculaEmTurma(int idTurma, Dictionary<String, String> userClaims)
+        {
+            if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
+            {
+                return new ServiceResponse(null, 403);
+            }
+
+            var aluno = _context.Usuarios.FirstOrDefault(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
+
+            if (aluno == null)
+            {
+                new ServiceResponse(null, 400);
+            }
+
+            TurmaAluno turmaAluno = new();
+
+            turmaAluno.Turma = _context.Turmas.FirstOrDefault(t => t.Id == idTurma);
+
+            turmaAluno.Aluno = _context.Usuarios.FirstOrDefault(u => u.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
+
+            _context.TurmasAlunos.Add(turmaAluno);
+
+            await _context.SaveChangesAsync();
+
+            return new ServiceResponse(turmaAluno, 200);
         }
     }
 }

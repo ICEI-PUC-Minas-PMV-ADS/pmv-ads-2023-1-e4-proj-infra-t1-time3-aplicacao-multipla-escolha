@@ -34,7 +34,7 @@ namespace multipla_escolha_api.Controllers
         public async Task<IActionResult> GetAllProfessor([FromQuery(Name = "ativas")] bool ativas = true, [FromQuery(Name = "pageSize")] int pageSize = 50, [FromQuery(Name = "pageNumber")] int pageNumber = 0)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-            var response = await _turmasService.GetAllTurmasProfessor(userClaims, ativas, pageSize, pageNumber);
+            var response = await _turmasService.GetAllTurmasUsuario(userClaims, ativas, pageSize, pageNumber);
             return StatusCode(response.StatusCode, response.Content);
         }
 
@@ -74,30 +74,8 @@ namespace multipla_escolha_api.Controllers
         public async Task<IActionResult> RealizarMatricula(int idTurma)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-
-            if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
-            {
-                return Forbid();
-            }
-
-            var aluno = _context.Usuarios.FirstOrDefault(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
-
-            if (aluno == null)
-            {
-                return BadRequest();
-            }
-
-            TurmaAluno turmaAluno = new();
-
-            turmaAluno.Turma = _context.Turmas.FirstOrDefault(t => t.Id == idTurma);
-
-            turmaAluno.Aluno = _context.Usuarios.FirstOrDefault(u => u.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
-
-            _context.TurmasAlunos.Add(turmaAluno);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(turmaAluno);
+            var response = await _turmasService.RealizarMatriculaEmTurma(idTurma, userClaims);
+            return StatusCode(response.StatusCode, response.Content);
         }
     }
 }
