@@ -65,16 +65,25 @@ namespace multipla_escolha_api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var response = await _turmasService.GetTurmaById(id);
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            var response = await _turmasService.GetTurmaById(id, userClaims);
             return StatusCode(response.StatusCode, response.Content);
         }
          
-        [HttpGet("{idTurma}/usuarios")]
+        [HttpPut("{id}/matricular")]
 
-        public async Task<IActionResult> RealizarMatricula(int idTurma)
+        public async Task<IActionResult> RealizarMatricula(int id)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-            var response = await _turmasService.RealizarMatriculaEmTurma(idTurma, userClaims);
+            var response = await _turmasService.RealizarMatriculaEmTurma(id, userClaims);
+            return StatusCode(response.StatusCode, response.Content);
+        }
+
+        [HttpPut("{id}/desmatricular")]
+        public async Task<IActionResult> CancelarMatricula(int id)
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            var response = await _turmasService.CancelarMatriculaEmTurma(id, userClaims);
             return StatusCode(response.StatusCode, response.Content);
         }
     }

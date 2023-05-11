@@ -29,6 +29,7 @@ function VisualizarTurmaComponent({ idTurma }) {
             }
         )
             .then(function (response) {
+                console.log(response.data)
                 setTurma(response.data)
             })
             .catch(function (error) {
@@ -73,6 +74,42 @@ function VisualizarTurmaComponent({ idTurma }) {
         }
     }
 
+    function fazerMatricula() {
+        axios.put(baseUrl + 'api/Turmas/' + idTurma + '/matricular',
+            {
+                headers: {
+                    "Content-Type": "application/JSON"
+                },
+                withCredentials: true
+            }
+        )
+            .then(function (response) {
+                setTurmaLoaded(switchBoolean(turmaLoaded));
+                window.alert("Matrícula realizada com sucesso!");
+            })
+            .catch(function (error) {
+                window.alert("Erro ao realizar matrícula!");
+            })
+    }
+
+    function cancelarMatricula() {
+        axios.put(baseUrl + 'api/Turmas/' + idTurma + '/desmatricular',
+            {
+                headers: {
+                    "Content-Type": "application/JSON"
+                },
+                withCredentials: true
+            }
+        )
+            .then(function (response) {
+                setTurmaLoaded(switchBoolean(turmaLoaded));
+                window.alert("Matrícula cancelada com sucesso!");
+            })
+            .catch(function (error) {
+                window.alert("Erro ao cancelar matrícula!");
+            })
+    }
+
     return (
         <div>
             <div className="d-flex my-4">
@@ -85,6 +122,19 @@ function VisualizarTurmaComponent({ idTurma }) {
                         <p className="h4"><b>Nome:</b> {turma.nome}</p>
                         <p className="h4 break-word"><b>Descrição:</b> {turma.descricao}</p>
                         <p className="h4"><b>Ativa:</b> {turma.ativo ? "Sim" : "Não"}</p>
+                    </div>
+                    <div className="d-flex flex-row-reverse">
+                        {
+                            turma.matriculado == null ?
+                            null
+                            :
+                            (
+                                turma.matriculado == false ?
+                                <button className='btn btn-primary my-2' onClick={() => fazerMatricula()}>Fazer matrícula</button>
+                                :
+                                <button className='btn btn-danger my-2' onClick={() => cancelarMatricula()}>Cancelar matrícula</button>
+                            )
+                        }
                     </div>
                     <div className="mt-4">
                         <p className="h4"><b>Atividades:</b></p>
@@ -131,7 +181,7 @@ function VisualizarTurmaComponent({ idTurma }) {
                             turma.atividades.length == 0 ? <div className="no-content-warning">Nenhuma atividade cadastrada.</div> : null
                         }
                         <div className="d-flex flex-row-reverse mb-4">
-                            <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>
+                            <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>                            
                             {
                                 userContext.userData.id == turma.professor.id ?
 

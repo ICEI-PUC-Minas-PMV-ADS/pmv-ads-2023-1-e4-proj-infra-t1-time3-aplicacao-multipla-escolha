@@ -218,12 +218,15 @@ input[type='radio'] {
   width: 340px;
   min-height: 200px;
   max-height: 200px;
-
   margin-bottom: 50px;
   padding: 12px;
   background-color: white;
   border: 1px sold gray;
   border-radius: 5px;
+}
+
+.card-hover :hover {
+  background-color: #9391f8 !important;
 }
 
 .break-word {
