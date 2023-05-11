@@ -29,7 +29,6 @@ function VisualizarTurmaComponent({ idTurma }) {
             }
         )
             .then(function (response) {
-                console.log(response.data)
                 setTurma(response.data)
             })
             .catch(function (error) {
@@ -156,7 +155,7 @@ function VisualizarTurmaComponent({ idTurma }) {
                                             <td>{atividade.nome}</td>
                                             <td>{atividade.descricao}</td>
                                             <td>{formatarData(atividade.dataDeCriacao)}</td>
-                                            <td>{formatarData(atividade.dataPrazoDeEntrega, true)}</td>
+                                            <td>{atividade.dataPrazoDeEntrega != null ? formatarData(atividade.dataPrazoDeEntrega, true) : "Sem prazo"}</td>
                                             <td>{atividade.valor != 0 ? atividade.valor.toString().replace(".", ",") : "Não avaliativa"}</td>
                                             <td>
                                                 <div className="d-flex flex-row">
