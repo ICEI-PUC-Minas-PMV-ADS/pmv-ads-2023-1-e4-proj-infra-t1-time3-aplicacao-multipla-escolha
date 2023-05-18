@@ -1,36 +1,116 @@
 
 # Projeto de Interface
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
-
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>.
+Com a usabilidade sendo uma das questões focadas para a montagem da interface, projetamos telas com uma identidade visual padronizada.
 
 ## Diagrama de Fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
+O diagrama abaixo apresenta o fluxo de interação do usuário com a interface do sistema. Este diagrama se foca no fluxo mais provável que o usário seguirá, já que algumas das telas deixará o usuário realizar outros fluxos que deixariam o diagrama mais complexo e confuso se fossem detalhados. As telas deste fluxo são descritas melhor na seção de wireframes logo abaixo.
 
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem internamente a indicação dos principais elementos de interface - tais como menus e acessos - e funcionalidades, tais como editar, pesquisar, filtrar, configurar - e a conexão entre esses boxes a partir do processo de interação. Você pode ver mais explicações e exemplos https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram.
+![Diagrama de Fluxo](img/diagrama-de-fluxo.png)
 
-![Exemplo de Diagrama de Fluxo](img/diagramafluxo2.jpg)
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagramas de Fluxo”.
-
-> **Links Úteis**:
-> - [Fluxograma online: seis sites para fazer gráfico sem instalar nada | Produtividade | TechTudo](https://www.techtudo.com.br/listas/2019/03/fluxograma-online-seis-sites-para-fazer-grafico-sem-instalar-nada.ghtml)
+Para visualizar o diagrama de fluxo no ambiente do Figma, [**acesse aqui**](https://www.figma.com/file/aCHVALWOuj8kjGaLHbFMSv/Diagrama-de-Fluxo).
 
 ## Wireframes
 
-![Exemplo de Wireframe](img/wireframe-example.png)
+![Imagem dos Wireframe](img/wireframes-site/Site.png)
 
-São protótipos usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante do layout de elementos fundamentais na interface.
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
+Conforme o fluxo de telas do projeto, apresentado no item anterior, as telas do sistema são apresentadas em detalhes nos itens a seguir. Para visualizar os wireframes no ambiente do Figma, [**acesse aqui**](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site).
+
+As telas do sistema apresentam uma estrutura comum que é apresentada em [Template Padrão da Aplicação](./06-Template%20Padr%C3%A3o%20da%20Aplica%C3%A7%C3%A3o.md).
+
+### Tela: Início (Homepage)
+
+A primeira tela que o usuário verá ao acessar o site apresenta alguns detalhes do serviço. No cabeçalho existe a logo e um menu de navegação com três botões para "Início", "Sobre" e um botão para ir à [tela de fazer *login*](#tela-entrar-sign-in). Quando o usuário estiver conectado em sua conta, o botão que levaria ao *login* apresenta um *dropdown* com opções para levar o usuário à tela "[Meus Dados](#tela-dados-de-usuário)" ou "[Minhas Turmas](#tela-minhas-turmas)", além de se desconectar.
+
+<div align="center">
+    <img src="img/wireframes-site/Home.png" alt="Imagem da Homepage" width=50%>
+</div>
+
+### Tela: Entrar (Sign in)
+
+Nesta tela o usuário poderá inserir o usuário e a senha para se conectar ou clicar no botão "[Cadastre-se](#tela-registrar-se-sign-up)" para se cadastrar.
+
+<div align="center">
+    <img src="img/wireframes-site/Login.png" alt="Imagem da tela de login" width=50%>
+</div>
+
+### Tela: Registrar-se (Sign up)
+
+Nesta tela o usuário vai criar sua conta de usuário ao inserir os dados necessários nos campos disponíveis, selecionar o seu perfil como "Aluno" ou "Professor" e confirmar. Ao confirmar e o processo ser concluido com sucesso, o usuário poderá [ir fazer o *login*](#tela-entrar-sign-in).
+
+<div align="center">
+    <img src="img/wireframes-site/Cad. de Usuário.png" alt="Imagem da tela de cadastro de usuário" width=50%>
+</div>
+
+### Tela: Dados de Usuário
+
+Esta tela é acessível apenas para usuários conectados. Nela o usuário poderá editar informações que cadastrou anteriormente e também excluir a conta. O menu de navegação presente na *Homepage* desaparece nesta tela. O cabeçalho passa a apresentar a logo e um botão *dropdown* com as opções *Turmas*, para levar o usuário à tela "[Minhas Turmas](#tela-minhas-turmas)", *Perfil*, para levar o usuário à tela "[Meus Dados](#tela-dados-de-usuário)" ou se desconectar.
+
+![Imagem da tela de dados do usuário](img/wireframes-site/meus-dados.png)
+
+#### Menu do botão *dropdown*
+
+![Imagem do botão dropdown](img/wireframes-site/Menu%20Usu%C3%A1rio.png)
+
+### Tela: Minhas Turmas
+
+#### Para o professor
+
+Esta tela é acessível apenas para usuários conectados como "Professor". Nela o usuário poderá abrir, editar ou excluir turmas já criadas. Também poderá filtrar o resultado das turmas por "Ativas" ou "Inativas" e criar uma turma ao clicar em "[Criar turma](#tela-criar-e-editar-turma)".
+
+<div align="center">
+    <img src="img/wireframes-site/Minhas%20Turmas%20-%20Professor.png" alt="Imagem da tela com as turmas do usuário professor" width=50%>
+</div>
+
+#### Para o aluno
+
+Esta tela é acessível apenas para usuários conectados como "Aluno". Nela o usuário visualizará as turmas que está matriculado e notificações de novas atividades, atividades pendentes ou atrasadas em cada turma. Também poderá fazer uma busca por turmas.
+
+<div align="center">
+    <img src="img/wireframes-site/Minhas%20Turmas%20-%20Aluno.png" alt="Imagem da tela com as turmas do usuário aluno" width=50%>
+</div>
+
+### Tela: Criar e Editar Turma
+
+Esta tela é acessível apenas para usuários conectados como "Professor". Nela o usuário poderá criar uma turma ao inserir os dados necessários nos campos disponíveis e selecionar se a turma está "Ativa" ou "Inativa". Caso a turma já esteja criada e o usuário queira atualizar informações, será carregada uma página semelhante com dados já preenchidos que que o usuário poderá alterar.
+
+![Imagem da tela de criação da turma](img/wireframes-site/criar-turma.png)
+
+### Tela: Buscar Turma
+
+Na tela de busca, o usuário vai encontrar campos para filtrar o resultado da turma que está buscando. Após realizar a busca, receberá uma lista com os resultados e poderá clicar em uma turma para entrar.
+
+<div align="center">
+    <img src="img/wireframes-site/Buscar Turma.png" alt="Imagem da tela de busca" width=50%>
+</div>
+
+### Tela: Visualizar Atividade
+
+Esta tela apresenta detalhes da atividade que o usuário abriu. Nela o usuário visualizará o *Nome da Atividade*, *Descrição*, as *Questões* e *Alternativas*, *Pontuação Total da Atividade*, *Prazo* e *Tentativas Permitidas*. A tela também possui um botão "[Fazer Atividade](#tela-realizar-atividade)" que o usuário poderá clicar para responder a atividade.
+
+Ao realizar uma tentativa respondendo a atividade, um histórica das tentativas aparecerá na tela, com o *Número da Tentativa*, *Data e Hora*, *Pontuação Obtida* e um botão para ver a "[Correção](#tela-visualizar-correção)" de cada tentativa.
+
+![Imagem da tela de atividade](img/wireframes-site/visualizar-atividade.png)
+
+### Tela: Realizar Atividade
+
+Esta tela é acessada quando o usuário "Aluno" clica no botão "Fazer Atividade". Nela o usuário poderá responder as questões da atividade respeitando as regras criadas para ela, como *Prazo* e *Número de Tentativas*. Ao terminar de responder a atividade, o aluno deve clicar em "Finalizar tarefa" para confirmar o envio.
+
+<div align="center">
+    <img src="img/wireframes-site/Fazer Atividade.png" alt="Imagem da tela de responder a atividade" width=50%>
+</div>
+
+### Tela: Visualizar Correção
+
+Nesta tela o usuário poderá ver a correção da atividade, com a pontuação obtida e as respostas marcadas como corretas ou incorretas.
+
+<div align="center">
+    <img src="img/wireframes-site/Visualizar Correção.png" alt="Imagem da tela de correção da atividade respondida" width=50%>
+</div>
+
+### Tela: Criar e Editar Atividade
+
+Esta tela é acessível apenas para usuários conectados como "Professor". Nela o usuário encontrará campos para criar a atividade, como *Nome*, *Descrição*, *Prazo* e *Número de Tentativas*. Também encontrará uma área para visualizar e criar as questões, ao clicar no botão "Adicionar Questão", aparecerá um *modal* com campos para *Enunciado*, *Pontos da Questão*, *Quantidade de Alternativas*, a *Alternativa Correta* e campos para o texto das alternativas.
+
+![Imagem da tela de criar atividade](img/wireframes-site/criar-atividade.png)
