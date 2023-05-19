@@ -101,13 +101,18 @@ function FazerAtividadeComponent({ idAtividade }) {
                 newRespostasAluno.push(indexAlternativa);
             }
             else {
-                if (typeof respostasAluno[i] != 'undefined') {
+                if (typeof respostasAluno[i] != 'undefined' ) {
                     newRespostasAluno.push(respostasAluno[i]);
                 }
                 else {
                     liberarSubmissao = false;
                     newRespostasAluno.push("");
                 }
+            }
+        }
+        for (let i = 0; i < questoes.length; i++) {
+            if (newRespostasAluno[i] === "") {
+                liberarSubmissao = false;
             }
         }
         setSubmissaoLiberada(liberarSubmissao);

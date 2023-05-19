@@ -140,16 +140,26 @@ namespace multipla_escolha_api.Services
             }
             
             dto.AtividadeMongoDb = atividadeMongoDb;
-
-            dto.TentativasAnteriores = await _context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == id && r.Aluno.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier])).OrderByDescending(t => t.DataDaTentativa).ToListAsync();
-
+            
             bool podeSerRealizada = true;
 
             if (!userClaims[ClaimTypes.Role].Equals("Aluno"))
             {
+                dto.TentativasAnteriores = new List<Resultado>();
                 podeSerRealizada = false;
-            }                
-            else if (model.DataPrazoDeEntrega != null && model.DataPrazoDeEntrega <= DateTime.UtcNow)
+            }
+            else
+            {
+                dto.TentativasAnteriores = await _context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == id && r.Aluno.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier])).OrderByDescending(t => t.DataDaTentativa).ToListAsync();
+
+                var alunosTurma = await _context.TurmasAlunos.FirstOrDefaultAsync(ta => ta.TurmaId == model.Turma.Id && ta.AlunoId.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
+
+                if (alunosTurma == null) {
+                    podeSerRealizada = false;
+                }
+            }
+
+            if (model.DataPrazoDeEntrega != null && model.DataPrazoDeEntrega <= DateTime.UtcNow)
             {
                 podeSerRealizada = false;
             }
