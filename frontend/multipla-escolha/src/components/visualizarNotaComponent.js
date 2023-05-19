@@ -50,7 +50,7 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
                     }
                 }
                 setDisplayNotaTotal(notaTotal.toFixed(2).toString().replace(".", ",") + "/" + notaMaximaTotal.toFixed(2).toString().replace(".", ",") + " (" + (notaMaximaTotal != 0 ? (notaTotal/notaMaximaTotal * 100).toFixed(0) : 100) + "%)");
-                const aluno = response.data.alunosTurma.find(at => at.idAluno = idAluno).aluno;
+                const aluno = response.data.alunosTurma.find(at => at.alunoId == idAluno).aluno;
                 setInfoaluno(aluno);
                 setSearchString("");
             })
@@ -70,6 +70,7 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
             setAtividades(newAtividades);
         }
     }, [searchString]);
+
 
     if (userContext.userSignedIn === false || turma == false || (turma != null && turma.professor.id != userContext.userData.id && infoAluno != null && infoAluno.id != userContext.userData.id)) {
         return <Unauthorized />
