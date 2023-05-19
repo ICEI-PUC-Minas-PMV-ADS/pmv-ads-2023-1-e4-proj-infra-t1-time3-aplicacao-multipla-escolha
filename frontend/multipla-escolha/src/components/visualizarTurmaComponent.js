@@ -8,6 +8,8 @@ import Unauthorized from "./unauthorized";
 import Loading from "./loading";
 
 import { formatarData, switchBoolean, encurtarTexto } from "../util/Functions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function VisualizarTurmaComponent({ idTurma }) {
 
@@ -19,6 +21,8 @@ function VisualizarTurmaComponent({ idTurma }) {
 
     const [turmaLoaded, setTurmaLoaded] = useState(false);
 
+    const [hoverCardId, setHoverCardId] = useState(null);
+
     useEffect(() => {
         axios.get(baseUrl + 'api/Turmas/' + idTurma,
             {
@@ -29,7 +33,6 @@ function VisualizarTurmaComponent({ idTurma }) {
             }
         )
             .then(function (response) {
-                console.log(response.data)
                 setTurma(response.data)
             })
             .catch(function (error) {
@@ -110,86 +113,127 @@ function VisualizarTurmaComponent({ idTurma }) {
             })
     }
 
+    console.log(turma)
+
+    function atividadeCard(atividade) {
+        if (turma.professor.id == userContext.userData.id) {
+            return (
+                <div key={"atividade" + atividade.id} className="card d-flex justify-content-between text-decoration-none text-dark-gray" style={hoverCardId == atividade.id ? { backgroundColor: '#e9e9fe' } : {}}>
+                    {
+                        atividade.dataPrazoDeEntrega == null ?
+                            <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Sem prazo</div>
+                            :
+                            <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Prazo {formatarData(atividade.dataPrazoDeEntrega)}</div>
+                    }
+                    <div style={{ height: 120 }}>
+                        <div className="h3 text-dark-gray">{atividade.nome}</div>
+                        <div className="h5 text-dark-gray">{atividade.valor.toString().replace(".", ",")} Pontos</div>
+                        <div style={{ height: 70, overflow: 'hidden' }}>
+                            <p>{encurtarTexto(atividade.descricao, 90)}</p>
+                        </div>
+                    </div>
+                    <div className="d-flex flex-row-reverse text-dark-gray align-items-center" style={{ fontSize: 12 }}>
+                        <button className="btn btn-danger" onClick={() => apagarAtividade(atividade.id)}><FontAwesomeIcon icon={faTrash} /></button>
+                        <Link to={"/atividades/editar/" + atividade.id} className="btn btn-secondary mx-2"><FontAwesomeIcon icon={faPen} /></Link>
+                        <Link to={"/atividades/" + atividade.id} className="btn btn-primary">Abrir</Link>
+                        Tarefa criada em {formatarData(atividade.dataDeCriacao)}
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <Link onMouseEnter={() => setHoverCardId(atividade.id)} onMouseLeave={() => setHoverCardId(null)} to={"/atividades/" + atividade.id} key={"atividade" + atividade.id} className="card d-flex justify-content-between text-decoration-none text-dark-gray" style={hoverCardId == atividade.id ? { backgroundColor: '#e9e9fe' } : {}}>
+                {
+                    atividade.status == "Entregue" ?
+                        <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14, fontWeight: 600, color: 'green' }}>Entregue</div>
+                        :
+                        (
+                            atividade.dataPrazoDeEntrega == null ?
+                                <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Sem prazo</div>
+                                :
+                                <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Prazo {formatarData(atividade.dataPrazoDeEntrega)} <span className="mx-2" style={atividade.status == "Atividade pendente" ? { color: 'darkblue' } : { color: 'darkred' }}>{atividade.status}</span></div>
+                        )
+                }
+                <div style={{ height: 120 }}>
+                    <div className="h3 text-dark-gray">{atividade.nome}</div>
+                    <div className="h5 text-dark-gray">{atividade.valor.toString().replace(".", ",")} Pontos</div>
+                    <div style={{ height: 70, overflow: 'hidden' }}>
+                        <p>{encurtarTexto(atividade.descricao, 90)}</p>
+                    </div>
+                </div>
+                <div className="d-flex flex-row-reverse text-dark-gray align-items-center" style={{ fontSize: 12 }}>
+                    Tarefa criada em {formatarData(atividade.dataDeCriacao)}
+                </div>
+            </Link>
+        );
+    }
+
+    function atividadeCardPlaceHolders() {
+        const placeholders = [];
+
+        for (let i = 0; i < (8 * Math.floor(turma.atividades.length / 4)) - turma.atividades.length; i++) {
+            placeholders.push(<div className="card d-flex" style={{ opacity: 0 }}></div>)
+        }
+
+        return (
+            placeholders
+        );
+    }
+
     return (
         <div>
-            <div className="d-flex my-4">
-                <h1 className="m-auto">Visualizar turma</h1>
-            </div>
-            <div className="container-fluid d-flex">
-                <Link ref={linkRef} to="/minhas-turmas" />
-                <div className="w-100">
-                    <div className="d-flex flex-column mt-4">
-                        <p className="h4"><b>Nome:</b> {turma.nome}</p>
-                        <p className="h4 break-word"><b>Descrição:</b> {turma.descricao}</p>
-                        <p className="h4"><b>Ativa:</b> {turma.ativo ? "Sim" : "Não"}</p>
+            <div className="turma-info-container d-flex">
+                <div className="d-flex justify-content-start align-items-center col-4">
+                    <div className="d-flex flex-column">
+                        <div className="h1">
+                            Professor:
+                        </div>
+                        <div className="h2">
+                            {turma.professor.nome} {turma.professor.sobrenome}
+                        </div>
+                        <div>
+                            {turma.professor.email}
+                        </div>
                     </div>
-                    <div className="d-flex flex-row-reverse">
+                </div>
+                <div className="d-flex flex-column p-4 col-8 justify-content-between">
+                    <div>
+                        <p className="h1">{turma.nome}</p>
+                        <p className="break-word">{turma.descricao}</p>
+                    </div>
+                    <div className="d-flex flex-row-reverse align-items-center justify-content-between">
                         {
                             turma.matriculado == null ?
-                            null
-                            :
-                            (
-                                turma.matriculado == false ?
-                                <button className='btn btn-primary my-2' onClick={() => fazerMatricula()}>Fazer matrícula</button>
+                                null
                                 :
-                                <button className='btn btn-danger my-2' onClick={() => cancelarMatricula()}>Cancelar matrícula</button>
+                                (
+                                    turma.matriculado == false ?
+                                        <button className='btn btn-primary' onClick={() => fazerMatricula()}>Fazer matrícula</button>
+                                        :
+                                        <button className='btn btn-danger' onClick={() => cancelarMatricula()}>Cancelar matrícula</button>
+                                )
+                        }
+                        <div>Turma criada em: {formatarData(turma.dataDeCriacao)}</div>
+                    </div>
+                </div>
+
+            </div>
+            <div className="container-fluid d-flex" style={{ marginTop: 300 }}>
+                <Link ref={linkRef} to={"/minhas-turmas"} />
+                <div>
+                    <div className="d-flex flex-wrap justify-content-around m-auto mt-4 w-100" style={{ minWidth: '50vw' }}>
+                        {
+                            turma.atividades.map((atividade) =>
+                                atividadeCard(atividade)
                             )
                         }
-                    </div>
-                    <div className="mt-4">
-                        <p className="h4"><b>Atividades:</b></p>
-                        <table className="table table-sm table-color table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th style={{ width: 120 }}>Criada em</th>
-                                    <th style={{ width: 160 }}>Prazo de entrega</th>
-                                    <th style={{ width: 120 }}>Valor</th>
-                                    <th style={userContext.userData.id == turma.professor.id ? { width: 220 } : { width: 90 }}></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    turma.atividades.map((atividade) =>
-                                        <tr key={"atividade" + atividade.id}>
-                                            <td>{atividade.nome}</td>
-                                            <td>{atividade.descricao}</td>
-                                            <td>{formatarData(atividade.dataDeCriacao)}</td>
-                                            <td>{formatarData(atividade.dataPrazoDeEntrega, true)}</td>
-                                            <td>{atividade.valor != 0 ? atividade.valor.toString().replace(".", ",") : "Não avaliativa"}</td>
-                                            <td>
-                                                <div className="d-flex flex-row">
-                                                    <Link to={"/atividades/" + atividade.id} className="btn btn-primary">Abrir</Link>
-                                                    {
-                                                        userContext.userData.id == turma.professor.id ?
-                                                            <>
-                                                                <Link to={"/atividades/editar/" + atividade.id} className="btn btn-secondary mx-2">Editar</Link>
-                                                                <button className="btn btn-danger" onClick={() => apagarAtividade(atividade.id)}>Apagar</button>
-                                                            </>
-                                                            :
-                                                            null
-                                                    }
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                        </table>
                         {
-                            turma.atividades.length == 0 ? <div className="no-content-warning">Nenhuma atividade cadastrada.</div> : null
+                            turma.atividades.length == 0 ? <div className="no-content-warning">Usuário não está matriculado em nenhuma turma.</div> : atividadeCardPlaceHolders()
                         }
-                        <div className="d-flex flex-row-reverse mb-4">
-                            <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>                            
-                            {
-                                userContext.userData.id == turma.professor.id ?
-
-                                    <Link className='btn btn-primary m-2' to={"/turmas/" + turma.id + "/criar-atividade"}>Nova atividade</Link>
-                                    :
-                                    null
-                            }
-                        </div>
+                    </div>
+                    <div className="d-flex flex-row-reverse" style={{ marginBottom: 120 }}>
+                        <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>
                     </div>
                 </div>
             </div>

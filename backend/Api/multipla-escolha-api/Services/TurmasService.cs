@@ -139,7 +139,7 @@ namespace multipla_escolha_api.Services
 
             if (turma == null) return new ServiceResponse(null, 404);
 
-            var turmaDto = new TurmaDto(turma);
+            var turmaDto = new TurmaDto(turma, _context, userClaims[ClaimTypes.NameIdentifier]);
             
             if (userClaims[ClaimTypes.Role].Equals("Aluno"))
             {

@@ -78,15 +78,16 @@ function Navbar() {
 
     return (
         <div className="navbar">
-            <div className="mx-4">
+            <div style={{marginLeft: '4vw'}}>
                 <Link ref={loginRef} to="/login" />
                 <Link to="/" className="text-decoration-none">
                     <p>Multípla Escolha</p>
                 </Link>
             </div>
+            <div style={{marginRight: '4vw'}}>
             {
                 userContext.userData == null ?
-                    <div className="mx-4 d-flex">
+                <div className="mx-4 d-flex">
                         <Link to="/" className="text-decoration-none">
                             <p>INÍCIO</p>
                         </Link>
@@ -104,6 +105,7 @@ function Navbar() {
                         <FontAwesomeIcon icon={menuDropDownIsOpen ? faCaretUp : faCaretDown} className="text-white m-1"></FontAwesomeIcon>
                     </div>
             }
+            </div>
             <div className="dropdown-user" id="dropdown-menu" style={menuDropDownIsOpen ? {} : { display: 'none' }}>
                 <ul>
                     <li className="my-1"><Link to="/minhas-turmas" className="text-decoration-none" style={{ color: 'white'}} onClick={() => closeDropdownMenu()}><p>Turmas</p></Link></li>
