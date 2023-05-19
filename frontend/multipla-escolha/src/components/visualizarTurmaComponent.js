@@ -172,7 +172,7 @@ function VisualizarTurmaComponent({ idTurma }) {
     function atividadeCardPlaceHolders() {
         const placeholders = [];
 
-        for (let i = 0; i < turma.atividades.length % 3; i++) {
+        for (let i = 0; i < (3 * Math.ceil(turma.atividades.length/3)) - turma.atividades.length; i++) {
             placeholders.push(<div className="card d-flex" style={{ opacity: 0 }}></div>)
         }
 

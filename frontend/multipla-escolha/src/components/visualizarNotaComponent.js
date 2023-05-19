@@ -23,6 +23,8 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
 
     const [infoAluno, setInfoaluno] = useState(null);
 
+    const [displayNotaTotal, setDisplayNotaTotal] = useState("");
+
     useEffect(() => {
         axios.get(baseUrl + 'api/Turmas/' + idTurma,
             {
@@ -37,10 +39,18 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
         )
             .then(function (response) {
                 setTurma(response.data)
-                setAtividades(response.data.atividades)
-                setSearchString("");
+                const responseAtividades = response.data.atividades;
+                setAtividades(responseAtividades);
+                let notaMaximaTotal = 0;
+                let notaTotal = 0;
+                for (let i = 0; i < responseAtividades.length; i++) {
+                    notaMaximaTotal += responseAtividades[i].valor;
+                    notaTotal += responseAtividades[i].maiorNota != null ? responseAtividades[i].maiorNota : 0;
+                }
+                setDisplayNotaTotal(notaTotal.toFixed(2).toString().replace(".", ",") + "/" + notaMaximaTotal.toFixed(2).toString().replace(".", ",") + " (" + (notaMaximaTotal != 0 ? (notaTotal/notaMaximaTotal * 100).toFixed(0) : 100) + "%)");
                 const aluno = response.data.alunosTurma.find(at => at.idAluno = idAluno).aluno;
                 setInfoaluno(aluno);
+                setSearchString("");
             })
             .catch(function (error) {
                 setTurma(false);
@@ -97,7 +107,7 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
                             <th>Nome</th>
                             <th>Prazo</th>
                             <th>Status</th>
-                            <th>Nota máxima</th>
+                            <th style={{width: 200}}>Nota</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -107,12 +117,23 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
                                     <td>{atividade.nome}</td>
                                     <td>{atividade.dataPrazoDeEntrega == null? "Sem prazo" : formatarData(atividade.dataPrazoDeEntrega, true)}</td>
                                     <td style={getStatusColor(atividade.status)}>{atividade.status}</td>
-                                    <td>{atividade.valor.toString().replace(".", ",")}</td>
+                                    {
+                                        atividade.status == "Entregue" && atividade.maiorNota != null?
+                                        <td>{atividade.maiorNota.toFixed(2).toString().replace(".", ",")}<b>/{atividade.valor.toFixed(2).toString().replace(".", ",")}</b> ({atividade.valor > 0 ? (atividade.maiorNota/atividade.valor * 100).toFixed(0).toString().replace(".", ",") : 100}%)</td>
+                                        :
+                                        <td><div className="text-center" style={{width: 120}}>-</div></td>
+                                    }
                                 </tr>
                             )
                         }
                     </tbody>
                 </table>
+                {
+                    atividades.length == turma.atividades.length ?
+                    <div className="d-flex flex-row-reverse h4 mx-4">Total: {displayNotaTotal}</div>
+                    :
+                    null
+                }
                 {
                     atividades.length == 0 ? <div className="no-content-warning">Nenhuma turma cadastrada.</div> : null
                 }

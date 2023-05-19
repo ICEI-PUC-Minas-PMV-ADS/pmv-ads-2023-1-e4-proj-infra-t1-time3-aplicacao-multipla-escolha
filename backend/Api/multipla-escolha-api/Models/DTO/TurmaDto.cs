@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace multipla_escolha_api.Models.DTO
 {
@@ -37,6 +38,7 @@ namespace multipla_escolha_api.Models.DTO
                     if (resultado != null)
                     {
                         atividadeDto.Status = "Entregue";
+                        atividadeDto.MaiorNota = context.Resultados.Where(r => r.Aluno.Id.ToString().Equals(userId) && r.Atividade.Id == atividades[i].Id).Max(r => r.NotaDoAluno);
                     }
                     else
                     {
