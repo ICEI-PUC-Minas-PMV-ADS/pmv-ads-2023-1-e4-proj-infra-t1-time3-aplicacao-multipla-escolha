@@ -8,7 +8,8 @@ import Loading from "./loading";
 import { ALFABETO } from "../util/Constants";
 import { formatarData } from "../util/Functions";
 import { UserContext } from "../context/userContext";
-import { faL } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGraduationCap, faCalendarMinus, faFilePen, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function VisualizarAtividadeComponent({ idAtividade }) {
 
@@ -70,9 +71,6 @@ function VisualizarAtividadeComponent({ idAtividade }) {
         const separateFullDate = currentDate.split(", ");
         const separateDate = separateFullDate[0].split("/");
         const formatedCurrentDate = separateDate[2] + "-" + separateDate[1] + "-" + separateDate[0] + "T" + separateFullDate[1];
-
-        console.log(prazo)
-        console.log(formatedCurrentDate)
 
         if (prazo < formatedCurrentDate) {
             return true;

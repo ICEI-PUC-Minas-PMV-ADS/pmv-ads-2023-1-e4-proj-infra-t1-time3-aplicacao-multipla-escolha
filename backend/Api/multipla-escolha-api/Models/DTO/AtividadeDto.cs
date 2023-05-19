@@ -20,6 +20,7 @@ namespace multipla_escolha_api.Models.DTO
         public AtividadeMongoDb AtividadeMongoDb { get; set; }
         public bool? PodeSerRealizada { get; set; }
         public String Status { get; set; }
+        public float? MaiorNota { get; set; }
         public List<Resultado> TentativasAnteriores { get; set; }
 
         public AtividadeDto()

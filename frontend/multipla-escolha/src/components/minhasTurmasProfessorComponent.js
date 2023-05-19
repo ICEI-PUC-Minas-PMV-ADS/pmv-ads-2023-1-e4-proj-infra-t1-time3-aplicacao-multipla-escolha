@@ -29,7 +29,7 @@ function MinhasTurmasProfessorComponent() {
 
     const [currentPage, setCurrentPage] = useState(0);
 
-    const [pageSize, setPageSize] = useState(8);
+    const [pageSize, setPageSize] = useState(6);
 
     const [lastPage, setLastPage] = useState(1);
 
@@ -124,7 +124,7 @@ function MinhasTurmasProfessorComponent() {
     function turmaCardPlaceHolders() {
         const placeholders = [];
 
-        for (let i = 0; i < (pageSize - turmas.length); i++) {
+        for (let i = 0; i < pageSize - turmas.length; i++) {
             placeholders.push(<div className="card d-flex" style={{opacity: 0}}></div>)
         }
 

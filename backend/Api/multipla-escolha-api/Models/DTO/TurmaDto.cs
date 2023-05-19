@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace multipla_escolha_api.Models.DTO
 {
@@ -29,21 +30,27 @@ namespace multipla_escolha_api.Models.DTO
             for (int i = 0; i < atividades.Count; i++)
             {
                 var atividadeDto = new AtividadeDto(atividades[i]);
-                var resultado = context.Resultados.FirstOrDefault(r => r.Aluno.Id.ToString().Equals(userId) && r.Atividade.Id == atividades[i].Id);
-                if (resultado != null)
+
+                if (userId != null)
                 {
-                    atividadeDto.Status = "Entregue";
-                }
-                else
-                {
-                    var date = DateTime.Now;
-                    if (atividadeDto.DataPrazoDeEntrega > DateTime.Now)
+                    var resultado = context.Resultados.FirstOrDefault(r => r.Aluno.Id.ToString().Equals(userId) && r.Atividade.Id == atividades[i].Id);
+
+                    if (resultado != null)
                     {
-                        atividadeDto.Status = "Atividade pendente";
+                        atividadeDto.Status = "Entregue";
+                        atividadeDto.MaiorNota = context.Resultados.Where(r => r.Aluno.Id.ToString().Equals(userId) && r.Atividade.Id == atividades[i].Id).Max(r => r.NotaDoAluno);
                     }
                     else
                     {
-                        atividadeDto.Status = "Atividade atrasada";
+                        var date = DateTime.Now;
+                        if (atividadeDto.DataPrazoDeEntrega == null || atividadeDto.DataPrazoDeEntrega > DateTime.Now)
+                        {
+                            atividadeDto.Status = "Atividade pendente";
+                        }
+                        else
+                        {
+                            atividadeDto.Status = "Atividade atrasada";
+                        }
                     }
                 }
                 atividadesDto.Add(atividadeDto);
