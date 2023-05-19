@@ -61,10 +61,10 @@ namespace multipla_escolha_api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(int id, String idAluno)
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-            var response = await _turmasService.GetTurmaById(id, userClaims);
+            var response = await _turmasService.GetTurmaById(id, idAluno, userClaims);
             return StatusCode(response.StatusCode, response.Content);
         }
          

@@ -9,7 +9,7 @@ import Loading from "./loading";
 
 import { formatarData, switchBoolean, encurtarTexto } from "../util/Functions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faPen, faTrash, faFilePen, faChartLine } from '@fortawesome/free-solid-svg-icons'
 
 function VisualizarTurmaComponent({ idTurma }) {
 
@@ -146,13 +146,13 @@ function VisualizarTurmaComponent({ idTurma }) {
             <Link onMouseEnter={() => setHoverCardId(atividade.id)} onMouseLeave={() => setHoverCardId(null)} to={"/atividades/" + atividade.id} key={"atividade" + atividade.id} className="card d-flex justify-content-between text-decoration-none text-dark-gray" style={hoverCardId == atividade.id ? { backgroundColor: '#e9e9fe' } : {}}>
                 {
                     atividade.status == "Entregue" ?
-                        <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14, fontWeight: 600, color: 'green' }}>Entregue</div>
+                        <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14, fontWeight: 700, color: 'green' }}>Entregue</div>
                         :
                         (
                             atividade.dataPrazoDeEntrega == null ?
                                 <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Sem prazo</div>
                                 :
-                                <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Prazo {formatarData(atividade.dataPrazoDeEntrega)} <span className="mx-2" style={atividade.status == "Atividade pendente" ? { color: 'darkblue' } : { color: 'darkred' }}>{atividade.status}</span></div>
+                                <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 14 }}>Prazo {formatarData(atividade.dataPrazoDeEntrega)} <span className="mx-2" style={atividade.status == "Atividade pendente" ? { color: 'darkblue', fontWeight: 700 } : { color: 'darkred', fontWeight: 700 }}>{atividade.status}</span></div>
                         )
                 }
                 <div style={{ height: 120 }}>
@@ -172,7 +172,7 @@ function VisualizarTurmaComponent({ idTurma }) {
     function atividadeCardPlaceHolders() {
         const placeholders = [];
 
-        for (let i = 0; i < (8 * Math.floor(turma.atividades.length / 4)) - turma.atividades.length; i++) {
+        for (let i = 0; i < turma.atividades.length % 3; i++) {
             placeholders.push(<div className="card d-flex" style={{ opacity: 0 }}></div>)
         }
 
@@ -219,21 +219,35 @@ function VisualizarTurmaComponent({ idTurma }) {
                 </div>
 
             </div>
-            <div className="container-fluid d-flex" style={{ marginTop: 300 }}>
-                <Link ref={linkRef} to={"/minhas-turmas"} />
-                <div>
-                    <div className="d-flex flex-wrap justify-content-around m-auto mt-4 w-100" style={{ minWidth: '50vw' }}>
-                        {
-                            turma.atividades.map((atividade) =>
-                                atividadeCard(atividade)
-                            )
-                        }
-                        {
-                            turma.atividades.length == 0 ? <div className="no-content-warning">Usuário não está matriculado em nenhuma turma.</div> : atividadeCardPlaceHolders()
-                        }
-                    </div>
-                    <div className="d-flex flex-row-reverse" style={{ marginBottom: 120 }}>
-                        <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>
+            <div style={{ marginTop: 320 }}>
+                {
+                    turma.professor.id == userContext.userData.id ?
+                        <div className="d-flex flex-row-reverse">
+                            <Link className="text-decoration-none btn-white-text" to={"/turmas/" + turma.id + "/criar-atividade"}><div className="btn-white" style={{ width: 180, marginLeft: 16 }}><FontAwesomeIcon icon={faFilePen} style={{ position: "absolute" }}></FontAwesomeIcon><div className="d-flex justify-content-center w-100 no-text-break" style={{ marginLeft: 12 }}>CRIAR ATIVIDADE</div></div></Link>
+                            <Link className="text-decoration-none btn-white-text" to={"/turmas/" + turma.id + "/notas-alunos"}><div className="btn-white"><FontAwesomeIcon icon={faChartLine} style={{ position: "absolute" }}></FontAwesomeIcon><div className="d-flex justify-content-center w-100 no-text-break" style={{ marginLeft: 12 }}>NOTAS</div></div></Link>
+                        </div>
+                        :
+                        <div className="d-flex flex-row-reverse">
+
+                            <Link className="text-decoration-none btn-white-text" to={"/turmas/" + turma.id + "/notas-alunos/" + userContext.userData.id}><div className="btn-white" style={{ width: 180 }}><FontAwesomeIcon icon={faChartLine} style={{ position: "absolute" }}></FontAwesomeIcon><div className="d-flex justify-content-center w-100 no-text-break" style={{ marginLeft: 12 }}>NOTAS</div></div></Link>
+                        </div>
+                }
+                <div className="container-fluid d-flex">
+                    <Link ref={linkRef} to={"/minhas-turmas"} />
+                    <div>
+                        <div className="d-flex flex-wrap justify-content-around m-auto mt-4 w-100" style={{ minWidth: '50vw' }}>
+                            {
+                                turma.atividades.map((atividade) =>
+                                    atividadeCard(atividade)
+                                )
+                            }
+                            {
+                                turma.atividades.length == 0 ? <div className="no-content-warning">Nenhuma atividade cadastrada.</div> : atividadeCardPlaceHolders()
+                            }
+                        </div>
+                        <div className="d-flex flex-row-reverse" style={{ marginBottom: 120 }}>
+                            <Link className='btn btn-secondary my-2' to={"/minhas-turmas"}>Voltar</Link>
+                        </div>
                     </div>
                 </div>
             </div>

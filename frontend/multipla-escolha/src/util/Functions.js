@@ -21,3 +21,8 @@ export function encurtarTexto(descricao, maxLength) {
     }
     return descricao;
 }
+
+export function normalizeString(string) {
+    string = string.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return string;
+}
