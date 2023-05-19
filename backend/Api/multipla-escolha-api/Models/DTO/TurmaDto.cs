@@ -30,7 +30,7 @@ namespace multipla_escolha_api.Models.DTO
             for (int i = 0; i < atividades.Count; i++)
             {
                 var atividadeDto = new AtividadeDto(atividades[i]);
-                
+
                 if (userId != null)
                 {
                     var resultado = context.Resultados.FirstOrDefault(r => r.Aluno.Id.ToString().Equals(userId) && r.Atividade.Id == atividades[i].Id);
@@ -43,7 +43,7 @@ namespace multipla_escolha_api.Models.DTO
                     else
                     {
                         var date = DateTime.Now;
-                        if (atividadeDto.DataPrazoDeEntrega > DateTime.Now)
+                        if (atividadeDto.DataPrazoDeEntrega == null || atividadeDto.DataPrazoDeEntrega > DateTime.Now)
                         {
                             atividadeDto.Status = "Atividade pendente";
                         }

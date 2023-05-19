@@ -44,8 +44,10 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
                 let notaMaximaTotal = 0;
                 let notaTotal = 0;
                 for (let i = 0; i < responseAtividades.length; i++) {
-                    notaMaximaTotal += responseAtividades[i].valor;
-                    notaTotal += responseAtividades[i].maiorNota != null ? responseAtividades[i].maiorNota : 0;
+                    if (responseAtividades[i].status != "Atividade pendente") {
+                        notaMaximaTotal += responseAtividades[i].valor;
+                        notaTotal += responseAtividades[i].maiorNota != null ? responseAtividades[i].maiorNota : 0;
+                    }
                 }
                 setDisplayNotaTotal(notaTotal.toFixed(2).toString().replace(".", ",") + "/" + notaMaximaTotal.toFixed(2).toString().replace(".", ",") + " (" + (notaMaximaTotal != 0 ? (notaTotal/notaMaximaTotal * 100).toFixed(0) : 100) + "%)");
                 const aluno = response.data.alunosTurma.find(at => at.idAluno = idAluno).aluno;
@@ -118,10 +120,10 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
                                     <td>{atividade.dataPrazoDeEntrega == null? "Sem prazo" : formatarData(atividade.dataPrazoDeEntrega, true)}</td>
                                     <td style={getStatusColor(atividade.status)}>{atividade.status}</td>
                                     {
-                                        atividade.status == "Entregue" && atividade.maiorNota != null?
-                                        <td>{atividade.maiorNota.toFixed(2).toString().replace(".", ",")}<b>/{atividade.valor.toFixed(2).toString().replace(".", ",")}</b> ({atividade.valor > 0 ? (atividade.maiorNota/atividade.valor * 100).toFixed(0).toString().replace(".", ",") : 100}%)</td>
-                                        :
+                                        atividade.status == "Atividade pendente" ?
                                         <td><div className="text-center" style={{width: 120}}>-</div></td>
+                                        :
+                                        <td>{atividade.maiorNota != null? atividade.maiorNota.toFixed(2).toString().replace(".", ",") : "0,00"}<b>/{atividade.valor.toFixed(2).toString().replace(".", ",")}</b> ({atividade.valor > 0 ? (atividade.maiorNota/atividade.valor * 100).toFixed(0).toString().replace(".", ",") : 100}%)</td>
                                     }
                                 </tr>
                             )
@@ -135,7 +137,7 @@ function VisualizarNotaComponent({ idTurma, idAluno }) {
                     null
                 }
                 {
-                    atividades.length == 0 ? <div className="no-content-warning">Nenhuma turma cadastrada.</div> : null
+                    atividades.length == 0 ? <div className="no-content-warning">Nenhuma atividade encontrada.</div> : null
                 }
             </div>
             <div className="d-flex flex-row-reverse my-4">
