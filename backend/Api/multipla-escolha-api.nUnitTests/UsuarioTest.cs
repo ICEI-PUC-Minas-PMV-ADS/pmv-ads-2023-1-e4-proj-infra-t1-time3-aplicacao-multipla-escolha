@@ -12,17 +12,15 @@ namespace multipla_escolha_api.nUnitTests
                 Email = "emailNovo@email.com"
             };
 
-            var usuarioRecuperadoDoBanco = new Usuario
-            {
-                NomeDeUsuario = "usuarioAntigo",
-                Email = "emailAntigo@email.com"
-            };
+            Usuario usuarioRecuperadoDoBanco = null;
 
-            string? esperado = null;
+            string? mensagemDeErroEsperada = null;
+
             // Ação
-            string retornado = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(novoUsuarioDto, usuarioRecuperadoDoBanco);
+            string mensagemDeErroRetornada = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(novoUsuarioDto, usuarioRecuperadoDoBanco);
+            
             // Asserção
-            Assert.That(retornado, Is.EqualTo(esperado));
+            Assert.That(mensagemDeErroRetornada, Is.EqualTo(mensagemDeErroEsperada));
         }
         [Test]
         public void Usuario_VerificarSeJaExisteUmUsuarioCadastradoComEmailOuNomeDeUsuarioIgual_EsperaseEmailJaCadastrado()
@@ -40,11 +38,13 @@ namespace multipla_escolha_api.nUnitTests
                 Email = "email@email.com"
             };
 
-            string? esperado = "Email já cadastrado!";
+            string? mensagemDeErroEsperada = "Email já cadastrado!";
+            
             // Ação
-            string retornado = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(novoUsuarioDto, usuarioRecuperadoDoBanco);
+            string mensagemDeErroRetornada = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(novoUsuarioDto, usuarioRecuperadoDoBanco);
+            
             // Asserção
-            Assert.That(retornado, Is.EqualTo(esperado));
+            Assert.That(mensagemDeErroRetornada, Is.EqualTo(mensagemDeErroEsperada));
         }
         [Test]
         public void Usuario_VerificarSeJaExisteUmUsuarioCadastradoComEmailOuNomeDeUsuarioIgual_EsperaseNomeDeUsuarioJaCadastrado()
@@ -62,11 +62,13 @@ namespace multipla_escolha_api.nUnitTests
                 Email = "emailAntigo@email.com"
             };
 
-            string? esperado = "Nome de usuário já cadastrado!";
+            string? mensagemDeErroEsperada = "Nome de usuário já cadastrado!";
+            
             // Ação
-            string retornado = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(novoUsuarioDto, usuarioRecuperadoDoBanco);
+            string mensagemDeErroRetornada = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(novoUsuarioDto, usuarioRecuperadoDoBanco);
+            
             // Asserção
-            Assert.That(retornado, Is.EqualTo(esperado));
+            Assert.That(mensagemDeErroRetornada, Is.EqualTo(mensagemDeErroEsperada));
         }
     }
 }
