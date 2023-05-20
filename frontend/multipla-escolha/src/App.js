@@ -16,6 +16,7 @@ import EditarAtividade from './pages/editarAtividade';
 import FazerAtividade from './pages/fazerAtividade';
 import VisualizarResultado from './pages/visualizarResultado';
 import BuscarTurmas from './pages/buscarTurmas';
+import VisualizarNotas from './pages/visualizarNotas';
 
 import { Route, Routes, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 
@@ -42,6 +43,8 @@ function App() {
             <Route path="/turmas" element={<BuscarTurmas />}></Route>
             <Route path="/turmas/:id" element={<VisualizarTurma />}></Route>
             <Route path="/turmas/:id/criar-atividade" element={<CriarAtividade />}></Route>
+            <Route path="/turmas/:id/notas-alunos" element={<VisualizarNotas />}></Route>
+            <Route path="/turmas/:id/notas-alunos/:idAluno" element={<VisualizarNotas />}></Route>
             <Route path="/atividades/:id" element={<VisualizarAtividade />}></Route>
             <Route path="/fazer-atividade/:id" element={<FazerAtividade />}></Route>
             <Route path="/atividades/editar/:id" element={<EditarAtividade />}></Route>

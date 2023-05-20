@@ -8,6 +8,8 @@ import Loading from "./loading";
 import { ALFABETO } from "../util/Constants";
 import { formatarData } from "../util/Functions";
 import { UserContext } from "../context/userContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGraduationCap, faCalendarMinus, faFilePen, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function VisualizarAtividadeComponent({ idAtividade }) {
 
@@ -64,6 +66,18 @@ function VisualizarAtividadeComponent({ idAtividade }) {
         )
     }
 
+    function checarPrazoDeEntregaExpirado(prazo) {
+        const currentDate = new Date().toLocaleString();
+        const separateFullDate = currentDate.split(", ");
+        const separateDate = separateFullDate[0].split("/");
+        const formatedCurrentDate = separateDate[2] + "-" + separateDate[1] + "-" + separateDate[0] + "T" + separateFullDate[1];
+
+        if (prazo < formatedCurrentDate) {
+            return true;
+        }
+        return false;
+    }
+
     return (
         <div>
             <div className="d-flex my-4">
@@ -75,7 +89,12 @@ function VisualizarAtividadeComponent({ idAtividade }) {
                     <div className="d-flex flex-column m-4 w-100">
                         <div><b>Nome:</b> {atividade.nome}</div>
                         <div><b>Descrição:</b> {atividade.descricao}</div>
+                        <div className="d-flex">
                         <div><b>Prazo de entrega:</b> {atividade.dataPrazoDeEntrega == null ? "Sem prazo" : formatarData(atividade.dataPrazoDeEntrega, true)}</div>
+                        {
+                            (atividade.dataPrazoDeEntrega != null && checarPrazoDeEntregaExpirado(atividade.dataPrazoDeEntrega)) ? <div style={{color: 'red', marginLeft: 8}}>- Prazo esgotado!</div> : null
+                        }
+                        </div>
                         <div><b>Turma: </b> <Link to={"/turmas/" + atividade.turma.id}>{atividade.turma.nome}</Link></div>
                         {
                             atividade.podeSerRealizada ?
@@ -91,7 +110,7 @@ function VisualizarAtividadeComponent({ idAtividade }) {
                         <div className="d-flex"><b>Tentativas permitidas: </b>
                         <div className="mx-1">{atividade.tentativasPermitidas == null ? "Sem limite" : atividade.tentativasPermitidas}</div>
                             {
-                                atividade.tentativasAnteriores.length >= atividade.tentativasPermitidas ? <div style={{color: 'red'}}>- Tentativas esgotadas!</div> : null
+                                (atividade.tentativasPermitidas != null && atividade.tentativasAnteriores.length >= atividade.tentativasPermitidas) ? <div style={{color: 'red'}}>- Tentativas esgotadas!</div> : null
                             }
                         </div>
 

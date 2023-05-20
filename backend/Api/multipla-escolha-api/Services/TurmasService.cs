@@ -133,16 +133,18 @@ namespace multipla_escolha_api.Services
             return new ServiceResponse(null, 204);
         }
 
-        public async Task<ServiceResponse> GetTurmaById(int id, Dictionary<String, String> userClaims)
+        public async Task<ServiceResponse> GetTurmaById(int id, String alunoId, Dictionary<String, String> userClaims)
         {
-            var turma = await _context.Turmas.Include(t => t.Professor).Include(t => t.Atividades).Include(t => t.AlunosTurma).FirstOrDefaultAsync(t => t.Id == id);
+            var turma = await _context.Turmas.Include(t => t.Professor).Include(t => t.Atividades).Include(t => t.AlunosTurma).ThenInclude(at => at.Aluno).FirstOrDefaultAsync(t => t.Id == id);
 
             if (turma == null) return new ServiceResponse(null, 404);
 
-            var turmaDto = new TurmaDto(turma);
+            TurmaDto turmaDto = null;
             
             if (userClaims[ClaimTypes.Role].Equals("Aluno"))
             {
+                turmaDto = new TurmaDto(turma, _context, userClaims[ClaimTypes.NameIdentifier]);
+
                 if (turma.AlunosTurma.Any(at => at.AlunoId == Int32.Parse(userClaims[ClaimTypes.NameIdentifier])))
                 {
                     turmaDto.Matriculado = true;
@@ -152,6 +154,10 @@ namespace multipla_escolha_api.Services
                     turmaDto.Matriculado = false;
                 }
             }
+            else
+            {
+                turmaDto = new TurmaDto(turma, _context, alunoId);
+            }        
 
             return new ServiceResponse(turmaDto, 200);
         }

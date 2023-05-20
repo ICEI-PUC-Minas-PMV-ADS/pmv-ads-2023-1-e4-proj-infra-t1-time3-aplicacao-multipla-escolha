@@ -107,7 +107,7 @@ function MinhasTurmasAlunoComponent() {
                 <div style={{ height: 110 }}>
                     <div className="h3 text-dark-gray">{turma.nome}</div>
                     <div style={{ height: 70, overflow: 'hidden' }}>
-                        <p>{encurtarTexto(turma.descricao, 110)}</p>
+                        <p>{encurtarTexto(turma.descricao, 90)}</p>
                     </div>
                 </div>
                 <div className="d-flex flex-row-reverse text-dark-gray" style={{ fontSize: 12 }}>Turma criada em {formatarData(turma.dataDeCriacao)}</div>
@@ -118,7 +118,7 @@ function MinhasTurmasAlunoComponent() {
     function turmaCardPlaceHolders() {
         const placeholders = [];
 
-        for (let i = 0; i < (pageSize - turmas.length); i++) {
+        for (let i = 0; i < pageSize - turmas.length; i++) {
             placeholders.push(<div className="card d-flex" style={{opacity: 0}}></div>)
         }
 
@@ -145,7 +145,7 @@ function MinhasTurmasAlunoComponent() {
             <div className="container-fluid d-flex">
                 <Link ref={linkRef} to={"/turmas" + (query.length > 0 ? ("?search=" + query) : "")} />
                 <div>
-                    <div className="d-flex flex-wrap justify-content-around m-auto mt-4 w-100" style={{minWidth: '60vw'}}>
+                    <div className="d-flex flex-wrap justify-content-around m-auto mt-4 w-100" style={{minWidth: '50vw'}}>
                         {
                             turmas.map((turma) =>
                                 turmaCard(turma)
@@ -156,9 +156,6 @@ function MinhasTurmasAlunoComponent() {
                         }
                     </div>
                     <PaginationTabsComponent currentPage={currentPage} setCurrentPage={setCurrentPage} lastPage={lastPage} />
-                    <div className="d-flex flex-row-reverse" style={{marginBottom: 120}}>
-                        <Link className='btn btn-secondary my-2' to={"/"}>Voltar</Link>
-                    </div>
                 </div>
             </div>
         </div>

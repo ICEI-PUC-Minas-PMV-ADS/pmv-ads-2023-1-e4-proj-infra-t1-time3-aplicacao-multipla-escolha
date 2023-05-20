@@ -35,7 +35,14 @@ namespace multipla_escolha_api.Services;
                 return new ServiceResponse(null, 403);
             }
 
-            var atividade = await _context.Atividades.FirstOrDefaultAsync(a => a.Id == respostasDto.idAtividade);
+            var atividade = await _context.Atividades.Include(a => a.Turma).FirstOrDefaultAsync(a => a.Id == respostasDto.idAtividade);
+        
+            var alunosTurma = await _context.TurmasAlunos.FirstOrDefaultAsync(ta => ta.TurmaId == atividade.Turma.Id && ta.AlunoId.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
+
+            if (alunosTurma == null)
+            {
+                return new ServiceResponse(null, 403);
+            }
 
             if (atividade == null)
             {
