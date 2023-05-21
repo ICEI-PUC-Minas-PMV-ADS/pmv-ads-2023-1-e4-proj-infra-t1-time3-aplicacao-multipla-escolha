@@ -254,17 +254,20 @@ Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atual
 ## Cadastro e edição de atividades em turma por professor (RF-03)
 A funcionalidade de cadastro de atividades permite que um usuário do tipo "Professor" cadastre uma nova atividade em uma das suas turmas, deixando-a disponível para realização pelos alunos. Uma vez cadastrada, a atividade aparecerá na página de "detalhes" da turma em questão, que por sua vez é acessada ao clicar em "Abrir" em alguma turma presente na tela de "minhas turmas".
 
+### Tela de detalhes da turma (opção de criar atividade)
+![cadastrarAtividadeA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9ebd30e2-e261-4699-9772-c86cecb53a30)
+
 ### Tela de cadastro de atividade
-![criarAtividade1](https://user-images.githubusercontent.com/74699119/235369038-34870b55-2397-46e6-b77f-e8f9d81e6d22.png)
+![cadastrarAtividadeB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/f4d6f1b9-ba9e-4640-a79e-c5d26c1057d4)
 
 ### Modal de cadastro de questão
-![criarAtividade2](https://user-images.githubusercontent.com/74699119/235369040-81f05a18-47e4-4845-a404-fa480bb7a094.png)
+![cadastrarAtividadeC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/f0b4a1c4-bfef-4157-a178-d610813311ca)
 
 ### Tela de cadastro de atividade (Preenchida)
-![criarAtividade3](https://user-images.githubusercontent.com/74699119/235369045-0f08f332-e86a-4c3f-a5f9-976eaf42553a.png)
+![cadastrarAtividadeD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/80feafcc-7046-4592-a369-f3215f525b13)
 
-### Tela de detalhes da turma
-![criarAtividade4](https://user-images.githubusercontent.com/74699119/235369049-392dc035-d211-496d-9f35-aabeac5fc074.png)
+### Tela de detalhes da turma (Com atividade nova)
+![cadastrarAtividadeE](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/1fe36957-5c2b-4053-82df-dcdbedd006c4)
 
 ### Requisitos atendidos
 - RF-03
@@ -361,13 +364,14 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 
 ### Instruções de acesso
 1. Realizar login com uma conta do tipo "professor";
-2. Clicar na opção "Minhas turmas" presente na homepage;
-3. Selecionar uma turma e clicar em "Abrir";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Selecionar uma turma e clicar em "Abrir";
 5. Visualizar tela de detalhes da turma;
-6. Clicar em "Nova atividade";
+6. Clicar em "Criar atividade";
 7. Preencher as informaçõs solicitadas, adicionar as questões uma a uma clicando em "Adicionar questão" e por fim clicar em "Cadastrar atividade";
 8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "detalhes da turma";
-9. Caso deseje editar ou apagar uma das atividades criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
+9. Caso deseje editar ou apagar uma das atividades criadas, clicar nos ícones de "Editar" (Lápis cinza) ou "Apagar" (Lixeira vermelha). A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
 
 ## Busca de turmas (RF-04)
 A funcionalidade de busca de turmas permite que o usuário busque uma turma entre todas as turmas cadastradas que estejam com o status "Ativa", o usuário poderá filtrar a busca pelo nome da turma ou pelo nome/email do professor, facilitando a localização da turma que deseja encontrar.
