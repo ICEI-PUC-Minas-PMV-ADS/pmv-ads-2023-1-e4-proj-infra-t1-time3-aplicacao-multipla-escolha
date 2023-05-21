@@ -12,7 +12,7 @@ Ambiente|Plataforma|Link de Acesso
 |Repositório de código fonte|GitHub| [GitHub](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha)|
 |Documentos do Projeto|GitHub (docs/)|[Projeto ](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/docs)|
 |Criação de Diagramas| Figma, Lucidchart | [figma.com](https://www.figma.com/file/aCHVALWOuj8kjGaLHbFMSv/Diagrama-de-Fluxo), [lucid.app](), [lucid.app]() |
-|Projeto de Interface e Wireframes| Figma | [Figma]([https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site?type=design&node-id=0-1&t=E82F33cyXGhCROxf-0](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site))|
+|Projeto de Interface e Wireframes| Figma | [Figma](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site?type=design&node-id=0-1&t=E82F33cyXGhCROxf-0)|
 |Gerenciamento do Projeto| Kanban do GitHub |[Kanban do GitHub](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/259/views/1)|
 
 
