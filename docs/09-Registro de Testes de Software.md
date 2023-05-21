@@ -94,6 +94,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 
+
 ### CT-002 CT-002 Testar o método CheckIfUserCanTakeTest do Model "Atividade.cs"
 
 **Objetivo:** Testar o método CheckIfUserCanTakeTest, utilizado para verificar se o usuário já extrapolou o número de tentativas ou se perdeu o prazo para realização de uma determinada atividade.
@@ -172,6 +173,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Critérios de êxito:** Todos os testes de unidade devem passar ao serem executados.
 
 **Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
 
 
 ### CT-003 Testar o método Corrigir do Model "AtividadeMongoDb.cs"
@@ -520,3 +522,5 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Critérios de êxito:** Todos os testes de unidade devem passar ao serem executados.
 
 **Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+
