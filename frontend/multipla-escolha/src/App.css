@@ -238,7 +238,7 @@ input[type='radio'] {
 }
 
 .turma-info-container {
-  width: 100vw;
+  width: 100%;
   margin-left: 0;
   position: absolute;
   left: 0;

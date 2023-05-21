@@ -54,7 +54,20 @@ namespace multipla_escolha_api.Models
         }
         public static int GetNumeroDeTentativasAluno(int idAtividade, string idAluno, AppDbContext context)
         {
-            return (context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == idAtividade && r.Aluno.Id.ToString().Equals(idAluno)).Count() + 1);
+            return (context.Resultados.Include(r => r.Atividade).Include(r => r.Aluno).Where(r => r.Atividade.Id == idAtividade && r.Aluno.Id.ToString().Equals(idAluno)).Count());
+        }
+        public static string CheckIfUserCanTakeTest(Atividade atividade, int numeroDeTentativas)
+        {
+            if (atividade.DataPrazoDeEntrega != null && atividade.DataPrazoDeEntrega <= DateTime.UtcNow)
+            {
+                return "Atividade fora do prazo!";
+            }
+
+            if (atividade.TentativasPermitidas != null && numeroDeTentativas >= atividade.TentativasPermitidas)
+            {
+                return "Número de tentativas extrapolado!";
+            }
+            return null;
         }
     }
 }

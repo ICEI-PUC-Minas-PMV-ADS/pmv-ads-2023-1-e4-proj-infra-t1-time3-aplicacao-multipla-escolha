@@ -51,40 +51,24 @@ namespace multipla_escolha_api.Services;
 
             int numeroDeTentativas = Atividade.GetNumeroDeTentativasAluno(respostasDto.idAtividade, userClaims[ClaimTypes.NameIdentifier], _context);
 
-            if (atividade.DataPrazoDeEntrega != null && atividade.DataPrazoDeEntrega <= DateTime.UtcNow)
-            {
-                return new ServiceResponse("Atividade fora do prazo!", 400);
-            }
+            string errorMessage = Atividade.CheckIfUserCanTakeTest(atividade, numeroDeTentativas);
 
-            if (atividade.TentativasPermitidas != null && numeroDeTentativas > atividade.TentativasPermitidas)
+            if (errorMessage != null)
             {
-                return new ServiceResponse("Número de tentativas extrapolado!", 400);
+                return new ServiceResponse(errorMessage, 400);
             }
 
             Usuario aluno = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id.ToString().Equals(userClaims[ClaimTypes.NameIdentifier]));
-
 
             AtividadeMongoDb atividadeMongoDb = await _atividadeMongoDbService.GetAsync(atividade.UuidNoMongoDb);
 
             if (atividadeMongoDb == null) return new ServiceResponse(null, 404);
 
-            float notaAluno = 0F;
+            var correcaoAtividadeMongoDb = AtividadeMongoDb.Corrigir(atividadeMongoDb, respostasDto);
 
-            for (int i = 0; i < atividadeMongoDb.Questoes.Length; i++)
-            {
-                if (atividadeMongoDb.Questoes[i].Resposta == respostasDto.Respostas[i])
-                {
-                    notaAluno += atividadeMongoDb.Questoes[i].Valor;
-                    atividadeMongoDb.Questoes[i].AlunoAcertouResposta = true;
-                }
-                else
-                {
-                    atividadeMongoDb.Questoes[i].AlunoAcertouResposta = false;
-                }
-                atividadeMongoDb.Questoes[i].Resposta = respostasDto.Respostas[i];
-            }
+            atividadeMongoDb = correcaoAtividadeMongoDb.Item1;
 
-            atividadeMongoDb.Id = System.Guid.NewGuid().ToString();
+            float notaAluno = correcaoAtividadeMongoDb.Item2;
 
             await _atividadeMongoDbService.CreateAsync(atividadeMongoDb);
 

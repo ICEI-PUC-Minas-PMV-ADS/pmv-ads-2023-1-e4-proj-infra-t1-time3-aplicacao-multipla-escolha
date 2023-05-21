@@ -159,11 +159,8 @@ namespace multipla_escolha_api.Services
                 }
             }
 
-            if (model.DataPrazoDeEntrega != null && model.DataPrazoDeEntrega <= DateTime.UtcNow)
-            {
-                podeSerRealizada = false;
-            }
-            else if (model.TentativasPermitidas != null && dto.TentativasAnteriores.Count >= model.TentativasPermitidas)
+            string mensagemDeErro = Atividade.CheckIfUserCanTakeTest(model, dto.TentativasAnteriores.Count);
+            if (mensagemDeErro != null)
             {
                 podeSerRealizada = false;
             }
