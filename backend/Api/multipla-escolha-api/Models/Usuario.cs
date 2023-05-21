@@ -67,6 +67,23 @@ namespace multipla_escolha_api.Models
             }
             return userClaims;
         }
+
+        public static string checkIfUserNameOrEmailIsAlreadyUsed(UsuarioDto dto, Usuario sameUsernameOrEmailUser)
+        {
+            if (sameUsernameOrEmailUser != null)
+            {
+                if (sameUsernameOrEmailUser.NomeDeUsuario.Equals(dto.NomeDeUsuario))
+                {
+                    return "Nome de usuário já cadastrado!";
+                }
+
+                if (sameUsernameOrEmailUser.Email.Equals(dto.Email))
+                {
+                    return "Email já cadastrado!";
+                }
+            }
+            return null;
+        }
     }
 
     public enum Perfil

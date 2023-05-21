@@ -1,10 +1,8 @@
 # Template Padrão da Aplicação
 
-![Estrutura Padrão](img/wireframes-site/Estrutura.png)
+A estrutura da interface seguirá um padrão comum entre todas as telas, consistindo em um cabeçalho presente no topo onde o usuário poderá acessar alguns links de navegação (como Login e o menu opções do usuário após ter feito login) e uma seção onde o conteúdo da página é exibido:
 
-Nesta estrutura, existem 2 grandes blocos, descritos a seguir. São eles:  
-* **Cabeçalho** - local onde são dispostos elementos fixos de identidade (logo), acesso à conta pessoal, sobre, turmas, perfil e sair;
-* **Conteúdo** - apresenta o conteúdo da tela em questão.
+![Estrutura Padrão](img/wireframes-site/Estrutura.png)
 
 ### Páginas com o usuário desconectado
 
@@ -22,30 +20,31 @@ As telas onde o usuário estiver conectado apresentará um cabeçalho com botão
 
 ![Imagem do botão dropdown](img/wireframes-site/Menu%20Usu%C3%A1rio.png)
 
-## Cores e Fontes
+## Cores e Fontes  
 
-### Cores
+### Cores  
 
 #9391F8 - Principal (Lilás)  
 #E4E7E8 - Tela de Fundo  
 #555555 - Texto  
 
-#AC5353 - Vermelho  
-#3AA044 - Verde  
-#3A7CA0 - Azul  
-#FFFFFF - Branco  
-#000000 - Preto  
+#AC5353 - Notificação Vermelha  
+#3AA044 - Notificação Verde  
+#3A7CA0 - Notificação Azul  
+#FFF6DF - Notificação Amarela  
 
-### Fontes
+### Fontes  
 
-#### Título:
-Inter 40 Regular  
-**Inter 40 Extra Bold**  
+Inter
 
-#### Texto comum:
-Inter 16 Regular  
-**Inter 16 Bold**  
+#### Título:  
 
-## Ilustrações
+Tamanho 40  
+
+#### Texto comum:  
+
+Tamanho 16  
+
+## Ilustrações  
 
 Foram utilizadas ilustrações do pacote [unDraw](https://undraw.co/illustrations), disponíveis gratuitamente para uso comercial ou pessoal. [Licença](https://undraw.co/license).

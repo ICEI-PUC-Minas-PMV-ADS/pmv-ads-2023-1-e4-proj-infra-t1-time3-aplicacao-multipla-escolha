@@ -1,8 +1,7 @@
 
 # Projeto de Interface
 
-Com a usabilidade sendo uma das questões focadas para a montagem da interface, projetamos telas com uma identidade visual padronizada.
-
+Para o desenvolvimento da solução, as telas foram projetadas buscando estabelecer uma identidade visual intuitiva. A navegação entre as funcionalidades do sistema se dá ou pelo cabeçalho (através dos itens presentes no mesmo ou acessando o menu de opções do usuário clicando na seta ao lado do nome do usuário após o login) ou através de botões presentes em cada página específica que guiam o usuário para as ações relevantes daquela tela.
 ## Diagrama de Fluxo
 
 O diagrama abaixo apresenta o fluxo de interação do usuário com a interface do sistema. Este diagrama se foca no fluxo mais provável que o usário seguirá, já que algumas das telas deixará o usuário realizar outros fluxos que deixariam o diagrama mais complexo e confuso se fossem detalhados. As telas deste fluxo são descritas melhor na seção de wireframes logo abaixo.
@@ -79,10 +78,28 @@ Esta tela é acessível apenas para usuários conectados como "Professor". Nela 
 
 ### Tela: Buscar Turma
 
-Na tela de busca, o usuário vai encontrar campos para filtrar o resultado da turma que está buscando. Após realizar a busca, receberá uma lista com os resultados e poderá clicar em uma turma para entrar.
+Na tela de busca, o usuário vai encontrar campos para filtrar o resultado da turma que está buscando, por nome da turma ou por nome ou email do professor. Após realizar a busca, receberá uma lista com os resultados e poderá clicar em uma turma para entrar.
 
 <div align="center">
     <img src="img/wireframes-site/Buscar Turma.png" alt="Imagem da tela de busca" width=50%>
+</div>
+
+### Tela: Visualizar Turma
+
+#### Para o professor
+
+Esta tela é acessível apenas para usuários conectados como "Professor". Nela o usuário visualizará a turma criada. Também poderá ver o resultado dos alunos clicando no botão "Notas" ou criar uma atividade clicando em "[Criar Atividade](#tela-criar-e-editar-atividade)". Caso a turma já tenha atividades criadas, o usuário poderá "[Abrir](#tela-visualizar-atividade)", "[Editar](#tela-criar-e-editar-atividade)" ou "Deletar" as atividades.
+
+<div align="center">
+    <img src="img/wireframes-site/Visualizar%20Turma%20-%20Professor.png" alt="Imagem da tela de informações da turma do usuário professor" width=50%>
+</div>
+
+#### Para o aluno
+
+Esta tela é acessível apenas para usuários conectados como "Aluno". Nela o usuário visualizará a turma que está matriculado e as atividades com avisos de *pendente*, *atrasada* ou *entregue* em cada uma e informações de *prazo* e *data de criação*, o usuário poderá abrir a atividade clicando no *card* que irá abrir a [tela de visualização da atividade](#tela-visualizar-atividade). Também poderá cancelar a matrícula na turma aberta ou ver as suas notas na turma clicando no botão "Notas".
+
+<div align="center">
+    <img src="img/wireframes-site/Visualizar%20Turma%20-%20Aluno.png" alt="Imagem da tela de informações da turma do usuário aluno" width=50%>
 </div>
 
 ### Tela: Visualizar Atividade
@@ -114,3 +131,11 @@ Nesta tela o usuário poderá ver a correção da atividade, com a pontuação o
 Esta tela é acessível apenas para usuários conectados como "Professor". Nela o usuário encontrará campos para criar a atividade, como *Nome*, *Descrição*, *Prazo* e *Número de Tentativas*. Também encontrará uma área para visualizar e criar as questões, ao clicar no botão "Adicionar Questão", aparecerá um *modal* com campos para *Enunciado*, *Pontos da Questão*, *Quantidade de Alternativas*, a *Alternativa Correta* e campos para o texto das alternativas.
 
 ![Imagem da tela de criar atividade](img/wireframes-site/criar-atividade.png)
+
+## Tela: Visualizar Notas
+
+Na tela de busca, o usuário vai encontrar um campo para filtrar o aluno que está buscando por nome ou email. Após realizar a busca, receberá uma lista com o resultado da busca e poderá clicar em um aluno para abrir a visualização das notas.
+
+<div align="center">
+    <img src="img/wireframes-site/Selecionar Aluno.png" alt="Imagem da tela de visualizar Notas dos Alunos" width=50%>
+</div>

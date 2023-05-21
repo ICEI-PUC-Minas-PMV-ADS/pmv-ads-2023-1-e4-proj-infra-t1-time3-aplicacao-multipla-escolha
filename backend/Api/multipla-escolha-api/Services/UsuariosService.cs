@@ -49,18 +49,9 @@ namespace multipla_escolha_api.Services
             {
                 Usuario sameUsernameOrEmailUser = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == dto.NomeDeUsuario || u.Email == dto.Email);
 
-                if (sameUsernameOrEmailUser != null)
-                {
-                    if (sameUsernameOrEmailUser.NomeDeUsuario == dto.NomeDeUsuario)
-                    {
-                        return new ServiceResponse("Nome de usuário já cadastrado!", 400);
-                    }
+                string errorMessage = Usuario.checkIfUserNameOrEmailIsAlreadyUsed(dto, sameUsernameOrEmailUser);
 
-                    if (sameUsernameOrEmailUser.Email == dto.Email)
-                    {
-                        return new ServiceResponse("Email já cadastrado!", 400);
-                    }
-                }
+                if (errorMessage != null) return new ServiceResponse(errorMessage, 400);
 
                 dto.Id = 0;
                 Usuario usuario = new(dto);
