@@ -8,12 +8,13 @@ Enumere quais cenários de testes foram selecionados para teste. Neste tópico o
  
 ## Ferramentas de Testes (Opcional)
 
-Comente sobre as ferramentas de testes utilizadas.
- 
-> **Links Úteis**:
-> - [IBM - Criação e Geração de Planos de Teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e Técnicas de Testes Ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
-> -  [Teste de Software: Conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
-> - [Criação e Geração de Planos de Teste de Software](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Ferramentas de Test para Java Script](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
+### NUnit
+Framework de testes de unidade para a plataforma dotnet. Foi utilizado como um projeto separado chamado "multipla-escolha-api.nUnitTests dentro da mesma solução (Solution) da Web API do projeto. O arquivo Usings.cs deste projeto é utilizado para importar todos os Models, Dtos e outras classes relevantes da aplicação, permitindo com que estes sejam utilizados para elaborar os testes, o conteúdo deste arquivo é mostrado abaixo como exemplo:
+
+```
+global using NUnit.Framework;
+global using multipla_escolha_api.Models;
+global using multipla_escolha_api.Models.DTO;
+global using multipla_escolha_api.Models.MongoDb;
+```
+Para rodar os testes de unidade utilizando o NUnit, basta abrir o arquivo ".solution" da API no Visual Studio Community 2022 e selecionar a opção "Run All Tests" da aba "Test".
