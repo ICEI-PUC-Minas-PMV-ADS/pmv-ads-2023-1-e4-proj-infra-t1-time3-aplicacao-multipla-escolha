@@ -376,8 +376,14 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 ## Busca de turmas (RF-04)
 A funcionalidade de busca de turmas permite que o usuário busque uma turma entre todas as turmas cadastradas que estejam com o status "Ativa", o usuário poderá filtrar a busca pelo nome da turma ou pelo nome/email do professor, facilitando a localização da turma que deseja encontrar.
 
+### Tela de "Minhas turmas" (Aluno)
+![buscarTurmaA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/97fd5b18-e2f3-49c8-ab0a-70908186cc02)
+
 ### Tela de buscar turma
-![buscarTurma](https://user-images.githubusercontent.com/74699119/235371162-5e4ad50d-52af-4937-80b3-d12f37647110.png)
+![buscarTurmaB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/81c2d907-4a7b-4811-ba69-4c97bad90e55)
+
+### Tela de buscar turma (resultados filtrados)
+![buscarTurmaC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/160a261a-6119-497d-94df-54a7febd085b)
 
 ### Requisitos atendidos
 - RF-04
@@ -586,10 +592,12 @@ Os resultados exibidos na tela são recuperados de forma paginada da API na segu
 - BuscarTurmasComponent.js
 
 ### Instruções de acesso
-1. Realizar login;
-2. Clicar na opção "Buscar turma" presente na homepage;
-3. Visualizar a tela de buscar turmas;
-4. Digitar os termos de busca nos campos "Buscar por nome da turma" ou "Buscar por nome/email do professor" para filtrar os resultados;
+1. Realizar login com uma conta do tipo "aluno";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Inserir os termos de busca desejados no campo de "buscar turma" e clicar no icone da lupa para realizar a busca;
+5. Visualizar a tela de buscar turmas;
+6. Digitar os termos de busca nos campos "Buscar por nome da turma" ou "Buscar por nome/email do professor" para filtrar os resultados;
 
 ## Visualização e realização de atividade por aluno (RF-06 e RF-07)
 A funcionalidade de visualização e realização de atividade por aluno permite a um usuário do tipo aluno realizar atividades cadastradas em alguma turma. No momento, qualquer usuário "aluno" pode realizar qualquer atividade, uma vez que as funcionalidade de matrícula em turma e visualização de turmas na qual o aluno está matriculado não estão completamente implementadas. Ao selecionar uma atividade e clicar em "abrir", o usuário poderá visualizar os resultados todas as tentativas anteriores para aquela atividade. O usuário poderá também clicar em "Fazer tarefa" para realizar uma nova tentativa caso não tenha extrapolado o limite de tentativas, obtendo sua nota e correção da atividade imediatamente após submete-la.  
