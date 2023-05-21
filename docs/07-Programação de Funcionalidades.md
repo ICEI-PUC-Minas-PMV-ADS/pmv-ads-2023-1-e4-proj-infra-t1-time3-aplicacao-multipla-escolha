@@ -374,10 +374,10 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 9. Caso deseje editar ou apagar uma das atividades criadas, clicar nos ícones de "Editar" (Lápis cinza) ou "Apagar" (Lixeira vermelha). A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
 
 ## Busca de turmas (RF-04)
-A funcionalidade de busca de turmas permite que o usuário busque uma turma entre todas as turmas cadastradas que estejam com o status "Ativa", o usuário poderá filtrar a busca pelo nome da turma ou pelo nome/email do professor, facilitando a localização da turma que deseja encontrar.
+A funcionalidade de busca de turmas permite que o usuário do tipo "aluno" busque uma turma entre todas as turmas cadastradas que estejam com o status "Ativa", o usuário poderá filtrar a busca pelo nome da turma ou pelo nome/email do professor, facilitando a localização da turma que deseja encontrar.
 
 ### Tela de "Minhas turmas" (Aluno)
-![buscarTurmaA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/97fd5b18-e2f3-49c8-ab0a-70908186cc02)
+![buscarTurmaA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/798454a6-3d74-42fc-a29d-e0b0ea2c65fe)
 
 ### Tela de buscar turma
 ![buscarTurmaB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/81c2d907-4a7b-4811-ba69-4c97bad90e55)
@@ -599,7 +599,57 @@ Os resultados exibidos na tela são recuperados de forma paginada da API na segu
 5. Visualizar a tela de buscar turmas;
 6. Digitar os termos de busca nos campos "Buscar por nome da turma" ou "Buscar por nome/email do professor" para filtrar os resultados;
 
-## Visualização e realização de atividade por aluno (RF-06 e RF-07)
+## Matrícula em turma (RF-04 e RF-05)
+A funcionalidade de matrícula em turma permite que o usuário do tipo "aluno" realize matrícula na turma desejada, tendo assim acessoa a realização de todas as atividades nela cadastradas.
+
+### Tela de visualizar turma (botão "fazer matrícula aparece apenas para usuário tipo aluno)
+![matriculaTurmaA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/494dc3cc-63df-4590-b80b-f064f2eac89e)
+
+### Tela de visualizar turma - mensagem de sucesso
+![matriculaTurmaB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/4338bafb-36d6-4925-9551-0e44bfb61014)
+
+### Tela de visualizar turma (botão de "Cancelar matrícula" agora aparece)
+![matriculaTurmaC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/6175d21c-d92d-4626-97c5-e2f8457a9ba6)
+
+### Tela de "Minhas turmas" - Aluno (Agora com a turma em que ele se matriculou)
+![matriculaTurmaD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/3e244de9-ce83-4f64-baa2-7f444c3696ec)
+
+### Requisitos atendidos
+- RF-04
+- RF-05
+
+### Estrutura de Dados
+
+Este endpoint não recebe ou retorna nenhum payload em JSON. O id da turma em que o aluno deseja se matricular é enviado como um parametro na própria URL  para o endpoint api/Turmas/{idTurma}/matricular), enquanto o id do usuário é obtido do token JWT, que é enviado como um cookie durante a requisição. 
+
+### Artefatos da funcionalidade
+
+#### Models
+- Turma.cs
+- TurmaAluno.cs
+- 
+#### Services
+- TurmasSevice.cs
+
+#### Controllers
+- TurmasController.cs
+
+### Frontend
+- visualizarTurma.js
+- visualizarTurmaComponent.js
+
+### Instruções de acesso
+1. Realizar login com uma conta do tipo "aluno";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Inserir os termos de busca desejados no campo de "buscar turma" e clicar no icone da lupa para realizar a busca;
+5. Visualizar a tela de buscar turmas;
+6. Selecionar a turma desejada;
+7. Clicar em "Fazer matricula";
+8. Caso a matrícula ocorra com sucesso, uma mensagem de sucesso será exibida;
+9. Caso deseje cancelar a matrícula, basta clicar no botão de "Cancelar matrícula".
+
+## Visualização e realização de atividade por aluno (RF-05, RF-06 e RF-07)
 A funcionalidade de visualização e realização de atividade por aluno permite a um usuário do tipo aluno realizar atividades cadastradas em alguma turma. No momento, qualquer usuário "aluno" pode realizar qualquer atividade, uma vez que as funcionalidade de matrícula em turma e visualização de turmas na qual o aluno está matriculado não estão completamente implementadas. Ao selecionar uma atividade e clicar em "abrir", o usuário poderá visualizar os resultados todas as tentativas anteriores para aquela atividade. O usuário poderá também clicar em "Fazer tarefa" para realizar uma nova tentativa caso não tenha extrapolado o limite de tentativas, obtendo sua nota e correção da atividade imediatamente após submete-la.  
 
 ### Tela de visualizar atividade e tentativas anteriores
