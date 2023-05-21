@@ -69,6 +69,9 @@ Os dados preenchidos para o cadastro são enviados para a API na seguinte estrut
 ## Login de usuário (RF-01)
 A funcionalidade de login de usuário permite que um usuário registrado realize login do sistema, obtendo um token JWT e iniciando uma sessão associada a ele.
 
+### Homepage (Com link para tela de login no cabeçalho)
+![home](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/e3009b4a-f1d0-4594-b032-989b8a6c275f)
+
 ### Tela de Login
 ![loginA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/39d77906-6a03-4a4b-a99d-17d0dbad736a)
 
