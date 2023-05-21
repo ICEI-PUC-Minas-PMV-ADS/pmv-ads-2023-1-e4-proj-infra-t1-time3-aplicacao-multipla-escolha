@@ -652,17 +652,23 @@ Este endpoint não recebe ou retorna nenhum payload em JSON. O id da turma em qu
 ## Visualização e realização de atividade por aluno (RF-05, RF-06 e RF-07)
 A funcionalidade de visualização e realização de atividade por aluno permite a um usuário do tipo aluno realizar atividades cadastradas em alguma turma. No momento, qualquer usuário "aluno" pode realizar qualquer atividade, uma vez que as funcionalidade de matrícula em turma e visualização de turmas na qual o aluno está matriculado não estão completamente implementadas. Ao selecionar uma atividade e clicar em "abrir", o usuário poderá visualizar os resultados todas as tentativas anteriores para aquela atividade. O usuário poderá também clicar em "Fazer tarefa" para realizar uma nova tentativa caso não tenha extrapolado o limite de tentativas, obtendo sua nota e correção da atividade imediatamente após submete-la.  
 
+### Tela de visualizar turma (Selecionar atividade)
+![realizarAtividadeB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/ab1f430a-fefc-4e93-8f1f-4173cf68b711)
+
 ### Tela de visualizar atividade e tentativas anteriores
-![fazerAtividade1](https://user-images.githubusercontent.com/74699119/235369816-495eaabc-4929-466b-a220-43da7b8c82ad.png)
+![realizarAtividadeC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/4d339bf8-e8ed-44f2-a00e-3b8aec04818a)
 
 ### Tela de realizar atividade
-![fazerAtividade2](https://user-images.githubusercontent.com/74699119/235369819-944f607c-9d4b-4bd1-a8b2-7ed905b6ab9a.png)
+![realizarAtividadeD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/f9734986-47cb-4539-9b06-f9a3893925d6)
+
+### Tela de realizar atividade (Preenchida e submetida)
+![realizarAtividadeE](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/b49b25de-d491-413d-9562-c925a7cef631)
 
 ### Tela de resultado da atividade
-![fazerAtividade3](https://user-images.githubusercontent.com/74699119/235369820-cba6ca77-92ad-4a2d-9f54-96bb4d80260b.png)
+![realizarAtividadeF](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/c48f4f74-a132-4485-b56a-eb2a022436d9)
 
-### Tela de visualizar atividade e tentativas anteriores (após realização da primeira tentativa)
-![fazerAtividade4](https://user-images.githubusercontent.com/74699119/235369821-c8e2760b-2d76-4120-9940-2deaf2f8fbd6.png)
+### Tela de visualizar atividade e tentativas anteriores (após realização da primeira tentativa, clicar em "Visualizar" no histórico de tentativas retorna o usuário para a tela de visualizar resultado)
+![realizarAtividadeG](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/49213384-5038-479e-8429-7887aacb7a7c)
 
 ### Requisitos atendidos
 - RF-05
@@ -877,17 +883,17 @@ Na tela de "visualizar atividade e tentativas anteriores", a atividade e a lista
 
 ### Instruções de acesso
 1. Realizar login com uma conta do tipo "aluno";
-2. Clicar na opção "Buscar turma" presente na homepage;
-3. Selecionar uma turma e clicar em "Abrir";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Selecionar uma turma e clicar em "Abrir";
 5. Visualizar tela de detalhes da turma;
-6. Selecionar uma atividade cujo limite de tentativas não esteja esgotado e clicar em "Abrir";
+6. Selecionar uma atividade cujo limite de tentativas e prazo não esteja esgotado e clicar em "Abrir";
 7. Visualizar a tela de visualizar atividades e resultados anteriores;
 8. Clicar em "Fazer tarefa";
 9. Visualizar a tela de fazer tarefa;
 10. Preencher as respostas das questões e clicar em "Submeter";
 11. Caso todas as respsotas tenham sido preenchidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de visualizar resultado;
 12. Visualizar resultado;
-13. Clicar em "Voltar" para voltar para a tela de visualizar turma;
+13. Clicar em "Voltar" para voltar para a tela de visualizar atividade;
 14. Visualizar tela de visualizar atividade, agora com a tentativa anterior aparecendo nela;
 15. Clicar em "Visualizar" na tentativa anterior para visualiza-la novamente.
-16. Caso deseje editar ou apagar uma das atividades criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de atividade onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar atividade";
