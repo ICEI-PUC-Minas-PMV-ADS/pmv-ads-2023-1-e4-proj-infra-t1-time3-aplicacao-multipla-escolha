@@ -1049,10 +1049,16 @@ Na tela de "visualizar atividade e tentativas anteriores", a atividade e a lista
 A funcionalidade de visualização de métricas/notas permitem que o usuário visualize a nota obtida por um usuário para todas as atividades em uma determinada turma (no caso de atividades que permitem mais de uma tentativa, a nota exibida/mantida será a maior nota entre todas as tentativas do daquele usuário para aquela atividade). Para o usuário do tipo "aluno", o único usuário cujas notas ele poderá visualizar é ele mesmo, no caso do usuário do tipo "professor", uma tela de selecionar aluno aparecerá caso ele seja o dono da turma, na qual ele poderá selecionar qualquer aluno da turma e visualizar suas notas. 
 
 ### Tela de visualizar turma (Selecionar "notas")
+![notasA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/4c069d6f-acc5-48ae-a6cc-04f283d93c9c)
 
 ### Tela de selecionar aluno (Apenas para usuário "Professor)
+![notasB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/3eeff1bf-404d-4d14-b4c8-1dcdaa100edb)
 
 ### Tela de visualizar notas
+![notasC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/8ddaa504-1cd4-454c-93d1-2f1290d5a53a)
+
+### Tela de visualizar notas (busca de atividade)
+![notasD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/00ffc7e0-a521-4a09-97e2-cdbb7e268165)
 
 ### Requisitos atendidos
 - RF-07
@@ -1454,3 +1460,4 @@ Na tela de visualizar notas/métricas, as métricas do aluno em questão são re
 7. Caso esteja logado numa conta do tipo "Professor", visualizar a tela de selecionar aluno e clicar no aluno cujas notas deseja visualizar;
 8. Caso esteja logado numa conta do tipo "Aluno", o usuário será automaticamente redirecionado para a tela de visualizar notas contendo suas notas;
 9. Visualizar a tela de "Visualizar notas";
+10. Caso deseje buscar uma atividade específica na lista, inserir o nome da atividade no campo de busca.
