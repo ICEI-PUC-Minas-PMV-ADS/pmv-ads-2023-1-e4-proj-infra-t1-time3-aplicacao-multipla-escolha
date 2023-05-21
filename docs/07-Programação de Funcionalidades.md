@@ -172,14 +172,17 @@ Os dados preenchidos para a atualização são enviados para o endpoint de atual
 ## Cadastro e edição de turmas por professor (RF-02)
 A funcionalidade de cadastro de turmas permite que um usuário do tipo "Professor" cadastre uma nova turma em seu nome, fornecendo o nome e descrição da turma, além de poder decidir se a turma está ativa ou não (turmas não ativas não aparecem para os alunos na busca de turmas). As turmas cadastradas poderão então ser visualizadas na tela de "Minhas turmas" do professor, aonde poderão ser editadas ou apagadas clicando nos botões correspondentes.
 
-### Tela de cadastro de turma
-![criarturma](https://user-images.githubusercontent.com/74699119/235355741-45378d97-a4c3-4434-b529-b8a15f852f41.png)
+### Tela de "minhas turmas" (opção de "Nova turma")
+![cadastroTurmasA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9cb86be1-ab33-4a52-9a1a-a01c1358f036)
 
-### Tela de "minhas turmas"
-![criarturma2](https://user-images.githubusercontent.com/74699119/235355742-2a70f9e8-41c0-4e96-a95c-d7f5f28c1852.png)
+### Tela de cadastro de turma
+![cadastroTurmasB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d0521d85-7ad2-4821-9f2d-6bf030ccb123)
+
+### Tela de "minhas turmas" (opção de editar turma)
+![cadastroTurmasC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/e5056cdb-25ef-4d5e-9ae7-25551126e94c)
 
 ### Tela de editar turma
-![criarturma3](https://user-images.githubusercontent.com/74699119/235355855-248d1793-1cd6-4dc5-8572-5858fd13fc08.png)
+![cadastroTurmasD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/dd5a19db-166c-49f8-bb70-c541cc6e5b6c)
 
 ### Requisitos atendidos
 - RF-02
@@ -240,7 +243,7 @@ Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atual
 
 ### Instruções de acesso
 1. Realizar login em uma conta do tipo "Professor";
-2. Clicar na opção "Minhas turmas" presente na homepage;
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
 3. Visualizar tela de "Minhas turmas";
 5. Clicar em "Nova turma";
 6. Visualiar tela de cadastro de turma;
