@@ -11,8 +11,8 @@ Ambiente|Plataforma|Link de Acesso
 |:--------|:----------:|:-------------:|
 |Repositório de código fonte|GitHub| [GitHub](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha)|
 |Documentos do Projeto|GitHub (docs/)|[Projeto ](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/docs)|
-|Criação de Diagramas| Figma, Lucidchart | [figma.com](), [lucid.app](), [lucid.app]() |
-|Projeto de Interface e Wireframes| Figma | [Figma]()|
+|Criação de Diagramas| Figma, Lucidchart | [figma.com](https://www.figma.com/file/aCHVALWOuj8kjGaLHbFMSv/Diagrama-de-Fluxo), [lucid.app](), [lucid.app]() |
+|Projeto de Interface e Wireframes| Figma | [Figma]([https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site?type=design&node-id=0-1&t=E82F33cyXGhCROxf-0](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site))|
 |Gerenciamento do Projeto| Kanban do GitHub |[Kanban do GitHub](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/259/views/1)|
 
 
@@ -115,9 +115,9 @@ A tabela abaixo detalha as ferramentas escolhidas para cada função.
 | Repositório | Github | [Projeto ](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/blob/main/README.md) |
 | Editor de código Backend | Visual Studio 2022 Community Edition | [Visual Studio ](https://visualstudio.microsoft.com/)|
 | Editor de código Frontend | Visual Studio Code | [Visual Studio Code ](https://code.visualstudio.com/)|
-| Ferramenta de criação de Diagramas | Figma | [figma.com]()|
+| Ferramenta de criação de Diagramas | Figma | [figma.com](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site)|
 | Ferramenta de criação Modelagem Processo de Negócios | LucidChart | [lucidchart.com]()|
-| Ferramenta de criação Interface e Wireframes | Figma, Lucidchart | [figma.com](), [lucid.app](), [lucid.app]() |
+| Ferramenta de criação Interface e Wireframes | Figma, Lucidchart | [figma.com](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site), [lucid.app](), [lucid.app]() |
 | Ferramenta de gerenciamento do Projeto | Kanban do GitHub |[Kanban do GitHub](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/259/views/1)|
 
 <br>
