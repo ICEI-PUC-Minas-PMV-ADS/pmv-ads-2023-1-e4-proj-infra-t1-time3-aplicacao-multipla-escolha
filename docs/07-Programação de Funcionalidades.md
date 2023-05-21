@@ -179,13 +179,13 @@ A funcionalidade de cadastro de turmas permite que um usuário do tipo "Professo
 ![cadastroTurmasA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9cb86be1-ab33-4a52-9a1a-a01c1358f036)
 
 ### Tela de cadastro de turma
-![cadastroTurmasB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d0521d85-7ad2-4821-9f2d-6bf030ccb123)
+![criarTurma](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/c8051ffd-8a6f-474e-b50b-b9f5218c17bc)
 
 ### Tela de "minhas turmas" (opção de editar turma)
 ![cadastroTurmasC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/e5056cdb-25ef-4d5e-9ae7-25551126e94c)
 
 ### Tela de editar turma
-![cadastroTurmasD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/dd5a19db-166c-49f8-bb70-c541cc6e5b6c)
+![editarTurma](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/12c3dd37-c6e1-400a-ba80-90761824b296)
 
 ### Requisitos atendidos
 - RF-02
