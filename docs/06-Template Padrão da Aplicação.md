@@ -18,6 +18,7 @@ As telas onde o usuário estiver conectado apresentará um cabeçalho com botão
 
 #### Menu do botão *dropdown*
 
+Este componente é utilizado quando um usuário logado clica na seta ao lado de seu nome do cabeçalho, abrindo para mostrar as opções da conta do usuário (ir para suas turmas, visualizar/editar seus dados cadastrais e realizar logoff).
 ![Imagem do botão dropdown](img/wireframes-site/Menu%20Usu%C3%A1rio.png)
 
 ## Cores e Fontes  
