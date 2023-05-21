@@ -6,15 +6,17 @@ Para o desenvolvimento da solução, as telas foram projetadas buscando estabele
 
 O diagrama abaixo apresenta o fluxo de interação do usuário com a interface do sistema. Este diagrama se foca no fluxo mais provável que o usário seguirá, já que algumas das telas deixará o usuário realizar outros fluxos que deixariam o diagrama mais complexo e confuso se fossem detalhados. As telas deste fluxo são descritas melhor na seção de wireframes logo abaixo.
 
-![Diagrama de Fluxo](img/diagrama-de-fluxo.png)
+![Diagrama de Fluxob](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/dc098467-7f5d-4313-b327-fce2accd79b9)
 
 Para visualizar o diagrama de fluxo no ambiente do Figma, [**acesse aqui**](https://www.figma.com/file/aCHVALWOuj8kjGaLHbFMSv/Diagrama-de-Fluxo).
 
 ## Wireframes
 
-![Imagem dos Wireframe](img/wireframes-site/Site.png)
+![figmaPrint](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9d0fab43-15b5-4953-9e76-aa3a3efd5936)
 
 Conforme o fluxo de telas do projeto, apresentado no item anterior, as telas do sistema são apresentadas em detalhes nos itens a seguir. Para visualizar os wireframes no ambiente do Figma, [**acesse aqui**](https://www.figma.com/file/WXp8lKy4eSbQx0ffBApD8q/Site).
+
+Para acessar a versão interativa do Wireframe, [**acesse aqui**](https://www.figma.com/proto/WXp8lKy4eSbQx0ffBApD8q/Site?type=design&node-id=6-2&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=6%3A2&show-proto-sidebar=1&hide-ui=1).
 
 As telas do sistema apresentam uma estrutura comum que é apresentada em [Template Padrão da Aplicação](./06-Template%20Padr%C3%A3o%20da%20Aplica%C3%A7%C3%A3o.md).
 
@@ -132,10 +134,18 @@ Esta tela é acessível apenas para usuários conectados como "Professor". Nela 
 
 ![Imagem da tela de criar atividade](img/wireframes-site/criar-atividade.png)
 
-## Tela: Visualizar Notas
+## Tela: Selecionar aluno para visualizar notas
 
-Na tela de busca, o usuário vai encontrar um campo para filtrar o aluno que está buscando por nome ou email. Após realizar a busca, receberá uma lista com o resultado da busca e poderá clicar em um aluno para abrir a visualização das notas.
+Na tela de selecionar aluno para visualizar notas, o usuário do tipo "Professor" vai encontrar um campo para filtrar o aluno que está buscando por nome ou email. Após realizar a busca, receberá uma lista com o resultado da busca e poderá clicar em um aluno para abrir a visualização das notas, usuários do tipo "Aluno" serão diretamente direcionados para a tela de visualizar notas (mostrando as notas do mesmo).
 
 <div align="center">
     <img src="img/wireframes-site/Selecionar Aluno.png" alt="Imagem da tela de visualizar Notas dos Alunos" width=50%>
+</div>
+
+## Tela: Visualizar Notas
+
+Nessa tela o usuário poderá visualizar todas as notas das atividades da turma selecionada para um determinado usuário. No caso do usuário "Aluno", o usuário em questão será ele mesmo. No caso do usuário do tipo "Professor", o usuário cujas notas serão mostradas será aquele que ele selecionou na tela de "Selecionar aluno para visualizar notas".
+
+<div align="center">
+    <img src="img/wireframes-site/visualizarNota.png" alt="Imagem da tela de visualizar Notas dos Alunos" width=50%>
 </div>
