@@ -89,7 +89,10 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 - No segundo teste, o usuário passado como paramêtro possui o mesmo e-mail que o usuário que se deseja criar, mas outro nome de usuário, espera-se então obter uma mensagem de erro dizendo "Email já cadastrado!" como resposta.
 - No terceiro teste, o usuário passado como paramêtro possui o mesmo nome de usuário que o usuário que se deseja criar, mas outro e-mail, espera-se então obter uma mensagem de erro dizendo "Nome de usuário já cadastrado!" como resposta.
 
-**Resultados**: Todos os testes de unidade obtiveram êxito quando executados.
+**Critérios de êxito:** Todos os testes de unidade devem passar ao serem executados.
+
+**Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
 
 #### CT-002 CT-002 Testar o método CheckIfUserCanTakeTest do Model "Atividade.cs"
 
@@ -166,7 +169,10 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 - No segundo teste, a atividade em questão encontra-se fora dentro do prazo (data prazo de entrega é 30 dias antes da da data atual), embora o número de tentativas anteriores (0) seja menor que o limite de tentativas (1), deste modo, espera-se que uma mensagem de erro dizendo "Atividade fora do prazo!" seja retornada.
 - No terceiro teste, a atividade em questão encontra-se dentro dentro do prazo (data prazo de entrega é 30 dias a frente da da data atual), mas o número de tentativas anteriores (2) é maior ou igual ao o limite de tentativas (2), deste modo, espera-se que uma mensagem de erro dizendo "Número de tentativas extrapolado!" seja retornada.
 
-**Resultados**: Todos os testes de unidade obtiveram êxito quando executados.
+**Critérios de êxito:** Todos os testes de unidade devem passar ao serem executados.
+
+**Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
 
 #### CT-003 Testar o método Corrigir do Model "AtividadeMongoDb.cs"
 
@@ -511,4 +517,6 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 - No terceiro teste, todas as respostas estão corretas, de modo que se espera que todas as questões sejam marcadas com o parametro "AlunoAcertouResposta = true", a presença de "AlunoAcertouResposta = null" em qualquer questão indicaria uma falha do método.
 - No quarto teste, apenas as respostas para as questões 2 e 4 estão corretas, de modo que se espera que as questões 2 e 4 estejam marcadas com o parametro "AlunoAcertouResposta = true", mas que as questões 1 e 3 estejam com "AlunoAcertouResposta = false", a presença de "AlunoAcertouResposta = null" em qualquer questão indicaria uma falha do método.
 
-**Resultados**: Todos os testes de unidade obtiveram êxito quando executados.
+**Critérios de êxito:** Todos os testes de unidade devem passar ao serem executados.
+
+**Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
