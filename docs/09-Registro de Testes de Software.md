@@ -164,7 +164,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 
 - No primeiro teste, a atividade em questão encontra-se dentro do prazo (data prazo de entrega é 30 dias a frente da da data atual) e o número de tentativas anteriores (0) é menor que o limite de tentativas (1), deste modo, espera-se que nenhuma mensagem de erro (null) seja retornada. 
 - No segundo teste, a atividade em questão encontra-se fora dentro do prazo (data prazo de entrega é 30 dias antes da da data atual), embora o número de tentativas anteriores (0) seja menor que o limite de tentativas (1), deste modo, espera-se que uma mensagem de erro dizendo "Atividade fora do prazo!" seja retornada.
--No terceiro teste, a atividade em questão encontra-se dentro dentro do prazo (data prazo de entrega é 30 dias a frente da da data atual), mas o número de tentativas anteriores (2) é maior ou igual ao o limite de tentativas (2), deste modo, espera-se que uma mensagem de erro dizendo "Número de tentativas extrapolado!" seja retornada.
+- No terceiro teste, a atividade em questão encontra-se dentro dentro do prazo (data prazo de entrega é 30 dias a frente da da data atual), mas o número de tentativas anteriores (2) é maior ou igual ao o limite de tentativas (2), deste modo, espera-se que uma mensagem de erro dizendo "Número de tentativas extrapolado!" seja retornada.
 
 **Resultados**: Todos os testes de unidade obtiveram êxito quando executados.
 
