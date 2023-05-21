@@ -179,26 +179,32 @@ function AccountOptionsComponent() {
     }
 
     return (
-        <div className="login-box">
+        <div className="register-box">
             <Link ref={linkRef} to="/" />
             <div className="my-2">
-                <h1>Dados pessoais</h1>
+                <h1 className="text-dark-gray">MEUS DADOS</h1>
             </div>
-            <div className="d-flex flex-column mt-2">
+            <div className="d-flex flex-column mt-4 col-10">
                 <label for="username">Nome de usuário</label>
-                <input disabled className="mb-2" id="username" value={username}></input>
+                <input disabled className="input-text mb-2" style={{ backgroundColor: 'lightgray' }} id="username" value={username}></input>
                 <label for="senha">Senha</label>
-                <input className="mb-2" id="senha" type="password" value={password} onChange={e => { setPassword(e.target.value); setErrorMessage(""); setAskForPassword(true); setChangePassword(true) }}></input>
-                <label for="nome">Nome</label>
-                <input className="mb-2" id="nome" value={nome} onChange={e => { setNome(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
-                <label for="sobrenome">Sobrenome</label>
-                <input className="mb-2" id="sobrenome" value={sobrenome} onChange={e => { setSobrenome(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
+                <input className="input-text mb-2" id="senha" type="password" value={password} onChange={e => { setPassword(e.target.value); setErrorMessage(""); setAskForPassword(true); setChangePassword(true) }}></input>
+                <div className="d-flex">
+                    <div className="d-flex flex-column col-6" style={{paddingRight: 12}}>
+                        <label for="nome">Nome</label>
+                        <input className="input-text mb-2" id="nome" value={nome} onChange={e => { setNome(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
+                    </div>
+                    <div className="d-flex flex-column col-6" style={{paddingLeft: 12}}>
+                        <label for="sobrenome">Sobrenome</label>
+                        <input className="input-text mb-2" id="sobrenome" value={sobrenome} onChange={e => { setSobrenome(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
+                    </div>
+                </div>
                 <label for="email">Email</label>
-                <input className="mb-2" id="email" value={email} placeholder="usuario@email.com" onChange={e => { setEmail(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
+                <input className="input-text mb-2" id="email" value={email} placeholder="usuario@email.com" onChange={e => { setEmail(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
                 <label for="telefone">Telefone</label>
-                <input className="mb-2" id="telefone" value={telefone} placeholder="(99) 99999-9999" onChange={e => { setTelefone(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
+                <input className="input-text mb-2" id="telefone" value={telefone} placeholder="(99) 99999-9999" onChange={e => { setTelefone(e.target.value); setErrorMessage(""); setAskForPassword(true) }}></input>
                 <label for="perfil">Perfil</label>
-                <select disabled id="perfil" value={perfil}>
+                <select disabled className="input-text" style={{ backgroundColor: 'lightgray' }} id="perfil" value={perfil}>
                     <option value={0}>Aluno</option>
                     <option value={1}>Professor</option>
                 </select>
@@ -237,7 +243,10 @@ function AccountOptionsComponent() {
                         <div></div>
                 }
             </div>
-            <div className="d-flex m-4">
+            <div className="d-flex m-2 flex-column">
+                <p className="text-center text-dark-gray" style={{width: 400}}>
+                    Ao apagar esta conta, você não terá mais acesso a ela e os seus dados serão excluidos da plataforma. 
+                </p>
                 <button className="btn btn-danger m-auto" onClick={() => apagarConta()}>Apagar conta</button>
             </div>
         </div>
