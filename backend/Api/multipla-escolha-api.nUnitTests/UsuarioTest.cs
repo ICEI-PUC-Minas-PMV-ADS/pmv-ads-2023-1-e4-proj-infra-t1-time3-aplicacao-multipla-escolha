@@ -12,7 +12,7 @@ namespace multipla_escolha_api.nUnitTests
                 Email = "emailNovo@email.com"
             };
 
-            Usuario usuarioRecuperadoDoBanco = null;
+            Usuario? usuarioRecuperadoDoBanco = null;
 
             string? mensagemDeErroEsperada = null;
 
