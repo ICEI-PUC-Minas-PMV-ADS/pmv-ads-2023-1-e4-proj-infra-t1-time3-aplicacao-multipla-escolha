@@ -627,7 +627,7 @@ Este endpoint não recebe ou retorna nenhum payload em JSON. O id da turma em qu
 #### Models
 - Turma.cs
 - TurmaAluno.cs
-- 
+
 #### Services
 - TurmasSevice.cs
 
@@ -665,6 +665,7 @@ A funcionalidade de visualização e realização de atividade por aluno permite
 ![fazerAtividade4](https://user-images.githubusercontent.com/74699119/235369821-c8e2760b-2d76-4120-9940-2deaf2f8fbd6.png)
 
 ### Requisitos atendidos
+- RF-05
 - RF-06
 - RF-07
 
