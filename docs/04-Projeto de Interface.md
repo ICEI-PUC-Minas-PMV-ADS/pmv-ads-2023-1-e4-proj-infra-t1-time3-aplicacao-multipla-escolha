@@ -10,7 +10,7 @@
 
 ## Wireframes
 
-O wireframe interativo da aplicação encontra-se disponível no seguinte link https://www.figma.com/proto/WXp8lKy4eSbQx0ffBApD8q/Site?type=design&node-id=6-2&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=6%3A2&show-proto-sidebar=1
+O wireframe interativo da aplicação encontra-se disponível no seguinte link https://www.figma.com/proto/WXp8lKy4eSbQx0ffBApD8q/Site?type=design&node-id=6-2&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=6%3A2&show-proto-sidebar=1&hide-ui=1
 
 A estrutura da interface seguirá um padrão comum entre todas as telas, consistindo em um cabeçalho presente no topo onde o usuário poderá acessar alguns links de navegação (como Login e o menu opções do usuário após ter feito login) e uma seção onde o conteúdo da página é exibido:
 
