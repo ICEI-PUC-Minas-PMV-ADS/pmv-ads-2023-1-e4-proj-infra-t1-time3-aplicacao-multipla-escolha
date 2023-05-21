@@ -23,7 +23,8 @@ Uma vez que o projeto esteja rodando localmente, basta seguir as instruções ab
 A funcionalidade de cadastro de usuário permite que um novo usuário se registre como "Aluno" ou "Professor", obtendo uma conta que pode utilizar para acessar as demais funcionalidades do sistema.
 
 ### Tela de Cadastro
-![cadastro](https://user-images.githubusercontent.com/74699119/235332970-ec5a7931-c7ad-4721-93a5-5357bfe3cdcb.png)
+
+![cadastro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/2e9804c8-72ce-4fb3-a82e-033361e3d2cb)
 
 ### Requisitos atendidos
 - RF-01
@@ -70,10 +71,10 @@ Os dados preenchidos para o cadastro são enviados para a API na seguinte estrut
 A funcionalidade de login de usuário permite que um usuário registrado realize login do sistema, obtendo um token JWT e iniciando uma sessão associada a ele.
 
 ### Tela de Login
-![login](https://user-images.githubusercontent.com/74699119/235333128-d6181697-ad19-496d-aab0-f4708e07e0a2.png)
+![loginA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/39d77906-6a03-4a4b-a99d-17d0dbad736a)
 
 ### Cabeçalho após login
-![login2](https://user-images.githubusercontent.com/74699119/235333131-4a712155-19f8-4d5e-8197-260800237ee8.png)
+![loginB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9179bc16-e2d9-417a-a26a-01ebaf844038)
 
 ### Requisitos atendidos
 - RF-01
@@ -112,7 +113,7 @@ Os dados preenchidos para o login são enviados para o endpoint de autenticaçã
 2. Clicar na opção "Login" presente no cabeçalho;
 3. Visualizar tela de login;
 5. Preenhcer usuário e senha e clicar em "Fazer login";
-6. Caso as informações fornecidas sejam válidas, a sessão será iniciada e o usuário será redirecionado para a homepage, o cabeçalho deverá ter sido atualizado, mostrando o nome do usuário e as opções de "Opções da conta" e "Logout";
+6. Caso as informações fornecidas sejam válidas, a sessão será iniciada e o usuário será redirecionado para a tela de "minhas turmas", o cabeçalho deverá ter sido atualizado, mostrando o nome do usuário;
 
 ## Atualizar dados cadastrais (Opções da conta) (RF-01)
 A funcionalidade de atualizar dados cadastrais permite que o usuário atualize seus dados cadastrais, tal como e-mail, nome, sobrenome, telefone e senha. O usuário não pode modificar seu nome de usuário (identificador único utilizado para login) nem tipo de conta (aluno ou professor), o usuário poderá trocar seu e-mail, contanto que o novo e-mail informado não esteja em uso por nenhuma outra conta. Para realizar a atualização dos dados, o usuário deverá informar sua senha atual. O usuário poderá também optar por apagar sua conta.
