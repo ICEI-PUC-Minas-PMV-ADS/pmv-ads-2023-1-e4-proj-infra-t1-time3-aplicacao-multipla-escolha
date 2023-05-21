@@ -23,7 +23,6 @@ Uma vez que o projeto esteja rodando localmente, basta seguir as instruções ab
 A funcionalidade de cadastro de usuário permite que um novo usuário se registre como "Aluno" ou "Professor", obtendo uma conta que pode utilizar para acessar as demais funcionalidades do sistema.
 
 ### Tela de Cadastro
-
 ![cadastro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/2e9804c8-72ce-4fb3-a82e-033361e3d2cb)
 
 ### Requisitos atendidos
@@ -74,7 +73,7 @@ A funcionalidade de login de usuário permite que um usuário registrado realize
 ![loginA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/39d77906-6a03-4a4b-a99d-17d0dbad736a)
 
 ### Cabeçalho após login
-![loginB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9179bc16-e2d9-417a-a26a-01ebaf844038)
+![loginB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d1fc3295-522e-4961-8678-eb685338780a)
 
 ### Requisitos atendidos
 - RF-01
@@ -118,11 +117,14 @@ Os dados preenchidos para o login são enviados para o endpoint de autenticaçã
 ## Atualizar dados cadastrais (Opções da conta) (RF-01)
 A funcionalidade de atualizar dados cadastrais permite que o usuário atualize seus dados cadastrais, tal como e-mail, nome, sobrenome, telefone e senha. O usuário não pode modificar seu nome de usuário (identificador único utilizado para login) nem tipo de conta (aluno ou professor), o usuário poderá trocar seu e-mail, contanto que o novo e-mail informado não esteja em uso por nenhuma outra conta. Para realizar a atualização dos dados, o usuário deverá informar sua senha atual. O usuário poderá também optar por apagar sua conta.
 
+### Menu do usuário para acesso a tela de "meus dados"
+![meusDadosA1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/190ebc3e-2190-4eed-9355-bd8d58477e3f)
+
 ### Tela de atualizar dados cadastrais
-![opcoesdaconta1](https://user-images.githubusercontent.com/74699119/235354822-92d7cdcc-2128-4a05-b2bc-2777da730061.png)
+![meusDadosA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/83bdd3b5-37a6-4ad6-a29e-83f90a33e474)
 
 ### Tela de atualizar dados cadastrais - Senha solicitada após tentar mudar dado
-![opcoesdaconta2](https://user-images.githubusercontent.com/74699119/235354842-eb877e3e-8a2e-4a9d-b3f9-78c4bfdad855.png)
+![meusDadosB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/c7d15e4b-f5a0-41ef-a6b5-76ebbf4e31f7)
 
 ### Requisitos atendidos
 - RF-01
@@ -161,8 +163,9 @@ Os dados preenchidos para a atualização são enviados para o endpoint de atual
 
 ### Instruções de acesso
 1. Realizar login;
-2. Clicar na opção "Opções da conta" presente no cabeçalho;
-3. Visualizar tela de atualizar dados cadastrais;
+2. Clicar na seta ao lado do seu nome no cabeçalho para abrir o menu de opções do usuário;
+3. Clicar na opção "Perfil";
+4. Visualizar tela de atualizar dados cadastrais;
 5. Preencher as informações solicitadas relativas aos dados que deseja atualizar e clicar em "atualizar dados", ou clicar em "apagar conta" caso deseje apagar sua conta;
 6. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a homepage;
 
