@@ -1052,7 +1052,7 @@ A funcionalidade de visualização de métricas/notas permitem que o usuário vi
 ![notasA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/4c069d6f-acc5-48ae-a6cc-04f283d93c9c)
 
 ### Tela de selecionar aluno (Apenas para usuário "Professor)
-![notasB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/3eeff1bf-404d-4d14-b4c8-1dcdaa100edb)
+![notasB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/cdaec103-c746-4446-8838-579aa83d5178)
 
 ### Tela de visualizar notas
 ![notasC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/8ddaa504-1cd4-454c-93d1-2f1290d5a53a)
