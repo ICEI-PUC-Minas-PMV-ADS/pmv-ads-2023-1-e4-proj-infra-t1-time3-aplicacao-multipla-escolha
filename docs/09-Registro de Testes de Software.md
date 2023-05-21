@@ -4,9 +4,9 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 
 ## Avaliação
 
-### Testes de Unidade
+## Testes de Unidade
 
-#### CT-001 Testar método CheckIfUserNameOrEmailIsAlreadyUsed do Model "Usuario.cs"
+### CT-001 Testar método CheckIfUserNameOrEmailIsAlreadyUsed do Model "Usuario.cs"
 
 **Objetivo:** Testar o método CheckIfUserNameOrEmailIsAlreadyUsed, utilizado durante o cadastro ou atualização de dados de um usuário para ver se o nome de usuário e email informados estão disponíveis.
 
@@ -94,7 +94,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 
-#### CT-002 CT-002 Testar o método CheckIfUserCanTakeTest do Model "Atividade.cs"
+### CT-002 CT-002 Testar o método CheckIfUserCanTakeTest do Model "Atividade.cs"
 
 **Objetivo:** Testar o método CheckIfUserCanTakeTest, utilizado para verificar se o usuário já extrapolou o número de tentativas ou se perdeu o prazo para realização de uma determinada atividade.
 
@@ -174,7 +174,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 
-#### CT-003 Testar o método Corrigir do Model "AtividadeMongoDb.cs"
+### CT-003 Testar o método Corrigir do Model "AtividadeMongoDb.cs"
 
 **Objetivo:** Testar o método Corrigir, utilizado para realizar a correção de uma atividade a partir das respostas submetidas pelo aluno e retornar a nota e a correção da atividade para o aluno.
 
