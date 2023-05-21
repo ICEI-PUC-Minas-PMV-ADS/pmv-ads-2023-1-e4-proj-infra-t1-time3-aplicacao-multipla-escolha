@@ -217,7 +217,9 @@ Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atual
       "telefone": "(99)99999999",
       "perfil": 1
     },
-    "atividades": null
+    "alunosTurma": [],
+    "atividades": [],
+    "matriculado": null
   }
 ]
 ```
@@ -308,34 +310,179 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 
 ```
 {
-  "id":13006,
-   "nome":"Nova turma",
-   "descricao":"Nova turma",
-   "dataDeCriacao":"2023-04-30T13:28:26.5433026",
-   "ativo":true,
-   "professor":
-   {
-      "id":13003,
-      "nomeDeUsuario":"Novo Professor",
-      "nome":"Novo","sobrenome":"Professor",
-      "email":"novoProfessor@email.com",
-      "telefone":"(99)99999999",
-      "perfil":1
-   },
-   "atividades":
-   [
-     {
-       "id":13014,
-       "nome":"Nova atividade",
-       "valor":4,
-       "descricao":"Nova atividade",
-       "dataDeCriacao":"2023-04-30T17:48:11.7339606",
-       "dataPrazoDeEntrega":"2023-04-30T23:59:00",
-       "tentativasPermitidas":2,
-       "uuidNoMongoDb":"142663ed-4cb2-4267-917c-3c5903009df2",
-       "turma":null
-     }
-   ]
+      "id": 5006,
+      "nome": "Turma",
+      "descricao": "DescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasas",
+      "ativo": true,
+      "dataDeCriacao": "2023-04-19T15:41:45.8741023",
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+      },
+      "alunosTurma": [
+            {
+            "turmaId": 5006,
+            "alunoId": 1,
+            "aluno": {
+            "id": 1,
+            "nomeDeUsuario": "string",
+            "nome": "string",
+            "sobrenome": "string",
+            "email": "email@email.com",
+            "telefone": "(99)99999999",
+            "perfil": 0
+            }
+            },
+            {
+            "turmaId": 5006,
+            "alunoId": 10003,
+            "aluno": {
+            "id": 10003,
+            "nomeDeUsuario": "user",
+            "nome": "user",
+            "sobrenome": "user",
+            "email": "user@email.com.br",
+            "telefone": "(99)99999997",
+            "perfil": 0
+            }
+            }
+      ],
+      "atividades": [
+            {
+            "id": 2003,
+            "nome": "Matematica basica",
+            "descricao": "Soma e multiplicacao",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-04-24T19:59:49.8344257",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 2018,
+            "nome": "Tes",
+            "descricao": "Tes",
+            "valor": 0,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-04-24T20:31:16.2768954",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 8014,
+            "nome": "Teste",
+            "descricao": "Teste",
+            "valor": 2,
+            "dataPrazoDeEntrega": "2023-06-03T23:25:00",
+            "dataDeCriacao": "2023-04-26T02:26:15.6661155",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 9014,
+            "nome": "Teste",
+            "descricao": "Teste",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": "2023-04-26T13:29:00",
+            "dataDeCriacao": "2023-04-26T16:28:23.5959741",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 9015,
+            "nome": "Xx",
+            "descricao": "Xx",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": "2023-04-08T13:30:00",
+            "dataDeCriacao": "2023-04-26T16:29:55.8999232",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 10014,
+            "nome": "T",
+            "descricao": "T",
+            "valor": 0,
+            "dataPrazoDeEntrega": "2023-05-05T12:31:00",
+            "dataDeCriacao": "2023-04-27T15:31:27.8706483",
+            "tentativasPermitidas": 2,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 17015,
+            "nome": "T",
+            "descricao": "T",
+            "valor": 3.5,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-05-19T23:07:35.7989231",
+            "tentativasPermitidas": 4,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 17016,
+            "nome": "f",
+            "descricao": "f",
+            "valor": 5,
+            "dataPrazoDeEntrega": "2023-07-08T20:47:00",
+            "dataDeCriacao": "2023-05-19T23:42:56.5127829",
+            "tentativasPermitidas": 1,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            }
+      ],
+      "matriculado": null
 }
 ```
 
@@ -897,3 +1044,413 @@ Na tela de "visualizar atividade e tentativas anteriores", a atividade e a lista
 13. Clicar em "Voltar" para voltar para a tela de visualizar atividade;
 14. Visualizar tela de visualizar atividade, agora com a tentativa anterior aparecendo nela;
 15. Clicar em "Visualizar" na tentativa anterior para visualiza-la novamente.
+
+## Visualização de métricas/notas por aluno e professor (RF-07 e RF-08)
+A funcionalidade de visualização de métricas/notas permitem que o usuário visualize a nota obtida por um usuário para todas as atividades em uma determinada turma (no caso de atividades que permitem mais de uma tentativa, a nota exibida/mantida será a maior nota entre todas as tentativas do daquele usuário para aquela atividade). Para o usuário do tipo "aluno", o único usuário cujas notas ele poderá visualizar é ele mesmo, no caso do usuário do tipo "professor", uma tela de selecionar aluno aparecerá caso ele seja o dono da turma, na qual ele poderá selecionar qualquer aluno da turma e visualizar suas notas. 
+
+### Tela de visualizar turma (Selecionar "notas")
+
+### Tela de selecionar aluno (Apenas para usuário "Professor)
+
+### Tela de visualizar notas
+
+### Requisitos atendidos
+- RF-07
+- RF-08
+
+### Estrutura de Dados
+
+Na tela de selecionar alunos, os dados da turma como um todo são retornados na seguinte estrutura JSON, com a lista de alunos sendo um de seus parâmetros:
+```
+{
+      "id": 5006,
+      "nome": "Turma",
+      "descricao": "DescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasas",
+      "ativo": true,
+      "dataDeCriacao": "2023-04-19T15:41:45.8741023",
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+      },
+      "alunosTurma": [
+            {
+            "turmaId": 5006,
+            "alunoId": 1,
+            "aluno": {
+            "id": 1,
+            "nomeDeUsuario": "string",
+            "nome": "string",
+            "sobrenome": "string",
+            "email": "email@email.com",
+            "telefone": "(99)99999999",
+            "perfil": 0
+            }
+            },
+            {
+            "turmaId": 5006,
+            "alunoId": 10003,
+            "aluno": {
+            "id": 10003,
+            "nomeDeUsuario": "user",
+            "nome": "user",
+            "sobrenome": "user",
+            "email": "user@email.com.br",
+            "telefone": "(99)99999997",
+            "perfil": 0
+            }
+            }
+      ],
+      "atividades": [
+            {
+            "id": 2003,
+            "nome": "Matematica basica",
+            "descricao": "Soma e multiplicacao",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-04-24T19:59:49.8344257",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 2018,
+            "nome": "Tes",
+            "descricao": "Tes",
+            "valor": 0,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-04-24T20:31:16.2768954",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 8014,
+            "nome": "Teste",
+            "descricao": "Teste",
+            "valor": 2,
+            "dataPrazoDeEntrega": "2023-06-03T23:25:00",
+            "dataDeCriacao": "2023-04-26T02:26:15.6661155",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 9014,
+            "nome": "Teste",
+            "descricao": "Teste",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": "2023-04-26T13:29:00",
+            "dataDeCriacao": "2023-04-26T16:28:23.5959741",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 9015,
+            "nome": "Xx",
+            "descricao": "Xx",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": "2023-04-08T13:30:00",
+            "dataDeCriacao": "2023-04-26T16:29:55.8999232",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 10014,
+            "nome": "T",
+            "descricao": "T",
+            "valor": 0,
+            "dataPrazoDeEntrega": "2023-05-05T12:31:00",
+            "dataDeCriacao": "2023-04-27T15:31:27.8706483",
+            "tentativasPermitidas": 2,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 17015,
+            "nome": "T",
+            "descricao": "T",
+            "valor": 3.5,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-05-19T23:07:35.7989231",
+            "tentativasPermitidas": 4,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 17016,
+            "nome": "f",
+            "descricao": "f",
+            "valor": 5,
+            "dataPrazoDeEntrega": "2023-07-08T20:47:00",
+            "dataDeCriacao": "2023-05-19T23:42:56.5127829",
+            "tentativasPermitidas": 1,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": null,
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            }
+      ],
+      "matriculado": null
+}
+```
+
+Na tela de visualizar notas/métricas, as métricas do aluno em questão são recuperadas na mesma estrutura de dados, mas com o parametro "idAluno" com o id do aluno em questão sendo enviado na request, se o usuário atualmente logado tiver permissão para visualizar as métricas do aluno solicitado, a mesma estrutura de dados será retornada, mas com o campo "atividades" contendo as informações das métricas daquele aluno para cada uma das atividades nos campos "status" (entregue, pendente ou atrasado) e "maior nota" (a maior nota obtida pelo aluno em todas as suas tentativas para aquela atividade)
+ 
+```
+{
+      "id": 5006,
+      "nome": "Turma",
+      "descricao": "DescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasasDescasdasdasas",
+      "ativo": true,
+      "dataDeCriacao": "2023-04-19T15:41:45.8741023",
+      "professor": {
+      "id": 8003,
+      "nomeDeUsuario": "Sergio",
+      "nome": "Sergio",
+      "sobrenome": "Menezes",
+      "email": "x@email.com",
+      "telefone": "(99)99999997",
+      "perfil": 1
+      },
+      "alunosTurma": [
+            {
+            "turmaId": 5006,
+            "alunoId": 1,
+            "aluno": {
+            "id": 1,
+            "nomeDeUsuario": "string",
+            "nome": "string",
+            "sobrenome": "string",
+            "email": "email@email.com",
+            "telefone": "(99)99999999",
+            "perfil": 0
+            }
+            },
+            {
+            "turmaId": 5006,
+            "alunoId": 10003,
+            "aluno": {
+            "id": 10003,
+            "nomeDeUsuario": "user",
+            "nome": "user",
+            "sobrenome": "user",
+            "email": "user@email.com.br",
+            "telefone": "(99)99999997",
+            "perfil": 0
+            }
+            }
+      ],
+      "atividades": [
+            {
+            "id": 2003,
+            "nome": "Matematica basica",
+            "descricao": "Soma e multiplicacao",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-04-24T19:59:49.8344257",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Entregue",
+            "maiorNota": 4.5,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 2018,
+            "nome": "Tes",
+            "descricao": "Tes",
+            "valor": 0,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-04-24T20:31:16.2768954",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Entregue",
+            "maiorNota": 0,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 8014,
+            "nome": "Teste",
+            "descricao": "Teste",
+            "valor": 2,
+            "dataPrazoDeEntrega": "2023-06-03T23:25:00",
+            "dataDeCriacao": "2023-04-26T02:26:15.6661155",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Entregue",
+            "maiorNota": 2,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 9014,
+            "nome": "Teste",
+            "descricao": "Teste",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": "2023-04-26T13:29:00",
+            "dataDeCriacao": "2023-04-26T16:28:23.5959741",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Atividade atrasada",
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 9015,
+            "nome": "Xx",
+            "descricao": "Xx",
+            "valor": 4.5,
+            "dataPrazoDeEntrega": "2023-04-08T13:30:00",
+            "dataDeCriacao": "2023-04-26T16:29:55.8999232",
+            "tentativasPermitidas": null,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Atividade atrasada",
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 10014,
+            "nome": "T",
+            "descricao": "T",
+            "valor": 0,
+            "dataPrazoDeEntrega": "2023-05-05T12:31:00",
+            "dataDeCriacao": "2023-04-27T15:31:27.8706483",
+            "tentativasPermitidas": 2,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Atividade atrasada",
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 17015,
+            "nome": "T",
+            "descricao": "T",
+            "valor": 3.5,
+            "dataPrazoDeEntrega": null,
+            "dataDeCriacao": "2023-05-19T23:07:35.7989231",
+            "tentativasPermitidas": 4,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Entregue",
+            "maiorNota": 1,
+            "tentativasAnteriores": null
+            },
+            {
+            "id": 17016,
+            "nome": "f",
+            "descricao": "f",
+            "valor": 5,
+            "dataPrazoDeEntrega": "2023-07-08T20:47:00",
+            "dataDeCriacao": "2023-05-19T23:42:56.5127829",
+            "tentativasPermitidas": 1,
+            "turmaId": 5006,
+            "turma": null,
+            "atividadeMongoDb": null,
+            "podeSerRealizada": null,
+            "status": "Atividade pendente",
+            "maiorNota": null,
+            "tentativasAnteriores": null
+            }
+      ],
+      "matriculado": null
+}
+```
+
+### Artefatos da funcionalidade
+
+#### Models
+- Resultado.cs
+- Atividade.cs
+- AtividadeMongoDb.cs
+- QuestaoMongoDb.cs
+
+#### Services
+- AtividadesService.cs
+- AtividadeMongoDbService.cs
+
+#### DTO
+- AtividadeDto.cs
+- TurmaDto.cs
+#### Controllers
+- TurmasController.cs
+
+### Frontend
+- visualizarAtividade.js
+- visualizarAtividadeComponent.js
+- visualizarNotas.js
+- visualizarAlunosTurmaComponent.js
+- visualizarNotasComponent.js
+
+### Instruções de acesso
+1. Realizar login;
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Selecionar uma turma e clicar em "Abrir";
+5. Visualizar tela de detalhes da turma;
+6. Clicar no botão "Notas";
+7. Caso esteja logado numa conta do tipo "Professor", visualizar a tela de selecionar aluno e clicar no aluno cujas notas deseja visualizar;
+8. Caso esteja logado numa conta do tipo "Aluno", o usuário será automaticamente redirecionado para a tela de visualizar notas contendo suas notas;
+9. Visualizar a tela de "Visualizar notas";
