@@ -70,21 +70,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.Use(async (context, next) =>
 {
-    if (context.Request.Cookies["jwtToken"] != null)
+    if (!context.Request.Headers.Any(h => h.Key.Equals("Authorization")) && context.Request.Cookies["jwtToken"] != null)
     {
-        Console.WriteLine("Not null");
         var token = context.Request.Cookies["jwtToken"];
+
         context.Request.Headers.Add("Authorization", "bearer " + token);
     }
 
     await next();
 });
 
-app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+app.UseCors(x => x.WithOrigins("http://localhost:3000", "https://snack.expo.dev", "https://snack-web-player.s3.us-west-1.amazonaws.com").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.UseAuthentication();
 
