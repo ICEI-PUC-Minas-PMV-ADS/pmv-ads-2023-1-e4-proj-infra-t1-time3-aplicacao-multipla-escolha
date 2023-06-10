@@ -204,7 +204,7 @@ export default function RegisterPage({ navigation }) {
         style={styles.ButtonCadastro}
         mode="contained"
         onPress={() => handleRegister()}>
-        Confirmar
+        <Text style={{color: 'white'}}>Confirmar</Text>
       </Button>
     </View>
   );

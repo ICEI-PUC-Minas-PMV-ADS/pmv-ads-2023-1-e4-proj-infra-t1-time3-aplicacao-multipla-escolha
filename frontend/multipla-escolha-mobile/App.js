@@ -5,16 +5,29 @@ import { NavigationContainer } from '@react-navigation/native';
 import Main from './src/navigations/Main';
 import UserProvider from './src/context/UserContext';
 import { colors } from './src/utils/colors';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#9391f8',
+    accent: 'gray',
+  },
+};
 
 export default function App() {
   return (
-    <UserProvider>
-      <View style={styles.container}>
-        <NavigationContainer styles={styles.container}>
-          <Main />
-        </NavigationContainer>
-      </View>
-    </UserProvider>
+    <PaperProvider theme={theme}>
+      <UserProvider>
+        <View style={styles.container}>
+          <NavigationContainer styles={styles.container}>
+            <Main />
+          </NavigationContainer>
+        </View>
+      </UserProvider>
+    </PaperProvider>
   );
 }
 

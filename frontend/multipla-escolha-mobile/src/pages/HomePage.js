@@ -32,7 +32,7 @@ export default function HomePage({ navigation }) {
           onPress={() => navigation.navigate('LoginPage')}
           style={styles.ButtonLogin}
           mode="contained">
-          <Text style={{ fontWeight: 'bold' }}>Fazer login</Text>
+          <Text style={{ fontWeight: 'bold', color: 'white' }}>Fazer login</Text>
         </Button>
         <Button onPress={() => navigation.navigate("RegisterPage")}>
           <Text style={styles.ButtonCadastro}>Cadastrar-se</Text>

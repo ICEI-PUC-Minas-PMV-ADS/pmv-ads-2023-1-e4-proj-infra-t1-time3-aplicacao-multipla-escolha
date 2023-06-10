@@ -123,7 +123,10 @@ namespace multipla_escolha_api.Controllers
                 Expires = DateTime.UtcNow.AddHours(8),
             };
 
-            Response.Cookies.Delete("jwtToken", cookieOptions);
+            if (response.StatusCode == 204)
+            {
+                Response.Cookies.Delete("jwtToken", cookieOptions);
+            }
             
             return StatusCode(response.StatusCode, response.Content);
         }

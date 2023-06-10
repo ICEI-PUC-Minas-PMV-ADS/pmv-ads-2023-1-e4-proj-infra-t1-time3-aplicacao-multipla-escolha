@@ -16,12 +16,12 @@ namespace multipla_escolha_api.Models
                 .HasIndex(u => u.Email).IsUnique();
 
             builder.Entity<Turma>()
-                .HasOne(t => t.Professor).WithMany(p => p.TurmasProfessor)
+                .HasMany(t => t.Atividades).WithOne(a => a.Turma)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<TurmaAluno>()
                 .HasKey(ta => new { ta.TurmaId, ta.AlunoId });
-            
+
             builder.Entity<TurmaAluno>()
                 .HasOne(ta => ta.Turma).WithMany(t => t.AlunosTurma)
                 .HasForeignKey(ta => ta.TurmaId)
@@ -32,13 +32,25 @@ namespace multipla_escolha_api.Models
                 .HasForeignKey(ta => ta.AlunoId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<Atividade>()
-           .HasMany(a => a.Resultados).WithOne(r => r.Atividade)
-           .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<Turma>()
+                .HasMany(t => t.AlunosTurma).WithOne(at => at.Turma)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<Usuario>()
+                .HasMany(u => u.TurmasAluno).WithOne(ta => ta.Aluno)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Usuario>()
-            .HasMany(u => u.Resultados).WithOne(r => r.Aluno)
-            .OnDelete(DeleteBehavior.NoAction);
+                .HasMany(u => u.TurmasProfessor).WithOne(tp => tp.Professor)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.Entity<Atividade>()
+               .HasMany(a => a.Resultados).WithOne(r => r.Atividade)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Usuario>()
+               .HasMany(u => u.Resultados).WithOne(r => r.Aluno)
+               .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }

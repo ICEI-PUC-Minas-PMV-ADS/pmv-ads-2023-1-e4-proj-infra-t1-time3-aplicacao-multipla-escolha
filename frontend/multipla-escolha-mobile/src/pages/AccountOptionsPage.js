@@ -18,7 +18,7 @@ export default function AccountOptionsPage({ navigation }) {
 
   return (
     <View style={styles.container}>
-          <NavbarComponent title="Opções da conta" goBack={true} />
+          <NavbarComponent title="Meus dados" goBack={true} />
       <Text style={styles.Title}>Opções da conta</Text>
     </View>
   );

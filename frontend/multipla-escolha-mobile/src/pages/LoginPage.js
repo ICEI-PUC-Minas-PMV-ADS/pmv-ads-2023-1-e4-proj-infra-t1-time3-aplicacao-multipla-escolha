@@ -87,7 +87,9 @@ export default function LoginPage({ navigation }) {
         style={styles.ButtonLogin}
         mode="contained"
         onPress={() => handleLogin()}>
-        Login
+        <Text style={{color: 'white'}}>
+          Login
+        </Text>
       </Button>
       <Text style={[styles.LoginText, { marginTop: 20 }]}>
         Não possui uma conta?{' '}

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using multipla_escolha_api.Models;
 
@@ -11,9 +12,11 @@ using multipla_escolha_api.Models;
 namespace multipla_escolha_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230608202249_M14")]
+    partial class M14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,7 +214,7 @@ namespace multipla_escolha_api.Migrations
                     b.HasOne("multipla_escolha_api.Models.Usuario", "Aluno")
                         .WithMany("Resultados")
                         .HasForeignKey("AlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("multipla_escolha_api.Models.Atividade", "Atividade")

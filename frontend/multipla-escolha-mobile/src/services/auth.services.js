@@ -50,23 +50,6 @@ export const logoff = async (navigation, setUserData) => {
   });
 };
 
-export const loginTeste = async (param) => {
-  try {
-    return await API.get(BASE_URL + '/api/Turmas', {}).then(
-      (response) => {
-        return response.data;
-      },
-      (error) => {
-        window.alert(error);
-        return null;
-      }
-    );
-  } catch (error) {
-    window.alert(error);
-    return null;
-  }
-};
-
 export const getUserInfo = async (param) => {
   try {
     return await API.get(BASE_URL + '/api/Usuarios/Info', param).then(

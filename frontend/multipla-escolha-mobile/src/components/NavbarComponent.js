@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function NavbarComponent({ title, goBack }) {
+export default function LoadingComponent({ title, goBack }) {
   const { userData, setUserData } = useUser();
 
   const navigation = useNavigation();
@@ -47,10 +47,10 @@ export default function NavbarComponent({ title, goBack }) {
           }}>
           {goBack ? (
             <Appbar.Action
-              style={{ margin: 0, padding: 0 }}
-              icon="arrow-left"
-              size={22}
-              color="white"
+              style={{ margin: 0, padding: 0, marginLeft: -20 }}
+              icon='chevron-left'
+              size={28}
+              color="black"
               onPress={() => navigation.goBack()}
             />
           ) : null}
@@ -65,7 +65,7 @@ export default function NavbarComponent({ title, goBack }) {
             }}>
             <Appbar.Action
               icon="account-circle"
-              size={28}
+              size={32}
               color="white"
               onPress={() => setShowOptions(switchBoolean(showOptions))}
             />
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   },
   navbarTop: {
     width: '100%',
-    height: 55,
-    maxHeight: 55,
+    height: 60,
+    maxHeight: 60,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
