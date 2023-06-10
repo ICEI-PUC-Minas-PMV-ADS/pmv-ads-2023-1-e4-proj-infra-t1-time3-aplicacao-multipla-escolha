@@ -6,7 +6,11 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import MinhasTurmasPage from '../pages/MinhasTurmasPage';
 import AccountOptionsPage from '../pages/AccountOptionsPage';
-
+import CriarTurmaPage from '../pages/CriarTurmaPage';
+import EditarTurmaPage from '../pages/EditarTurmaPage';
+import BuscarTurmasPage from '../pages/BuscarTurmasPage';
+import VisualizarTurmaPage from '../pages/VisualizarTurmaPage';
+import VisualizarAtividadePage from '../pages/VisualizarAtividadePage';
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
@@ -43,6 +47,41 @@ const Main = () => {
       <Stack.Screen
         name="AccountOptionsPage"
         component={AccountOptionsPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="CriarTurmaPage"
+        component={CriarTurmaPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="EditarTurmaPage"
+        component={EditarTurmaPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="BuscarTurmasPage"
+        component={BuscarTurmasPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="VisualizarTurmaPage"
+        component={VisualizarTurmaPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="VisualizarAtividadePage"
+        component={VisualizarAtividadePage}
         options={{
           header: () => null,
         }}
