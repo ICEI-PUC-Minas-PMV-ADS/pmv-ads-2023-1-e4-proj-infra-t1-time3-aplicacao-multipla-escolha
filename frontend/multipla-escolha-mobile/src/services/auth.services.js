@@ -99,3 +99,24 @@ export const getCurrentUser = async (param) => {
     return null;
   }
 };
+
+export const deleteAccount = async (navigation, setUserData) => {
+  try {
+    return await API.delete(BASE_URL + '/api/Usuarios/delete-account').then(
+      (res) => {
+        window.alert('Conta apagada com sucesso!');
+        AsyncStorage.removeItem('@TOKEN_KEY').then((response) => {
+          setUserData(null);
+          navigation.navigate('HomePage');
+          return response.data;
+        });
+      },
+      (error) => {
+        return null;
+      }
+    );
+  } catch (error) {
+    window.alert(error);
+    return null;
+  }
+};
