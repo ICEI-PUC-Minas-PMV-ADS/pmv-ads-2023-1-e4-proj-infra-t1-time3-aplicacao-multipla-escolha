@@ -828,3 +828,87 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 <br>
+
+### CTI-006 Matricular aluno em turma recém criada
+
+**Objetivo:** Testar se a aplicação permite associar uma aluno recém criado a uma turma recém criada como aluno matriculado.
+
+**Requisitos que motivaram o teste:**	RF-004 Permitir que o usuário do tipo "aluno" se matricule em turmas existentes
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void MatricularAlunoEmTurmaRecemCriada_EsperaSeQueChecagemRetorneFalseAntesDeSalvarAsMudancasMasRetorneTrueAposRealizarAMatricula()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        Usuario novoUsuarioAluno = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Pedro",
+            Nome = "Pedro",
+            Sobrenome = "Rodrigues",
+            Email = "Pedro@email.com",
+            Telefone = "(99)99999997",
+            Perfil = Perfil.Aluno
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.Usuarios.Add(novoUsuarioAluno);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+        Usuario usuarioAlunoRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Pedro");
+        
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+        // Ação
+        TurmaAluno turmaAluno = new();
+        turmaAluno.Aluno = usuarioAlunoRecuperado;
+        turmaAluno.Turma = turmaRecuperada;
+
+        bool alunoMatriculado = _context.Turmas.Include(t => t.AlunosTurma).Any(t => t.AlunosTurma.Any(at => at.AlunoId == usuarioAlunoRecuperado.Id));
+
+        _context.TurmasAlunos.Add(turmaAluno);
+        _context.SaveChanges();
+
+        // Asserção
+        Xunit.Assert.Equal(alunoMatriculado, false);
+
+        alunoMatriculado = _context.Turmas.Include(t => t.AlunosTurma).Any(t => t.AlunosTurma.Any(at => at.AlunoId == usuarioAlunoRecuperado.Id));
+
+        // Asserção
+        Xunit.Assert.Equal(alunoMatriculado, true);
+    }
+```
+
+- A checagem para verificar se o usuário estava matriculado na turma retornou negativo antes de as mudanças serem salvas no banco, mas positivo após as mudanças serem salvas, demonstrando o êxito do teste.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
