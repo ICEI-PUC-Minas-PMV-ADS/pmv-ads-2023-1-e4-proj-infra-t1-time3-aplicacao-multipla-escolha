@@ -31,11 +31,13 @@ Uma vez que o projeto esteja rodando localmente, basta seguir as instruções ab
 ## Cadastro de usuário (RF-01)
 A funcionalidade de cadastro de usuário permite que um novo usuário se registre como "Aluno" ou "Professor", obtendo uma conta que pode utilizar para acessar as demais funcionalidades do sistema.
 
+## Frontend Web
 ### Tela de Cadastro (Frontend Web)
 ![cadastro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/2e9804c8-72ce-4fb3-a82e-033361e3d2cb)
 
+## Frontend Mobile
 ### Tela de Cadastro (Frontend Mobile)
-![Login](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/7c40ff15-76c2-407e-ac5a-a301677fd464)
+![Cadastro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/6528d654-260a-49b7-8216-0c2b84c91151)
 
 ### Requisitos atendidos
 - RF-01
@@ -91,6 +93,8 @@ Os dados preenchidos para o cadastro são enviados para a API na seguinte estrut
 ## Login de usuário (RF-01)
 A funcionalidade de login de usuário permite que um usuário registrado realize login do sistema, obtendo um token JWT e iniciando uma sessão associada a ele.
 
+
+## Frontend Web
 ### Homepage (Com link para tela de login no cabeçalho)
 ![home](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/e3009b4a-f1d0-4594-b032-989b8a6c275f)
 
@@ -99,6 +103,16 @@ A funcionalidade de login de usuário permite que um usuário registrado realize
 
 ### Cabeçalho após login
 ![loginB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d1fc3295-522e-4961-8678-eb685338780a)
+
+## Frontend Mobile
+### Tela inicial
+![HomePage](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d04e874d-b777-4417-8c1a-e0b7778c8a9b)
+
+### Tela de Login
+![Login](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/a5ba9c41-74f1-416d-baa1-fcc3ab15c316)
+
+### Cabeçalho após login
+![cabecalhoLogin](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/abafb50f-9574-4ac1-83e9-7bce16be7387)
 
 ### Requisitos atendidos
 - RF-01
@@ -127,17 +141,31 @@ Os dados preenchidos para o login são enviados para o endpoint de autenticaçã
 #### Controllers
 - UsuariosController.cs
 
-### Frontend
+### Frontend Web
 - login.js
 - loginComponent.js
 - navbar.js
 
-### Instruções de acesso
+### Frontend Mobile
+- HomePage.js
+- LoginPage.js
+- NavbarComponent.js
+- auth.services.js
+
+### Instruções de acesso (Frontend Web)
 1. Visualizar homepage;
 2. Clicar na opção "Login" presente no cabeçalho;
 3. Visualizar tela de login;
 5. Preenhcer usuário e senha e clicar em "Fazer login";
 6. Caso as informações fornecidas sejam válidas, a sessão será iniciada e o usuário será redirecionado para a tela de "minhas turmas", o cabeçalho deverá ter sido atualizado, mostrando o nome do usuário;
+
+### Instruções de acesso (Frontend Mobile)
+1. Visualizar tela inicial;
+2. Clicar na opção "Fazer Login";
+3. Visualizar tela de login;
+5. Preenhcer usuário e senha e clicar em "Fazer login";
+6. Caso as informações fornecidas sejam válidas, a sessão será iniciada e o usuário será redirecionado para a tela de "minhas turmas", o cabeçalho deverá ter sido atualizado, mostrando um icone de "usuário";
+
 
 ## Atualizar dados cadastrais (Opções da conta) (RF-01)
 A funcionalidade de atualizar dados cadastrais permite que o usuário atualize seus dados cadastrais, tal como e-mail, nome, sobrenome, telefone e senha. O usuário não pode modificar seu nome de usuário (identificador único utilizado para login) nem tipo de conta (aluno ou professor), o usuário poderá trocar seu e-mail, contanto que o novo e-mail informado não esteja em uso por nenhuma outra conta. Para realizar a atualização dos dados, o usuário deverá informar sua senha atual. O usuário poderá também optar por apagar sua conta.
