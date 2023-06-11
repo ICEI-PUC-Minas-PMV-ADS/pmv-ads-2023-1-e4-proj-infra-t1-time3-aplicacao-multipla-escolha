@@ -998,6 +998,8 @@ Este endpoint não recebe ou retorna nenhum payload em JSON. O id da turma em qu
 ## Visualização e realização de atividade por aluno (RF-05, RF-06 e RF-07)
 A funcionalidade de visualização e realização de atividade por aluno permite a um usuário do tipo aluno realizar atividades cadastradas em alguma turma. No momento, qualquer usuário "aluno" pode realizar qualquer atividade, uma vez que as funcionalidade de matrícula em turma e visualização de turmas na qual o aluno está matriculado não estão completamente implementadas. Ao selecionar uma atividade e clicar em "abrir", o usuário poderá visualizar os resultados todas as tentativas anteriores para aquela atividade. O usuário poderá também clicar em "Fazer tarefa" para realizar uma nova tentativa caso não tenha extrapolado o limite de tentativas, obtendo sua nota e correção da atividade imediatamente após submete-la.  
 
+
+## Frontend Mobile
 ### Tela de visualizar turma (Selecionar atividade)
 ![realizarAtividadeB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/ab1f430a-fefc-4e93-8f1f-4173cf68b711)
 
@@ -1015,6 +1017,19 @@ A funcionalidade de visualização e realização de atividade por aluno permite
 
 ### Tela de visualizar atividade e tentativas anteriores (após realização da primeira tentativa, clicar em "Visualizar" no histórico de tentativas retorna o usuário para a tela de visualizar resultado)
 ![realizarAtividadeG](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/49213384-5038-479e-8429-7887aacb7a7c)
+
+## Frontend Web
+### Tela de visualizar turma (Selecionar atividade)
+![fazerAtividade1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/cd62faef-0699-4741-a20d-632fd3698c49)
+
+### Tela de visualizar atividade 
+![fazerAtividade2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/6f21538d-669c-46e5-947a-d39fcffbda42)
+
+### Tela de realizar atividade
+![fazerAtividade3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/8aebc0cd-b236-4b5e-987b-fdbd52defb3f)
+
+### Tela de resultado da atividade
+![fazerAtividade4](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/e45ec8ee-3496-4997-b97b-9586b5c4efed)
 
 ### Requisitos atendidos
 - RF-05
@@ -1227,7 +1242,15 @@ Na tela de "visualizar atividade e tentativas anteriores", a atividade e a lista
 - visualizarResultado.js
 - VisualizarRestadoComponent.js
 
-### Instruções de acesso
+### Frontend Mobile
+- VisualizarAtividadePage.js
+- FazerAtividadePage.js
+- VisualizarResultadoPage.js
+- turmas.services.js
+- atividades.services.js
+- resultados.services.js
+
+### Instruções de acesso (Frontend Web)
 1. Realizar login com uma conta do tipo "aluno";
 2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
 3. Visualizar tela de "Minhas turmas";
@@ -1244,9 +1267,25 @@ Na tela de "visualizar atividade e tentativas anteriores", a atividade e a lista
 14. Visualizar tela de visualizar atividade, agora com a tentativa anterior aparecendo nela;
 15. Clicar em "Visualizar" na tentativa anterior para visualiza-la novamente.
 
+### Instruções de acesso (Frontend Mobile)
+1. Realizar login com uma conta do tipo "aluno";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Selecionar uma turma e clicar em "Abrir";
+5. Visualizar tela de detalhes da turma;
+6. Selecionar uma atividade cujo limite de tentativas e prazo não esteja esgotado e clicar em "Abrir";
+7. Visualizar a tela de visualizar atividades e resultados anteriores;
+8. Clicar em "Fazer tarefa";
+9. Visualizar a tela de fazer tarefa;
+10. Preencher as respostas das questões e clicar em "Submeter";
+11. Caso todas as respostas tenham sido preenchidas, o usuário será redirecionado para a tela de visualizar resultado;
+12. Visualizar resultado;
+13. Clicar em "Voltar" para voltar para a tela de visualizar atividade;
+
 ## Visualização de métricas/notas por aluno e professor (RF-07 e RF-08)
 A funcionalidade de visualização de métricas/notas permitem que o usuário visualize a nota obtida por um usuário para todas as atividades em uma determinada turma (no caso de atividades que permitem mais de uma tentativa, a nota exibida/mantida será a maior nota entre todas as tentativas do daquele usuário para aquela atividade). Para o usuário do tipo "aluno", o único usuário cujas notas ele poderá visualizar é ele mesmo, no caso do usuário do tipo "professor", uma tela de selecionar aluno aparecerá caso ele seja o dono da turma, na qual ele poderá selecionar qualquer aluno da turma e visualizar suas notas. 
 
+## Frontend Web
 ### Tela de visualizar turma (Selecionar "notas")
 ![notasA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/4c069d6f-acc5-48ae-a6cc-04f283d93c9c)
 
@@ -1258,6 +1297,17 @@ A funcionalidade de visualização de métricas/notas permitem que o usuário vi
 
 ### Tela de visualizar notas (busca de atividade)
 ![notasD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/00ffc7e0-a521-4a09-97e2-cdbb7e268165)
+
+## Frontend Mobile
+### Tela de visualizar turma (Selecionar "notas")
+![visualizarNota1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/98aec044-eca0-4f28-91af-b2fa9e69c373)
+![visualizarNota4](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/e0e0f7e2-a3dc-41f2-ae7c-ce5858ac55ec)
+
+### Tela de selecionar aluno (Apenas para usuário "Professor)
+![visualizarNota6](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d260692b-9bd3-47c9-9ab6-fa42d4398cdd)
+
+### Tela de visualizar notas
+![visualizarNota3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/dc827dd5-9be9-4629-a325-44ea47570590)
 
 ### Requisitos atendidos
 - RF-07
@@ -1642,14 +1692,21 @@ Na tela de visualizar notas/métricas, as métricas do aluno em questão são re
 #### Controllers
 - TurmasController.cs
 
-### Frontend
+### Frontend Web
 - visualizarAtividade.js
 - visualizarAtividadeComponent.js
 - visualizarNotas.js
 - visualizarAlunosTurmaComponent.js
 - visualizarNotasComponent.js
 
-### Instruções de acesso
+### Fronten Mobile
+- VisualizarNotaPage.js
+- SelecionarAlunoPage.js
+- VisualizarTurmaPage.js
+- turmas.services.js
+- resultados.serviceos.js
+
+### Instruções de acesso (Frontend Web)
 1. Realizar login;
 2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
 3. Visualizar tela de "Minhas turmas";
@@ -1660,3 +1717,14 @@ Na tela de visualizar notas/métricas, as métricas do aluno em questão são re
 8. Caso esteja logado numa conta do tipo "Aluno", o usuário será automaticamente redirecionado para a tela de visualizar notas contendo suas notas;
 9. Visualizar a tela de "Visualizar notas";
 10. Caso deseje buscar uma atividade específica na lista, inserir o nome da atividade no campo de busca.
+
+### Instruções de acesso (Frontend Mobile)
+1. Realizar login;
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Selecionar uma turma e clicar em "Abrir";
+5. Visualizar tela de detalhes da turma;
+6. Clicar no botão "Notas";
+7. Caso esteja logado numa conta do tipo "Professor", visualizar a tela de selecionar aluno e clicar no aluno cujas notas deseja visualizar;
+8. Caso esteja logado numa conta do tipo "Aluno", o usuário será automaticamente redirecionado para a tela de visualizar notas contendo suas notas;
+9. Visualizar a tela de "Visualizar notas";
