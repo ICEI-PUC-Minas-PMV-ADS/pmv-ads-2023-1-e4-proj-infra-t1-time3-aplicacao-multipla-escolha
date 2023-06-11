@@ -248,6 +248,7 @@ Os dados preenchidos para a atualização são enviados para o endpoint de atual
 ## Cadastro e edição de turmas por professor (RF-02)
 A funcionalidade de cadastro de turmas permite que um usuário do tipo "Professor" cadastre uma nova turma em seu nome, fornecendo o nome e descrição da turma, além de poder decidir se a turma está ativa ou não (turmas não ativas não aparecem para os alunos na busca de turmas). As turmas cadastradas poderão então ser visualizadas na tela de "Minhas turmas" do professor, aonde poderão ser editadas ou apagadas clicando nos botões correspondentes.
 
+## Frontend Web
 ### Tela de "minhas turmas" (opção de "Nova turma")
 ![cadastroTurmasA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/9cb86be1-ab33-4a52-9a1a-a01c1358f036)
 
@@ -259,6 +260,19 @@ A funcionalidade de cadastro de turmas permite que um usuário do tipo "Professo
 
 ### Tela de editar turma
 ![editarTurma](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/12c3dd37-c6e1-400a-ba80-90761824b296)
+
+## Frontend Mobile
+### Tela de "minhas turmas" (opção de "Criar")
+![criarTurma1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/703acb90-0b52-44a7-be91-003fca16e1b7)
+
+### Tela de cadastro de turma
+![criarTurma2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/c96ab3ac-177c-4e19-9ebd-bb2d3d99aa03)
+
+### Tela de "minhas turmas" (opção de editar turma)
+![criarTurma3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/1dcfee30-c901-4498-ac5e-6b6a98a2840e)
+
+### Tela de editar turma
+![criarTurma4](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/37044747-ad74-44f4-be22-a51678ba8551)
 
 ### Requisitos atendidos
 - RF-02
@@ -310,22 +324,36 @@ Na tela de "minhas turmas", a lista de turmas cujo professor é o usuário atual
 - TurmaDto.cs
 #### Controllers
 - TurmaController.cs
-
-### Frontend
+### Frontend Web
 - MinhasTurmas.js
 - MinhasTurmasProfessorComponent.js
 - criarTurma.js
 - criarTurmaFormComponent.js
 - editarTurma.js
 - editarTurmaFormComponent.js
+### Frontend Mobile
+- MinhasTurmasPage.js
+- CriarTurmaPage.js
+- EditarTurmaPage.js
+- turmas.services.js
 
-### Instruções de acesso
+### Instruções de acesso (Frontend Web)
 1. Realizar login em uma conta do tipo "Professor";
 2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
 3. Visualizar tela de "Minhas turmas";
 5. Clicar em "Nova turma";
 6. Visualiar tela de cadastro de turma;
 7. Preencher as informaçõs solicitadas e clicar em "Cadastrar turma";
+8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "Minhas turmas";
+9. Caso deseje editar ou apagar uma das turmas criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de turmas onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar dados";
+
+### Instruções de acesso (Frontend Mobile)
+1. Realizar login em uma conta do tipo "Professor";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Minhas Turmas";
+3. Visualizar tela de "Minhas turmas";
+5. Clicar em "Criar";
+6. Visualiar tela de cadastro de turma;
+7. Preencher as informaçõs solicitadas e clicar em "Criar turma";
 8. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de "Minhas turmas";
 9. Caso deseje editar ou apagar uma das turmas criadas, clicar em "Editar" ou "Apagar". A opção de "Editar" redirecionará um usuário para uma tela similar a tela de cadastro de turmas onde ele poderá substituir as informações anteriormente cadastradas ao clicar em "Atualizar dados";
 
