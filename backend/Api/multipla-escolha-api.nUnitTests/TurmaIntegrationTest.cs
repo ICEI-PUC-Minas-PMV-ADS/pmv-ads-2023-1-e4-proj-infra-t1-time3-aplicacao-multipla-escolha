@@ -167,6 +167,72 @@ public class TurmaIntegrationTest : IDisposable
         Xunit.Assert.Equal(turmaAtualizada.Descricao, "Nova descrição");
         Xunit.Assert.Equal(turmaAtualizada.Ativo, false);
     }
+
+    [Fact]
+    public void MatricularAlunoEmTurmaRecemCriada_EsperaSeQueChecagemRetorneFalseAntesDeSalvarAsMudancasMasRetorneTrueAposRealizarAMatricula()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        Usuario novoUsuarioAluno = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Pedro",
+            Nome = "Pedro",
+            Sobrenome = "Rodrigues",
+            Email = "Pedro@email.com",
+            Telefone = "(99)99999997",
+            Perfil = Perfil.Aluno
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.Usuarios.Add(novoUsuarioAluno);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+        Usuario usuarioAlunoRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Pedro");
+        
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+        // Ação
+        TurmaAluno turmaAluno = new();
+        turmaAluno.Aluno = usuarioAlunoRecuperado;
+        turmaAluno.Turma = turmaRecuperada;
+
+        bool alunoMatriculado = _context.Turmas.Include(t => t.AlunosTurma).Any(t => t.AlunosTurma.Any(at => at.AlunoId == usuarioAlunoRecuperado.Id));
+
+        _context.TurmasAlunos.Add(turmaAluno);
+        _context.SaveChanges();
+
+        // Asserção
+        Xunit.Assert.Equal(alunoMatriculado, false);
+
+        alunoMatriculado = _context.Turmas.Include(t => t.AlunosTurma).Any(t => t.AlunosTurma.Any(at => at.AlunoId == usuarioAlunoRecuperado.Id));
+
+        // Asserção
+        Xunit.Assert.Equal(alunoMatriculado, true);
+    }
     public void Dispose()
     {
         _context.Database.EnsureDeleted();
