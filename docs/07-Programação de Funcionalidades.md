@@ -665,6 +665,7 @@ Na tela de "detalhes da turma", a lista de atividades é recuperada como parte d
 ## Busca de turmas (RF-04)
 A funcionalidade de busca de turmas permite que o usuário do tipo "aluno" busque uma turma entre todas as turmas cadastradas que estejam com o status "Ativa", o usuário poderá filtrar a busca pelo nome da turma ou pelo nome/email do professor, facilitando a localização da turma que deseja encontrar.
 
+## Frontend Web
 ### Tela de "Minhas turmas" (Aluno)
 ![buscarTurmaA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/798454a6-3d74-42fc-a29d-e0b0ea2c65fe)
 
@@ -673,6 +674,13 @@ A funcionalidade de busca de turmas permite que o usuário do tipo "aluno" busqu
 
 ### Tela de buscar turma (resultados filtrados)
 ![buscarTurmaC](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/160a261a-6119-497d-94df-54a7febd085b)
+
+## Frontend Mobile
+### Tela de "Minhas turmas" (Aluno)
+![buscarTurma1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/b20ac447-43ff-454a-b8d3-9e0ebe3724e6)
+
+### Tela de buscar turma
+![buscarTurma2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/bf224beb-a147-4891-8f23-317df48a75bd)
 
 ### Requisitos atendidos
 - RF-04
@@ -876,11 +884,24 @@ Os resultados exibidos na tela são recuperados de forma paginada da API na segu
 #### Controllers
 - TurmasController.cs
 
-### Frontend
+### Frontend Web
 - buscarTurmas.js
 - BuscarTurmasComponent.js
 
-### Instruções de acesso
+### Frontend Mobile
+- MinhasTurmasPage.js
+- BuscarTurmaPage.js
+- turmas.services.js
+
+### Instruções de acesso (Frontend Web)
+1. Realizar login com uma conta do tipo "aluno";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Inserir os termos de busca desejados no campo de "buscar turma" e clicar no icone da lupa para realizar a busca;
+5. Visualizar a tela de buscar turmas;
+6. Digitar os termos de busca nos campos "Buscar por nome da turma" ou "Buscar por nome/email do professor" para filtrar os resultados;
+
+### Instruções de acesso (Frontend Mobile)
 1. Realizar login com uma conta do tipo "aluno";
 2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
 3. Visualizar tela de "Minhas turmas";
@@ -891,6 +912,7 @@ Os resultados exibidos na tela são recuperados de forma paginada da API na segu
 ## Matrícula em turma (RF-04 e RF-05)
 A funcionalidade de matrícula em turma permite que o usuário do tipo "aluno" realize matrícula na turma desejada, tendo assim acessoa a realização de todas as atividades nela cadastradas.
 
+## Frontend Web
 ### Tela de visualizar turma (botão "fazer matrícula aparece apenas para usuário tipo aluno)
 ![matriculaTurmaA](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/494dc3cc-63df-4590-b80b-f064f2eac89e)
 
@@ -902,6 +924,24 @@ A funcionalidade de matrícula em turma permite que o usuário do tipo "aluno" r
 
 ### Tela de "Minhas turmas" - Aluno (Agora com a turma em que ele se matriculou)
 ![matriculaTurmaD](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/3e244de9-ce83-4f64-baa2-7f444c3696ec)
+
+## Frontend Mobile
+### Tela de "Buscar Turma"
+![matriculaEmTurma1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/14d81f5e-a316-4e43-a180-c5037d5876ab)
+
+### Tela de visualizar turma (botão "fazer matrícula aparece apenas para usuário tipo aluno)
+![matriculaEmTurma2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/3298fe96-3078-43c9-8a14-b1186fbf157b)
+
+### Tela de visualizar turma - mensagem de sucesso
+![matriculaEmTurma3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/ed0a819d-b7d0-4933-b414-46626b2e39ba)
+
+### Tela de "Minhas turmas" - Aluno (Agora com a turma em que ele se matriculou)
+![matriculaEmTurma6](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/0f71b0de-985c-4253-b287-899f43555e20)
+
+### Tela de visualizar turma (Cancelar Matricula)
+![matriculaEmTurma4](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d1b5d0ce-9a53-47b3-b470-591d443d0b1a)
+![matriculaEmTurma5](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/1515c35a-c37c-457d-9f3c-34f6565b0b79)
+
 
 ### Requisitos atendidos
 - RF-04
@@ -923,11 +963,28 @@ Este endpoint não recebe ou retorna nenhum payload em JSON. O id da turma em qu
 #### Controllers
 - TurmasController.cs
 
-### Frontend
+### Frontend Web
 - visualizarTurma.js
 - visualizarTurmaComponent.js
 
-### Instruções de acesso
+### Frontend Mobile
+- BuscarTurmaPage.js
+- VisualizarTurmaPage.js
+- MinhasTurmasPage.js
+- turmas.services.js
+
+### Instruções de acesso (Frontend Web)
+1. Realizar login com uma conta do tipo "aluno";
+2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
+3. Visualizar tela de "Minhas turmas";
+4. Inserir os termos de busca desejados no campo de "buscar turma" e clicar no icone da lupa para realizar a busca;
+5. Visualizar a tela de buscar turmas;
+6. Selecionar a turma desejada;
+7. Clicar em "Fazer matricula";
+8. Caso a matrícula ocorra com sucesso, uma mensagem de sucesso será exibida;
+9. Caso deseje cancelar a matrícula, basta clicar no botão de "Cancelar matrícula".
+
+### Instruções de acesso (Frontend Mobile)
 1. Realizar login com uma conta do tipo "aluno";
 2. Caso já não esteja na tela de "minhas turmas", abrir o menu de opções do usuário clicando no seu nome no cabeçalho e clicar em "Turmas";
 3. Visualizar tela de "Minhas turmas";
