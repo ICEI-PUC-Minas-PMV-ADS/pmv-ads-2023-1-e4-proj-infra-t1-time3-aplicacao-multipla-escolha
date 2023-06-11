@@ -376,7 +376,7 @@ A funcionalidade de cadastro de atividades permite que um usuário do tipo "Prof
 ### Tela de detalhes da turma (Com atividade nova)
 ![cadastrarAtividadeE](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/1fe36957-5c2b-4053-82df-dcdbedd006c4)
 
-## Frontend Web
+## Frontend Mobile
 ### Tela de detalhes da turma (opção de criar atividade)
 ![criarAtividade1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/1104095e-a0cc-4fbf-865b-38f542aec15d)
 
