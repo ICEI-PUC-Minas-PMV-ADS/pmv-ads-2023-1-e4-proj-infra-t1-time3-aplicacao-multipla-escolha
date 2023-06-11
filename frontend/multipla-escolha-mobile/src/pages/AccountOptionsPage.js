@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Alert } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import Constants from 'expo-constants';
 import NavbarComponent from '../components/NavbarComponent';
@@ -8,11 +8,18 @@ import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Picker } from '@react-native-community/picker';
 import LoadingComponent from '../components/LoadingComponent';
+import { useUser } from '../context/UserContext';
 
-import { getCurrentUser, updateRegister } from '../services/auth.services';
+import {
+  getCurrentUser,
+  updateRegister,
+  deleteAccount,
+} from '../services/auth.services';
 import { colors } from '../utils/colors';
 
 export default function AccountOptionsPage({ navigation }) {
+  const { userData, setUserData } = useUser();
+
   const [username, setUsername] = useState(null);
 
   const [nome, setNome] = useState('');
@@ -108,7 +115,7 @@ export default function AccountOptionsPage({ navigation }) {
     }
     updateRegister(
       {
-        nomeDeUsuario: "null",
+        nomeDeUsuario: 'null',
         senha: trocarSenha ? password : oldPassword,
         senhaAntiga: oldPassword,
         nome: nome,
@@ -120,6 +127,21 @@ export default function AccountOptionsPage({ navigation }) {
       navigation,
       setErrorMessage
     );
+  }
+
+  function handleDeleteAccount() {
+    {
+      Alert.alert('Apagar conta', 'Tem certza que deseja apagar sua conta?', [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Sim',
+          onPress: () => deleteAccount(navigation, setUserData),
+        },
+      ]);
+    }
   }
 
   if (username == null) {
@@ -247,6 +269,12 @@ export default function AccountOptionsPage({ navigation }) {
         onPress={() => handleRegister()}>
         <Text style={{ color: 'white' }}>Confirmar</Text>
       </Button>
+      <Button
+        style={styles.ButtonApagarConta}
+        mode="contained"
+        onPress={() => handleDeleteAccount()}>
+        <Text style={{ color: 'white' }}>Apagar Conta</Text>
+      </Button>
     </View>
   );
 }
@@ -270,6 +298,16 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
     paddingTop: 3,
     width: 150,
+  },
+  ButtonApagarConta: {
+    backgroundColor: colors.danger,
+    borderColor: colors.dangerBorder,
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingBottom: 3,
+    paddingTop: 3,
+    width: 190,
+    marginTop: 24,
   },
   SelectPerfil: {
     marginTop: 4,
