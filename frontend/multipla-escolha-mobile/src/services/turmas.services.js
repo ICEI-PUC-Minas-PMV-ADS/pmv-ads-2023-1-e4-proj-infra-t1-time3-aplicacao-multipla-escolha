@@ -88,6 +88,23 @@ export const getTurma = async (turmaId) => {
   }
 };
 
+export const getTurmaComResultados = async (turmaId, alunoId) => {
+  try {
+    return await API.get(BASE_URL + '/api/Turmas/' + turmaId+"?idAluno=" + alunoId).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        window.alert(error);
+        return null;
+      }
+    );
+  } catch (error) {
+    window.alert(error);
+    return null;
+  }
+};
+
 export const deleteTurma = async (turmaId) => {
   try {
     return await API.delete(BASE_URL + '/api/Turmas/' + turmaId).then(

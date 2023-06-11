@@ -107,9 +107,9 @@ export default function EditarAtividadePage({ navigation, route }) {
     getAtividade(atividadeId).then(res => {
       setNomeDaAtividade(res.nome)
       setDescricao(res.descricao)
-      setTentativasPermitidas(res.tentativasPermitidas.toString());
+      setTentativasPermitidas(res.tentativasPermitidas == null? '1' : res.tentativasPermitidas.toString());
       setQuestoes(res.atividadeMongoDb.questoes)
-      setDate(ajustarOffsetDataAsDate(new Date(res.dataPrazoDeEntrega)))
+      setDate(res.dataPrazoDeEntrega == null ? new Date() : ajustarOffsetDataAsDate(new Date(res.dataPrazoDeEntrega)))
       setSemPrazo(res.dataPrazoDeEntrega == null ? true : false)
       setTentativasIlimitadas(res.tentativasPermitidas == null? true : false)
       })
@@ -563,9 +563,13 @@ export default function EditarAtividadePage({ navigation, route }) {
                   marginTop: 6,
                   marginBottom: 6,
                 }}>
+                <View style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
+                <Text>Questão {indexQuestao + 1}</Text>
                 <Text style={{ fontWeight: 'bold' }}>
-                  Valor: {questao.valor}
+                  Valor: {questao.valor.toString().replace(".",",")}
                 </Text>
+                </View>
+                <Text style={{margin: 6}}>{questao.enunciado}</Text>
                 <View style={{ width: '100%' }}>
                   {questao.alternativas.map((alternativa, index) => (
                     <View
