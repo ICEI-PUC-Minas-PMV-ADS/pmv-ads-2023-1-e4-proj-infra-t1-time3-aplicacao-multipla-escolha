@@ -11,6 +11,9 @@ import EditarTurmaPage from '../pages/EditarTurmaPage';
 import BuscarTurmasPage from '../pages/BuscarTurmasPage';
 import VisualizarTurmaPage from '../pages/VisualizarTurmaPage';
 import VisualizarAtividadePage from '../pages/VisualizarAtividadePage';
+import CriarAtividadePage from '../pages/CriarAtividadePage';
+import EditarAtividadePage from '../pages/EditarAtividadePage';
+
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
@@ -82,6 +85,20 @@ const Main = () => {
       <Stack.Screen
         name="VisualizarAtividadePage"
         component={VisualizarAtividadePage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="CriarAtividadePage"
+        component={CriarAtividadePage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="EditarAtividadePage"
+        component={EditarAtividadePage}
         options={{
           header: () => null,
         }}
