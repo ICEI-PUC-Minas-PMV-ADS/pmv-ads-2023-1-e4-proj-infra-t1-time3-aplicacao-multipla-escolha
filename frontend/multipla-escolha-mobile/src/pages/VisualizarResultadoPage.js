@@ -198,7 +198,7 @@ export default function VisualizarResultadoPage({ navigation, route }) {
           }}>
           <View style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>
             <Text style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>
-              Valor:{' '}
+              Nota:{' '}
               {' ' +
                 parseFloat(notaDoAluno)
                   .toFixed(2)
