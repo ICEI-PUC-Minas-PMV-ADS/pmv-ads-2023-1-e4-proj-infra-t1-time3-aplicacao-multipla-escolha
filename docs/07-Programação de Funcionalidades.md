@@ -31,8 +31,11 @@ Uma vez que o projeto esteja rodando localmente, basta seguir as instruções ab
 ## Cadastro de usuário (RF-01)
 A funcionalidade de cadastro de usuário permite que um novo usuário se registre como "Aluno" ou "Professor", obtendo uma conta que pode utilizar para acessar as demais funcionalidades do sistema.
 
-### Tela de Cadastro
+### Tela de Cadastro (Frontend Web)
 ![cadastro](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/2e9804c8-72ce-4fb3-a82e-033361e3d2cb)
+
+### Tela de Cadastro (Frontend Mobile)
+![Login](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/7c40ff15-76c2-407e-ac5a-a301677fd464)
 
 ### Requisitos atendidos
 - RF-01
@@ -63,12 +66,22 @@ Os dados preenchidos para o cadastro são enviados para a API na seguinte estrut
 #### Controllers
 - UsuariosController.cs
 
-### Frontend
+### Frontend Web
 - cadastro.js
 - RegisterComponent.js
 
-### Instruções de acesso
+### Frontend Mobile
+- RegisterPage.js
+- auth.services.js
+
+### Instruções de acesso (Frontend Web)
 1. Visualizar homepage;
+2. Clicar na opção "Cadastrar-se";
+5. Preenhcer as informações solicitadas e clicar em "Confirmar";
+6. Caso as informações fornecidas sejam válidas, a conta de usuário será criada e o usuário será redirecionado para a tela de login;
+
+### Instruções de acesso (Frontend Mobile)
+1. Visualizar tela inicial;
 2. Clicar na opção "Login" presente no cabeçalho;
 3. Visualizar tela de login;
 4. Clicar em "Cadastre-se";
