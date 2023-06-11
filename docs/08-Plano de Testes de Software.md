@@ -50,6 +50,30 @@ Os testes de unidade serão aplicados para testar a integração da aplicação 
 |Requisitos que motivaram o teste|RF-001 Permitir que o usuário se cadastre como professor ou aluno.|
 |Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
 
+|Caso de Teste|CTI-003 Salvar e recuperar uma turma associada a um usuário "professor" recém criado |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que sejam salvas novas turmas associadas a um professor sem maiores problemas. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.|
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
+|Caso de Teste|CTI-004 Salvar multíplas turmas associadas a um mesmo usuário "professor" recém criado e recupera-las filtrando pelo id do professor |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que sejam salvas multíplas turmas associadas ao mesmo professor e também se é possível recuperar todas elas através do id do professor. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.|
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
+|Caso de Teste|CTI-005 Salvar, editar e recuperar a turma recém editada |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que as informações de uma turma salva sejam modificadas sem maiores problemas. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.|
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
 ## Ferramentas de Testes (Opcional)
 
 ### NUnit
