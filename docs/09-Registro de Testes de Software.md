@@ -629,3 +629,202 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 <br>
+
+### CTI-003 Salvar e recuperar uma turma associada a um usuário "professor" recém criado 
+
+**Objetivo:** Testar se a aplicação permite que sejam salvas novas turmas associadas a um professor sem maiores problemas. 
+
+**Requisitos que motivaram o teste:**	RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarERecuperarTurmaComUsuarioProfessorRecemCriado()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+        
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+        // Ação
+     
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+        // Asserção
+        Xunit.Assert.Equal(novaTurma.Nome, turmaRecuperada.Nome);
+    }
+```
+
+- Neste teste, a turma recém criada foi salva e recuperada sem maiores problemas, tendo assim êxito.
+- 
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
+
+### CTI-004 Salvar multíplas turmas associadas a um mesmo usuário "professor" recém criado e recupera-las filtrando pelo id do professor
+
+**Objetivo:** Testar se a aplicação permite que sejam salvas multíplas turmas associadas ao mesmo professor e também se é possível recuperar todas elas através do id do professor
+
+**Requisitos que motivaram o teste:**	RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarMultiplasTurmasComUsuarioProfessorRecemCriadoERecuperarComoListaParaAqueleProfessor()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+        // Ação
+
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        Turma novaTurma2 = new Turma()
+        {
+            Nome = "Nova turma 2",
+            Descricao = "Nova turma 2 desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        Turma novaTurma3 = new Turma()
+        {
+            Nome = "Nova turma 3",
+            Descricao = "Nova turma 3 desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.Turmas.Add(novaTurma2);
+        _context.Turmas.Add(novaTurma3);
+        _context.SaveChanges();
+
+        List<Turma> turmasRecuperadas = _context.Turmas.Include(t => t.Professor).Where(t => t.Professor.Id == usuarioRecuperado.Id).ToList();
+
+        // Asserção
+        Xunit.Assert.Equal(turmasRecuperadas.Count(), 3);
+    }
+```
+
+- Neste teste, todas as turmas foram criadas sem problemas, tendo sido recuperadas adequadamente quando filtradas pelo id do professor, tendo assim êxito.
+- 
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
+
+### CTI-005 Salvar, editar e recuperar a turma recém editada
+
+**Objetivo:** Testar se a aplicação permite que as informações de uma turma salva sejam modificadas sem maiores problemas
+
+**Requisitos que motivaram o teste:**	RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarEditarERecuperarTurma_EsperaSeQueOsDadosTenhamSidoAtualizadosAoRecuperarATurmaEditada()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+        // Ação
+
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+        turmaRecuperada.Nome = "Novo nome";
+        turmaRecuperada.Descricao = "Nova descrição";
+        turmaRecuperada.Ativo = false;
+
+        _context.Turmas.Update(turmaRecuperada);
+
+        Turma turmaAtualizada = _context.Turmas.FirstOrDefault(t => t.Id == turmaRecuperada.Id);
+
+        // Asserção
+        Xunit.Assert.Equal(turmaAtualizada.Nome, "Novo nome");
+        Xunit.Assert.Equal(turmaAtualizada.Descricao, "Nova descrição");
+        Xunit.Assert.Equal(turmaAtualizada.Ativo, false);
+    }
+```
+
+- A turma foi criada sem problemas, tendo sido recuperada com as edições esperadas após ter sido salva e recuperada novamente. Deste modo, o teste teve êxito.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
