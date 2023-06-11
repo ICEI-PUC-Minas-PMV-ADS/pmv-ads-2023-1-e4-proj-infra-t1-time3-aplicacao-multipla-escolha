@@ -32,11 +32,20 @@ API:
 - Executar o comando "update-database" no console do Package Manager para criar as tabelas do banco de dados localmente através dos arquivos "migrations" do Entity Framework Core;
 - Rodar o projeto em modo de desenvolvimento no Visual Studio, que deverá abrir uma janela do browser no endereço https://localhost:7284/swagger/index.html, exibindo a interface do Swagger para utilização dos endpoints da API;
 
-Frontend:
+Frontend Web:
 - Abrir o Visual Studio Code na pasta frontend/multipla-escolha;
 - Instalar o react com o comando npm i react através do terminal;
 - Utilizar o comando npm start no terminal para iniciar a aplicação;
 - Após a aplicação iniciar, abrir o navegador na URL http://localhost:3000 para acessar a homepage;
+
+Frontend Mobile:
+- Instalar o [Localtunnel](https://theboroer.github.io/localtunnel-www/);
+- Rodar a API do backend conforme as instruções anteriores;
+- Abrir o prompt de comando do sistema operacional e utilizar o comando 'lt --port 5284' para expor a API através do link gerado pelo localtunnel (obs: é importante usar a porta 5284 em vez da 7284, já que o certificado SSL da porta 7284 gera problemas no localtunnel);
+- Copiar a url disponibilizada pelo localtunnel;
+- Acessar o endereço https://snack.expo.dev/@sergiomenezes/multipla-escolha-mobile, onde se encontra o frontend mobile da aplicação, e colar o link do localtunnel no arquivo src/services/url.js, colocando o mesmo como o valor da variável BASE_URL (ex: export const BASE_URL = 'https://tender-poets-live.loca.lt');
+- Clicar na aba 'Android' do emulador local do Snack (importante, considerando que nem todas as funcionalidades são compatíveis com o emulador da aba 'web', que não corresponde 100% ao comportamento da aplicação em um dispositivo móvel);
+- Visualizar a tela inicial da aplicação mobile;
 
 Testes de unidade:
 - Seguir os mesmos passos necessários para rodar a API, mas em vez de rodar a o projeto da API (último passo) selecionar a aba "Test" do Visual Studio Community 2022 e clicar na opção "Run All Tests". Uma janela chamada "Text Explorer" irá abrir e realizar todos os testes, mostrando os resultados quando estes forem concluídos.
