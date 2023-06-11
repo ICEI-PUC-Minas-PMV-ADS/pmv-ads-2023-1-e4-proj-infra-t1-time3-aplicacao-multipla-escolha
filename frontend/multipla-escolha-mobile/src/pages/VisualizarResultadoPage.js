@@ -4,15 +4,16 @@ import { Text, View, StyleSheet, Image, ScrollView } from 'react-native';
 import { TextInput, Button, Checkbox, IconButton } from 'react-native-paper';
 import Constants from 'expo-constants';
 import NavbarComponent from '../components/NavbarComponent';
-import {formatarData} from '../utils/functions'
+import { formatarData } from '../utils/functions';
 import { editAtividade, getAtividade } from '../services/atividades.services';
+import { getResultado } from '../services/resultados.services';
 import { colors } from '../utils/colors';
 import LoadingComponent from '../components/LoadingComponent';
 import { useUser } from '../context/UserContext';
 
 // or any pure javascript modules available in npm
 
-export default function VisualizarAtividadePage({ navigation, route }) {
+export default function VisualizarResultadoPage({ navigation, route }) {
   const { atividadeId } = route.params ? route.params : 0;
 
   const { turmaId } = route.params ? route.params : 0;
@@ -25,19 +26,19 @@ export default function VisualizarAtividadePage({ navigation, route }) {
 
   const [errorMessage, setErrorMessage] = useState('');
 
-const [podeSerRealizada, setPodeSerRealizada] = useState(null);
-
   const [semPrazo, setSemPrazo] = useState(false);
 
   const [tentativasPermitidas, setTentativasPermitidas] = useState('1');
 
   const [tentativasIlimitadas, setTentativasIlimitadas] = useState(false);
 
+  const [notaDoAluno, setNotaDoAluno] = useState('0');
+
   const [valorAtividade, setValorAtividade] = useState('0');
 
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState('');
 
-  const [questoes, setQuestoes] = useState([]);
+  const [questoes, setQuestoes] = useState(null);
 
   const [turma, setTurma] = useState(null);
 
@@ -82,17 +83,25 @@ const [podeSerRealizada, setPodeSerRealizada] = useState(null);
   const [editIndexQuestao, setEditIndexQuestao] = useState(null);
 
   useEffect(() => {
-    getAtividade(atividadeId).then((res) => {
-      setNomeDaAtividade(res.nome);
-      setValorAtividade(res.valor);
+    getResultado(atividadeId).then((res) => {
+      setNomeDaAtividade(res.atividade.nome);
+      setNotaDoAluno(res.notaDoAluno);
+      setValorAtividade(res.notaMaxima);
       setDescricao(res.descricao);
-      setTentativasPermitidas(res.tentativasPermitidas == null? '1' : res.tentativasPermitidas.toString());
+      setTentativasPermitidas(
+        res.tentativasPermitidas == null
+          ? '1'
+          : res.tentativasPermitidas.toString()
+      );
       setQuestoes(res.atividadeMongoDb.questoes);
-      setDate(res.dataPrazoDeEntrega == null? "" : formatarData(res.dataPrazoDeEntrega.toString()));
+      setDate(
+        res.dataPrazoDeEntrega == null
+          ? ''
+          : formatarData(res.dataPrazoDeEntrega.toString())
+      );
       setSemPrazo(res.dataPrazoDeEntrega == null ? true : false);
       setTentativasIlimitadas(res.tentativasPermitidas == null ? true : false);
       setTurma(res.turma);
-      setPodeSerRealizada(res.podeSerRealizada);
     });
   }, []);
 
@@ -161,10 +170,10 @@ const [podeSerRealizada, setPodeSerRealizada] = useState(null);
     return dataFormatada;
   }
 
-    if (turma == null || typeof userData == 'undefined' || userData == null) {
+  if (questoes == null || typeof userData == 'undefined' || userData == null) {
     return (
       <View style={styles.container}>
-        <NavbarComponent title="Atividade" />
+        <NavbarComponent title="Resultado" />
         <LoadingComponent />
       </View>
     );
@@ -172,34 +181,37 @@ const [podeSerRealizada, setPodeSerRealizada] = useState(null);
 
   return (
     <View style={styles.container}>
-      <NavbarComponent
-        title={'Atividade - ' + nomeDaAtividade}
-        goBack={true}
-      />
-      <ScrollView style={{ margin: 30, display: 'flex', alignItems: 'center', width: '100%' }}>
-        <View style={{ marginTop: 30, display: 'flex', alignItems: 'center', width: '100%' }}>
+      <NavbarComponent title={'Resultado - ' + nomeDaAtividade} />
+      <ScrollView
+        style={{
+          margin: 30,
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+        }}>
+        <View
+          style={{
+            marginTop: 30,
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+          }}>
           <View style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>
-            <Text style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>{descricao}</Text>
-            <Text style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>Turma: {turma != null ? turma.nome : ""}</Text>
-            <Text style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>Prazo de entrega: {date}</Text>
-            <Text style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>Tentativas Permitidas: {tentativasPermitidas}</Text>
             <Text style={{ margin: 6, fontSize: 16, fontWeight: 'bold' }}>
-            Valor:{' '}
-            {' ' +
-              parseFloat(valorAtividade)
-                .toFixed(2)
-                .toString()
-                .replace('.', ',') +
-              ' pontos'}
-          </Text>
+              Valor:{' '}
+              {' ' +
+                parseFloat(notaDoAluno)
+                  .toFixed(2)
+                  .toString()
+                  .replace('.', ',') +
+                '/' +
+                parseFloat(valorAtividade)
+                  .toFixed(2)
+                  .toString()
+                  .replace('.', ',') +
+                ' pontos'}
+            </Text>
           </View>
-                {userData.perfil == 'Professor' || podeSerRealizada == false ? null : (      <Button
-        style={styles.ButtonAtividade}
-        mode="contained"
-        onPress={() => navigation.navigate("RealizarAtividadePage", {turmaId: turmaId, atividadeId: atividadeId})}>
-        <Text style={{ color: 'white' }}>Fazer atividade</Text>
-      </Button>
-                )}
           <Text style={{ marginTop: 12, fontSize: 21, fontWeight: 'bold' }}>
             Questões
           </Text>
@@ -215,13 +227,18 @@ const [podeSerRealizada, setPodeSerRealizada] = useState(null);
                   marginTop: 6,
                   marginBottom: 6,
                 }}>
-                <View style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
-                <Text>Questão {indexQuestao + 1}</Text>
-                <Text style={{ fontWeight: 'bold' }}>
-                  Valor: {questao.valor.toString().replace(".",",")}
-                </Text>
+                <View
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                  }}>
+                  <Text>Questão {indexQuestao + 1}</Text>
+                  <Text style={{ fontWeight: 'bold' }}>
+                    Valor: {questao.valor.toString().replace('.', ',')}
+                  </Text>
                 </View>
-                <Text style={{margin: 6}}>{questao.enunciado}</Text>
+                <Text style={{ margin: 6 }}>{questao.enunciado}</Text>
                 <View style={{ width: '100%' }}>
                   {questao.alternativas.map((alternativa, index) => (
                     <View
@@ -232,7 +249,7 @@ const [podeSerRealizada, setPodeSerRealizada] = useState(null);
                       }}>
                       <Text
                         style={
-                          index == questao.resposta ? { color: 'green' } : null
+                          index == questao.resposta ? questao.alunoAcertouResposta ? { color: 'green' } : { color: 'red' } : null
                         }>
                         {ALFABETO[index] + '. ' + alternativa}{' '}
                       </Text>
@@ -243,6 +260,14 @@ const [podeSerRealizada, setPodeSerRealizada] = useState(null);
             ))}
           </View>
         </View>
+                <View style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <Button
+          style={styles.ButtonResultado}
+          mode="contained"
+          onPress={() => navigation.navigate('MinhasTurmasPage')}>
+          <Text style={{ color: 'white' }}>Voltar</Text>
+        </Button>
+    </View>
       </ScrollView>
     </View>
   );
@@ -256,11 +281,13 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     backgroundColor: colors.defaultBackgroundColor,
   },
-  ButtonAtividade: {
+  ButtonResultado: {
     backgroundColor: colors.secondaryColor,
     borderRadius: 20,
     padding: 0,
+    margin: 'auto',
     marginBottom: 12,
-    width: '100%',
+    marginTop: 12,
+    width: 120,
   },
 });

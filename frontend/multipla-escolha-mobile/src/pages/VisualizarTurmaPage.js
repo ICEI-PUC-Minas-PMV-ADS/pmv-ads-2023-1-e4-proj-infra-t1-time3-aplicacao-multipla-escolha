@@ -179,7 +179,7 @@ export default function VisualizarTurmaPage({ route }) {
               }}
               onPress={() =>
                 navigation.navigate('VisualizarAtividadePage', {
-                  atividadeId: atividade.item.id,
+                  atividadeId: atividade.item.id, turmaId: atividade.item.turma.id
                 })
               }>
               <Text style={{ color: 'white', fontWeight: 'bold' }}>Abrir</Text>
@@ -277,7 +277,7 @@ export default function VisualizarTurmaPage({ route }) {
             <Button
               icon="school"
               style={[styles.button, { width: 100, marginRight: 12 }]}
-              onPress={() => navigation.navigate('CriarTurmaPage')}>
+              onPress={() => navigation.navigate('VisualizarNotasPage', {turmaId: turmaId, alunoId: userData.id})}>
               <Text style={{ color: '#555555' }}>Notas</Text>
             </Button>
           </View>
@@ -303,7 +303,7 @@ export default function VisualizarTurmaPage({ route }) {
             <Button
               icon="school"
               style={[styles.button, { width: 100, marginRight: 12 }]}
-              onPress={() => navigation.navigate('CriarTurmaPage')}>
+              onPress={() => navigation.navigate('VisualizarAlunosPage', {turmaId: turmaId, alunoId: userData.id})}>
               <Text style={{ color: '#555555' }}>Notas</Text>
             </Button>
           </View>

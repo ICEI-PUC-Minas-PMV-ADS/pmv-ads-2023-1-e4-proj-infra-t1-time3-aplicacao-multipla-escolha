@@ -13,6 +13,10 @@ import VisualizarTurmaPage from '../pages/VisualizarTurmaPage';
 import VisualizarAtividadePage from '../pages/VisualizarAtividadePage';
 import CriarAtividadePage from '../pages/CriarAtividadePage';
 import EditarAtividadePage from '../pages/EditarAtividadePage';
+import RealizarAtividadePage from '../pages/RealizarAtividadePage';
+import VisualizarResultadoPage from '../pages/VisualizarResultadoPage';
+import VisualizarNotasPage from '../pages/VisualizarNotasPage';
+import VisualizarAlunosPage from '../pages/VisualizarAlunosPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -99,6 +103,34 @@ const Main = () => {
       <Stack.Screen
         name="EditarAtividadePage"
         component={EditarAtividadePage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="RealizarAtividadePage"
+        component={RealizarAtividadePage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="VisualizarResultadoPage"
+        component={VisualizarResultadoPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="VisualizarNotasPage"
+        component={VisualizarNotasPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="VisualizarAlunosPage"
+        component={VisualizarAlunosPage}
         options={{
           header: () => null,
         }}

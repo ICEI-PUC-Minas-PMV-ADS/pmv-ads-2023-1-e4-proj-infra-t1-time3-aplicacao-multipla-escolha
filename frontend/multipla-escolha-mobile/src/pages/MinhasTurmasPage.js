@@ -8,12 +8,12 @@ import { useNavigation } from '@react-navigation/native';
 import NavbarComponent from '../components/NavbarComponent';
 import { useFocusEffect } from '@react-navigation/native';
 import { getTurmasUsuario, deleteTurma } from '../services/turmas.services';
-import LoadingComponent from '../components/LoadingComponent';
 import {
   switchBoolean,
   formatarData,
   encurtarTexto,
 } from '../utils/functions.js';
+import LoadingComponent from '../components/LoadingComponent';
 import { useUser } from '../context/UserContext';
 
 // or any pure javascript modules available in npm

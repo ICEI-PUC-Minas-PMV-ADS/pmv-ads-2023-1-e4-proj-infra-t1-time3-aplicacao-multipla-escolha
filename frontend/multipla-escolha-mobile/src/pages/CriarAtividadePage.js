@@ -541,9 +541,13 @@ export default function CriarAtividadePage({ navigation, route }) {
                   marginTop: 6,
                   marginBottom: 6,
                 }}>
+                <View style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
+                <Text>Questão {indexQuestao + 1}</Text>
                 <Text style={{ fontWeight: 'bold' }}>
-                  Valor: {questao.valor}
+                  Valor: {questao.valor.toString().replace(".",",")}
                 </Text>
+                </View>
+                <Text style={{margin: 6}}>{questao.enunciado}</Text>
                 <View style={{ width: '100%' }}>
                   {questao.alternativas.map((alternativa, index) => (
                     <View
