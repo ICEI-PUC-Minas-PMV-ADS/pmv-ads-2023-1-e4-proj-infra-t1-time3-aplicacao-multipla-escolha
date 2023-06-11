@@ -185,10 +185,10 @@ A funcionalidade de atualizar dados cadastrais permite que o usuário atualize s
 ![cabecalhoLoginOpcoesPerfil](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/240fd320-2d4f-4873-b919-c4d8e67ffd20)
 
 ### Tela de atualizar dados cadastrais
-![atualizarDadosCadastrais](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/0ed07f79-748f-48c8-b4e0-fcd561317daa)
+![atualizarDadosCadastrais](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/d035a277-a535-4ff8-b404-b62cc98dd95a)
 
 ### Tela de atualizar dados cadastrais - Senha solicitada após tentar mudar dado
-![atualizarDadosCadastrais2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/afdbe56c-3794-4d19-8275-6065b67853dc)
+![atualizarDadosCadastrais2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/42faf735-1fc4-4d66-8495-8d3dc37bf056)
 
 ### Requisitos atendidos
 - RF-01
