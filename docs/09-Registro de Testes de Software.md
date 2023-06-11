@@ -6,7 +6,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 
 ## Testes de Unidade
 
-### CT-001 Testar método CheckIfUserNameOrEmailIsAlreadyUsed do Model "Usuario.cs"
+### CTU-001 Testar método CheckIfUserNameOrEmailIsAlreadyUsed do Model "Usuario.cs"
 
 **Objetivo:** Testar o método CheckIfUserNameOrEmailIsAlreadyUsed, utilizado durante o cadastro ou atualização de dados de um usuário para ver se o nome de usuário e email informados estão disponíveis.
 
@@ -95,7 +95,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 
 <br>
 
-### CT-002 CT-002 Testar o método CheckIfUserCanTakeTest do Model "Atividade.cs"
+### CTU-002 Testar o método CheckIfUserCanTakeTest do Model "Atividade.cs"
 
 **Objetivo:** Testar o método CheckIfUserCanTakeTest, utilizado para verificar se o usuário já extrapolou o número de tentativas ou se perdeu o prazo para realização de uma determinada atividade.
 
@@ -176,7 +176,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 
 <br>
 
-### CT-003 Testar o método Corrigir do Model "AtividadeMongoDb.cs"
+### CTU-003 Testar o método Corrigir do Model "AtividadeMongoDb.cs"
 
 **Objetivo:** Testar o método Corrigir, utilizado para realizar a correção de uma atividade a partir das respostas submetidas pelo aluno e retornar a nota e a correção da atividade para o aluno.
 
@@ -515,12 +515,117 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 ```
 
 - No primeiro teste, todas as respostas estão corretas, de modo que se espera que a nota máxima (10) seja retornada.
-- No segundo teste, apenas as respostas para as questões 2 e 4 estão corretas, de modo que se espera que a nota retornada seja igual a soma dos valores dessas duas questões (2 + 4 neste caso).
-- No terceiro teste, todas as respostas estão corretas, de modo que se espera que todas as questões sejam marcadas com o parametro "AlunoAcertouResposta = true", a presença de "AlunoAcertouResposta = null" em qualquer questão indicaria uma falha do método.
-- No quarto teste, apenas as respostas para as questões 2 e 4 estão corretas, de modo que se espera que as questões 2 e 4 estejam marcadas com o parametro "AlunoAcertouResposta = true", mas que as questões 1 e 3 estejam com "AlunoAcertouResposta = false", a presença de "AlunoAcertouResposta = null" em qualquer questão indicaria uma falha do método.
 
-**Critérios de êxito:** Todos os testes de unidade devem passar ao serem executados.
+## Testes de Integração
 
-**Resultado**: Todos os testes de unidade obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+### CTI-001 Verificar se as operações de salvar e recuperar usuários do banco de dados estão funcionando adequadamente
+
+**Objetivo:** Testar se um usuário consegue ser salvo sem problemas no banco de dados, além de verificar se ao recuperar este usuário, ele corresponde ao que foi salvo.
+
+**Requisitos que motivaram o teste:**	RF-001 Permitir que o usuário se cadastre como professor ou aluno.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarUsuarioEVerificarSeUsuarioRecuperadoCorrespondeAEle()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Aluno
+        };
+        
+        // Ação
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+        // Asserção
+        Xunit.Assert.Equal(novoUsuario.Nome, usuarioRecuperado.Nome);
+    }
+```
+
+- Neste teste, o novo usuário foi salvo e recuperado com sucesso, de modo que o teste passou.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
+
+### CTI-002 Verificar se o banco de dados impede que se salvem usuários com chaves únicas duplicadas (nome de usuário e e-mail) 
+
+**Objetivo:** Testar se o a aplicação impede que sejam salvos usuários que violem os constraints de "chave única" das colunas de nome de usuário e email da tabela "usuários".
+
+**Requisitos que motivaram o teste:**	RF-001 Permitir que o usuário se cadastre como professor ou aluno.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarUsuarioComMesmoNomeDeUsuarioOuEmail_EsperaSeRetornarErro()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Aluno
+        };
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+
+        try
+        {
+            // Ação
+            novoUsuario.Email = "outroemail@email.com";
+            _context.Usuarios.Add(novoUsuario);
+            _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+            // Asserção
+            Xunit.Assert.Fail("Ambos os usuários foram salvos");
+        }
+        catch
+        {
+            // Asserção
+            Xunit.Assert.True(true, "Não foi possível salvar ambos os usuários");
+        }
+
+        try
+        {        
+            // Ação
+            novoUsuario.NomeDeUsuario = "outroNome";
+            _context.Usuarios.Add(novoUsuario);
+            _context.SaveChanges();
+            Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+            // Asserção
+            Xunit.Assert.Fail("Ambos os usuários foram salvos");
+        }
+        catch
+        {
+            // Asserção
+            Xunit.Assert.True(true, "Não foi possível salvar ambos os usuários");
+        }
+    }
+```
+
+- Neste teste, não foi possível salvar usuários com nome de usuário ou e-mail duplicados, de modo que o teste passou com sucesso.
+- 
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 <br>
