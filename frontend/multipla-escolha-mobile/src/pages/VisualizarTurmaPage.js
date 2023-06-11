@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList, Alert } from 'react-native';
 import { TextInput, Button, IconButton } from 'react-native-paper';
 import Constants from 'expo-constants';
 import NavbarComponent from '../components/NavbarComponent';
@@ -12,14 +12,20 @@ import { useUser } from '../context/UserContext';
 
 import { formatarData, encurtarTexto, switchBoolean } from '../utils/functions';
 
-import { getTurma, matricularTurma, desmatricularTurma } from '../services/turmas.services';
+import {
+  getTurma,
+  matricularTurma,
+  desmatricularTurma,
+} from '../services/turmas.services';
+import { deleteAtividade } from '../services/atividades.services';
+
 import { colors } from '../utils/colors';
 
 export default function VisualizarTurmaPage({ route }) {
   const navigation = useNavigation();
 
   const { turmaId } = route.params ? route.params : 0;
-  
+
   const { userData } = useUser();
 
   const [turma, setTurma] = useState(null);
@@ -43,7 +49,7 @@ export default function VisualizarTurmaPage({ route }) {
   if (turma == null || typeof userData == 'undefined' || userData == null) {
     return (
       <View style={styles.container}>
-        <NavbarComponent title="Visualizar turma" goBack={true} />
+        <NavbarComponent title="Turma:" goBack={true} />
         <LoadingComponent />
       </View>
     );
@@ -71,6 +77,22 @@ export default function VisualizarTurmaPage({ route }) {
     return (
       <Text style={[styles.cardHeaderText, { color: 'green' }]}>{message}</Text>
     );
+  }
+
+  function handleDelete(atividadeIdDeletar) {
+    Alert.alert('Apagar atividade', 'Tem certza que deseja apagar esta atividade?', [
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+      },
+      {
+        text: 'Sim',
+        onPress: () =>
+          deleteAtividade(atividadeIdDeletar).then((res) =>
+            setTurmaLoaded(switchBoolean(turmaLoaded))
+          ),
+      },
+    ]);
   }
 
   const renderItem = (atividade) => {
@@ -139,8 +161,9 @@ export default function VisualizarTurmaPage({ route }) {
                   icon="pen"
                   style={{ height: 30, margin: 'auto' }}
                   onPress={() =>
-                    navigation.navigate('EditarTurmaPage', {
-                      turmaId: atividade.item.id,
+                    navigation.navigate('EditarAtividadePage', {
+                      turmaId: atividade.item.turma.id,
+                      atividadeId: atividade.item.id,
                     })
                   }>
                   >
@@ -175,7 +198,7 @@ export default function VisualizarTurmaPage({ route }) {
 
   return (
     <View style={styles.container}>
-      <NavbarComponent title="Visualizar turma" goBack={true} />
+      <NavbarComponent title={"Turma: " + turma.nome} goBack={true} />
       <View
         style={{
           height: 250,
@@ -210,14 +233,15 @@ export default function VisualizarTurmaPage({ route }) {
                 width: 210,
                 padding: 0,
               }}
-                            onPress={() => desmatricularTurma(turma.id).then(res => setTurmaLoaded(switchBoolean(turmaLoaded)))}
-                            >
+              onPress={() =>
+                desmatricularTurma(turma.id).then((res) =>
+                  setTurmaLoaded(switchBoolean(turmaLoaded))
+                )
+              }>
               <Text style={{ color: 'white' }}>Cancelar matricula</Text>
             </Button>
           </View>
-        )
-        :
-        (
+        ) : (
           <View style={{ width: '100%', alignItems: 'center', marginTop: 12 }}>
             <Button
               style={{
@@ -228,14 +252,63 @@ export default function VisualizarTurmaPage({ route }) {
                 width: 210,
                 padding: 0,
               }}
-              onPress={() => matricularTurma(turma.id).then(res => setTurmaLoaded(switchBoolean(turmaLoaded)))}
-              >
+              onPress={() =>
+                matricularTurma(turma.id).then((res) =>
+                  setTurmaLoaded(switchBoolean(turmaLoaded))
+                )
+              }>
               <Text style={{ color: 'white' }}>Realizar matricula</Text>
             </Button>
           </View>
-        )
-        }
+        )}
       </View>
+      {userData.perfil != 'Professor' ? (
+        <React.Fragment>
+          <View
+            style={{
+              margin: 0,
+              marginTop: 12,
+              marginBottom: 12,
+              marginLeft: 24,
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row-reverse',
+            }}>
+            <Button
+              icon="school"
+              style={[styles.button, { width: 100, marginRight: 12 }]}
+              onPress={() => navigation.navigate('CriarTurmaPage')}>
+              <Text style={{ color: '#555555' }}>Notas</Text>
+            </Button>
+          </View>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <View
+            style={{
+              margin: 0,
+              marginTop: 12,
+              marginBottom: 12,
+              marginLeft: 24,
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row-reverse',
+            }}>
+            <Button
+              icon="pen"
+              style={[styles.button, { width: 200 }]}
+              onPress={() => navigation.navigate('CriarAtividadePage', {turmaId: turma.id})}>
+              <Text style={{ color: '#555555' }}>Criar atividade</Text>
+            </Button>
+            <Button
+              icon="school"
+              style={[styles.button, { width: 100, marginRight: 12 }]}
+              onPress={() => navigation.navigate('CriarTurmaPage')}>
+              <Text style={{ color: '#555555' }}>Notas</Text>
+            </Button>
+          </View>
+        </React.Fragment>
+      )}
       <View
         style={{
           width: '90%',
@@ -299,5 +372,13 @@ const styles = StyleSheet.create({
     color: colors.textDarkGray,
     fontWeight: 'bold',
     fontSize: 21,
+  },
+  button: {
+    backgroundColor: 'white',
+    width: '30%',
+    color: colors.primaryColor,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 12,
   },
 });
