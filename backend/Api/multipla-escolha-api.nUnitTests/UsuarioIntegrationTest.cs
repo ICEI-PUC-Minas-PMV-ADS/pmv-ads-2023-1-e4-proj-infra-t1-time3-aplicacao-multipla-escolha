@@ -26,7 +26,32 @@ public class UsuarioIntegrationTest : IDisposable
     [Fact]
     public void SalvarUsuarioEVerificarSeUsuarioRecuperadoCorrespondeAEle()
     {
-        //Add some monsters before querying
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Aluno
+        };
+        
+        // Ação
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+        // Asserção
+        Xunit.Assert.Equal(novoUsuario.Nome, usuarioRecuperado.Nome);
+    }
+
+    [Fact]
+    public void SalvarUsuarioComMesmoNomeDeUsuarioOuEmail_EsperaSeRetornarErro()
+    {
+        // Arranjo
         Usuario novoUsuario = new Usuario
         {
             Id = 0,
@@ -41,13 +66,37 @@ public class UsuarioIntegrationTest : IDisposable
         _context.Usuarios.Add(novoUsuario);
         _context.SaveChanges();
 
+        try
+        {
+            // Ação
+            novoUsuario.Email = "outroemail@email.com";
+            _context.Usuarios.Add(novoUsuario);
+            _context.SaveChanges();
         Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+            // Asserção
+            Xunit.Assert.Fail("Ambos os usuários foram salvos");
+        }
+        catch
+        {
+            // Asserção
+            Xunit.Assert.True(true, "Não foi possível salvar ambos os usuários");
+        }
 
-        //Execute the query
-
-
-        //Verify the results
-        Xunit.Assert.Equal(novoUsuario.Nome, usuarioRecuperado.Nome);
+        try
+        {        
+            // Ação
+            novoUsuario.NomeDeUsuario = "outroNome";
+            _context.Usuarios.Add(novoUsuario);
+            _context.SaveChanges();
+            Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+            // Asserção
+            Xunit.Assert.Fail("Ambos os usuários foram salvos");
+        }
+        catch
+        {
+            // Asserção
+            Xunit.Assert.True(true, "Não foi possível salvar ambos os usuários");
+        }
     }
 
     public void Dispose()
