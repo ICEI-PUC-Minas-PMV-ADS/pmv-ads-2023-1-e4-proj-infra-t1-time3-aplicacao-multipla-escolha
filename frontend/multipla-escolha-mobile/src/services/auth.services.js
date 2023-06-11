@@ -43,6 +43,24 @@ export const register = async (param, navigation, setErrorMessage) => {
   }
 };
 
+export const updateRegister = async (param, navigation, setErrorMessage) => {
+  try {
+    return await API.put(BASE_URL + '/api/Usuarios', param).then(
+      (response) => {
+        window.alert('Atualização dos dados realizada com sucesso!');
+        navigation.navigate('HomePage');
+      },
+      (error) => {
+        setErrorMessage(error.request.response);
+        return null;
+      }
+    );
+  } catch (error) {
+    window.alert(error);
+    return null;
+  }
+};
+
 export const logoff = async (navigation, setUserData) => {
   AsyncStorage.removeItem('@TOKEN_KEY').then((response) => {
     setUserData(null);
@@ -53,6 +71,22 @@ export const logoff = async (navigation, setUserData) => {
 export const getUserInfo = async (param) => {
   try {
     return await API.get(BASE_URL + '/api/Usuarios/Info', param).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        return null;
+      }
+    );
+  } catch (error) {
+    window.alert(error);
+    return null;
+  }
+};
+
+export const getCurrentUser = async (param) => {
+  try {
+    return await API.get(BASE_URL + '/api/Usuarios/Current', param).then(
       (response) => {
         return response.data;
       },
