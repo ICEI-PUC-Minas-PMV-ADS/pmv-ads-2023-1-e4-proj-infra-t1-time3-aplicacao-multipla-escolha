@@ -74,6 +74,31 @@ Os testes de unidade serão aplicados para testar a integração da aplicação 
 |Requisitos que motivaram o teste|RF-002 Permitir que o usuário do tipo "professor" cadastre novas turmas associadas a ele.|
 |Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
 
+|Caso de Teste|CTI-006 Salvar e recuperar uma atividade associada a uma turma recém criada |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que sejam salvas novas atividades associadas a uma turma sem maiores problemas. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-003 Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono, RF-005 Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa., RF-006 Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. |
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
+|Caso de Teste|CTI-007 Salvar multíplas atividades associadas a uma mesma turma recém criada e recupera-las filtrando pelo id da turma |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que sejam salvas multíplas atividades associadas a uma mesma turma e também se é possível recuperar todas elas através do id da turma. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-003 Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono, RF-005 Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa., RF-006 Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. |
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
+|Caso de Teste|CTI-008 Salvar, editar e recuperar a atividade recém editada |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que as informações de uma atividade salva sejam modificadas sem maiores problemas. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-003 Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono, RF-005 Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa., RF-006 Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. |
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
+
 ## Ferramentas de Testes (Opcional)
 
 ### NUnit
