@@ -1,10 +1,17 @@
 # Template Padrão da Aplicação
 
-A estrutura da interface seguirá um padrão comum entre todas as telas, consistindo em um cabeçalho presente no topo onde o usuário poderá acessar alguns links de navegação (como Login e o menu opções do usuário após ter feito login) e uma seção onde o conteúdo da página é exibido:
+A estrutura da interface seguirá um padrão comum entre todas as telas, consistindo em um cabeçalho presente no topo onde o usuário poderá acessar alguns links de navegação (como Login e o menu opções do usuário após ter feito login) e uma seção onde o conteúdo da página é exibido.
+
+#### Desktop:
 
 ![Estrutura Padrão](img/wireframes-site/Estrutura.png)
 
-### Páginas com o usuário desconectado
+#### Mobile:
+
+![Estrutura Padrão](img/wireframes-mobile/Estrutura.png)
+
+
+### Páginas com o usuário desconectado no Desktop
 
 As telas onde o usuário estiver desconectado apresentará um cabeçalho com opções de *Início*, *Sobre* e *Login*.
 
@@ -14,13 +21,25 @@ As telas onde o usuário estiver desconectado apresentará um cabeçalho com op�
 
 As telas onde o usuário estiver conectado apresentará um cabeçalho com botão *dropdown* com a mensagem de "Olá, {nome do usuário da sessão}" e opções de *Turmas*, *Perfil* e *Sair*.
 
+#### Desktop:
+
 ![Estrutura Padrão](img/wireframes-site/Conectado.png)
 
-#### Menu do botão *dropdown*
+#### Mobile:
+
+![Estrutura Padrão](img/wireframes-mobile/Conectado.png)
+
+### Menu do botão *dropdown*
 
 Este componente é utilizado quando um usuário logado clica na seta ao lado de seu nome do cabeçalho, abrindo para mostrar as opções da conta do usuário (ir para suas turmas, visualizar/editar seus dados cadastrais e realizar logoff).
 
+#### Desktop:
+
 ![Imagem do botão dropdown](img/wireframes-site/Menu%20Usu%C3%A1rio.png)
+
+#### Mobile:
+
+![Imagem do botão dropdown](img/wireframes-mobile/Menu%20Usuario.png)
 
 ## Cores e Fontes  
 
