@@ -61,6 +61,7 @@ public class TurmaIntegrationTest : IDisposable
         // Asserção
         Xunit.Assert.Equal(novaTurma.Nome, turmaRecuperada.Nome);
     }
+
     [Fact]
     public void SalvarMultiplasTurmasComUsuarioProfessorRecemCriadoERecuperarComoListaParaAqueleProfessor()
     {
@@ -118,6 +119,7 @@ public class TurmaIntegrationTest : IDisposable
         Xunit.Assert.Equal(turmasRecuperadas.Count(), 3);
     }
 
+    [Fact]
     public void SalvarEditarERecuperarTurma_EsperaSeQueOsDadosTenhamSidoAtualizadosAoRecuperarATurmaEditada()
     {
         // Arranjo
