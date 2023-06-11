@@ -170,6 +170,7 @@ Os dados preenchidos para o login são enviados para o endpoint de autenticaçã
 ## Atualizar dados cadastrais (Opções da conta) (RF-01)
 A funcionalidade de atualizar dados cadastrais permite que o usuário atualize seus dados cadastrais, tal como e-mail, nome, sobrenome, telefone e senha. O usuário não pode modificar seu nome de usuário (identificador único utilizado para login) nem tipo de conta (aluno ou professor), o usuário poderá trocar seu e-mail, contanto que o novo e-mail informado não esteja em uso por nenhuma outra conta. Para realizar a atualização dos dados, o usuário deverá informar sua senha atual. O usuário poderá também optar por apagar sua conta.
 
+## Frontend Web
 ### Menu do usuário para acesso a tela de "meus dados"
 ![meusDadosA1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/190ebc3e-2190-4eed-9355-bd8d58477e3f)
 
@@ -178,6 +179,16 @@ A funcionalidade de atualizar dados cadastrais permite que o usuário atualize s
 
 ### Tela de atualizar dados cadastrais - Senha solicitada após tentar mudar dado
 ![meusDadosB](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/c7d15e4b-f5a0-41ef-a6b5-76ebbf4e31f7)
+
+## Frontend Mobile
+### Menu do usuário para acesso a tela de "Atualizar dados cadastrais"
+![cabecalhoLoginOpcoesPerfil](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/240fd320-2d4f-4873-b919-c4d8e67ffd20)
+
+### Tela de atualizar dados cadastrais
+![atualizarDadosCadastrais](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/0ed07f79-748f-48c8-b4e0-fcd561317daa)
+
+### Tela de atualizar dados cadastrais - Senha solicitada após tentar mudar dado
+![atualizarDadosCadastrais2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/afdbe56c-3794-4d19-8275-6065b67853dc)
 
 ### Requisitos atendidos
 - RF-01
@@ -209,14 +220,26 @@ Os dados preenchidos para a atualização são enviados para o endpoint de atual
 #### Controllers
 - UsuariosController.cs
 
-### Frontend
+### Frontend Web
 - accountOptions.js
 - accountOptionsComponent.js
 - navbar.js
+- 
+### Frontend Mobile
+- accountOptionsPage.js
+- auth.services.js
 
-### Instruções de acesso
+### Instruções de acesso (Frontend Web)
 1. Realizar login;
 2. Clicar na seta ao lado do seu nome no cabeçalho para abrir o menu de opções do usuário;
+3. Clicar na opção "Perfil";
+4. Visualizar tela de atualizar dados cadastrais;
+5. Preencher as informações solicitadas relativas aos dados que deseja atualizar e clicar em "confirmar", ou clicar em "apagar conta" caso deseje apagar sua conta;
+6. Caso as informações fornecidas sejam válidas, uma mensagem de sucesso será exibida e o usuário será redirecionado para a tela de minhas turmas;
+
+### Instruções de acesso (Frontend Mobile)
+1. Realizar login;
+2. Clicar no icone de usuário no cabeçalho para abrir o menu de opções do usuário;
 3. Clicar na opção "Perfil";
 4. Visualizar tela de atualizar dados cadastrais;
 5. Preencher as informações solicitadas relativas aos dados que deseja atualizar e clicar em "atualizar dados", ou clicar em "apagar conta" caso deseje apagar sua conta;
