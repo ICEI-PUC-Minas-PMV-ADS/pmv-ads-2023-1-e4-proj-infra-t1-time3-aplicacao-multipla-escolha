@@ -106,6 +106,21 @@ Os testes de unidade serão aplicados para testar a integração da aplicação 
 |Requisitos que motivaram o teste|RF-003 Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono, RF-005 Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa., RF-006 Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado. |
 |Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
 
+|Caso de Teste|CTI-010 Salvar e recuperar resultado associado a uma atividade recém criada|
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que as informações de um resultado sejam salvas associadas a uma atividade. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-007 Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou, RF-008 Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas|
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
+
+|Caso de Teste|CTI-011 Salvar multiplos resultados associados a uma atividade e recuperar a maior nota entre eles |
+|------|---------|
+|Tipo de Teste|Integração|
+|Objetivo do Teste|Testar se a aplicação permite que as informações de vários resultado sejam associados a uma atividade e se é possível recuperar a maior nota entre eles. |
+|Passos|Serão criados testes de integração utilizando o XUnit e o Entity Framework Core (para fazer a comunicação com o banco de dados temporário), testando se os resultados obtidos batem com os esperados na fase de asserção |
+|Requisitos que motivaram o teste|RF-007 Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou, RF-008 Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas.|
+|Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
 
 ## Ferramentas de Testes (Opcional)
 
