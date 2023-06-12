@@ -1014,7 +1014,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 
 <br>
 
-### CTI-009 CTI-009 Salvar, editar e recuperar a atividade recém editada
+### CTI-009 Salvar, editar e recuperar a atividade recém editada
 
 **Objetivo:** Testar se a aplicação permite que as informações de uma atividade salva sejam modificadas sem maiores problemas.
 
@@ -1095,6 +1095,242 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 ```
 
 - A nova atividade foi salva com sucesso, tendo seus parametros modificados ao ser recuperada novamente após a edição, demonstrando o êxito do teste.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
+
+### CTI-010 Salvar e recuperar resultado associado a uma atividade recém criada
+
+**Objetivo:** Testar se a aplicação permite que as informações de um resultado sejam salvas associadas a uma atividade.
+
+**Requisitos que motivaram o teste:**	RF-007 Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou, RF-008 Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarERecuperarResultadoAssociadoAUmaAtividade()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        Usuario novoUsuarioAluno = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Pedro",
+            Nome = "Pedro",
+            Sobrenome = "Rodrigues",
+            Email = "Pedro@email.com",
+            Telefone = "(99)99999997",
+            Perfil = Perfil.Aluno
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.Usuarios.Add(novoUsuarioAluno);
+        _context.SaveChanges();
+
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+        Usuario usuarioAlunoRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Pedro");
+
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+
+        Atividade novaAtividade = new Atividade()
+        {
+            Nome = "Nova atividade",
+            Descricao = "Descricao nova atividade",
+            Valor = 10.5F,
+            DataDeCriacao = DateTime.Now,
+            DataPrazoDeEntrega = DateTime.Now,
+            TentativasPermitidas = 1,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Turma = turmaRecuperada
+        };
+
+        _context.Atividades.Add(novaAtividade);
+        _context.SaveChanges();
+
+        Atividade atividadeRecuperada = _context.Atividades.FirstOrDefault(t => t.Nome == "Nova atividade");
+
+        // Ação
+
+        Resultado novoResultado = new Resultado()
+        {
+            Id = 0,
+            NotaDoAluno = 10,
+            NotaMaxima = 12,
+            DataDaTentativa = DateTime.Now,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Aluno = usuarioAlunoRecuperado,
+            Atividade = atividadeRecuperada
+        };
+
+        _context.Resultados.Add(novoResultado);
+        _context.SaveChanges();
+
+        Resultado resultadoRecuperado = _context.Resultados.FirstOrDefault(t => t.UuidNoMongoDb == novoResultado.UuidNoMongoDb);
+
+        // Asserção
+        Xunit.Assert.Equal(novoResultado.UuidNoMongoDb, resultadoRecuperado.UuidNoMongoDb);
+    }
+```
+
+- O novo resultado foi salvo e recuperado com sucesso, tendo os parametros esperados, demonstrando o êxito do teste.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
+
+### CTI-011 Salvar multiplos resultados associados a uma atividade e recuperar a maior nota entre eles
+
+**Objetivo:** Testar se a aplicação permite que as informações de vários resultado sejam associados a uma atividade e se é possível recuperar a maior nota entre eles.
+
+**Requisitos que motivaram o teste:**	RF-007 Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou, RF-008 Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarMutltiplosResultadosParaUmaMesmaAtividadeERecuperarOValorDaMaiorNotaEntreEles()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        Usuario novoUsuarioAluno = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Pedro",
+            Nome = "Pedro",
+            Sobrenome = "Rodrigues",
+            Email = "Pedro@email.com",
+            Telefone = "(99)99999997",
+            Perfil = Perfil.Aluno
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.Usuarios.Add(novoUsuarioAluno);
+        _context.SaveChanges();
+
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+        Usuario usuarioAlunoRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Pedro");
+
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+
+        Atividade novaAtividade = new Atividade()
+        {
+            Nome = "Nova atividade",
+            Descricao = "Descricao nova atividade",
+            Valor = 10.5F,
+            DataDeCriacao = DateTime.Now,
+            DataPrazoDeEntrega = DateTime.Now,
+            TentativasPermitidas = 3,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Turma = turmaRecuperada
+        };
+
+        _context.Atividades.Add(novaAtividade);
+        _context.SaveChanges();
+
+        Atividade atividadeRecuperada = _context.Atividades.FirstOrDefault(t => t.Nome == "Nova atividade");
+
+        // Ação
+
+        Resultado novoResultado = new Resultado()
+        {
+            Id = 0,
+            NotaDoAluno = 6F,
+            NotaMaxima = 12F,
+            DataDaTentativa = DateTime.Now,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Aluno = usuarioAlunoRecuperado,
+            Atividade = atividadeRecuperada
+        };
+
+        Resultado novoResultado2 = new Resultado()
+        {
+            Id = 0,
+            NotaDoAluno = 10.5F,
+            NotaMaxima = 12,
+            DataDaTentativa = DateTime.Now,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Aluno = usuarioAlunoRecuperado,
+            Atividade = atividadeRecuperada
+        };
+
+        Resultado novoResultado3 = new Resultado()
+        {
+            Id = 0,
+            NotaDoAluno = 8F,
+            NotaMaxima = 12F,
+            DataDaTentativa = DateTime.Now,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Aluno = usuarioAlunoRecuperado,
+            Atividade = atividadeRecuperada
+        };
+
+        _context.Resultados.Add(novoResultado);
+        _context.Resultados.Add(novoResultado2);
+        _context.Resultados.Add(novoResultado3);
+        _context.SaveChanges();
+
+        float maiorNotaEntreOsResultados = _context.Resultados.Include(r => r.Atividade).Where(r => r.Atividade.Id == atividadeRecuperada.Id).Max(r => r.NotaDoAluno);
+
+        // Asserção
+        Xunit.Assert.Equal(10.5F, maiorNotaEntreOsResultados);
+    }
+```
+
+- Os novos resultados foram salvos com sucesso, com a maior nota (10.5) tendo sido recuperada, demonstrando o êxito do teste.
 
 **Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
 
