@@ -912,3 +912,192 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 <br>
+
+### CTI-008 Salvar multíplas atividades associadas a uma mesma turma recém criada e recupera-las filtrando pelo id da turma 
+
+**Objetivo:** Testar se a aplicação permite que sejam salvas multíplas atividades associadas a uma mesma turma e também se é possível recuperar todas elas através do id da turma.
+
+**Requisitos que motivaram o teste:**	RF-003 Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono, RF-005 Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa., RF-006 Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarERecuperarMultiplasAtividadesEmUmaTurma()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+        // Ação
+
+        Atividade novaAtividade = new Atividade()
+        {
+            Nome = "Nova atividade",
+            Descricao = "Descricao nova atividade",
+            Valor = 10.5F,
+            DataDeCriacao = DateTime.Now,
+            DataPrazoDeEntrega = DateTime.Now,
+            TentativasPermitidas = 1,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Turma = turmaRecuperada
+        };
+
+        Atividade novaAtividade2 = new Atividade()
+        {
+            Nome = "Nova atividade2",
+            Descricao = "Descricao nova atividade2",
+            Valor = 10.5F,
+            DataDeCriacao = DateTime.Now,
+            DataPrazoDeEntrega = DateTime.Now,
+            TentativasPermitidas = 1,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Turma = turmaRecuperada
+        };
+
+        Atividade novaAtividade3 = new Atividade()
+        {
+            Nome = "Nova atividade3",
+            Descricao = "Descricao nova atividade3",
+            Valor = 10.5F,
+            DataDeCriacao = DateTime.Now,
+            DataPrazoDeEntrega = DateTime.Now,
+            TentativasPermitidas = 1,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Turma = turmaRecuperada
+        };
+
+        _context.Atividades.Add(novaAtividade);
+        _context.Atividades.Add(novaAtividade2);
+        _context.Atividades.Add(novaAtividade3);
+        _context.SaveChanges();
+
+        List<Atividade> atividadesRecuperadas = _context.Atividades.Include(a => a.Turma).Where(a => a.Turma.Id == turmaRecuperada.Id).ToList();
+
+        // Asserção
+        Xunit.Assert.Equal(atividadesRecuperadas.Count(), 3);
+    }
+```
+
+- Todas as turmas foram salvas e recuperadas com sucesso filtrando pelo id da turma, demonstrando o êxito do teste.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
+
+### CTI-009 CTI-009 Salvar, editar e recuperar a atividade recém editada
+
+**Objetivo:** Testar se a aplicação permite que as informações de uma atividade salva sejam modificadas sem maiores problemas.
+
+**Requisitos que motivaram o teste:**	RF-003 Permitir que o usuário do tipo "professor" cadastre atividades de multipla escolha associadas as turmas das quais é dono, RF-005 Permitir que o usuário do tipo "aluno" tenha acesso a todas as atividades de multipla escolha cadastradas nas turmas das quais participa., RF-006 Permitir que o usuário do tipo "aluno" possa realizar qualquer atividade de multipla escolha que não esteja com o prazo vencido ou com o limite de tentativas alcançado.
+
+**Passos**: Foram elaborados os seguintes testes de integração para testar o método sob diferentes circunstâncias:
+
+```
+    [Fact]
+    public void SalvarEditarERecuperarAtividade_EsperaSeQueOsDadosTenhamSidoAtualizadosAoRecuperarAAtividadeEditada()
+    {
+        // Arranjo
+        Usuario novoUsuario = new Usuario
+        {
+            Id = 0,
+            Senha = "Senha",
+            NomeDeUsuario = "Joao",
+            Nome = "Joao",
+            Sobrenome = "Silva",
+            Email = "Joao@email.com",
+            Telefone = "(99)99999999",
+            Perfil = Perfil.Professor
+        };
+
+        _context.Usuarios.Add(novoUsuario);
+        _context.SaveChanges();
+        Usuario usuarioRecuperado = _context.Usuarios.FirstOrDefault(u => u.NomeDeUsuario == "Joao");
+
+
+        Turma novaTurma = new Turma()
+        {
+            Nome = "Nova turma",
+            Descricao = "Nova turma desc",
+            Ativo = true,
+            Professor = usuarioRecuperado
+        };
+
+        _context.Turmas.Add(novaTurma);
+        _context.SaveChanges();
+
+        Turma turmaRecuperada = _context.Turmas.FirstOrDefault(t => t.Nome == "Nova turma");
+
+        // Ação
+
+        Atividade novaAtividade = new Atividade()
+        {
+            Nome = "Nova atividade",
+            Descricao = "Descricao nova atividade",
+            Valor = 10.5F,
+            DataDeCriacao = DateTime.Now,
+            DataPrazoDeEntrega = DateTime.Now,
+            TentativasPermitidas = 1,
+            UuidNoMongoDb = Guid.NewGuid().ToString(),
+            Turma = turmaRecuperada
+        };
+
+        _context.Atividades.Add(novaAtividade);
+        _context.SaveChanges();
+
+        Atividade atividadeRecuperada = _context.Atividades.FirstOrDefault(t => t.Nome == "Nova atividade");
+
+        atividadeRecuperada.Nome = "Novo nome";
+        atividadeRecuperada.Descricao = "Nova descrição";
+        atividadeRecuperada.Valor = 20;
+        atividadeRecuperada.TentativasPermitidas = 2;
+
+        _context.Atividades.Update(atividadeRecuperada);
+        _context.SaveChanges();
+
+        Atividade atividadeAtualizada = _context.Atividades.FirstOrDefault(a => a.Id == atividadeRecuperada.Id);
+
+        // Asserção
+        Xunit.Assert.Equal(atividadeAtualizada.Nome, "Novo nome");
+        Xunit.Assert.Equal(atividadeAtualizada.Descricao, "Nova descrição");
+        Xunit.Assert.Equal(atividadeAtualizada.Valor, 20);
+        Xunit.Assert.Equal(atividadeAtualizada.TentativasPermitidas, 2);
+    }
+```
+
+- A nova atividade foi salva com sucesso, tendo seus parametros modificados ao ser recuperada novamente após a edição, demonstrando o êxito do teste.
+
+**Critérios de êxito:** Todos os testes de integração devem passar ao serem executados.
+
+**Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
+
+<br>
