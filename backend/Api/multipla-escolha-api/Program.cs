@@ -26,6 +26,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddSingleton<AtividadeMongoDbService>();
 
+builder.Services.AddSingleton<CaixaDeNotificacoesMongoDbService>();
+
 builder.Services.AddScoped<UsuariosService, UsuariosService>();
 
 builder.Services.AddScoped<TurmasService, TurmasService>();
