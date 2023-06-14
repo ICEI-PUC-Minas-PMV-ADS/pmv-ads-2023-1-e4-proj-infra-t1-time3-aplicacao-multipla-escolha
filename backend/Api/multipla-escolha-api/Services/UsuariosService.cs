@@ -235,8 +235,9 @@ namespace multipla_escolha_api.Services
 
                 caixaDeNotificacoes.Notificacoes.Add(novaNotificacao);
 
-                caixaDeNotificacoes.NumeroDeNotificacoesNaoLidas += atividadesRecemCriadas.Count;
             }
+            
+            caixaDeNotificacoes.NumeroDeNotificacoesNaoLidas += atividadesRecemCriadas.Count;
 
 
             if (caixaDeNotificacoes.DataAtualizacao.DayOfYear < dataAtual.DayOfYear || caixaDeNotificacoes.DataAtualizacao.Year < dataAtual.Year)

@@ -251,3 +251,12 @@ input[type='radio'] {
   max-height: 300px;
 }
 
+.notificacao-card {
+  width: 100%; 
+  min-height: 400;
+  background-color: white; 
+  border: 1px solid #999999;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  padding: 12px;
+}

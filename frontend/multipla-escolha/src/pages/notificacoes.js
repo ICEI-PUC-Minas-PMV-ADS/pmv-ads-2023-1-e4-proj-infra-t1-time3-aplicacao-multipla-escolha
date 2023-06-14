@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { UserContext } from '../context/userContext';
 
-import BuscarTurmasComponent from '../components/buscarTurmasComponent';
+import VisualizarNotificacoesComponent from '../components/visualizarNotificacoesComponent';
 
 function Notificacoes() {  
     
@@ -13,7 +13,7 @@ function Notificacoes() {
             <Navbar />
             <div className='d-flex flex-column container'>
                 <div>
-                    <BuscarTurmasComponent/>
+                    <VisualizarNotificacoesComponent/>
                 </div> 
             </div>
         </div>
