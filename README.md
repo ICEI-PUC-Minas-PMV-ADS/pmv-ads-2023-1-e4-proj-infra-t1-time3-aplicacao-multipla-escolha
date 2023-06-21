@@ -29,7 +29,11 @@ O frontend web da aplicação foi hospedado na plataforma [Vercel](https://verce
 
 Já o frontend mobile foi hospedado na plataforma Snack do [Expo.dev](https://expo.dev/), podendo ser acessado no seguinte link: https://snack.expo.dev/@sergiomenezes/multipla-escolha-mobile-final
 
+Obs: Clicar na Aba "Android" do emulador do Snack para rodar da maneira apropriada, já que a versão Web não é compatível com todos os recursos utilizados.
+
 Ambos utilizam a mesma API, hospedada no [Azure](https://azure.microsoft.com/pt-br/free/search/?ef_id=_k_Cj0KCQjwnMWkBhDLARIsAHBOftoFVP90He4Mo5FZN5-gD49I0focOjXHUBZrUr3lXkqCyj_ibBLZFScaAntTEALw_wcB_k_&OCID=AIDcmmzmnb0182_SEM__k_Cj0KCQjwnMWkBhDLARIsAHBOftoFVP90He4Mo5FZN5-gD49I0focOjXHUBZrUr3lXkqCyj_ibBLZFScaAntTEALw_wcB_k_&gclid=Cj0KCQjwnMWkBhDLARIsAHBOftoFVP90He4Mo5FZN5-gD49I0focOjXHUBZrUr3lXkqCyj_ibBLZFScaAntTEALw_wcB) e disponível no link: https://multipla-escolha-api20230620213010.azurewebsites.net/
+
+Obs: O link acima redirecionará para uma página com Http Error 404, isto ocorre pois todos os recursos da API encontram-se em outras rotas. Caso queira visualizar uma rota da API em ação, será necessário colocar manualmente o token JWT nos cookies associados a este domínio e acessar um endpoint válido como https://multipla-escolha-api20230620213010.azurewebsites.net/api/Turmas.
 
 ### Rodar localmente
 
