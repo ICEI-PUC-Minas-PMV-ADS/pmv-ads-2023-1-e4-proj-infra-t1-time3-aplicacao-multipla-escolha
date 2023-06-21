@@ -18,7 +18,7 @@ function Navbar() {
     const [menuDropDownIsOpen, setMenuDropDownIsOpen] = useState(false);
 
     useEffect(() => {
-        axios.get('https://localhost:7284/api/Usuarios/Info',
+        axios.get(baseUrl + '/api/Usuarios/Info',
             {
                 headers: {
                     "Content-Type": "application/JSON"
