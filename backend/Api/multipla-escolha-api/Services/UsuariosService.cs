@@ -11,6 +11,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using multipla_escolha_api.Models.Config;
 using Microsoft.Extensions.Options;
+using multipla_escolha_api.Models.MongoDb;
 
 namespace multipla_escolha_api.Services
 {
@@ -19,10 +20,12 @@ namespace multipla_escolha_api.Services
         private readonly AppDbContext _context;
         private readonly IOptions<JwtConfig> _jwtConfig;
 
-        public UsuariosService(AppDbContext context, IOptions<JwtConfig> jwtConfig)
+        private readonly CaixaDeNotificacoesMongoDbService _caixaDeNotificacoesMongoDbService;
+        public UsuariosService(AppDbContext context, IOptions<JwtConfig> jwtConfig, CaixaDeNotificacoesMongoDbService caixaDeNotificacoesMongoDbService)
         {
             _context = context;
             _jwtConfig = jwtConfig;
+            _caixaDeNotificacoesMongoDbService = caixaDeNotificacoesMongoDbService;
         }
 
         public async Task<ServiceResponse> GetAllUsers()
@@ -37,7 +40,7 @@ namespace multipla_escolha_api.Services
             {
                 var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
 
-            return new ServiceResponse(user, 200);
+                return new ServiceResponse(user, 200);
             }
             catch { }
             return new ServiceResponse(null, 401);
@@ -113,9 +116,17 @@ namespace multipla_escolha_api.Services
             return new ServiceResponse(user, 200);
         }
 
-        public ServiceResponse GetUserInfo(Dictionary<String, String> userClaims)
-        {           
-            UsuarioInfoDto userInfoDto = new(userClaims);
+        public async Task<ServiceResponse> GetUserInfo(Dictionary<String, String> userClaims)
+        {
+            int? numeroDeNotificacoesNaoLidas = 0;
+
+            if (userClaims[ClaimTypes.Role].Equals("Aluno"))
+            {
+                CaixaDeNotificacoesMongoDb caixaDeNotificacoesMongoDb = await UpdateNotificacoes(userClaims);
+                numeroDeNotificacoesNaoLidas = caixaDeNotificacoesMongoDb.NumeroDeNotificacoesNaoLidas;
+            }
+
+            UsuarioInfoDto userInfoDto = new(userClaims, numeroDeNotificacoesNaoLidas);
 
             return new ServiceResponse(userInfoDto, 200);
         }
@@ -178,6 +189,108 @@ namespace multipla_escolha_api.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+        public async Task<ServiceResponse> GetNotificacoes(Dictionary<String, String> userClaims)
+        {
+            CaixaDeNotificacoesMongoDb caixaDeNotificacoes = await UpdateNotificacoes(userClaims);
+            caixaDeNotificacoes.NumeroDeNotificacoesNaoLidas = 0;
+            await _caixaDeNotificacoesMongoDbService.UpdateAsync(caixaDeNotificacoes);
+            return new ServiceResponse(caixaDeNotificacoes, 200);
+        }
+
+            private async Task<CaixaDeNotificacoesMongoDb> UpdateNotificacoes(Dictionary<String, String> userClaims)
+        {
+            int userId = Int32.Parse(userClaims[ClaimTypes.NameIdentifier]);
+
+            CaixaDeNotificacoesMongoDb caixaDeNotificacoes = await _caixaDeNotificacoesMongoDbService.GetAsync(Int32.Parse(userClaims[ClaimTypes.NameIdentifier]));
+
+            if (caixaDeNotificacoes == null)
+            {
+                Console.WriteLine("Caixa null");
+                caixaDeNotificacoes = new CaixaDeNotificacoesMongoDb();
+                caixaDeNotificacoes.UserId = 0;
+                caixaDeNotificacoes.DataAtualizacao = DateTime.UtcNow.AddDays(-1);
+                caixaDeNotificacoes.NumeroDeNotificacoesNaoLidas = 0;
+                caixaDeNotificacoes.Notificacoes = new List<NotificacaoMongoDb>();
+            }
+
+            var dataAtual = DateTime.UtcNow;
+
+
+            var atividadesDoAluno = _context.Atividades.Include(a => a.Turma).ThenInclude(t => t.AlunosTurma).Where(a => a.Turma.AlunosTurma.Any(at => at.AlunoId == userId));
+
+            var atividadesRecemCriadas = await atividadesDoAluno.Where(a => a.DataDeCriacao > caixaDeNotificacoes.DataAtualizacao).ToListAsync();
+
+            for (int i = 0; i < atividadesRecemCriadas.Count; i++)
+            {
+                NotificacaoMongoDb novaNotificacao = new NotificacaoMongoDb();
+
+                Atividade atividade = atividadesRecemCriadas[i];
+
+                novaNotificacao.Titulo = "Nova atividade criada na turma '" + atividade.Turma.Nome + "'";
+
+                novaNotificacao.Conteudo = "Atividade '" + atividade.Nome + "' foi recém criada na turma '" + atividade.Turma.Nome + "'.";
+
+                novaNotificacao.Data = dataAtual;
+
+                caixaDeNotificacoes.Notificacoes.Add(novaNotificacao);
+
+            }
+            
+            caixaDeNotificacoes.NumeroDeNotificacoesNaoLidas += atividadesRecemCriadas.Count;
+
+
+            if (caixaDeNotificacoes.DataAtualizacao.DayOfYear < dataAtual.DayOfYear || caixaDeNotificacoes.DataAtualizacao.Year < dataAtual.Year)
+            {
+                var atividadesComPrazoProximo = await atividadesDoAluno.Where(a => a.DataPrazoDeEntrega > dataAtual && a.DataPrazoDeEntrega <= dataAtual.AddDays(7)).ToListAsync();
+
+                for (int i = 0; i < atividadesComPrazoProximo.Count; i++)
+                {
+                    NotificacaoMongoDb novaNotificacao = new NotificacaoMongoDb();
+
+                    Atividade atividade = atividadesComPrazoProximo[i];
+
+                    novaNotificacao.Titulo = "Atividade '" + atividade.Nome + "' perto do prazo de entrega!";
+
+                    int diasParaAtividadeVencer = 0;
+
+                    if (dataAtual.Year == atividade.DataPrazoDeEntrega.Value.Year)
+                    {
+                        diasParaAtividadeVencer =  atividade.DataPrazoDeEntrega.Value.DayOfYear - dataAtual.DayOfYear;
+                    }
+                    else
+                    {
+                        diasParaAtividadeVencer = (atividade.DataPrazoDeEntrega.Value.DayOfYear + 365) - dataAtual.DayOfYear;
+
+                        if (DateTime.IsLeapYear(DateTime.Now.Year))
+                        {
+                            diasParaAtividadeVencer += 1;
+                        }
+                    }
+                    string message = "A atividade '" + atividade.Nome + "' da turma '" + atividade.Turma.Nome + "' vence em " + diasParaAtividadeVencer + " dias!";
+
+                    novaNotificacao.Conteudo = message;
+                    novaNotificacao.Data = DateTime.UtcNow;
+
+                    caixaDeNotificacoes.Notificacoes.Add(novaNotificacao);
+                }
+
+                caixaDeNotificacoes.NumeroDeNotificacoesNaoLidas += atividadesComPrazoProximo.Count;
+            }
+
+            caixaDeNotificacoes.DataAtualizacao = DateTime.UtcNow;
+            
+            if (caixaDeNotificacoes.UserId == 0)
+            {
+                caixaDeNotificacoes.UserId = userId;
+                await _caixaDeNotificacoesMongoDbService.CreateAsync(caixaDeNotificacoes);
+            }
+            else
+            {
+                await _caixaDeNotificacoesMongoDbService.UpdateAsync(caixaDeNotificacoes);
+            }
+            
+            return caixaDeNotificacoes;
         }
     }
 }

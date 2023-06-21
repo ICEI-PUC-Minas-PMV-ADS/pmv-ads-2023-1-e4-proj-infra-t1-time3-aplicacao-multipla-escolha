@@ -17,6 +17,7 @@ import FazerAtividade from './pages/fazerAtividade';
 import VisualizarResultado from './pages/visualizarResultado';
 import BuscarTurmas from './pages/buscarTurmas';
 import VisualizarNotas from './pages/visualizarNotas';
+import Notificacoes from './pages/notificacoes';
 
 import { Route, Routes, BrowserRouter as Router, BrowserRouter } from "react-router-dom";
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/fazer-atividade/:id" element={<FazerAtividade />}></Route>
             <Route path="/atividades/editar/:id" element={<EditarAtividade />}></Route>
             <Route path="/resultados/:id" element={<VisualizarResultado />}></Route>
+            <Route path="/notificacoes" element={<Notificacoes />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

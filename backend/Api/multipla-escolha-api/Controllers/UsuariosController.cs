@@ -67,10 +67,10 @@ namespace multipla_escolha_api.Controllers
         }
 
         [HttpGet("info")]
-        public IActionResult GetInfo()
+        public async Task<IActionResult> GetInfo()
         {
             var userClaims = Usuario.getUserClaims(HttpContext.User);
-            ServiceResponse response = _usuariosService.GetUserInfo(userClaims);
+            ServiceResponse response = await _usuariosService.GetUserInfo(userClaims);
             return StatusCode(response.StatusCode, response.Content);
         }
 
@@ -128,6 +128,14 @@ namespace multipla_escolha_api.Controllers
                 Response.Cookies.Delete("jwtToken", cookieOptions);
             }
             
+            return StatusCode(response.StatusCode, response.Content);
+        }
+
+        [HttpGet("notificacoes")]
+        public async Task<IActionResult> GetNotificacoes()
+        {
+            var userClaims = Usuario.getUserClaims(HttpContext.User);
+            ServiceResponse response = await _usuariosService.GetNotificacoes(userClaims);
             return StatusCode(response.StatusCode, response.Content);
         }
     }

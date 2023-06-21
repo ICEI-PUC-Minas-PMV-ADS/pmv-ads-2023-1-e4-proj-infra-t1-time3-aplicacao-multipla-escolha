@@ -3,11 +3,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 
+import { baseUrl } from "../util/Constants";
+
 function LoginComponent() {
 
     const userContext = useContext(UserContext);
-
-    const baseUrl = 'https://localhost:7284/';
 
     const [username, setUsername] = useState("");
 
