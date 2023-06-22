@@ -18,7 +18,7 @@ import { useUser } from '../context/UserContext';
 
 // or any pure javascript modules available in npm
 
-export default function BuscarNotificacoesPage({ route }) {
+export default function NotificationsPage({ route }) {
   const navigation = useNavigation();
 
   const { numeroDeNotificacoesNaoLidas } = route.params ? route.params : '';
