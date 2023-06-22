@@ -48,7 +48,7 @@ export default function LoadingComponent({ title, goBack }) {
           {goBack ? (
             <Appbar.Action
               style={{ margin: 0, padding: 0, marginLeft: -20 }}
-              icon='chevron-left'
+              icon="chevron-left"
               size={28}
               color="black"
               onPress={() => navigation.goBack()}
@@ -63,6 +63,41 @@ export default function LoadingComponent({ title, goBack }) {
               flexDirection: 'row',
               alignItems: 'center',
             }}>
+            <View style={{ position: 'relative'}}>
+              <Appbar.Action
+                icon="bell"
+                size={24}
+                color="white"
+                onPress={() => navigation.navigate('NotificationsPage', {numeroDeNotificacoesNaoLidas: userData.numeroDeNotificacoesNaoLidas})}
+              />
+              {userData.numeroDeNotificacoesNaoLidas > 0 &&
+              userData.numeroDeNotificacoesNaoLidas != null ? (
+                userData.numeroDeNotificacoesNaoLidas < 100 ? (
+                  <View style={styles.notificationCircle}>
+                    <Text
+                      style={[
+                        { color: 'white', fontWeight: 'bold' },
+                        userData.numeroDeNotificacoesNaoLidas > 9
+                          ? { fontSize: 12 }
+                          : null,
+                      ]}>
+                      {userData.numeroDeNotificacoesNaoLidas}
+                    </Text>
+                  </View>                  
+                ) : (
+                  <View style={styles.notificationCircle}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 11,
+                      }}>
+                      99+
+                    </Text>
+                  </View>
+                )
+              ) : null}
+            </View>
             <Appbar.Action
               icon="account-circle"
               size={32}
@@ -169,5 +204,17 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  notificationCircle: {
+    height: 21,
+    width: 21,
+    borderRadius: 21,
+    backgroundColor: '#6082B6',
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

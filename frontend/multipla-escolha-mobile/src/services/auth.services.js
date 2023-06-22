@@ -75,6 +75,24 @@ export const getUserInfo = async (param) => {
         return response.data;
       },
       (error) => {
+        console.log(error)
+        return null;
+      }
+    );
+  } catch (error) {
+    window.alert(error);
+    return null;
+  }
+};
+
+export const getUserNotifications = async (param) => {
+  try {
+    return await API.get(BASE_URL + '/api/Usuarios/notificacoes', param).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        console.log(error)
         return null;
       }
     );

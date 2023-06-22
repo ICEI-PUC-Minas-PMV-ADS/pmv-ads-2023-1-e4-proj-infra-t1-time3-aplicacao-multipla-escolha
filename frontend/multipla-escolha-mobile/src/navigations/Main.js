@@ -17,6 +17,7 @@ import RealizarAtividadePage from '../pages/RealizarAtividadePage';
 import VisualizarResultadoPage from '../pages/VisualizarResultadoPage';
 import VisualizarNotasPage from '../pages/VisualizarNotasPage';
 import VisualizarAlunosPage from '../pages/VisualizarAlunosPage';
+import NotificationsPage from '../pages/NotificationsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -131,6 +132,13 @@ const Main = () => {
       <Stack.Screen
         name="VisualizarAlunosPage"
         component={VisualizarAlunosPage}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="NotificationsPage"
+        component={NotificationsPage}
         options={{
           header: () => null,
         }}
