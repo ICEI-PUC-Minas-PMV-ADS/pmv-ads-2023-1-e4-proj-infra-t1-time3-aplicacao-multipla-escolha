@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, Agent } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const onRequest = async (config) => {
