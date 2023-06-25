@@ -55,7 +55,7 @@ As tabelas abaixo demonstram cada caso de teste:
 <tr><th>Caso de Teste </th>
 <th>CT-04 – Realizar cadastro de atividades de múltipla escolha associadas as turmas das quais o usuário do tipo "Professor" é dono.</th></tr>
 <tr><th>Objetivo do teste</th>
-  <th>•	Verificar a usabilidade da funcionalidade de cadastro de novas atividas nas turmas associadas ao professor</th></tr>
+  <th>•	Verificar a usabilidade da funcionalidade de cadastro de novas atividades nas turmas associadas ao professor</th></tr>
 <tr><th>Ações esperadas</th>
   <th>1 - Usuário visualiza uma turma criada na página "Minhas Turmas" da aplicação.<br>
  2- Usuário clica na opção "Abrir" presente no cabeçalho da turma criada.<br>
@@ -103,7 +103,7 @@ As tabelas abaixo demonstram cada caso de teste:
 <tr><th>Caso de Teste </th>
 <th>CT-07 – Visualização de suas notas por usuário do tipo "Aluno".</th></tr>
 <tr><th>Objetivo do teste</th>
-  <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
+  <th>•	Verificar a usabilidade da funcionalidade de visualizar suas notas para uma turma matriculada pelo usuário do tipo "Aluno"</th></tr>
 <tr><th>Ações esperadas</th>
   <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
  2- Usuário clica no campo da turma matriculada e é redirecionado para a página da turma.<br>
@@ -119,7 +119,7 @@ As tabelas abaixo demonstram cada caso de teste:
 <tr><th>Caso de Teste </th>
 <th>CT-08 – Visualização das notas de aluno por usuário do tipo "Professor".</th></tr>
 <tr><th>Objetivo do teste</th>
-  <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
+  <th>•	Verificar a usabilidade da funcionalidade de visualizar as notas de seus alunos para uma determinada turma pelo usuário do tipo "Professor"</th></tr>
 <tr><th>Ações esperadas</th>
   <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
  2- Usuário clica no no card da turma cujos alunos ele quer visualizar as notas.<br>
@@ -136,7 +136,7 @@ As tabelas abaixo demonstram cada caso de teste:
 <tr><th>Caso de Teste </th>
 <th>CT-09 – Visualização de notificações por usuário.</th></tr>
 <tr><th>Objetivo do teste</th>
-  <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
+  <th>•	Verificar a usabilidade da funcionalidade de visualizar notificações pelos usuários na plataforma</th></tr>
 <tr><th>Ações esperadas</th>
   <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
  2- Usuário clica no ícone de sino presente no cabeçalho.<br>
