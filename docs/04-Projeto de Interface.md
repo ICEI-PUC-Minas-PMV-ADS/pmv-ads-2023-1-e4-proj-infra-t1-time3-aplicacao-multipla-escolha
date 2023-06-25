@@ -150,6 +150,16 @@ Nessa tela o usuário poderá visualizar todas as notas das atividades da turma 
     <img src="img/wireframes-site/visualizarNota.png" alt="Imagem da tela de visualizar Notas dos Alunos" width=50%>
 </div>
 
+### Tela: Visualizar Notificações
+
+Nessa tela o usuário poderá receber e visualizar todas as notificações de atividades recém cadastradas ou perto do prazo de entrega para turmas das quais ele faz parte.
+
+<div align="center">
+
+![wireNot2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/69464ac0-0738-4ef0-906f-95fac554767d)
+   
+</div>
+
 ## Wireframes: Mobile
 
 ![figmaPrint](./img/wireframes-mobile/Aplica%C3%A7%C3%A3o%20Mobile.png)
