@@ -85,13 +85,63 @@ As tabelas abaixo demonstram cada caso de teste:
 
 <table> 
 <tr><th>Caso de Teste </th>
-<th>CT-06 – Realizar acesso as atividades da turma matriculada do usuário tipo "Aluno".</th></tr>
+<th>CT-06 – Acessar e realizar atividades da turma matriculada do usuário tipo "Aluno".</th></tr>
 <tr><th>Objetivo do teste</th>
   <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
 <tr><th>Ações esperadas</th>
   <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
  2- Usuário clica no campo da turma matriculada e é redirecionado para a página da turma.<br>
- 3– Usuário visualiza as informações da turma como nome do professor, nome da turma, data de criação, pode cancelar matrícula clicando em "Cancelar Matrícula" presente no cabeçalho, e abaixo ele consegue visualizar a atividade cadastrada na turma que foi matriculado.</th></tr>
+ 3– Usuário visualiza as informações da turma como nome do professor, nome da turma, data de criação, pode cancelar matrícula clicando em "Cancelar Matrícula" presente no cabeçalho, e abaixo ele consegue visualizar a atividade cadastrada na turma que foi matriculado.<br>
+ 4– O usuário clica em "Realizar atividade" e responde as questões de multípla escolha da atividade<br>
+ 5– Usuário recebe a correção de sua atividade;
+  </th></tr>
 <tr><th>Critérios de Êxito</th>	
-  <th>•	Usuário deve ser capaz de visualizar suas atividades correspondentes a turma matriculada na plataforma.</th></tr>
+  <th>•	Usuário deve ser capaz de visualizar e realizar as atividades correspondentes a turma matriculada na plataforma, obtendo o resultado da correção da mesma.</th></tr>
+  </table>
+
+<table> 
+<tr><th>Caso de Teste </th>
+<th>CT-07 – Visualização de suas notas por usuário do tipo "Aluno".</th></tr>
+<tr><th>Objetivo do teste</th>
+  <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
+<tr><th>Ações esperadas</th>
+  <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
+ 2- Usuário clica no campo da turma matriculada e é redirecionado para a página da turma.<br>
+ 3– Usuário visualiza as informações da turma como nome do professor, nome da turma, data de criação, pode cancelar matrícula clicando em "Cancelar Matrícula" presente no cabeçalho, e abaixo ele consegue visualizar a atividade cadastrada na turma que foi matriculado.<br>
+ 4– O usuário clica em "Notas";<br>
+ 5– Usuário visualiza a tela de Notas;
+  </th></tr>
+<tr><th>Critérios de Êxito</th>	
+  <th>•	Usuário deve ser capaz de visualizar todas as suas notas para as atividades da turma em questão, sendo a maior nota de cada tentativa exibida.</th></tr>
+  </table>
+
+  <table> 
+<tr><th>Caso de Teste </th>
+<th>CT-08 – Visualização das notas de aluno por usuário do tipo "Professor".</th></tr>
+<tr><th>Objetivo do teste</th>
+  <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
+<tr><th>Ações esperadas</th>
+  <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
+ 2- Usuário clica no no card da turma cujos alunos ele quer visualizar as notas.<br>
+ 3– Usuário visualiza as informações da turma.<br>
+ 4– O usuário clica em "Notas";<br>
+ 6– Seleciona o nome do aluno cujas notas deseja visualizar;<br>
+ 5– Usuário visualiza as notas do aluno selecionado;
+  </th></tr>
+<tr><th>Critérios de Êxito</th>	
+  <th>•	Usuário deve ser capaz de visualizar todas as notas do aluno escolhido para as atividades da turma em questão, sendo a maior nota de cada tentativa exibida.</th></tr>
+  </table>
+
+    <table> 
+<tr><th>Caso de Teste </th>
+<th>CT-09 – Visualização de notificações por usuário.</th></tr>
+<tr><th>Objetivo do teste</th>
+  <th>•	Verificar a usabilidade da funcionalidade de realizar o acesso as atividades da turma matriculada pelo usuário do tipo "Aluno" na plataforma</th></tr>
+<tr><th>Ações esperadas</th>
+  <th>1 - Usuário visualiza a página "Minhas Turmas" da aplicação.<br>
+ 2- Usuário clica no ícone de sino presente no cabeçalho.<br>
+ 3– Usuário visualiza suas notificações.
+  </th></tr>
+<tr><th>Critérios de Êxito</th>	
+  <th>•	Usuário deve ser capaz de visualizar suas notificações.</th></tr>
   </table>
