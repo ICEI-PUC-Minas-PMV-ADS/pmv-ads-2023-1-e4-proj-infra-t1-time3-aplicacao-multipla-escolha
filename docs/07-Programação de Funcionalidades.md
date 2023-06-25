@@ -1742,3 +1742,98 @@ Na tela de visualizar notas/métricas, as métricas do aluno em questão são re
 7. Caso esteja logado numa conta do tipo "Professor", visualizar a tela de selecionar aluno e clicar no aluno cujas notas deseja visualizar;
 8. Caso esteja logado numa conta do tipo "Aluno", o usuário será automaticamente redirecionado para a tela de visualizar notas contendo suas notas;
 9. Visualizar a tela de "Visualizar notas";
+
+## Recebimento e visualização de notificações  (RF-09 e RF-10)
+A funcionalidade de recebimento e visualização de notificações permite que o usuário do tipo aluno seja notificado quando uma atividade de uma turma na qual ele está matriculado está perto do prazo de vencimento ou quando uma nova atividade é cadastrada em uma das turmas da qual ele faz parte. 
+
+## Frontend Web
+### Icone de notificações
+![NotificacaoIcon](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/179d3449-bde1-432b-9d21-358e8e718d2e)
+
+### Tela de visualizar notificações
+![Notificacao](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/71572c9e-68b1-4c16-840f-72fb6d71cb14)
+
+## Frontend Mobile
+### Icone de notificações
+![notM](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/fc1ec776-9e5f-4a97-93c7-f709a95489b2)
+
+### Tela de visualizar notificações
+![notMb](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/assets/74699119/74300ca8-1bb7-4a67-803d-53e186078bde)
+
+### Requisitos atendidos
+- RF-09
+- RF-10
+
+### Estrutura de Dados
+
+Na tela de visualizar notificações, os dados das notificações para o usuário atual são recuparadas na seguinte estrutura JSON:
+```
+{
+    "userId": 7004,
+    "numeroDeNotificacoesNaoLidas": 0,
+    "notificacoes": [
+        {
+            "titulo": "Nova atividade criada na turma 'Turma'",
+            "conteudo": "Atividade 'Tx' foi recém criada na turma 'Turma'.",
+            "data": "2023-06-14T23:22:43.632Z"
+        },
+        {
+            "titulo": "Nova atividade criada na turma 'Turma'",
+            "conteudo": "Atividade 'TesteNova' foi recém criada na turma 'Turma'.",
+            "data": "2023-06-14T23:22:43.632Z"
+        },
+        {
+            "titulo": "Atividade 'Teste' perto do prazo de entrega!",
+            "conteudo": "A atividade 'Teste' da turma 'Turma' vence em 3 dias!",
+            "data": "2023-06-14T23:22:43.656Z"
+        },
+        {
+            "titulo": "Atividade 'Teste' perto do prazo de entrega!",
+            "conteudo": "A atividade 'Teste' da turma 'Turma' vence em 2 dias!",
+            "data": "2023-06-15T22:42:31.496Z"
+        },
+        {
+            "titulo": "Nova atividade criada na turma 'Turma'",
+            "conteudo": "Atividade 'Nova atividade' foi recém criada na turma 'Turma'.",
+            "data": "2023-06-18T00:17:13.103Z"
+        }
+    ],
+    "dataAtualizacao": "2023-06-25T22:22:26.8558642Z"
+}
+```
+
+### Artefatos da funcionalidade
+
+#### Models
+- CaixaDeNotificacoesMongoDb.cs
+- NotificacaoMongoDb.cs
+- 
+#### Services
+- CaixaDeNotificacoesMongoDbService.cs
+
+#### DTO
+- UsuarioInfoDto.cs
+
+#### Controllers
+- UsuariosController.cs
+
+### Frontend Web
+- notificacoes.js
+- visualizarNotificacoesComponent.js
+- navbar.js
+
+### Fronten Mobile
+- NotificationsPage.js
+- auth.services.js
+- NavbarComponent.js
+
+### Instruções de acesso (Frontend Web)
+1. Realizar login;
+2. Clicar no icone de sino presente no cabeçalho;
+3. Visualizar notificações.
+
+### Instruções de acesso (Frontend Mobile)
+
+1. Realizar login;
+2. Clicar no icone de sino presente no cabeçalho;
+3. Visualizar notificações.
