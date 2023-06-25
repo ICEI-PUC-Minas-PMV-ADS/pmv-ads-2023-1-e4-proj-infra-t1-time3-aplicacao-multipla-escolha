@@ -122,6 +122,9 @@ Os testes de unidade serão aplicados para testar a integração da aplicação 
 |Requisitos que motivaram o teste|RF-007 Permitir que o aluno tenha acesso as próprias métricas relativas às atividades de multipla escolha que já realizou, RF-008 Permitir que o professor tenha acesso as métricas de desempenho de todos os alunos cadastrados em alguma de suas turmas.|
 |Critérios de êxito|Todos os testes de integração devem passar ao serem executados.|
 
+## Testes de Sistema
+Os testes de sistema da aplicação serão realizados através da aplicação OWASP ZAP, que utiliza um servidor proxy para testar vulnerabilidades na solução.
+
 ## Ferramentas de Testes (Opcional)
 
 ### NUnit
