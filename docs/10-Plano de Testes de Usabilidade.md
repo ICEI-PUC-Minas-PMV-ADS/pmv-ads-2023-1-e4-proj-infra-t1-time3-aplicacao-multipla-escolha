@@ -132,7 +132,7 @@ As tabelas abaixo demonstram cada caso de teste:
   <th>•	Usuário deve ser capaz de visualizar todas as notas do aluno escolhido para as atividades da turma em questão, sendo a maior nota de cada tentativa exibida.</th></tr>
   </table>
 
-    <table> 
+<table> 
 <tr><th>Caso de Teste </th>
 <th>CT-09 – Visualização de notificações por usuário.</th></tr>
 <tr><th>Objetivo do teste</th>
