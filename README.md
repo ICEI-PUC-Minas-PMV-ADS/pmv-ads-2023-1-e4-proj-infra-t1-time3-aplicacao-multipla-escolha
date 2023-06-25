@@ -90,4 +90,4 @@ Mais detalhes sobre a utilização da aplicação podem ser vistos na [Seção 7
 
 # Apresentação
 
-Tanto os slides da apresentação final do projeto como o vídeo da apresentação encontram-se neste repositório dentro da pasta [Presentation](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/upload/main/presentation).
+Tanto os slides da apresentação final do projeto como o vídeo da apresentação encontram-se neste repositório dentro da pasta [Presentation](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/presentation).
