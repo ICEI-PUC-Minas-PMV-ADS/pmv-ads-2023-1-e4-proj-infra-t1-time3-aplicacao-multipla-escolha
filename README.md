@@ -64,7 +64,7 @@ Frontend Mobile:
 Testes de integração e unidade:
 - Seguir os mesmos passos necessários para rodar a API, mas em vez de rodar a o projeto da API (último passo) selecionar a aba "Test" do Visual Studio Community 2022 e clicar na opção "Run All Tests". Uma janela chamada "Text Explorer" irá abrir e realizar todos os testes, mostrando os resultados quando estes forem concluídos, tanto para os testes de unidade quanto para os de integração.
 
-Mais detalhes sobre a utilização da aplicação podem ser vistos na [Seção 7 - Progamação de funcionalidades](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/blob/main/docs/07-Programa%C3%A7%C3%A3o%20de%20Funcionalidades.md)
+Mais detalhes sobre a utilização da aplicação podem ser vistos na [Seção 7 - Progamação de funcionalidades](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/tree/main/presentation)
 
 # Documentação
 
@@ -90,4 +90,4 @@ Mais detalhes sobre a utilização da aplicação podem ser vistos na [Seção 7
 
 # Apresentação
 
-<li><a href="presentation/README.md"> Apresentação da solução</a></li>
+Tanto os slides da apresentação final do projeto como o vídeo da apresentação encontram-se neste repositório dentro da pasta [Presentation](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/upload/main/presentation).
