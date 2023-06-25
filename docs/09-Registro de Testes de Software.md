@@ -1337,3 +1337,7 @@ Nesta seção se encontra o relatório com as evidências dos testes de software
 **Resultado**: Todos os testes de integração obtiveram êxito quando executados. Satisfazendo assim os critérios de êxito.
 
 <br>
+
+## Testes de Sistema
+A varredura realizada pelo OWASP ZAP resultou na geração de um relatório de vulnerabilidades que pode ser acessado no link abaixo:
+https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-1-e4-proj-infra-t1-time3-aplicacao-multipla-escolha/blob/main/docs/2023-06-25-ZAP-Report-.html
