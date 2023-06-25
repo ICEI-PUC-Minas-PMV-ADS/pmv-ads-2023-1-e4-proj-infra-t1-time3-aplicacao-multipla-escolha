@@ -141,3 +141,5 @@ Para rodar os testes de unidade utilizando o NUnit, basta abrir o arquivo ".solu
 ### XUnit
 Framework de testes de unidade para a plataforma dotnet. Foi utilizado também no projeto separado "multipla-escolha-api.tests" para os testes de integração, especificamente devido a sua maior facilidade em operar com o Entity Framwork Core, utiliza o mesmo arquivo "usings" do NUnit.
 
+### OWASP ZAP (Zed Attack Proxy)
+Scanner de aplicações Web de código aberto que pode ser utilizado para identificação de vulnerabilidades nas aplicações.
