@@ -1,4 +1,4 @@
-# Multípla Escolha
+# Múltipla Escolha
 
 `ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
@@ -6,7 +6,7 @@
 
 `QUARTO SEMESTRE`
 
-Com o intuito de facilitar o processo de adaptação de alunos e professores pós covid-19, em que o cenário educacional sofreu diversas mudanças e trazer maior comodidade ao dia-a-dia do mundo acadêmico, teve-se a ideia de desenvolver uma aplicação distribuída com interfaces web e mobile que forneça um ambiente de fácil acesso para que os profissionais da educação possam submeter atividades, materiais de apoio e testes, tanto via dispositivo móvel quanto a partir interface web acessada via computador. Nossa aplicação, concebida a partir de tal necessidade, chama-se "Multípla Escolha", e visa trazer comodidade aos usuários professores que irão submeter esses materiais tanto quanto para os usuários alunos que irão consumi-los.
+Com o intuito de facilitar o processo de adaptação de alunos e professores pós covid-19, em que o cenário educacional sofreu diversas mudanças e trazer maior comodidade ao dia-a-dia do mundo acadêmico, teve-se a ideia de desenvolver uma aplicação distribuída com interfaces web e mobile que forneça um ambiente de fácil acesso para que os profissionais da educação possam submeter atividades, materiais de apoio e testes, tanto via dispositivo móvel quanto a partir interface web acessada via computador. Nossa aplicação, concebida a partir de tal necessidade, chama-se "Múltipla Escolha", e visa trazer comodidade aos usuários professores que irão submeter esses materiais tanto quanto para os usuários alunos que irão consumi-los.
 
 ## Integrantes
 
